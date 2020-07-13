@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"          
+      layout:decorate="~{layout/public/layout}"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+    <body>
+        <div class="site-wrapper-reveal" layout:fragment="content">
+            <div class="breadcrumb-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            punteggio
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+
+                <div class="single-divider section-space--ptb_60 border-bottom">
+                    <div class="row ">
+                                      <!-- <img src="/mitech/assets/images/favicon.png" th:src="@{/mitech/assets/images/favicon.png}" alt="" /> -->
+
+                        <div class="col-lg-4">
+                         ciao menu
+                        </div>
+                        <div class="col-lg-8">
+                            <table  class="tabellavillaggio">
+                                    <tr>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                    
+                                        <td><img style="width:100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td> 
+                                        <td th:if="${posizioneEdificio[8] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[8] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[8] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[9] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[9] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[9] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[10] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[10] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[10] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[11] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[11] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[11] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[14] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[14] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[14] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[15] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[15] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[15] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[16] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[16] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[16] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[17] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[17] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[17] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                       <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[20] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[20] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[20] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[21] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[21] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[21] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[22] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[22] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[22] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                       <td th:if="${posizioneEdificio[23] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[23] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[23] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                       <td th:if="${posizioneEdificio[26] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[26] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[26] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[27] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[27] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[27] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[28] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[28] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[28] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td th:if="${posizioneEdificio[29] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[29] + '.png'}}" alt="" /></td>
+                                        <td th:unless="${posizioneEdificio[29] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                        <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    </tr>
+                
+                            </table>
+                            villaggio 
+                        </div>
+                    </div>
+                </div>
+                <!--  <div class="row">
+                      <div class="col-md-12">
+                          ciao
+                      </div>
+                      <div class="col-12">
+  
+                          miao
+                      </div>
+  
+  
+                      <div class="row">
+  
+                          <div class="col-md-12">
+                <!-- section-title-wrap Start -->
+                bau
+                <!--        </div>
+                        <div class="col-12">
+
+                            <div class="row">
+
+
+                                cucu
+                        </div>
+                    </div>
+                </div>-->
+                <br><br><hr><br><br>
+                                    <div class="thick-short-line"></div>
+                                    </div>
+                                    </div>
+
+                                    <th:block layout:fragment="script">
+                                        <script type="text/javascript">
+
+                                        </script>
+                                    </th:block>
+                                    </body>
+                                    </html>
+

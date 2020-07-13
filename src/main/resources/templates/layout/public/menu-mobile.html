@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" th:fragment="menu-mobile">
+        <div class="mobile-menu-overlay__inner">
+            <div class="mobile-menu-overlay__header">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 col-8">
+                            <!-- logo -->
+                            <div class="logo">
+                                <a href="#" th:href="@{/}">
+                                    
+                                    <h4>SED S.p.A.</h4>
+<!--                                    <img th:src="@{/mitech/assets/images/logo/logo_sed.jpg}"  class="img-fluid" alt="">-->
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-4">
+                            <!-- mobile menu content -->
+                            <div class="mobile-menu-content text-right">
+                                <span class="mobile-navigation-close-icon" id="mobile-menu-close-trigger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu-overlay__body">
+                <nav class="offcanvas-navigation">
+                    <ul>
+                        <li class=""><a href="#" th:href="@{/}">[[#{menu.home}]]</a>                           
+                        </li>
+                        <li class="has-children">
+                            <a href="#" >[[#{menu.servizi}]]</a>
+                            <ul class="sub-menu">
+                                <li><a href="#" th:href="@{/servizi_al_cittadino}"><span>[[#{menu.serviziCittadino}]]</span></a></li>
+                                <li><a href="#" th:href="@{/servizi_interni}"><span>[[#{menu.serviziInterni}]]</span></a></li>
+                                <li><a href="#" th:href="@{/lavoro_agile}"><span>[[#{menu.lavoro}]]</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#" >[[#{menu.contatti}]]</a>
+                            <ul class="sub-menu">
+                                <li><a href="#" th:href="@{/contatti}"><span>[[#{menu.contattaci}]]</span></a></li> 
+                                <li><a href="#" th:href="@{/uffici}"><span>[[#{menu.uffici}]]</span></a></li> 
+                            </ul>
+                        </li>
+                        
+                        <li class=""><a href="http://www.pa33.it/trasparenza/SEDAQ">[[#{menu.societaTrasparente}]]</a></li>
+                        <li class=""><a href="#" th:href="@{/privacy}"><span>[[#{menu.privacy}]]</span></a></li>
+                        <li class=""><a href="#" th:href="@{/news}"><span>[[#{menu.news}]]</span></a></li>
+                        <li class=""><a href="#" th:href="@{/faq}"><span>[[#{menu.faq}]]</span></a></li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

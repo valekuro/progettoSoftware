@@ -1,0 +1,130 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"          
+      layout:decorate="~{layout/public/layout}"
+      xmlns="http://www.w3.org/1999/xhtml">
+        
+        <div class="site-wrapper-reveal" layout:fragment="content">
+            <!-- breadcrumb-area start -->
+            <div class="breadcrumb-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="breadcrumb_box text-center">
+                                <h2 class="breadcrumb-title" th:text="#{news.list.titolo}"></h2>
+                                <!-- breadcrumb-list start -->
+                                <ul class="breadcrumb-list">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item active" th:text="#{news.list.titolo}">List Large Image</li>
+                                </ul>
+                                <!-- breadcrumb-list end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- breadcrumb-area end -->
+            
+            <div class="blog-pages-wrapper section-space--ptb_100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 order-lg-1 order-2">
+                        <div class="page-sidebar-content-wrapper page-sidebar-left  small-mt__40 tablet-mt__40">
+
+                            <!--=== Sidebar Widget Start ===-->
+                            <div class="sidebar-widget search-post wow move-up">
+                                <div class="widget-title">
+                                    <h4 class="sidebar-widget-title" th:text="#{common.search}">Search</h4>
+                                </div>
+                                <form th:action="@{/news/s}" method="GET">
+
+                                    <div class="widget-search">
+                                        <input type="text" name="text" th:placeholder="#{common.search.text}">
+
+                                        <button type="submit" class="search-submit">
+                                            <span class="search-btn-icon fa fa-search"></span>
+                                        </button>
+
+                                    </div>
+                                </form>
+                            </div>
+                            <!--=== Sidebar Widget End ===-->
+
+
+                            <!-- === Sidebar Widget Start === -->
+                            <div class="sidebar-widget widget-blog-recent-post wow move-up">
+
+                                <h4 class="sidebar-widget-title">Ultime news</h4>
+
+                                <ul th:each="news : ${latestNews}">
+                                    <li>
+                                        <a th:href="@{/news/} + ${news.id}" th:text="${news.title}">Ideas for High Returns on Investment</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <!-- === Sidebar Widget End === -->
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-8 order-lg-2 order-1">
+                        <div class="main-blog-wrap">
+                            
+                            <p th:utext="#{news.searchString(${search})}" th:if="${search != null}"></p>
+                            
+                            <div class="single-blog-item lg-blog-item border-bottom wow move-up" th:each="news : ${news}">
+
+                            <div class="post-info lg-blog-post-info">
+                                
+                                <h3 class="post-title">
+                                    <a th:href="@{/news/} + ${news.id}" th:text="${news.title}">How Technology Made Businesses More Efficient</a>
+                                </h3>
+
+                                <div class="post-meta mt-20">
+                                    <div class="post-date">
+                                        <span class="far fa-calendar meta-icon"></span>
+                                        <span th:text="${#temporals.format(news.dataCreazione, 'dd/MM/yyyy')}">January 18, 2019</span>
+                                    </div>
+                                </div>
+
+                                <div class="post-excerpt mt-15">
+                                    <p class="news-content" th:utext="${news.content}">They play a role in making operations more seamless</p>
+                                </div>
+
+                                <div class="read-post-share-wrap  mt-20">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="post-read-more">
+                                                <a th:href="@{/news/} + ${news.id}" th:text="#{news.list.leggi}" class="ht-btn ht-btn-xs">Read more </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        <th:block layout:fragment="script">
+        <script th:inline="javascript">
+    
+    $(document).ready(function () {
+        $('.news-content').each(function() {
+        var maxchars = 300;
+        var seperator = '...';
+
+        if ($(this).html().length > (maxchars - seperator.length)) {
+            $(this).html($(this).html().substr(0, maxchars-seperator.length) + seperator);
+        }
+        else {
+            $(this).parent().parent().find('.read-post-share-wrap').hide()
+        }
+    });
+    })
+        </script>
+    </th:block>
+    </body>
+</html>

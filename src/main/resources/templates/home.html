@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"          
+      layout:decorate="~{layout/public/layout}" 
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <body>
+            <div class="site-wrapper-reveal  section-space--pt__120" layout:fragment="content">
+                <p th:text="${mySessionAttribute}"></p>
+                hello world! <br>
+
+            </div>
+            <!--    <th:block layout:fragment="script">
+                    <script type="text/javascript">
+            
+                    </script>
+                </th:block>-->
+        </body>
+    </head>
+</html>

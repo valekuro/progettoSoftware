@@ -1,0 +1,27 @@
+server:
+  servlet:
+    context-path: /
+    session:
+      timeout: 240m
+spring:
+  application:
+    name: Game Project
+  profiles:
+    active: dev
+  messages:
+    basename: i18n/common, i18n/game    
+    encoding: UTF-8
+    use-code-as-default-message: true
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDB53Dialect              
+        format_sql: false  
+        show_sql: true  
+  servlet:
+    multipart:
+      max-file-size: 3MB
+      max-request-size: 15MB 
+      enabled: true
+  thymeleaf:
+    render-hidden-markers-before-checkboxes: true

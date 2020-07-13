@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/xhtml">
+<body>
+
+<!-- Header Top Wrap Start -->
+    <div class="header-top-bar-info bg-gray d-none d-lg-block" th:fragment="header">
+        <li class="header-right" style="float:right; padding: 10px; padding-right: 25px;"><a href="#" th:href="@{/admin/}" class="hover-style-link">[[#{header.login}]]</a></li>
+        <div class="container">
+             
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="top-bar-wrap">
+                        <div class="top-bar-left">
+                            <div class="top-bar-text" th:text="#{header.consulenzaEsoluzioni}">Consulenza e soluzioni per le P.A. - Società in House Providing</div>
+                        </div>
+                        <div class="top-bar-right">
+                            <ul class="top-bar-info">
+                                <li class="info-item">
+                                    <a href="tel:01228899900" class="info-link">
+                                        <i class="info-icon fa fa-phone"></i>
+                                        <span class="info-text" th:text="#{common.numeroTelSed}"><strong>0862 317346</strong></span>
+                                    </a>
+                                </li>
+                                <li class="info-item">
+                                    <i class="info-icon fa fa-map-marker-alt"></i>
+                                    <span class="info-text" th:text="#{common.indirizzo}">Loc. Campo di Pile (c/o A.M.A. Spa) 67100 L'AQUILA</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Header Top Wrap End -->
+
+</body>
+</html>
