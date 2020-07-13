@@ -46,7 +46,7 @@ public class VillaggioController {
         HashMap<Integer,String> posizioneEdificio = new HashMap<>(25);
         //pos.set(0, d.get(i).getPosizione());
         //System.out.print();
-        for (int i = 1; i < d.size(); i++) {
+        for (int i = 0; i < d.size(); i++) {
             posizioneEdificio.put(d.get(i).getPosizione(), d.get(i).getIDEdificio().getNome());
             //pos.add(d.get(i).getPosizione());
             //edi.add(d.get(i).getIDEdificio().getNome());
