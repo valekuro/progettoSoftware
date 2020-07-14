@@ -5,7 +5,11 @@
  */
 package it.univaq.game.application;
 
+import java.util.TimerTask;
+import java.util.Timer;
+import it.univaq.game.application.VillaggioController;
 import it.univaq.game.business.exceptions.BusinessException;
+import it.univaq.game.business.Cronometro;
 import org.springframework.stereotype.Controller;
 import it.univaq.game.business.CasellaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,35 +30,30 @@ import java.util.Map;
 import java.util.Iterator;
 import java.util.Set;
 import org.springframework.ui.ModelMap;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
  * @author Valentina
  */
 @Controller
-@RequestMapping("/attacco_esercitazione")
-public class VillaggioController {
+@RequestMapping("/attacco_esercitazione/partitavillaggioesercitazione")
+public class PartitaController {
 
     @Autowired
-    private CasellaService casellaservice;
-
+    private VillaggioController villaggiocontroller;
+    private Cronometro cronometro = new Cronometro();
+    
     @GetMapping("")
-    public String VillaggioPage(Model model) throws BusinessException {
-        List<Casella> d = casellaservice.findAll();
-        //ArrayList<Integer> pos = new ArrayList<>(25);
-        //ArrayList<String> edi = new ArrayList<>(25);
-        HashMap<Integer,String> posizioneEdificio = new HashMap<>(25);
-        //pos.set(0, d.get(i).getPosizione());
-        for (int i = 0; i < d.size(); i++) {
-            if (d.get(i).getLivello_disponibilita()<=3){
-                posizioneEdificio.put(d.get(i).getPosizione(), d.get(i).getIDEdificio().getImmagine());
-            }
-            
-            //pos.add(d.get(i).getPosizione());
-            //edi.add(d.get(i).getIDEdificio().getNome());
-        }
-        model.addAttribute("posizioneEdificio", posizioneEdificio);
-        return "villaggioesercitazione";
+    public String inizioPartitaVillaggioEsercitazione(Model model) throws BusinessException {
+        villaggiocontroller.VillaggioPage(model);
+        cronometro.avanza();
+        String tempoResiduo = cronometro.toString();
+        model.addAttribute("tempoResiduo", tempoResiduo);
+        int a = 1;
+        model.addAttribute("a", a);
+        return "partitavillaggioesercitazione";
     }
-
 }

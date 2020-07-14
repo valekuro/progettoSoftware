@@ -23,6 +23,7 @@ import lombok.EqualsAndHashCode;
 public class Casella extends AbstractEntity<Long> {
     @EqualsAndHashCode.Include
     private int posizione;
+    private int livello_disponibilita;
     @JsonIgnore
     @ManyToOne()
     private Edificio IDEdificio;
