@@ -9,7 +9,8 @@ import java.util.TimerTask;
 import java.util.Timer;
 import it.univaq.game.application.VillaggioController;
 import it.univaq.game.business.exceptions.BusinessException;
-import it.univaq.game.business.Cronometro;
+import it.univaq.game.business.Countdown;
+import it.univaq.game.business.ScriviDurata;
 import org.springframework.stereotype.Controller;
 import it.univaq.game.business.CasellaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,16 +45,16 @@ public class PartitaController {
 
     @Autowired
     private VillaggioController villaggiocontroller;
-    private Cronometro cronometro = new Cronometro();
-    
+    private Countdown countdown = new Countdown();
+    private ScriviDurata scrividurata = new ScriviDurata();
+
     @GetMapping("")
     public String inizioPartitaVillaggioEsercitazione(Model model) throws BusinessException {
         villaggiocontroller.VillaggioPage(model);
-        cronometro.avanza();
-        String tempoResiduo = cronometro.toString();
-        model.addAttribute("tempoResiduo", tempoResiduo);
-        int a = 1;
-        model.addAttribute("a", a);
+        System.out.println("INIZIA il conto alla rovescia:");
+        countdown.CountDown();
+        int temporimanente = scrividurata.resume;
+        model.addAttribute("tr",temporimanente);
         return "partitavillaggioesercitazione";
     }
 }
