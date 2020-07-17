@@ -17,16 +17,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "villaggio")
-public class Villaggio extends AbstractEntity<Long> {
-    @EqualsAndHashCode.Include
-    private int resistenzaTotaleEdificio;
-    private int colpiAlSecondoEdificio;
-    private int resistenzaTotaleTruppa;
-    private int colpiAlSecondoTruppa;
-    private int livelloMunicipio;
-    @JsonIgnore
-    @ManyToOne()
-    private Edificio IDEdificio;
-    private Truppe IDTruppe;
+@Table(name = "truppe")
+public class Truppe extends AbstractEntity<Long> {
+     @EqualsAndHashCode.Include
+     private String nomeTruppa;
+     private String immagineTruppa;
+     private int livello_disponibilita;
+        
 }

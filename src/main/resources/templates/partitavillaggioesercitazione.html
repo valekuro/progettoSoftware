@@ -9,11 +9,10 @@
             <div class="breadcrumb-area">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12">
-                            punteggio
 
-                            <p id="demo"></p>
-                        </div>
+                        <div class="col-lg-4">edifici distrutti</div>
+                        <div class="col-lg-4" id="demo"></div>
+                        <div class="col-lg-4">stelle</div>
                     </div>
                 </div>
             </div>
@@ -24,8 +23,16 @@
                         <!-- <img src="/mitech/assets/images/favicon.png" th:src="@{/mitech/assets/images/favicon.png}" alt="" /> -->
 
                         <div class="col-lg-4">
-                            dkjhfjksdafh
+<img class="mySlides" src="/mitech/assets/images/truppe/arciere.png">
+<img class="mySlides" src="/mitech/assets/images/truppe/gigante.png">
+<img class="mySlides" src="/mitech/assets/images/truppe/drago.png">
+<img class="mySlides" src="/mitech/assets/images/truppe/arciere.png">
+    <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+<button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+                            
+
                         </div>
+
                         <div class="col-lg-8">
                             <table  class="tabellavillaggio">
                                 <tr>
@@ -159,10 +166,32 @@
                                                 // If the count down is over, write some text 
                                                 if (distance < 0) {
                                                     clearInterval(x);
-                                                    document.getElementById("demo").innerHTML = "EXPIRED";
+                                                    document.getElementById("demo").innerHTML = "Fine partita!";
                                                 }
                                             }, 1000);
 
+                                            var slideIndex = 1;
+                                            showDivs(slideIndex);
+
+                                            function plusDivs(n) {
+                                                showDivs(slideIndex += n);
+                                            }
+
+                                            function showDivs(n) {
+                                                var i;
+                                                var x = document.getElementsByClassName("mySlides");
+                                                if (n > x.length) {
+                                                    slideIndex = 1
+                                                }
+                                                if (n < 1) {
+                                                    slideIndex = x.length
+                                                }
+                                                ;
+                                                for (i = 0; i < x.length; i++) {
+                                                    x[i].style.display = "none";
+                                                }
+                                                x[slideIndex - 1].style.display = "block";
+                                            }
                                         </script>
                                     </th:block>
                                     </body>

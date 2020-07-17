@@ -5,35 +5,15 @@
  */
 package it.univaq.game.application;
 
-import java.util.TimerTask;
-import java.util.Timer;
-import it.univaq.game.application.VillaggioController;
 import it.univaq.game.business.exceptions.BusinessException;
-import it.univaq.game.business.Countdown;
-import it.univaq.game.business.ScriviDurata;
 import org.springframework.stereotype.Controller;
-import it.univaq.game.business.CasellaService;
+import it.univaq.game.business.TruppeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import it.univaq.game.domain.Truppe;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import it.univaq.game.business.RequestGrid;
-import it.univaq.game.business.ResponseGrid;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import it.univaq.game.domain.Casella;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Iterator;
-import java.util.Set;
-import org.springframework.ui.ModelMap;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  *
@@ -45,11 +25,17 @@ public class PartitaController {
 
     @Autowired
     private VillaggioController villaggiocontroller;
+    @Autowired
+    private TruppeService truppeservice;
 
     @GetMapping("")
     public String inizioPartitaVillaggioEsercitazione(Model model) throws BusinessException {
         villaggiocontroller.VillaggioPage(model);
-       
+        List<Truppe> truppeDisponbili = truppeservice.findAll();
+        for (int i = 1; i < truppeDisponbili.size(); i++) {
+            model.addAttribute("truppeDisponbili", truppeDisponbili.get(i).getImmagineTruppa());
+
+        }
         return "partitavillaggioesercitazione";
     }
 }

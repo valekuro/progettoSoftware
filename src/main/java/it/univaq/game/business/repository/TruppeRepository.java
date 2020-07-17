@@ -5,21 +5,17 @@
  */
 package it.univaq.game.business.repository;
 
-import it.univaq.game.domain.Casella;
+import it.univaq.game.domain.Truppe;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import java.util.List;
-
 
 /**
  *
  * @author Valentina
  */
 @Repository
-public interface CasellaRepository extends JpaRepository<Casella, Long>{
-    public List<Casella> findAll();
-    //public ResponseGrid<Casella> findAllFaqPaginated(RequestGrid requestGrid);
-    //Page<Casella> findAllCasellaPaginated(Integer posizione, Long idedificio_id, Pageable pageable);
 
-
+public interface TruppeRepository extends JpaRepository<Truppe, Long>{
+    public List<Truppe> findAll();
 }
