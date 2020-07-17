@@ -45,16 +45,11 @@ public class PartitaController {
 
     @Autowired
     private VillaggioController villaggiocontroller;
-    private Countdown countdown = new Countdown();
-    private ScriviDurata scrividurata = new ScriviDurata();
 
     @GetMapping("")
     public String inizioPartitaVillaggioEsercitazione(Model model) throws BusinessException {
         villaggiocontroller.VillaggioPage(model);
-        System.out.println("INIZIA il conto alla rovescia:");
-        countdown.CountDown();
-        int temporimanente = scrividurata.resume;
-        model.addAttribute("tr",temporimanente);
+       
         return "partitavillaggioesercitazione";
     }
 }
