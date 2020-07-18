@@ -32,10 +32,7 @@ public class PartitaController {
     public String inizioPartitaVillaggioEsercitazione(Model model) throws BusinessException {
         villaggiocontroller.VillaggioPage(model);
         List<Truppe> truppeDisponbili = truppeservice.findAll();
-        for (int i = 1; i < truppeDisponbili.size(); i++) {
-            model.addAttribute("truppeDisponbili", truppeDisponbili.get(i).getImmagineTruppa());
-
-        }
+        model.addAttribute("truppeDisponbili", truppeDisponbili);
         return "partitavillaggioesercitazione";
     }
 }
