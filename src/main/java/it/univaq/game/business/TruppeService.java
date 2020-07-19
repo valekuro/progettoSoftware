@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface TruppeService {
     public List<Truppe> findAll() throws BusinessException;
+    public List<Truppe> findBynomeTruppa(String nomeTruppa) throws BusinessException;
 }

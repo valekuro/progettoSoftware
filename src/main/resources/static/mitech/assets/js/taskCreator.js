@@ -4,32 +4,36 @@
  * and open the template in the editor.
  */
 
-alert("vaffanculo");
-class FrogBuilder {
-  constructor(name, gender) {
-    this.name = name
-    this.gender = gender
+class Truppa {
+  constructor(nome) {
+    this.nome = nome
+    this.colpiAlSecondo = colpiAlSecondo
+    this.guarigione = guarigione
+    this.resistenzaTotale = resistenzaTotale
+
   }
-  setWeight(weight) {
-    this.weight = weight
+  
+
+  setColpiAlSecondo(colpiAlSecondo) {
+    this.colpiAlSecondo = colpiAlSecondo
     return this
   }
-  setHeight(height) {
-    this.height = height
+  setGuarigione(guarigione) {
+    this.guarigione = guarigione
+    return this
+  }
+   setResistenzaTotale(resistenzaTotale) {
+    this.resistenzaTotale = resistenzaTotale
     return this
   }
   build() {
-    if (!('weight' in this)) {
-      throw new Error('Weight is missing')
+    if (!('resistenzaTotale' in this)) {
+      throw new Error('manca la resistenza')
     }
-    if (!('height' in this)) {
-      throw new Error('Height is missing')
-    }
-    return new Frog(this.name, this.weight, this.height, this.gender)
+   
+    return new Truppa(this.nome, this.colpiAlSecondo, this.guarigione, this.resistenzaTotale)
   }
 }
 
-const leon = new FrogBuilder('Leon', 'male')
-  .setWeight(14)
-  .setHeight(3.7)
-  .build()
+
+  

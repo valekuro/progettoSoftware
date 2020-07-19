@@ -12,7 +12,7 @@
 
                         <div class="col-lg-4">edifici distrutti</div>
                         <div class="col-lg-4" id="demo"></div>
-                        <div class="col-lg-4">stelle</div>
+                        <div class="col-lg-4">stelle <button>ciaone</button></div>
                     </div>
                 </div>
             </div>
@@ -141,17 +141,30 @@
                                     </div>
                                     </div>
 
-                                    <th:block layout:fragment="script">
+                                     <th:block layout:fragment="script">
                                         <script th:src="@{/mitech/assets/js/attacco.js}"></script>
                                         <script th:src="@{/mitech/assets/js/taskCreator.js}"></script>
                                         <script>
-                                            document.getElementById("pippo").onclick = function () {
-                                                const sally = new FrogBuilder('Sally', 'female')
-                                                        .setWeight(5)
-                                                        .setHeight(7.8)
-                                                        .build()
-                                                alert("ciao");
-                                            };
+                                            jQuery( document ).ready( function( $ ) {
+
+                                            $("button").click(function () {
+                                                $.ajax({
+                                                    type: 'GET',
+                                                    url: '/attacco_esercitazione/partitavillaggioesercitazione/pippo',
+                                                    success: function (data) {
+                                                        alert(data)
+                                                    },
+                                                    error: function () {
+                                                        alert('C’è stato un’errore');
+                                                    }
+                                                });
+
+                                            });
+                                            
+                                            });
+
+                                            
+                                            
                                         </script>
                                     </th:block>
                                     </body>

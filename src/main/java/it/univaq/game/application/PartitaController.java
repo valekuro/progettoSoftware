@@ -35,4 +35,11 @@ public class PartitaController {
         model.addAttribute("truppeDisponbili", truppeDisponbili);
         return "partitavillaggioesercitazione";
     }
+    
+    
+    @GetMapping("pippo")
+    public String pippo(Model model, String nomeTruppa) throws BusinessException {
+         List<Truppe> cercaDettagliTruppa = truppeservice.findBynomeTruppa(nomeTruppa);
+        return "news";
+    }
 }

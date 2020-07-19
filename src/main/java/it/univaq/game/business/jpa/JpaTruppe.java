@@ -31,5 +31,12 @@ public class JpaTruppe implements TruppeService {
         List<Truppe> truppe = truppeRepository.findAll();
         return truppe;
     }
+    
+     @Override
+    @Transactional(readOnly = true)
+    public List<Truppe> findBynomeTruppa(String nomeTruppa) throws BusinessException {
+        List<Truppe> truppe = truppeRepository.findBynomeTruppa(nomeTruppa);
+        return truppe;
+    }
 
 }

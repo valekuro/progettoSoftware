@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package it.univaq.game.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 /**
  *
  * @author Valentina
@@ -19,9 +21,16 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "truppe")
 public class Truppe extends AbstractEntity<Long> {
-     @EqualsAndHashCode.Include
-     private String nomeTruppa;
-     private String immagineTruppa;
-     private int livello_disponibilita;
-        
+
+    @EqualsAndHashCode.Include
+    private String nomeTruppa;
+    private String immagineTruppa;
+    private int livelloDisponibilita;
+    private int tassoAggiornamentoResistenza;
+    private int tassoAggiornamentoColpi;
+    private int resistenzaLivelloIniziale;
+    private int colpiLivelloIniziale;
+    private int tassoAggiornamentoGuarigione;
+    private int guarigioneLivelloIniziale;
+
 }

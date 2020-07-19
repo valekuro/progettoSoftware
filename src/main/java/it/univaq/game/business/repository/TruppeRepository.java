@@ -18,4 +18,5 @@ import org.springframework.stereotype.Repository;
 
 public interface TruppeRepository extends JpaRepository<Truppe, Long>{
     public List<Truppe> findAll();
+    public List<Truppe> findBynomeTruppa(String nomeTruppa);
 }
