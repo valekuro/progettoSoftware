@@ -7,11 +7,13 @@ package it.univaq.game.business;
 import it.univaq.game.business.exceptions.BusinessException;
 import it.univaq.game.domain.Truppe;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 /**
  *
  * @author Valentina
  */
 public interface TruppeService {
     public List<Truppe> findAll() throws BusinessException;
-    public List<Truppe> findBynomeTruppa(String nomeTruppa) throws BusinessException;
+    public ResponseGrid<Truppe> findAllTruppePaginated(RequestGrid requestGrid) throws BusinessException;
 }

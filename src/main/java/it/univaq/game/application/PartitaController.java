@@ -5,6 +5,8 @@
  */
 package it.univaq.game.application;
 
+import it.univaq.game.business.RequestGrid;
+import it.univaq.game.business.ResponseGrid;
 import it.univaq.game.business.exceptions.BusinessException;
 import org.springframework.stereotype.Controller;
 import it.univaq.game.business.TruppeService;
@@ -14,6 +16,9 @@ import it.univaq.game.domain.Truppe;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -36,10 +41,22 @@ public class PartitaController {
         return "partitavillaggioesercitazione";
     }
     
-    
-    @GetMapping("pippo")
-    public String pippo(Model model, String nomeTruppa) throws BusinessException {
-         List<Truppe> cercaDettagliTruppa = truppeservice.findBynomeTruppa(nomeTruppa);
-        return "news";
+
+    @RequestMapping(
+            value="pippo", 
+            produces="application/json")
+    @ResponseBody
+    public List<Truppe> pippo(Model model) throws BusinessException {
+         List<Truppe> cercaDettagliTruppa = truppeservice.findAll();
+         model.addAttribute("cercaDettagliTruppa", cercaDettagliTruppa);
+        return cercaDettagliTruppa;
     }
+    /*
+    @RequestMapping("pippo")
+    public @ResponseBody
+    ResponseGrid<Truppe> findAllTruppe(@RequestBody RequestGrid requestGrid, Model model) throws BusinessException {
+        return truppeservice.findAllTruppePaginated(requestGrid);
+    }
+    */
+    
 }

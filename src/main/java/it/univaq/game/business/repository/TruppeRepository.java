@@ -5,8 +5,13 @@
  */
 package it.univaq.game.business.repository;
 
+import it.univaq.game.business.RequestGrid;
+import it.univaq.game.business.ResponseGrid;
+import it.univaq.game.business.exceptions.BusinessException;
 import it.univaq.game.domain.Truppe;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +23,6 @@ import org.springframework.stereotype.Repository;
 
 public interface TruppeRepository extends JpaRepository<Truppe, Long>{
     public List<Truppe> findAll();
-    public List<Truppe> findBynomeTruppa(String nomeTruppa);
+    public Page<Truppe> findBynomeTruppa(String nomeTruppa, Pageable pageable);
+
 }

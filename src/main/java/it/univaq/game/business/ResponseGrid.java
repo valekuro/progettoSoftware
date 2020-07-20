@@ -13,6 +13,28 @@ import lombok.Data;
  */
 @Data
 public class ResponseGrid<R> {
-    private List<R> data;
-    private R totals;
+   	private String draw;
+	private long recordsTotal;
+	private long recordsFiltered;
+	private List<R> data;
+	private R totals;
+
+    public ResponseGrid() {
+    }
+    
+    public ResponseGrid(String draw, long recordsTotal, long recordsFiltered, List<R> data) {
+        this.draw = draw;
+        this.recordsTotal = recordsTotal;
+        this.recordsFiltered = recordsFiltered;
+        this.data = data;
+    }
+
+    public ResponseGrid(String draw, long recordsTotal, long recordsFiltered, List<R> data, R totals) {
+        this.draw = draw;
+        this.recordsTotal = recordsTotal;
+        this.recordsFiltered = recordsFiltered;
+        this.data = data;
+        this.totals = totals;
+    }
+
 }

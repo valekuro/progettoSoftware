@@ -16,6 +16,7 @@ public class SearchType {
 	
 	private int value;
         private Long value2;
+        private String value3;
 	private boolean regex; 
 
 }

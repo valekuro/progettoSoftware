@@ -108,6 +108,7 @@
 
                             </table>
                             villaggio 
+                            <div th:text="${json}"></div>
                         </div>
                     </div>
                 </div>
@@ -141,30 +142,31 @@
                                     </div>
                                     </div>
 
-                                     <th:block layout:fragment="script">
+                                    <th:block layout:fragment="script">
                                         <script th:src="@{/mitech/assets/js/attacco.js}"></script>
                                         <script th:src="@{/mitech/assets/js/taskCreator.js}"></script>
                                         <script>
-                                            jQuery( document ).ready( function( $ ) {
+                                            jQuery(document).ready(function ($) {
 
-                                            $("button").click(function () {
-                                                $.ajax({
-                                                    type: 'GET',
-                                                    url: '/attacco_esercitazione/partitavillaggioesercitazione/pippo',
-                                                    success: function (data) {
-                                                        alert(data)
-                                                    },
-                                                    error: function () {
-                                                        alert('C’è stato un’errore');
-                                                    }
+                                                $("button").click(function () {
+                                                    $.ajax({
+                                                        type: "GET",
+                                                        contentType: "application/json",
+                                                        url: '/attacco_esercitazione/partitavillaggioesercitazione/pippo',
+                                                        success: function (data) {
+                                                            alert(data);
+                                                        },
+                                                        error: function () {
+                                                            alert('C’è stato un’errore');
+                                                        }
+                                                    });
+
                                                 });
 
                                             });
-                                            
-                                            });
 
-                                            
-                                            
+
+
                                         </script>
                                     </th:block>
                                     </body>
