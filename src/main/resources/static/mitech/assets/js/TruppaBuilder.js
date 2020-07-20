@@ -3,19 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 class Truppa {
-  constructor(nome) {
-    this.nome = nome
+  constructor(name, contatoreVita, colpiAlSecondo, guarigione, resistenzaTotale) {
+    this.name = name
+    this.contatoreVita = contatoreVita
     this.colpiAlSecondo = colpiAlSecondo
     this.guarigione = guarigione
     this.resistenzaTotale = resistenzaTotale
+  }
+  eat(target) {
+    console.log(`Eating target: ${target.name}`)
+  }
+}
+
+class TruppaBuilder {
+  constructor(nome) {
+    this.nome = nome
 
   }
   
-
+  setContatoreVita(contatoreVita){
+      this.contatoreVita = contatoreVita 
+      return this
+  }
   setColpiAlSecondo(colpiAlSecondo) {
-    this.colpiAlSecondo = colpiAlSecondo
+    this.colpiAlSecondo 
+            //= colpiAlSecondo + (liv_mun - 1 ) * tasso
     return this
   }
   setGuarigione(guarigione) {
@@ -31,9 +44,8 @@ class Truppa {
       throw new Error('manca la resistenza')
     }
    
-    return new Truppa(this.nome, this.colpiAlSecondo, this.guarigione, this.resistenzaTotale)
+    return new Truppa(this.nome, this.colpiAlSecondo, this.guarigione, this.resistenzaTotale, this.contatoreVita)
   }
+  
 }
 
-
-  

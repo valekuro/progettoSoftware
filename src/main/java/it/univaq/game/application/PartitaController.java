@@ -51,12 +51,5 @@ public class PartitaController {
          model.addAttribute("cercaDettagliTruppa", cercaDettagliTruppa);
         return cercaDettagliTruppa;
     }
-    /*
-    @RequestMapping("pippo")
-    public @ResponseBody
-    ResponseGrid<Truppe> findAllTruppe(@RequestBody RequestGrid requestGrid, Model model) throws BusinessException {
-        return truppeservice.findAllTruppePaginated(requestGrid);
-    }
-    */
-    
+
 }

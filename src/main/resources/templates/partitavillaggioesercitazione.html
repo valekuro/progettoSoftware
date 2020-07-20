@@ -108,7 +108,7 @@
 
                             </table>
                             villaggio 
-                            <div th:text="${json}"></div>
+                            <div th:text="${cercaDettagliTruppa}"></div>
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
 
                                     <th:block layout:fragment="script">
                                         <script th:src="@{/mitech/assets/js/attacco.js}"></script>
-                                        <script th:src="@{/mitech/assets/js/taskCreator.js}"></script>
+                                        <script th:src="@{/mitech/assets/js/TruppaBuilder.js}"></script>
                                         <script>
                                             jQuery(document).ready(function ($) {
 
@@ -152,9 +152,24 @@
                                                     $.ajax({
                                                         type: "GET",
                                                         contentType: "application/json",
+                                                        dataType : "json",
                                                         url: '/attacco_esercitazione/partitavillaggioesercitazione/pippo',
                                                         success: function (data) {
-                                                            alert(data);
+                                                            var lenData = data.length;
+                                                            var arrayData = [];
+                                                            for (var i = 0; i < lenData; i++) {
+                                                              const truppa_ = new TruppaBuilder(data[i].nomeTruppa)
+                                                              .setColpiAlSecondo(data[i].colpiLivelloIniziali)
+                                                              .setResistenzaTotale(data[i].resistenzaLivelloIniziale)
+                                                              .setContatoreVita(data[i].resistenzaLivelloIniziale)
+                                                              .build()
+                                                                arrayData.push(truppa_);
+                                                            }
+                                                            
+                                                            alert(arrayData[0])
+                                                             //}
+                                                            //alert(data[0].nomeTruppa);
+                                                            
                                                         },
                                                         error: function () {
                                                             alert('C’è stato un’errore');
