@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package it.univaq.game.domain;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 /**
  *
  * @author Valentina
@@ -15,16 +17,8 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "edifici")
-public class Edificio extends AbstractEntity<Long> {
-    @EqualsAndHashCode.Include
-    private String nome;
-    private String immagine;
-    private String tipologia;
-    private int livelloDisponibilita;
-    private int tassoAggiornamentoResistenza;
-    private int tassoAggiornamentoColpi;
-    private int resistenzaLivelloIniziale;
-    private int colpiLivelloIniziale;
-    
+@Table(name = "giocatore")
+public class Giocatore extends AbstractEntity<Long> {
+     @EqualsAndHashCode.Include
+     private String nickname;
 }

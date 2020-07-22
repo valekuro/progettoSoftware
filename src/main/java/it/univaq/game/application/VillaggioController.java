@@ -8,6 +8,7 @@ package it.univaq.game.application;
 import it.univaq.game.business.exceptions.BusinessException;
 import org.springframework.stereotype.Controller;
 import it.univaq.game.business.CasellaService;
+import it.univaq.game.business.EdificioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import it.univaq.game.domain.Casella;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import it.univaq.game.domain.Edificio;
 import java.util.Map;
 import java.util.Iterator;
 import java.util.Set;
@@ -31,6 +33,7 @@ public class VillaggioController {
 
     @Autowired
     private CasellaService casellaservice;
+    private EdificioService edificioservice;
 
     @GetMapping("")
     public String VillaggioPage(Model model) throws BusinessException {
@@ -48,7 +51,11 @@ public class VillaggioController {
             //edi.add(d.get(i).getIDEdificio().getNome());
         }
         model.addAttribute("posizioneEdificio", posizioneEdificio);
+    
+       // List<Edificio> edificioCostruzione = edificioservice.findEdificioBytipologia("costruzione");
+      //  model.addAttribute("edificioCostruzione", edificioCostruzione);
         return "villaggioesercitazione";
     }
 
+  
 }

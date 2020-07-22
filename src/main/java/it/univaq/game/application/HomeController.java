@@ -33,7 +33,7 @@ public class HomeController {
     @Autowired
     private AvversarioService avversarioservice;
     private CasellaService casellaservice;
-    private EdificioService c;
+    private EdificioService edificioservice;
     private CasellaRepository casellarepository;
     
 
@@ -48,7 +48,7 @@ public class HomeController {
         return "villaggioesercitazione";
     }*/
 
-    @GetMapping("test")
+    /*@GetMapping("test")
     public String startAddNews(Model model, Errors errors) throws BusinessException {
         Edificio ed = new Edificio();
         model.addAttribute("edificio", ed);
@@ -63,7 +63,7 @@ public class HomeController {
         ed.setId((long) 20);
         c.create(ed);
         return "/news";
-    }
+    }*/
         /*casella.setPosizione(3);
         casella.setIDEdificio(ed);
         casella.setId((long) 2);

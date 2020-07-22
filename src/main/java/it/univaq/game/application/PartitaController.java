@@ -32,6 +32,8 @@ public class PartitaController {
     private VillaggioController villaggiocontroller;
     @Autowired
     private TruppeService truppeservice;
+   
+
 
     @GetMapping("")
     public String inizioPartitaVillaggioEsercitazione(Model model) throws BusinessException {

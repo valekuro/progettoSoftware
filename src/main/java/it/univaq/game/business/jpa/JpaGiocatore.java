@@ -4,29 +4,32 @@
  * and open the template in the editor.
  */
 package it.univaq.game.business.jpa;
+
 import it.univaq.game.business.exceptions.BusinessException;
-import it.univaq.game.domain.Edificio;
-import it.univaq.game.business.EdificioService;
-import it.univaq.game.business.repository.EdificioRepository;
+import it.univaq.game.business.repository.GiocatoreRepository;
+import it.univaq.game.domain.Giocatore;
 import java.util.List;
+import it.univaq.game.business.GiocatoreService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 /**
  *
  * @author Valentina
  */
-@Service("edificio")
+@Service("giocatore")
 @Transactional
-public class JpaEdificio implements EdificioService {
-    @Autowired
-    EdificioRepository edificioRepository;
+public class JpaGiocatore  implements GiocatoreService{
 
-  @Override
+    @Autowired
+    GiocatoreRepository giocatoreRepository;
+
+    @Override
     @Transactional(readOnly = true)
-    public List<Edificio> findAll() throws BusinessException {
-        List<Edificio> edificio = edificioRepository.findAll();
-        return edificio;
+    public List<Giocatore> findAll() throws BusinessException {
+        List<Giocatore> listaGiocatori = giocatoreRepository.findAll();
+        return listaGiocatori;
     }
-   
 }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-
+ /*<![CDATA[*/
 function Villaggio(livelloMunicipio, tipoVillaggio, numeroCaselle, posizioneDifese, posizioneCostruzioni) {
         this.livelloMunicipio = livelloMunicipio;
         this.tipoVillaggio = tipoVillaggio;
@@ -14,7 +14,7 @@ function Villaggio(livelloMunicipio, tipoVillaggio, numeroCaselle, posizioneDife
 }
 
 Villaggio.prototype.prova = function(){
-    return "livelloMunicipio";
+    return /*[[${posizioneEdificio[8]}]]*/;
 }
 Villaggio.prototype.setLivelloMunicipio = function(livelloMunicipio){
     this.livelloMunicipio = livelloMunicipio;
@@ -41,3 +41,4 @@ Villaggio.prototype.setPosizioneCostruzioni = function(posizioneCostruzioni){
     return this;
 }
 
+/*]]>*/

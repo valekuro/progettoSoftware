@@ -4,13 +4,15 @@
  * and open the template in the editor.
  */
 package it.univaq.game.business;
+
 import it.univaq.game.business.exceptions.BusinessException;
-import it.univaq.game.domain.Edificio;
+import it.univaq.game.domain.Giocatore;
 import java.util.List;
+
 /**
  *
  * @author Valentina
  */
-public interface EdificioService {
-    public List<Edificio> findAll() throws BusinessException;
+public interface GiocatoreService {
+    public List<Giocatore> findAll() throws BusinessException;
 }

@@ -4,11 +4,10 @@
  * and open the template in the editor.
  */
 
-
-class Avversario extends Villaggio {
-    constructor() {
+function Avversario(){
     
-        //let Map = new Map([1, "first"], [2, "second"])
-    }
     
 }
+
+Avversario.prototype=new Villaggio();
+Avversario.prototype.prova();

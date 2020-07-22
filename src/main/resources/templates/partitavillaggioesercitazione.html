@@ -108,7 +108,7 @@
 
                             </table>
                             villaggio 
-                            <div th:text="${cercaDettagliTruppa}"></div>
+                            <div th:text="${posizioneEdificio}"></div>
                         </div>
                     </div>
                 </div>
@@ -145,22 +145,14 @@
                                     <th:block layout:fragment="script">
                                         <script th:src="@{/mitech/assets/js/attacco.js}"></script>
                                         <script th:src="@{/mitech/assets/js/TruppaBuilder.js}"></script>
-                                        <script th:src="@{/mitech/assets/js/Villaggio.js}"></script>
-                                        <script>
+                                        <script  th:inline="javascript" th:src="@{/mitech/assets/js/Villaggio.js}"></script>
+                                        <script th:src="@{/mitech/assets/js/Avversario.js}"></script>
+
+                                        <script th:inline="javascript">
+                                           
                                     jQuery(document).ready(function ($) {
                                         $("button").click(function () {
-                                            var villaggio = new Villaggio(1, "ddalkj", 2, 4, 5);
-                                            //var pippo = villaggio.prova();
-                                            //alert(pippo);
-                                            //villaggio.setLivelloMunicipio(3);
-                                            
-                                            alert(villaggio.livelloMunicipio);
-                                        });
-                                        });
-                                         /*   jQuery(document).ready(function ($) {
-
-                                                $("button").click(function () {
-                                                    $.ajax({
+                                                     $.ajax({
                                                         type: "GET",
                                                         contentType: "application/json",
                                                         dataType: "json",
@@ -177,11 +169,7 @@
                                                                 arrayData.push(truppa_);
                                                             }
 
-                                                            //alert(arrayData[0])
-                                                            //}
-                                                            //alert(data[0].nomeTruppa);
-
-                                                        },
+                                                       },
                                                         error: function () {
                                                             alert('C’è stato un’errore');
                                                         }
@@ -189,7 +177,7 @@
 
                                                 });
 
-                                            });*/
+                                            });
 
 
 
