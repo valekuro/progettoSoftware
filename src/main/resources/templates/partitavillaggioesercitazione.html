@@ -145,31 +145,42 @@
                                     <th:block layout:fragment="script">
                                         <script th:src="@{/mitech/assets/js/attacco.js}"></script>
                                         <script th:src="@{/mitech/assets/js/TruppaBuilder.js}"></script>
+                                        <script th:src="@{/mitech/assets/js/Villaggio.js}"></script>
                                         <script>
-                                            jQuery(document).ready(function ($) {
+                                    jQuery(document).ready(function ($) {
+                                        $("button").click(function () {
+                                            var villaggio = new Villaggio(1, "ddalkj", 2, 4, 5);
+                                            //var pippo = villaggio.prova();
+                                            //alert(pippo);
+                                            //villaggio.setLivelloMunicipio(3);
+                                            
+                                            alert(villaggio.livelloMunicipio);
+                                        });
+                                        });
+                                         /*   jQuery(document).ready(function ($) {
 
                                                 $("button").click(function () {
                                                     $.ajax({
                                                         type: "GET",
                                                         contentType: "application/json",
-                                                        dataType : "json",
+                                                        dataType: "json",
                                                         url: '/attacco_esercitazione/partitavillaggioesercitazione/pippo',
                                                         success: function (data) {
                                                             var lenData = data.length;
                                                             var arrayData = [];
                                                             for (var i = 0; i < lenData; i++) {
-                                                              const truppa_ = new TruppaBuilder(data[i].nomeTruppa)
-                                                              .setColpiAlSecondo(data[i].colpiLivelloIniziali)
-                                                              .setResistenzaTotale(data[i].resistenzaLivelloIniziale)
-                                                              .setContatoreVita(data[i].resistenzaLivelloIniziale)
-                                                              .build()
+                                                                const truppa_ = new TruppaBuilder(data[i].nomeTruppa)
+                                                                        .setColpiAlSecondo(data[i].colpiLivelloIniziali)
+                                                                        .setResistenzaTotale(data[i].resistenzaLivelloIniziale)
+                                                                        .setContatoreVita(data[i].resistenzaLivelloIniziale)
+                                                                        .build()
                                                                 arrayData.push(truppa_);
                                                             }
-                                                            
-                                                            alert(arrayData[0])
-                                                             //}
+
+                                                            //alert(arrayData[0])
+                                                            //}
                                                             //alert(data[0].nomeTruppa);
-                                                            
+
                                                         },
                                                         error: function () {
                                                             alert('C’è stato un’errore');
@@ -178,7 +189,7 @@
 
                                                 });
 
-                                            });
+                                            });*/
 
 
 
