@@ -41,16 +41,22 @@
                         <div class="col-lg-8">
                             <table  class="tabellavillaggio">
                                 <tr>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                    
-                                    <td><img style="width:100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    <td th:if="${posizioneEdificio[1] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[1]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[1] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                    
+                                    <td th:if="${posizioneEdificio[2] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[2]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[2] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>         
+                                    <td th:if="${posizioneEdificio[3] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[3]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[3] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                             
+                                    <td th:if="${posizioneEdificio[4] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[4]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[4] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                             
+                                    <td th:if="${posizioneEdificio[5] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[5]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[5] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                     
+                                    <td th:if="${posizioneEdificio[6] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[6]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[6] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                         
                                 </tr>
                                 <tr>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td> 
+                                    <td th:if="${posizioneEdificio[7] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[7]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[7] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                    
                                     <td th:if="${posizioneEdificio[8] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[8]}}" alt="" /></td>
                                     <td th:unless="${posizioneEdificio[8] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
                                     <td th:if="${posizioneEdificio[9] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[9]}}" alt="" /></td>
@@ -59,10 +65,12 @@
                                     <td th:unless="${posizioneEdificio[10] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
                                     <td th:if="${posizioneEdificio[11] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[11]}}" alt="" /></td>
                                     <td th:unless="${posizioneEdificio[11] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    <td th:if="${posizioneEdificio[12] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[12]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[12] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                
                                 </tr>
                                 <tr>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    <td th:if="${posizioneEdificio[13] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[13]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[13] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                    
                                     <td th:if="${posizioneEdificio[14] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[14]}}" alt="" /></td>
                                     <td th:unless="${posizioneEdificio[14] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
                                     <td th:if="${posizioneEdificio[15] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[15]}}" alt="" /></td>
@@ -71,10 +79,12 @@
                                     <td th:unless="${posizioneEdificio[16] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
                                     <td th:if="${posizioneEdificio[17] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[17]}}" alt="" /></td>
                                     <td th:unless="${posizioneEdificio[17] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    <td th:if="${posizioneEdificio[18] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[18]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[18] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                
                                 </tr>
                                 <tr>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    <td th:if="${posizioneEdificio[19] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[19]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[19] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                        
                                     <td th:if="${posizioneEdificio[20] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[20]}}" alt="" /></td>
                                     <td th:unless="${posizioneEdificio[20] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
                                     <td th:if="${posizioneEdificio[21] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[21]}}" alt="" /></td>
@@ -83,10 +93,12 @@
                                     <td th:unless="${posizioneEdificio[22] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
                                     <td th:if="${posizioneEdificio[23] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[23]}}" alt="" /></td>
                                     <td th:unless="${posizioneEdificio[23] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    <td th:if="${posizioneEdificio[24] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[24]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[24] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                    
                                 </tr>
                                 <tr>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    <td th:if="${posizioneEdificio[25] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[25]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[25] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                        
                                     <td th:if="${posizioneEdificio[26] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[26]}}" alt="" /></td>
                                     <td th:unless="${posizioneEdificio[26] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
                                     <td th:if="${posizioneEdificio[27] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[27]}}" alt="" /></td>
@@ -95,15 +107,22 @@
                                     <td th:unless="${posizioneEdificio[28] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
                                     <td th:if="${posizioneEdificio[29] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[29]}}" alt="" /></td>
                                     <td th:unless="${posizioneEdificio[29] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    <td th:if="${posizioneEdificio[30] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[30]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[30] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                   
                                 </tr>
                                 <tr>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    <td th:if="${posizioneEdificio[31] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[31]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[31] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                       
+                                    <td th:if="${posizioneEdificio[32] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[32]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[30] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>   
+                                    <td th:if="${posizioneEdificio[33] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[33]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[33] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                       
+                                    <td th:if="${posizioneEdificio[34] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[34]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[34] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                      
+                                    <td th:if="${posizioneEdificio[35] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[35]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[35] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                      
+                                    <td th:if="${posizioneEdificio[36] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[36]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[36] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                  
                                 </tr>
 
                             </table>
@@ -149,32 +168,42 @@
                                         <script th:src="@{/mitech/assets/js/Avversario.js}"></script>
 
                                         <script th:inline="javascript">
-                                           
-                                    jQuery(document).ready(function ($) {
-                                        $("button").click(function () {
-                                                     $.ajax({
+
+                                            jQuery(document).ready(function ($) {
+                                                $("button").click(function () {
+                                                    $.ajax({
                                                         type: "GET",
                                                         contentType: "application/json",
                                                         dataType: "json",
-                                                        url: '/attacco_esercitazione/partitavillaggioesercitazione/pippo',
+                                                        url: '/attacco_esercitazione/partitavillaggioesercitazione',
                                                         success: function (data) {
-                                                            var lenData = data.length;
-                                                            var arrayData = [];
-                                                            for (var i = 0; i < lenData; i++) {
-                                                                const truppa_ = new TruppaBuilder(data[i].nomeTruppa)
-                                                                        .setColpiAlSecondo(data[i].colpiLivelloIniziali)
-                                                                        .setResistenzaTotale(data[i].resistenzaLivelloIniziale)
-                                                                        .setContatoreVita(data[i].resistenzaLivelloIniziale)
-                                                                        .build()
-                                                                arrayData.push(truppa_);
+                                                            let arrayData = new Map();
+                                                            for (var i = 0; i < data.length; i++) {
+                                                                arrayData.set(data[i].idedificio.nome, data[i].posizione)
                                                             }
+                                                            const villaggio = new Villaggio(1, "esercitazione", 36, arrayData);
+                                                            //alert(data[0].idedificio.nome);
 
-                                                       },
+                                                        },
                                                         error: function () {
                                                             alert('C’è stato un’errore');
                                                         }
                                                     });
+                                                    $.ajax({
+                                                        type: "GET",
+                                                        contentType: "application/json",
+                                                        dataType: "json",
+                                                        url: '/attacco_esercitazione/partitavillaggioesercitazione/avversario',
+                                                        success: function (data2) {
 
+                                                            alert(data2[0]);
+                                                            //alert(data[0].idedificio.nome);
+
+                                                        },
+                                                        error: function () {
+                                                            alert('C’è stato un’errore');
+                                                        }
+                                                    });
                                                 });
 
                                             });

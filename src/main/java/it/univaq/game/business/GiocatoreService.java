@@ -15,4 +15,5 @@ import java.util.List;
  */
 public interface GiocatoreService {
     public List<Giocatore> findAll() throws BusinessException;
+    Giocatore findById(Long id) throws BusinessException;
 }

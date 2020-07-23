@@ -10,8 +10,12 @@ import it.univaq.game.business.ResponseGrid;
 import it.univaq.game.business.exceptions.BusinessException;
 import org.springframework.stereotype.Controller;
 import it.univaq.game.business.TruppeService;
+import it.univaq.game.business.CasellaService;
+import it.univaq.game.business.GiocatoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import it.univaq.game.domain.Giocatore;
+import it.univaq.game.domain.Casella;
 import it.univaq.game.domain.Truppe;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +36,10 @@ public class PartitaController {
     private VillaggioController villaggiocontroller;
     @Autowired
     private TruppeService truppeservice;
+    @Autowired
+    private CasellaService casellaservice;
+     @Autowired
+    private GiocatoreService giocatoreservice;
    
 
 
@@ -45,13 +53,23 @@ public class PartitaController {
     
 
     @RequestMapping(
-            value="pippo", 
+            value="", 
             produces="application/json")
     @ResponseBody
-    public List<Truppe> pippo(Model model) throws BusinessException {
-         List<Truppe> cercaDettagliTruppa = truppeservice.findAll();
-         model.addAttribute("cercaDettagliTruppa", cercaDettagliTruppa);
-        return cercaDettagliTruppa;
+    public List<Casella> PosizioneEdificiCaselle(Model model) throws BusinessException {
+         List<Casella> cercaPosizioneEdificiInCasella = casellaservice.findAll();
+         model.addAttribute("cercaPosizioneEdificiInCasella", cercaPosizioneEdificiInCasella);
+        return cercaPosizioneEdificiInCasella;
+    }
+    
+  @RequestMapping(
+            value="avversario", 
+            produces="application/json")
+    @ResponseBody
+    public Giocatore AvversarioEsercitazione(Model model) throws BusinessException {
+         Giocatore avversarioEsercitazione = giocatoreservice.findById((long) 1);
+         model.addAttribute("avversarioEsercitazione", avversarioEsercitazione);
+        return avversarioEsercitazione;
     }
 
 }

@@ -32,4 +32,13 @@ public class JpaGiocatore  implements GiocatoreService{
         List<Giocatore> listaGiocatori = giocatoreRepository.findAll();
         return listaGiocatori;
     }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Giocatore findById(Long id) throws BusinessException {
+        Giocatore giocatore = giocatoreRepository.findById(id).orElseThrow(() -> {
+            return new BusinessException("Giocatore non trovato");
+        });    
+        return giocatore;    
+    }
 }

@@ -5,40 +5,35 @@
  */
 
  /*<![CDATA[*/
-function Villaggio(livelloMunicipio, tipoVillaggio, numeroCaselle, posizioneDifese, posizioneCostruzioni) {
+function Villaggio(livelloMunicipio, tipoVillaggio, numeroCaselle, posizioneEdificio) {
+    
         this.livelloMunicipio = livelloMunicipio;
         this.tipoVillaggio = tipoVillaggio;
         this.numeroCaselle = numeroCaselle;
-        this.posizioneDifese = posizioneDifese;
-        this.posizioneCostruzioni = posizioneCostruzioni;
+        this.posizioneEdificio = posizioneEdificio;
 }
 
 Villaggio.prototype.prova = function(){
     return /*[[${posizioneEdificio[8]}]]*/;
-}
+};
 Villaggio.prototype.setLivelloMunicipio = function(livelloMunicipio){
     this.livelloMunicipio = livelloMunicipio;
     return this;
-}
+};
 
 Villaggio.prototype.setTipoVillaggio = function(tipoVillaggio){
     this.tipoVillaggio = tipoVillaggio;
     return this;
-}
+};
 
 Villaggio.prototype.setNumeroCaselle = function(numeroCaselle){
     this.numeroCaselle = numeroCaselle;
     return this;
-}
+};
 
-Villaggio.prototype.setPosizioneDifese = function(posizioneDifese){
-    this.posizioneDifese = posizioneDifese;
+Villaggio.prototype.setPosizioneEdificio = function(posizioneEdificio){
+    this.posizioneEdificio = posizioneEdificio;
     return this;
-}
-
-Villaggio.prototype.setPosizioneCostruzioni = function(posizioneCostruzioni){
-    this.posizioneCostruzioni = posizioneCostruzioni;
-    return this;
-}
+};
 
 /*]]>*/
