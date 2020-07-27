@@ -166,6 +166,8 @@
                                         <script th:src="@{/mitech/assets/js/TruppaBuilder.js}"></script>
                                         <script  th:inline="javascript" th:src="@{/mitech/assets/js/Villaggio.js}"></script>
                                         <script th:src="@{/mitech/assets/js/Avversario.js}"></script>
+                                        <script th:src="@{/mitech/assets/js/Edificio.js}"></script>
+
 
                                         <script th:inline="javascript">
 
@@ -177,33 +179,20 @@
                                                         dataType: "json",
                                                         url: '/attacco_esercitazione/partitavillaggioesercitazione',
                                                         success: function (data) {
-                                                            let arrayData = new Map();
-                                                            for (var i = 0; i < data.length; i++) {
-                                                                arrayData.set(data[i].idedificio.nome, data[i].posizione)
+                                                            var posizioni = new Array();
+                                                            for (var i = 0; i < data[0].length; i++) {
+                                                                posizioni.push([data[0][i].idedificio, data[0][i].posizione]);
                                                             }
-                                                            const villaggio = new Villaggio(1, "esercitazione", 36, arrayData);
-                                                            //alert(data[0].idedificio.nome);
-
+                                                            const villaggio = new Villaggio(data[1].livelloGiocatore, "esercitazione", 36, posizioni);
+                                                            var infoEdificiBattaglia = villaggio.calcoloLivelloEdifici(posizioni);
+                                                            console.log(infoEdificiBattaglia);
+                                                            
                                                         },
                                                         error: function () {
                                                             alert('C’è stato un’errore');
                                                         }
                                                     });
-                                                    $.ajax({
-                                                        type: "GET",
-                                                        contentType: "application/json",
-                                                        dataType: "json",
-                                                        url: '/attacco_esercitazione/partitavillaggioesercitazione/avversario',
-                                                        success: function (data2) {
 
-                                                            alert(data2[0]);
-                                                            //alert(data[0].idedificio.nome);
-
-                                                        },
-                                                        error: function () {
-                                                            alert('C’è stato un’errore');
-                                                        }
-                                                    });
                                                 });
 
                                             });

@@ -20,6 +20,7 @@ import it.univaq.game.domain.Truppe;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
+import java.util.ArrayList;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,10 +39,8 @@ public class PartitaController {
     private TruppeService truppeservice;
     @Autowired
     private CasellaService casellaservice;
-     @Autowired
+    @Autowired
     private GiocatoreService giocatoreservice;
-   
-
 
     @GetMapping("")
     public String inizioPartitaVillaggioEsercitazione(Model model) throws BusinessException {
@@ -50,25 +49,28 @@ public class PartitaController {
         model.addAttribute("truppeDisponbili", truppeDisponbili);
         return "partitavillaggioesercitazione";
     }
-    
 
     @RequestMapping(
-            value="", 
-            produces="application/json")
+            value = "",
+            produces = "application/json")
     @ResponseBody
-    public List<Casella> PosizioneEdificiCaselle(Model model) throws BusinessException {
-         List<Casella> cercaPosizioneEdificiInCasella = casellaservice.findAll();
-         model.addAttribute("cercaPosizioneEdificiInCasella", cercaPosizioneEdificiInCasella);
-        return cercaPosizioneEdificiInCasella;
+    public ArrayList PosizioneEdificiCaselle(Model model) throws BusinessException {
+        List<Casella> cercaPosizioneEdificiInCasella = casellaservice.findAll();
+        Giocatore giocatoreAutenticato = giocatoreservice.findById((long) 2);
+        ArrayList datiPartita = new ArrayList();
+        datiPartita.add(cercaPosizioneEdificiInCasella);
+        datiPartita.add(giocatoreAutenticato);
+        model.addAttribute("cercaPosizioneEdificiInCasella", cercaPosizioneEdificiInCasella);
+        return datiPartita;
     }
-    
-  @RequestMapping(
-            value="avversario", 
-            produces="application/json")
+
+    @RequestMapping(
+            value = "avversario",
+            produces = "application/json")
     @ResponseBody
     public Giocatore AvversarioEsercitazione(Model model) throws BusinessException {
-         Giocatore avversarioEsercitazione = giocatoreservice.findById((long) 1);
-         model.addAttribute("avversarioEsercitazione", avversarioEsercitazione);
+        Giocatore avversarioEsercitazione = giocatoreservice.findById((long) 1);
+        model.addAttribute("avversarioEsercitazione", avversarioEsercitazione);
         return avversarioEsercitazione;
     }
 

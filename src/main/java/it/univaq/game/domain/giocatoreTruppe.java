@@ -4,12 +4,10 @@
  * and open the template in the editor.
  */
 package it.univaq.game.domain;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,16 +19,18 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "giocatore")
-public class Giocatore extends AbstractEntity<Long> {
-
-    @EqualsAndHashCode.Include
-    private String nickname;
-    private int livelloGiocatore;
-
-    /*@JsonIgnore
-    @ManyToMany()
-    
-    private Set<Truppe> truppeAddestrate;*/
-
+@Table(name = "giocatoreTruppe")
+public class giocatoreTruppe extends AbstractEntity<Long> {
+ 
+    @ManyToOne
+    @MapsId("idgiocatore")
+    @JoinColumn(name = "idgiocatore")
+    Giocatore giocatore;
+ 
+    @ManyToOne
+    @MapsId("idtruppa")
+    @JoinColumn(name = "idtruppa")
+    Truppe truppa;
+ 
+    int quantita;
 }

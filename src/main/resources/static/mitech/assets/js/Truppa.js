@@ -6,14 +6,14 @@
 
 
 class Truppa {
-  constructor(name, colpiAlSecondo, guarigione, resistenzaTotale, contatoreVita) {
-    this.name = name
+  constructor(nome, colpiAlSecondo, guarigione, resistenzaTotale, contatoreVita) {
+    this.nome = nome
     this.contatoreVita = contatoreVita
     this.colpiAlSecondo = colpiAlSecondo
     this.guarigione = guarigione
     this.resistenzaTotale = resistenzaTotale
   }
   eat(target) {
-    console.log(`Eating target: ${target.name}`)
+    console.log(`Eating target: ${target.nome}`)
   }
 }

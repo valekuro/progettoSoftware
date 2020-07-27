@@ -6,7 +6,9 @@
 package it.univaq.game.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
@@ -32,5 +34,10 @@ public class Truppe extends AbstractEntity<Long> {
     private int colpiLivelloIniziale;
     private int tassoAggiornamentoGuarigione;
     private int guarigioneLivelloIniziale;
+
+   /*  @JsonIgnore
+    @ManyToMany()
+    
+    private Set<Giocatore> giocatore;*/
 
 }
