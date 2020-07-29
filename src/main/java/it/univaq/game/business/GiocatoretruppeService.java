@@ -6,16 +6,20 @@
 package it.univaq.game.business;
 
 import it.univaq.game.business.exceptions.BusinessException;
-import it.univaq.game.domain.Giocatore;
+import it.univaq.game.domain.giocatoretruppe;
 import it.univaq.game.domain.Truppe;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Valentina
  */
-public interface GiocatoreService {
-    public List<Giocatore> findAll() throws BusinessException;
-    Giocatore findById(Long id) throws BusinessException;
+@Service
+public interface GiocatoretruppeService {
+    public List<giocatoretruppe> findAll() throws BusinessException;
+    List<Object[]> findTruppeByIdgiocatore(@Param("idgiocatore") Long idgiocatore) throws BusinessException;
+
 }

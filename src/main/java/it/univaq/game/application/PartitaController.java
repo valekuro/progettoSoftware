@@ -11,6 +11,7 @@ import it.univaq.game.business.exceptions.BusinessException;
 import org.springframework.stereotype.Controller;
 import it.univaq.game.business.TruppeService;
 import it.univaq.game.business.CasellaService;
+//import it.univaq.game.business.repository.GiocatoretruppeRepository;
 import it.univaq.game.business.GiocatoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,6 +43,8 @@ public class PartitaController {
     private CasellaService casellaservice;
     @Autowired
     private GiocatoreService giocatoreservice;
+    //@Autowired
+    //private GiocatoretruppeRepository giocatoretrupperepository;
 
     @GetMapping("")
     public String inizioPartitaVillaggioEsercitazione(Model model) throws BusinessException {
@@ -57,10 +61,12 @@ public class PartitaController {
     public ArrayList PosizioneEdificiCaselle(Model model) throws BusinessException {
         List<Casella> cercaPosizioneEdificiInCasella = casellaservice.findAll();
         Giocatore giocatoreAutenticato = giocatoreservice.findById((long) 2);
+        //HashMap<Long, Truppe> listaTruppe = giocatoretrupperepository.findTruppeByIdgiocatore((long) 2);
         ArrayList datiPartita = new ArrayList();
         datiPartita.add(cercaPosizioneEdificiInCasella);
         datiPartita.add(giocatoreAutenticato);
         model.addAttribute("cercaPosizioneEdificiInCasella", cercaPosizioneEdificiInCasella);
+        //model.addAttribute("listaTruppe", listaTruppe);
         return datiPartita;
     }
 
