@@ -9,10 +9,10 @@ var nomet;
 var slideIndex = 1;
 showDivs(slideIndex);
 
-function plusDivs(n, m) {
+function plusDivs(n) {
     showDivs(slideIndex += n);
     //nomet = document.getElementById("nometruppeaddestrate").innerHTML;
-    nomet = m;
+    //nomet = m;
 
 }
 
@@ -30,5 +30,6 @@ function showDivs(n) {
         x[i].style.display = "none";
     }
     x[slideIndex - 1].style.display = "block";
+    nomet = x[slideIndex -1].name;
 }
 
