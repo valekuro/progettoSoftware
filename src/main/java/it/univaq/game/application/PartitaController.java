@@ -11,13 +11,14 @@ import it.univaq.game.business.exceptions.BusinessException;
 import org.springframework.stereotype.Controller;
 import it.univaq.game.business.TruppeService;
 import it.univaq.game.business.CasellaService;
-//import it.univaq.game.business.repository.GiocatoretruppeRepository;
+import it.univaq.game.business.repository.GiocatoretruppeRepository;
 import it.univaq.game.business.GiocatoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import it.univaq.game.domain.Giocatore;
 import it.univaq.game.domain.Casella;
 import it.univaq.game.domain.Truppe;
+import it.univaq.game.domain.giocatoretruppe;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
@@ -38,18 +39,16 @@ public class PartitaController {
     @Autowired
     private VillaggioController villaggiocontroller;
     @Autowired
-    private TruppeService truppeservice;
-    @Autowired
     private CasellaService casellaservice;
     @Autowired
     private GiocatoreService giocatoreservice;
-    //@Autowired
-    //private GiocatoretruppeRepository giocatoretrupperepository;
-
+    @Autowired
+    private GiocatoretruppeRepository giocatoretrupperepository;
+ 
     @GetMapping("")
     public String inizioPartitaVillaggioEsercitazione(Model model) throws BusinessException {
         villaggiocontroller.VillaggioPage(model);
-        List<Truppe> truppeDisponbili = truppeservice.findAll();
+        List<giocatoretruppe> truppeDisponbili = giocatoretrupperepository.findTruppeByIdgiocatore((long) 2);
         model.addAttribute("truppeDisponbili", truppeDisponbili);
         return "partitavillaggioesercitazione";
     }
@@ -61,12 +60,13 @@ public class PartitaController {
     public ArrayList PosizioneEdificiCaselle(Model model) throws BusinessException {
         List<Casella> cercaPosizioneEdificiInCasella = casellaservice.findAll();
         Giocatore giocatoreAutenticato = giocatoreservice.findById((long) 2);
-        //HashMap<Long, Truppe> listaTruppe = giocatoretrupperepository.findTruppeByIdgiocatore((long) 2);
+        List<giocatoretruppe> listaTruppe = giocatoretrupperepository.findTruppeByIdgiocatore((long) 2);
         ArrayList datiPartita = new ArrayList();
         datiPartita.add(cercaPosizioneEdificiInCasella);
         datiPartita.add(giocatoreAutenticato);
+        datiPartita.add(listaTruppe);
         model.addAttribute("cercaPosizioneEdificiInCasella", cercaPosizioneEdificiInCasella);
-        //model.addAttribute("listaTruppe", listaTruppe);
+        model.addAttribute("listaTruppe", listaTruppe);
         return datiPartita;
     }
 

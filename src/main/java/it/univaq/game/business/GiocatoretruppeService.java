@@ -20,6 +20,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface GiocatoretruppeService {
     public List<giocatoretruppe> findAll() throws BusinessException;
-    List<Object[]> findTruppeByIdgiocatore(@Param("idgiocatore") Long idgiocatore) throws BusinessException;
+    public List<giocatoretruppe> findTruppeByIdgiocatore(@Param("idgiocatore") Long idgiocatore) throws BusinessException;
 
 }

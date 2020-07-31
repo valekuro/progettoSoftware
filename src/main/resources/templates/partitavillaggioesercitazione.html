@@ -23,23 +23,21 @@
                         <!-- <img src="/mitech/assets/images/favicon.png" th:src="@{/mitech/assets/images/favicon.png}" alt="" /> -->
 
                         <div class="col-lg-4">
-                            <div th:each="truppeDisponbili : ${truppeDisponbili}"> 
-                                <img class="mySlides" id="sceltaTruppa" th:src="@{${'/mitech/assets/images/truppe/' + truppeDisponbili.immagineTruppa}}">
-                            </div> 
-                            <div id="pippo">apprra</div>
-                            <!--<img class="mySlides" src="/mitech/assets/images/truppe/gigante.png">
-                            <img class="mySlides" src="/mitech/assets/images/truppe/drago.png">
-                            <img class="mySlides" src="/mitech/assets/images/truppe/arciere.png"> -->
+                            <div th:each="truppeDisponbili : ${truppeDisponbili}">
+                                <div th:each="i : ${#numbers.sequence(1, truppeDisponbili.quantita,1)}">
+                                    
+                                        <img id="truppa" class="mySlides" th:src="@{${'/mitech/assets/images/truppe/' + truppeDisponbili.truppa.immagineTruppa}}" />
+                                    <div id="idtruppeaddestrate" th:text="${truppeDisponbili.id}" style="display:none"></div>
+                                </div>
 
+                            </div>
 
                             <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
                             <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
-
-
                         </div>
 
                         <div class="col-lg-8">
-                            <table  class="tabellavillaggio">
+                            <table id="tabvillaggio" class="tabellavillaggio">
                                 <tr>
                                     <td th:if="${posizioneEdificio[1] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[1]}}" alt="" /></td>
                                     <td th:unless="${posizioneEdificio[1] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                    
@@ -136,22 +134,23 @@
                           ciao
                       </div>
                       <div class="col-12">
-  
+    
                           miao
                       </div>
-  
-  
+    
+    
                       <div class="row">
-  
+    
                           <div class="col-md-12">
                 <!-- section-title-wrap Start -->
                 bau
+
                 <!--        </div>
                         <div class="col-12">
-
+    
                             <div class="row">
-
-
+    
+    
                                 cucu
                         </div>
                     </div>
@@ -162,8 +161,9 @@
                                     </div>
 
                                     <th:block layout:fragment="script">
-                                        <script th:src="@{/mitech/assets/js/attacco.js}"></script>
+                                        <script th:src="@{/mitech/assets/js/GameTimer.js}"></script>
                                         <script th:src="@{/mitech/assets/js/TruppaBuilder.js}"></script>
+                                        <script th:src="@{/mitech/assets/js/attacco.js}"></script>
                                         <script  th:inline="javascript" th:src="@{/mitech/assets/js/Villaggio.js}"></script>
                                         <script th:src="@{/mitech/assets/js/Avversario.js}"></script>
                                         <script th:src="@{/mitech/assets/js/Edificio.js}"></script>
@@ -172,6 +172,8 @@
                                         <script th:inline="javascript">
 
                                             jQuery(document).ready(function ($) {
+
+
                                                 $("button").click(function () {
                                                     $.ajax({
                                                         type: "GET",
@@ -186,7 +188,7 @@
                                                             const villaggio = new Villaggio(data[1].livelloGiocatore, "esercitazione", 36, posizioni);
                                                             var infoEdificiBattaglia = villaggio.calcoloLivelloEdifici(posizioni);
                                                             console.log(infoEdificiBattaglia);
-                                                            
+
                                                         },
                                                         error: function () {
                                                             alert('C’è stato un’errore');
@@ -194,9 +196,14 @@
                                                     });
 
                                                 });
+                                                document.getElementById("truppa").addEventListener("click", myFunction);
 
+                                                function myFunction() {
+                                                    let contents =  document.getElementById("idtruppeaddestrate").innerHTML;
+                                                    document.getElementById("tabvillaggio").style.borderWidth="5px";  
+                                                    document.getElementById("tabvillaggio").style.boxShadow="10px  10px 5px #F8F32B, -10px -10px 5px #F8F32B, 10px -10px 5px #F8F32B,-10px  10px 5px #F8F32B";
+                                                }
                                             });
-
 
 
                                         </script>

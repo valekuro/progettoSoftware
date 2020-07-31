@@ -9,6 +9,7 @@ import it.univaq.game.business.exceptions.BusinessException;
 import org.springframework.stereotype.Controller;
 import it.univaq.game.business.CasellaService;
 import it.univaq.game.business.EdificioService;
+import it.univaq.game.business.GiocatoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import it.univaq.game.domain.Edificio;
+import it.univaq.game.domain.Giocatore;
 import java.util.Map;
 import java.util.Iterator;
 import java.util.Set;
@@ -33,27 +35,23 @@ public class VillaggioController {
 
     @Autowired
     private CasellaService casellaservice;
-    private EdificioService edificioservice;
+     @Autowired
+    private GiocatoreService giocatoreservice;
 
     @GetMapping("")
     public String VillaggioPage(Model model) throws BusinessException {
         List<Casella> d = casellaservice.findAll();
-        //ArrayList<Integer> pos = new ArrayList<>(25);
-        //ArrayList<String> edi = new ArrayList<>(25);
         HashMap<Integer,String> posizioneEdificio = new HashMap<>(25);
+        Giocatore giocatoreAutenticato = giocatoreservice.findById((long) 2);
+        int livelloGiocatore = giocatoreAutenticato.getLivelloGiocatore();
+        System.out.println(giocatoreAutenticato);
         //pos.set(0, d.get(i).getPosizione());
         for (int i = 0; i < d.size(); i++) {
-            if (d.get(i).getLivello_disponibilita()<=3){
+            if (d.get(i).getLivello_disponibilita()<=livelloGiocatore){
                 posizioneEdificio.put(d.get(i).getPosizione(), d.get(i).getIDEdificio().getImmagine());
             }
-            
-            //pos.add(d.get(i).getPosizione());
-            //edi.add(d.get(i).getIDEdificio().getNome());
         }
         model.addAttribute("posizioneEdificio", posizioneEdificio);
-    
-       // List<Edificio> edificioCostruzione = edificioservice.findEdificioBytipologia("costruzione");
-      //  model.addAttribute("edificioCostruzione", edificioCostruzione);
         return "villaggioesercitazione";
     }
 

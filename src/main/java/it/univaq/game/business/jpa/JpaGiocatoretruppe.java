@@ -37,8 +37,8 @@ public class JpaGiocatoretruppe implements GiocatoretruppeService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Object[]> findTruppeByIdgiocatore(Long idgiocatore) throws BusinessException {
-        List<Object[]> truppeGiocatore = giocatoretruppeRepository.findTruppeByIdgiocatore(idgiocatore);
+    public List<giocatoretruppe> findTruppeByIdgiocatore(Long idgiocatore) throws BusinessException {
+        List<giocatoretruppe> truppeGiocatore = giocatoretruppeRepository.findTruppeByIdgiocatore(idgiocatore);
         return truppeGiocatore;
     }
 }

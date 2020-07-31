@@ -22,6 +22,6 @@ import org.springframework.data.repository.query.Param;
 public interface GiocatoretruppeRepository extends JpaRepository<giocatoretruppe, Long>{
      public List<giocatoretruppe> findAll();
      
-     @Query("SELECT t.quantita, t.idtruppa FROM giocatoretruppe t WHERE t.idgiocatore = :idgiocatore")
-     List<Object[]> findTruppeByIdgiocatore(@Param("idgiocatore") Long idgiocatore);
+     @Query("SELECT t FROM giocatoretruppe t WHERE t.idgiocatore = :idgiocatore")
+     public List<giocatoretruppe> findTruppeByIdgiocatore(@Param("idgiocatore") Long idgiocatore);
 }
