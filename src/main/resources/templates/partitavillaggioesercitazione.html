@@ -25,46 +25,43 @@
                         <div class="col-lg-4">
                             <div th:each="truppeDisponbili : ${truppeDisponbili}">
                                 <div th:each="i : ${#numbers.sequence(1, truppeDisponbili.quantita,1)}">
-                                    
-                                        <img id="truppa" class="mySlides" th:src="@{${'/mitech/assets/images/truppe/' + truppeDisponbili.truppa.immagineTruppa}}" />
-                                    <div id="idtruppeaddestrate" th:text="${truppeDisponbili.id}" style="display:none"></div>
+
+                                    <img id="truppa" class="mySlides flex" th:src="@{${'/mitech/assets/images/truppe/' + truppeDisponbili.truppa.immagineTruppa}}" />
+                                    <div id="idtruppeaddestrate" th:text="${truppeDisponbili.truppa.id}"></div>
+                                    <div id="nometruppeaddestrate" th:text="${truppeDisponbili.truppa.nomeTruppa}"></div>
                                 </div>
 
                             </div>
 
-                            <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-                            <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+                            <button class="w3-button w3-display-left" th:onclick="'javascript:plusDivs(-1, ${truppeDisponbili.truppa.nomeTruppa})'">&#10094;</button>
+                            <button class="w3-button w3-display-right" th:onclick="'javascript:plusDivs(+1, ${truppeDisponbili.truppa.nomeTruppa})'">&#10095;</button>
                         </div>
 
                         <div class="col-lg-8">
+                            <div th:text="${posizioneEdificio[8]}"></div>
                             <table id="tabvillaggio" class="tabellavillaggio">
                                 <tr>
-                                    <td th:if="${posizioneEdificio[1] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[1]}}" alt="" /></td>
-                                    <td th:unless="${posizioneEdificio[1] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                    
-                                    <td th:if="${posizioneEdificio[2] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[2]}}" alt="" /></td>
-                                    <td th:unless="${posizioneEdificio[2] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>         
-                                    <td th:if="${posizioneEdificio[3] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[3]}}" alt="" /></td>
-                                    <td th:unless="${posizioneEdificio[3] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                             
-                                    <td th:if="${posizioneEdificio[4] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[4]}}" alt="" /></td>
-                                    <td th:unless="${posizioneEdificio[4] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                             
-                                    <td th:if="${posizioneEdificio[5] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[5]}}" alt="" /></td>
-                                    <td th:unless="${posizioneEdificio[5] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                     
-                                    <td th:if="${posizioneEdificio[6] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[6]}}" alt="" /></td>
-                                    <td th:unless="${posizioneEdificio[6] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                         
+                                    <td th:each="i : ${#numbers.sequence(1, 6)}" th:if="${posizioneEdificio[i] != NULL}"><img style="width: 100%" class="flex" id="oggettoincasella" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[i]}}" alt=""  onclick="checkCasella('tupusssi')"/></td>
+                                    <td th:each="i : ${#numbers.sequence(1, 6)}" th:unless="${posizioneEdificio[i] != NULL}"><img id="erbaincasella" class="flex" style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt=""  onclick="checkCasella('erba')"/></td>                                    
                                 </tr>
                                 <tr>
-                                    <td th:if="${posizioneEdificio[7] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[7]}}" alt="" /></td>
-                                    <td th:unless="${posizioneEdificio[7] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                    
-                                    <td th:if="${posizioneEdificio[8] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[8]}}" alt="" /></td>
-                                    <td th:unless="${posizioneEdificio[8] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td th:if="${posizioneEdificio[9] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[9]}}" alt="" /></td>
-                                    <td th:unless="${posizioneEdificio[9] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td th:if="${posizioneEdificio[10] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[10]}}" alt="" /></td>
-                                    <td th:unless="${posizioneEdificio[10] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td th:if="${posizioneEdificio[11] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[11]}}" alt="" /></td>
-                                    <td th:unless="${posizioneEdificio[11] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
-                                    <td th:if="${posizioneEdificio[12] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[12]}}" alt="" /></td>
-                                    <td th:unless="${posizioneEdificio[12] != NULL}"><img style="width: 100%" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                
+                                    <!-- <tr>
+                                    <td th:each="j : ${#numbers.sequence(7, 12, 7)}" th:if="${posizioneEdificio[j] != NULL}"><img style="width: 100%" id="oggettoincasella" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[j]}}" alt="" /></td>
+                                    <td th:each="j : ${#numbers.sequence(7, 12, 7)}" th:unless="${posizioneEdificio[j] != NULL}"><img style="width: 100%" id="oggettoincasella" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                    
+                                   
+                                </tr>-->
+                                    <td th:if="${posizioneEdificio[7] != NULL}"><img style="width: 100%" id="oggettoincasella"  th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[7]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[7] != NULL}"><img style="width: 100%" id="oggettoincasella"  src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                    
+                                    <td th:if="${posizioneEdificio[8] != NULL}"><img style="width: 100%" id="oggettoincasella" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[8]}}" alt="" th:onclick="alert('@{posizioneEdificio[8]}');"/></td>
+                                    <td th:unless="${posizioneEdificio[8] != NULL}"><img style="width: 100%" id="oggettoincasella" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" onclick="checkCasella('erba')"/></td>
+                                    <td th:if="${posizioneEdificio[9] != NULL}"><img style="width: 100%" id="oggettoincasella" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[9]}}" alt="" th:onclick="checkCasella('laboratorio.png')"/></td>
+                                    <td th:unless="${posizioneEdificio[9] != NULL}"><img style="width: 100%" id="erbaincasella" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" th:onclick="checkCasella('erba');"/></td>
+                                    <td th:if="${posizioneEdificio[10] != NULL}"><img style="width: 100%" id="oggettoincasella" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[10]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[10] != NULL}"><img style="width: 100%" id="oggettoincasella" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    <td th:if="${posizioneEdificio[11] != NULL}"><img style="width: 100%" id="oggettoincasella" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[11]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[11] != NULL}"><img style="width: 100%" id="oggettoincasella" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>
+                                    <td th:if="${posizioneEdificio[12] != NULL}"><img style="width: 100%" id="oggettoincasella" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[12]}}" alt="" /></td>
+                                    <td th:unless="${posizioneEdificio[12] != NULL}"><img style="width: 100%" id="oggettoincasella" src="/mitech/assets/images/villaggio/erba.png" th:src="@{/mitech/assets/images/villaggio/erba.png}" alt="" /></td>                                
                                 </tr>
                                 <tr>
                                     <td th:if="${posizioneEdificio[13] != NULL}"><img style="width: 100%" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[13]}}" alt="" /></td>
@@ -163,17 +160,23 @@
                                     <th:block layout:fragment="script">
                                         <script th:src="@{/mitech/assets/js/GameTimer.js}"></script>
                                         <script th:src="@{/mitech/assets/js/TruppaBuilder.js}"></script>
-                                        <script th:src="@{/mitech/assets/js/attacco.js}"></script>
+                                        <script th:src="@{/mitech/assets/js/sliderTruppe.js}"></script>
                                         <script  th:inline="javascript" th:src="@{/mitech/assets/js/Villaggio.js}"></script>
                                         <script th:src="@{/mitech/assets/js/Avversario.js}"></script>
                                         <script th:src="@{/mitech/assets/js/Edificio.js}"></script>
 
 
                                         <script th:inline="javascript">
-
+                                            /*<![CDATA[*/
+                                            function checkCasella(occupazione) {
+                                                console.log(nomet);
+                                                if (occupazione == "erba") {
+                                                    document.getElementById("erbaincasella").src = '/mitech/assets/images/truppe/thumbnails/'+nomet+'.png';
+                                                } else {
+                                                    alert(occupazione);
+                                                }
+                                            }
                                             jQuery(document).ready(function ($) {
-
-
                                                 $("button").click(function () {
                                                     $.ajax({
                                                         type: "GET",
@@ -196,16 +199,23 @@
                                                     });
 
                                                 });
-                                                document.getElementById("truppa").addEventListener("click", myFunction);
-
-                                                function myFunction() {
-                                                    let contents =  document.getElementById("idtruppeaddestrate").innerHTML;
-                                                    document.getElementById("tabvillaggio").style.borderWidth="5px";  
-                                                    document.getElementById("tabvillaggio").style.boxShadow="10px  10px 5px #F8F32B, -10px -10px 5px #F8F32B, 10px -10px 5px #F8F32B,-10px  10px 5px #F8F32B";
+                                                document.getElementById("truppa").addEventListener("click", sceltaTruppa);
+                                                /* document.getElementById("oggettoincasella").addEventListener("click", sceltaCasella);
+                                                 function sceltaCasella() {
+                                                 //let ff=document.getElementById("hh").innerHTML;
+                                                 let srcImmg = document.getElementById("oggettoincasella").src;
+                                                 alert(srcImmg);
+                                                 }*/
+                                                function sceltaTruppa() {
+                                                    let contents = document.getElementById("idtruppeaddestrate").innerHTML;
+                                                    document.getElementById("tabvillaggio").style.borderWidth = "5px";
+                                                    document.getElementById("tabvillaggio").style.boxShadow = "10px  10px 5px #F8F32B, -10px -10px 5px #F8F32B, 10px -10px 5px #F8F32B,-10px  10px 5px #F8F32B";
                                                 }
+
+
                                             });
 
-
+                                            /*]]>*/
                                         </script>
                                     </th:block>
                                     </body>
