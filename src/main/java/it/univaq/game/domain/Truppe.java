@@ -34,6 +34,7 @@ public class Truppe extends AbstractEntity<Long> {
     private int colpiLivelloIniziale;
     private int tassoAggiornamentoGuarigione;
     private int guarigioneLivelloIniziale;
+    private String tipologia;
 
    /*  @JsonIgnore
     @ManyToMany()
