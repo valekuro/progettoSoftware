@@ -11,8 +11,6 @@ showDivs(slideIndex);
 
 function plusDivs(n) {
     showDivs(slideIndex += n);
-    //nomet = document.getElementById("nometruppeaddestrate").innerHTML;
-    //nomet = m;
 
 }
 

@@ -41,40 +41,40 @@
                             <table id="tabvillaggio" class="tabellavillaggio">
                                 <tr>
                                     <td th:each="i : ${#numbers.sequence(1, 6)}">
-                                        <img style="width: 100%" th:class="__${i}__" th:id="edificioincasella__${i}__" th:name="__${i}__" th:if="${posizioneEdificio[__${i}__] != NULL }" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[__${i}__]}}" alt="" />
-                                        <img style="width: 100%" th:class="__${i}__" th:id="erbaincasella__${i}__" th:name="__${i}__" th:unless="${posizioneEdificio[__${i}__] != NULL }" src="/mitech/assets/images/villaggio/erba.png" alt="" th:onclick="'javascript:checkCasellaErba(' + __${i}__ + ')'"/>
+                                        <img style="width: 100%" th:class="edificioincasella" th:id="edificioincasella__${i}__" th:name="__${i}__" th:if="${posizioneEdificio[__${i}__] != NULL }" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[__${i}__]}}" alt="" />
+                                        <img style="width: 100%" th:class="erbaincasella" th:id="__${i}__" th:name="__${i}__" th:unless="${posizioneEdificio[__${i}__] != NULL }" src="/mitech/assets/images/villaggio/erba.png" alt=""/>
                                     </td>   
                                 </tr>
                                 <tr>
                                     <td th:each="i : ${#numbers.sequence(7, 12)}">
-                                        <img style="width: 100%" th:id="edificioincasella__${i}__" th:name="__${i}__" th:if="${posizioneEdificio[__${i}__] != NULL }" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[__${i}__]}}" alt="" th:onclick="'javascript:checkCasellaEdificio(' + __${i}__ + ')'"/>
-                                        <img style="width: 100%" th:id="erbaincasella__${i}__" th:name="__${i}__" th:unless="${posizioneEdificio[__${i}__] != NULL }" src="/mitech/assets/images/villaggio/erba.png" alt="" th:onclick="'javascript:checkCasellaErba(' + __${i}__ + ')'"/>
+                                        <img style="width: 100%" th:class="edificioincasella" th:id="__${i}__" th:name="__${i}__" th:if="${posizioneEdificio[__${i}__] != NULL }" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[__${i}__]}}" alt="" />
+                                        <img style="width: 100%" th:class="erbaincasella" th:id="__${i}__" th:name="__${i}__" th:unless="${posizioneEdificio[__${i}__] != NULL }" src="/mitech/assets/images/villaggio/erba.png" alt="" />
                                     </td>   
                                 </tr>
 
                                 <tr>
                                     <td th:each="i : ${#numbers.sequence(13, 18)}">
-                                        <img style="width: 100%" th:id="edificioincasella__${i}__" th:name="__${i}__" th:if="${posizioneEdificio[__${i}__] != NULL }" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[__${i}__]}}" alt="" th:onclick="'javascript:checkCasellaEdificio(' + __${i}__ + ')'"/>
-                                        <img style="width: 100%" th:id="erbaincasella__${i}__" th:name="__${i}__" th:unless="${posizioneEdificio[__${i}__] != NULL }" src="/mitech/assets/images/villaggio/erba.png" alt="" th:onclick="'javascript:checkCasellaErba(' + __${i}__ + ')'"/>
+                                        <img style="width: 100%" th:class="edificioincasella" th:id="__${i}__" th:name="__${i}__" th:if="${posizioneEdificio[__${i}__] != NULL }" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[__${i}__]}}" alt="" />
+                                        <img style="width: 100%" th:class="erbaincasella" th:id="__${i}__" th:name="__${i}__" th:unless="${posizioneEdificio[__${i}__] != NULL }" src="/mitech/assets/images/villaggio/erba.png" alt=""/>
                                     </td>   
                                 </tr>
 
                                 <tr>
                                     <td th:each="i : ${#numbers.sequence(19, 24)}">
-                                        <img style="width: 100%" th:id="edificioincasella__${i}__" th:name="__${i}__" th:if="${posizioneEdificio[__${i}__] != NULL }" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[__${i}__]}}" alt="" th:onclick="'javascript:checkCasellaEdificio(' + __${i}__ + ')'"/>
-                                        <img style="width: 100%" th:id="erbaincasella__${i}__" th:name="__${i}__" th:unless="${posizioneEdificio[__${i}__] != NULL }" src="/mitech/assets/images/villaggio/erba.png" alt="" th:onclick="'javascript:checkCasellaErba(' + __${i}__ + ')'"/>
+                                        <img style="width: 100%" th:class="edificioincasella" th:id="__${i}__" th:name="__${i}__" th:if="${posizioneEdificio[__${i}__] != NULL }" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[__${i}__]}}" alt="" />
+                                        <img style="width: 100%" th:class="erbaincasella" th:id="__${i}__" th:name="__${i}__" th:unless="${posizioneEdificio[__${i}__] != NULL }" src="/mitech/assets/images/villaggio/erba.png" alt="" />
                                     </td>   
                                 </tr>
                                 <tr>
                                     <td th:each="i : ${#numbers.sequence(25, 30)}">
-                                        <img style="width: 100%" th:id="edificioincasella__${i}__" th:name="__${i}__" th:if="${posizioneEdificio[__${i}__] != NULL }" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[__${i}__]}}" alt="" th:onclick="'javascript:checkCasellaEdificio(' + __${i}__ + ')'"/>
-                                        <img style="width: 100%" th:id="erbaincasella__${i}__" th:name="__${i}__" th:unless="${posizioneEdificio[__${i}__] != NULL }" src="/mitech/assets/images/villaggio/erba.png" alt="" th:onclick="'javascript:checkCasellaErba(' + __${i}__ + ')'"/>
+                                        <img style="width: 100%" th:class="edificioincasella" th:id="__${i}__" th:name="__${i}__" th:if="${posizioneEdificio[__${i}__] != NULL }" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[__${i}__]}}" alt=""/>
+                                        <img style="width: 100%" th:class="erbaincasella" th:id="__${i}__" th:name="__${i}__" th:unless="${posizioneEdificio[__${i}__] != NULL }" src="/mitech/assets/images/villaggio/erba.png" alt="" />
                                     </td>   
                                 </tr>
                                 <tr>
                                     <td th:each="i : ${#numbers.sequence(31, 36)}">
-                                        <img style="width: 100%" th:id="edificioincasella__${i}__" th:name="__${i}__" th:if="${posizioneEdificio[__${i}__] != NULL }" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[__${i}__]}}" alt="" th:onclick="'javascript:checkCasellaEdificio(' + __${i}__ + ')'"/>
-                                        <img style="width: 100%" th:id="erbaincasella__${i}__" th:name="__${i}__" th:unless="${posizioneEdificio[__${i}__] != NULL }" src="/mitech/assets/images/villaggio/erba.png" alt="" th:onclick="'javascript:checkCasellaErba(' + __${i}__ + ')'"/>
+                                        <img style="width: 100%" th:class="edificioincasella" th:id="edificioincasella__${i}__" th:name="__${i}__" th:if="${posizioneEdificio[__${i}__] != NULL }" th:src="@{${'/mitech/assets/images/villaggio/' + posizioneEdificio[__${i}__]}}" alt=""/>
+                                        <img style="width: 100%" th:class="erbaincasella" th:id="__${i}__" th:name="__${i}__" th:unless="${posizioneEdificio[__${i}__] != NULL }" src="/mitech/assets/images/villaggio/erba.png" alt=""/>
                                     </td>   
                                 </tr>
 
@@ -127,67 +127,62 @@
 
                                         <script th:inline="javascript">
                                             /*<![CDATA[*/
-                                            function checkCasellaErba(occupazione) {
-                                                var oggetto = document.getElementById('erbaincasella' + occupazione).src;
-                                                document.getElementById('erbaincasella' + occupazione).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
-                                            }
-
-                                            function checkCasellaEdificio(occupazione) {
-                                                var oggetto = document.getElementById('edificioincasella' + occupazione).src;
-                                                alert('ritenta!');
-                                            }
                                             jQuery(document).ready(function ($) {
-                                                $("button").click(function () {
-                                                    $.ajax({
-                                                        type: "GET",
-                                                        contentType: "application/json",
-                                                        dataType: "json",
-                                                        url: '/attacco_esercitazione/partitavillaggioesercitazione',
-                                                        success: function (data) {
-                                                            var posizioni = new Array();
-                                                            var truppe = new Array();
-                                                            var oggettoTruppa;
-                                                            for (var i = 0; i < data[0].length; i++) {
-                                                                posizioni.push([data[0][i].idedificio, data[0][i].posizione]);
-                                                            }
-                                                            for (var i = 0; i < data[2].length; i++) {
-                                                                if (data[2][0].truppa.tipologia === "attacco") {
-                                                                    for (var j = 0; j < data[2][i].quantita; j++) {
-                                                                        oggettoTruppa = new TruppaBuilder()
-                                                                                .setNome(data[2][i].truppa.nomeTruppa)
-                                                                                .setTassoAggiornamentoColpi(data[2][i].truppa.tassoAggiornamentoColpi)
-                                                                                .setTassoAggiornamentoResistenza(data[2][i].truppa.resistenza)
-                                                                                .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
-                                                                                .setColpiLivelloIniziale(data[2][i].truppa.colpiLivelloIniziale)
-                                                                        truppe.push(oggettoTruppa);
-                                                                    }
-                                                                } else if (data[2][0].truppa.tipologia === "guarigione") {
-                                                                    for (var j = 0; j < data[2][i].quantita; j++) {
-                                                                        oggettoTruppa = new TruppaBuilder()
-                                                                                .setNome(data[2][i].nomeTruppa)
-                                                                                .setTassoAggiornamentoGuarigione(data[2][i].truppa.tassoAggiornamentoGuarigione)
-                                                                                .setTassoAggiornamentoResistenza(data[2][i].truppa.resistenza)
-                                                                                .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
-                                                                                .setGuarigioneLivelloIniziale(data[2][i].truppa.guarigioneLivelloIniziale)
-                                                                        truppe.push(oggettoTruppa);
-                                                                        //console.log(JSON.stringify(oggettoTruppa));
-                                                                    }
-                                                                }
 
-                                                            }
 
-                                                            console.log(JSON.stringify(truppe));
-
-                                                            const villaggio = new Villaggio(data[1].livelloGiocatore, "esercitazione", 36, posizioni);
-                                                            var infoEdificiBattaglia = villaggio.calcoloLivelloEdifici(posizioni);
-                                                            const nuovaPartita = new Partita(villaggio, truppe, infoEdificiBattaglia);
-
-                                                        },
-                                                        error: function () {
-                                                            alert('C’è stato un’errore');
+                                                // $("button").click(function () {
+                                                $.ajax({
+                                                    type: "GET",
+                                                    contentType: "application/json",
+                                                    dataType: "json",
+                                                    url: '/attacco_esercitazione/partitavillaggioesercitazione',
+                                                    success: function (data) {
+                                                        var posizioni = new Array();
+                                                        var truppe = new Array();
+                                                        var oggettoTruppa;
+                                                        for (var i = 0; i < data[0].length; i++) {
+                                                            posizioni.push([data[0][i].idedificio, data[0][i].posizione]);
                                                         }
-                                                    });
+                                                        for (var i = 0; i < data[2].length; i++) {
+                                                            if (data[2][0].truppa.tipologia === "attacco") {
+                                                                for (var j = 0; j < data[2][i].quantita; j++) {
+                                                                    oggettoTruppa = new TruppaBuilder()
+                                                                            .setNome(data[2][i].truppa.nomeTruppa)
+                                                                            .setTassoAggiornamentoColpi(data[2][i].truppa.tassoAggiornamentoColpi)
+                                                                            .setTassoAggiornamentoResistenza(data[2][i].truppa.resistenza)
+                                                                            .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
+                                                                            .setColpiLivelloIniziale(data[2][i].truppa.colpiLivelloIniziale)
+                                                                    truppe.push(oggettoTruppa);
+                                                                }
+                                                            } else if (data[2][0].truppa.tipologia === "guarigione") {
+                                                                for (var j = 0; j < data[2][i].quantita; j++) {
+                                                                    oggettoTruppa = new TruppaBuilder()
+                                                                            .setNome(data[2][i].nomeTruppa)
+                                                                            .setTassoAggiornamentoGuarigione(data[2][i].truppa.tassoAggiornamentoGuarigione)
+                                                                            .setTassoAggiornamentoResistenza(data[2][i].truppa.resistenza)
+                                                                            .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
+                                                                            .setGuarigioneLivelloIniziale(data[2][i].truppa.guarigioneLivelloIniziale)
+                                                                    truppe.push(oggettoTruppa);
+                                                                    //console.log(JSON.stringify(oggettoTruppa));
+                                                                }
+                                                            }
+
+                                                        }
+
+                                                        const villaggio = new Villaggio(data[1].livelloGiocatore, "esercitazione", 36, posizioni);
+                                                        var infoEdificiBattaglia = villaggio.calcoloLivelloEdifici(posizioni);
+                                                        const nuovaPartita = new Partita(villaggio, truppe, infoEdificiBattaglia, nomet);
+                                                        $('.erbaincasella').click(function () {
+                                                            var $this = $(this);
+                                                            var occupazione = $this.attr("id");
+                                                            nuovaPartita.checkCasellaErba(occupazione)
+                                                        });
+                                                    },
+                                                    error: function () {
+                                                        alert('C’è stato un’errore');
+                                                    }
                                                 });
+                                                //});
                                             });
                                             /*]]>*/
                                         </script>
