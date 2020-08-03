@@ -5,11 +5,10 @@
  */
 
 /*<![CDATA[*/
-function Villaggio(livelloMunicipio, tipoVillaggio, numeroCaselle, informazioniEdifici) {
+function Villaggio(livelloMunicipio, tipoVillaggio, informazioniEdifici) {
 
     this.livelloMunicipio = livelloMunicipio;
     this.tipoVillaggio = tipoVillaggio;
-    this.numeroCaselle = numeroCaselle;
     this.informazioniEdifici = informazioniEdifici;
 }
 
@@ -26,17 +25,13 @@ Villaggio.prototype.setTipoVillaggio = function (tipoVillaggio) {
     return this;
 };
 
-Villaggio.prototype.setNumeroCaselle = function (numeroCaselle) {
-    this.numeroCaselle = numeroCaselle;
-    return this;
-};
 
 Villaggio.prototype.setInformazioniEdifici = function (informazioniEdifici) {
     this.informazioniEdifici = informazioniEdifici;
     return this;
 };
 
-Villaggio.prototype.calcoloLivelloEdifici = function (informazioniEdifici) {
+/*Villaggio.prototype.calcoloLivelloEdifici = function (informazioniEdifici) {
     var infoEdificiBattaglia = new Array();
     for (var i = 0; i < informazioniEdifici.length; i++) {
         if ((informazioniEdifici[i][0].livelloDisponibilita) <= (this.livelloMunicipio)) {
@@ -48,5 +43,5 @@ Villaggio.prototype.calcoloLivelloEdifici = function (informazioniEdifici) {
         }
     }
     return infoEdificiBattaglia;
-};
+};*/
 /*]]>*/

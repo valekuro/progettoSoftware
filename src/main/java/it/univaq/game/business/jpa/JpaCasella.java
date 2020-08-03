@@ -43,8 +43,8 @@ public class JpaCasella implements CasellaService {
     @Override
     @Transactional(readOnly = true)
     public List<Casella> findAll() throws BusinessException {
-        List<Casella> faqs = casellaRepository.findAll();
-        return faqs;
+        List<Casella> casella = casellaRepository.findAll();
+        return casella;
     }
 
     /*@Override

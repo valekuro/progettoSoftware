@@ -47,8 +47,8 @@ public class VillaggioController {
         System.out.println(giocatoreAutenticato);
         //pos.set(0, d.get(i).getPosizione());
         for (int i = 0; i < d.size(); i++) {
-            if (d.get(i).getLivello_disponibilita()<=livelloGiocatore){
-                posizioneEdificio.put(d.get(i).getPosizione(), d.get(i).getIDEdificio().getImmagine());
+            if (d.get(i).getEdificio().getLivelloDisponibilita()<=livelloGiocatore){
+                posizioneEdificio.put(d.get(i).getPosizione(), d.get(i).getEdificio().getImmagine());
             }
         }
         model.addAttribute("posizioneEdificio", posizioneEdificio);

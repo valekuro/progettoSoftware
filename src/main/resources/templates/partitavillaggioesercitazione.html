@@ -123,6 +123,7 @@
                                         <script th:src="@{/mitech/assets/js/Avversario.js}"></script>
                                         <script th:src="@{/mitech/assets/js/Edificio.js}"></script>
                                         <script th:src="@{/mitech/assets/js/Partita.js}"></script>
+                                        <script th:src="@{/mitech/assets/js/Casella.js}"></script>
 
 
                                         <script th:inline="javascript">
@@ -137,12 +138,19 @@
                                                     dataType: "json",
                                                     url: '/attacco_esercitazione/partitavillaggioesercitazione',
                                                     success: function (data) {
-                                                        var posizioni = new Array();
+                                                        var tabellone = new Array();
                                                         var truppe = new Array();
                                                         var oggettoTruppa;
-                                                        for (var i = 0; i < data[0].length; i++) {
-                                                            posizioni.push([data[0][i].idedificio, data[0][i].posizione]);
+                                                        console.log(JSON.stringify(data[0][3].posizione));
+
+                                                        for (var i = 1; i <= 36; i++) {
+                                                            if (data[0][i] !== undefined) {
+                                                                tabellone.push(new Casella(data[0][i].posizione, data[0][i].idedificio.nome, data[0][i].idedificio.tipologia));
+                                                            } else {
+                                                                tabellone.push(new Casella(i, 'erba', 'erba'));
+                                                            }
                                                         }
+                                                        console.log(JSON.stringify(tabellone));
                                                         for (var i = 0; i < data[2].length; i++) {
                                                             if (data[2][0].truppa.tipologia === "attacco") {
                                                                 for (var j = 0; j < data[2][i].quantita; j++) {
@@ -169,13 +177,15 @@
 
                                                         }
 
-                                                        const villaggio = new Villaggio(data[1].livelloGiocatore, "esercitazione", 36, posizioni);
-                                                        var infoEdificiBattaglia = villaggio.calcoloLivelloEdifici(posizioni);
-                                                        const nuovaPartita = new Partita(villaggio, truppe, infoEdificiBattaglia, nomet);
+                                                        const villaggio = new Villaggio(data[1].livelloGiocatore, "esercitazione", tabellone);
+                                                        const nuovaPartita = new Partita(villaggio, truppe, nomet);
                                                         $('.erbaincasella').click(function () {
                                                             var $this = $(this);
                                                             var occupazione = $this.attr("id");
-                                                            nuovaPartita.checkCasellaErba(occupazione)
+                                                            setTimeout(function () {
+                                                                nuovaPartita.checkCasellaErba(occupazione);
+                                                            }, 2000);
+
                                                         });
                                                     },
                                                     error: function () {

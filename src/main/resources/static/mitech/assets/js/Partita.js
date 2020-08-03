@@ -4,11 +4,10 @@
  * and open the template in the editor.
  */
 
-function Partita(villaggio, truppe, edifici, nomeTruppa) {
+function Partita(villaggio, truppe, nomeTruppa) {
 
     this.villaggio = villaggio;
     this.truppe = truppe;
-    this.edifici = edifici;
     this.nomeTruppa = nomeTruppa;
 }
 
@@ -22,10 +21,6 @@ Partita.prototype.setTruppe = function (truppe) {
     return this;
 };
 
-Partita.prototype.setEdifici = function (edifici) {
-    this.edifici = edifici;
-    return this;
-};
 
 Partita.prototype.setNomeTruppa = function (nomeTruppa) {
     this.nomeTruppa = nomeTruppa;
@@ -40,14 +35,14 @@ Partita.prototype.avviaTimer = function () {
 Partita.prototype.avanzamentoTruppeInserite = function (casella) {
     //console.log(JSON.stringify(this.villaggio.informazioniEdifici[2]));
     var casellaNext = parseInt(casella) + 1;
+        if (document.getElementById(casellaNext).className === 'erba') {
+            document.getElementById(casellaNext).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
+            document.getElementById(casella).src = "/mitech/assets/images/villaggio/erba.png";
+            console.log(casellaNext);
+        }else{
+            console.log(casellaNext);
+        }
    
-    setTimeout(function(){  
-        if (document.getElementById(casellaNext).className === 'erbaincasella') {
-            
-        document.getElementById(casellaNext).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
-        document.getElementById(casella).src = "/mitech/assets/images/villaggio/erba.png";
-            
-    }}, 2000);
     
     return this;
 };
