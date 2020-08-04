@@ -19,62 +19,62 @@
             <div class="container">
 
                 <div class="col-lg-4">aaaprrr</div>
-                        <div class="col-lg-8">
-                            <table id="tabvillaggio" class="tabellavillaggio">
-                                <tr>
-                                    <td th:each="i : ${#numbers.sequence(1, 6)}">
-                                        <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
-                                    </td>   
-                                </tr>
-                                <tr>
-                                    <td th:each="i : ${#numbers.sequence(7, 12)}">
-                                        <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
-                                    </td>   
-                                </tr>
+                <div class="col-lg-8">
+                    <table id="tabvillaggio" class="tabellavillaggio">
+                        <tr>
+                            <td th:each="i : ${#numbers.sequence(1, 6)}">
+                                <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
+                            </td>   
+                        </tr>
+                        <tr>
+                            <td th:each="i : ${#numbers.sequence(7, 12)}">
+                                <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
+                            </td>   
+                        </tr>
 
-                                <tr>
-                                    <td th:each="i : ${#numbers.sequence(13, 18)}">
-                                        <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
+                        <tr>
+                            <td th:each="i : ${#numbers.sequence(13, 18)}">
+                                <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
 
-                                    </td>   
-                                </tr>
+                            </td>   
+                        </tr>
 
-                                <tr>
-                                    <td th:each="i : ${#numbers.sequence(19, 24)}">
-                                        <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
-                                    </td>   
-                                </tr>
-                                <tr>
-                                    <td th:each="i : ${#numbers.sequence(25, 30)}">
-                                        <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
+                        <tr>
+                            <td th:each="i : ${#numbers.sequence(19, 24)}">
+                                <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
+                            </td>   
+                        </tr>
+                        <tr>
+                            <td th:each="i : ${#numbers.sequence(25, 30)}">
+                                <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
 
-                                    </td>   
-                                </tr>
-                                <tr>
-                                    <td th:each="i : ${#numbers.sequence(31, 36)}">
-                                        <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
-                                    </td>   
-                                </tr>
+                            </td>   
+                        </tr>
+                        <tr>
+                            <td th:each="i : ${#numbers.sequence(31, 36)}">
+                                <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
+                            </td>   
+                        </tr>
 
-                            </table>
-                             <div class="single-divider section-space--ptb_60 border-bottom">
-                    <div class="row ">
-                        <!-- <img src="/mitech/assets/images/favicon.png" th:src="@{/mitech/assets/images/favicon.png}" alt="" /> -->
+                    </table>
+                    <div class="single-divider section-space--ptb_60 border-bottom">
+                        <div class="row ">
+                            <!-- <img src="/mitech/assets/images/favicon.png" th:src="@{/mitech/assets/images/favicon.png}" alt="" /> -->
 
-                        <div class="col-lg-4">
-                            <div th:each="truppeDisponbili : ${truppeDisponbili}">
-                                <div th:each="i : ${#numbers.sequence(1, truppeDisponbili.quantita)}">
+                            <div class="col-lg-4">
+                                <div th:each="truppeDisponbili : ${truppeDisponbili}">
+                                    <div th:each="i : ${#numbers.sequence(1, truppeDisponbili.quantita)}">
 
-                                    <img id="truppa" class="mySlides flex" th:name="${truppeDisponbili.truppa.nomeTruppa}" th:src="@{${'/mitech/assets/images/truppe/' + truppeDisponbili.truppa.immagineTruppa}}" />
-                                    <div id="idtruppeaddestrate" style="display: none" th:text="${truppeDisponbili.truppa.id}"></div>
-                                    <div id="nometruppeaddestrate" style="display: none" th:text="${truppeDisponbili.truppa.nomeTruppa}"></div>
+                                        <img id="truppa" class="mySlides flex" th:name="${truppeDisponbili.truppa.nomeTruppa}" th:src="@{${'/mitech/assets/images/truppe/' + truppeDisponbili.truppa.immagineTruppa}}" />
+                                        <div id="idtruppeaddestrate" style="display: none" th:text="${truppeDisponbili.truppa.id}"></div>
+                                        <div id="nometruppeaddestrate" style="display: none" th:text="${truppeDisponbili.truppa.nomeTruppa}"></div>
+                                    </div>
+
                                 </div>
 
+                                <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                                <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
                             </div>
-
-                            <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-                            <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
-                        </div>
 
                         </div>
                     </div>
@@ -132,13 +132,13 @@
                                                     dataType: "json",
                                                     url: '/attacco_esercitazione/partitavillaggioesercitazione',
                                                     success: function (data) {
-                                                        
+
                                                         var oggettoTabellone = new Array();
                                                         var truppe = new Array();
                                                         var oggettoTruppa;
                                                         var i;
-                                                        for (i = 0; i <data[0].length ; i++) {
-                                                           
+                                                        for (i = 0; i < data[0].length; i++) {
+
                                                             oggettoTabellone.push(new Casella(data[0][i].posizione, data[0][i]['edificio'].nome, "vivo"));
                                                         }
                                                         //console.log(JSON.stringify(oggettoTabellone));
@@ -182,10 +182,31 @@
                                                         $('.casella').click(function () {
                                                             var $this = $(this);
                                                             var occupazione = $this.attr("id");
-                                                            nuovaPartita.avanzamentoTruppeInserite(occupazione);
+                                                            console.log("PRIMA      " + JSON.stringify(oggettoTabellone[occupazione - 1]));
+                                                            oggettoTabellone[occupazione - 1].statoCasella = 'truppa';
+                                                            console.log("DOPO      " + JSON.stringify(oggettoTabellone[occupazione - 1]));
+
+                                                            //nuovaPartita.avanzamentoTruppeInserite(occupazione);
+                                                            // poi un altro script setinterval che lo metti i un metodo della partita ogni secondo che cammina decidi cosa deve succedere alla casella 
                                                             //timeout(occupazione);
                                                         });
-
+                                                        setInterval(function () {
+                                                            var i;
+                                                            var oggettoTabelloneAux = new Array();
+                                                            for (i = 0; i < 36; i++) {
+                                                                var pippo = oggettoTabellone[i].statoCasella;
+                                                                oggettoTabelloneAux.push(oggettoTabellone[i]);
+                                                                oggettoTabelloneAux.push(oggettoTabellone[i]);
+                                                                if (pippo === 'truppa') {
+                                                                    console.log(oggettoTabelloneAux[i]);
+                                                                    oggettoTabelloneAux[i+1].statoCasella = 'truppa';
+                                                                    oggettoTabelloneAux[i].statoCasella = 'erba';
+                                                                    document.getElementById(i+2).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
+                                                                    document.getElementById(i+1).src = "/mitech/assets/images/villaggio/erba.png";
+                                                                }
+                                                            }
+                                                            oggettoTabellone = oggettoTabelloneAux;
+                                                        }, 5000);
                                                     },
                                                     error: function () {
                                                         alert('C’è stato un’errore');
