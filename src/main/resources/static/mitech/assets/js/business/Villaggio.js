@@ -5,11 +5,11 @@
  */
 
 /*<![CDATA[*/
-function Villaggio(livelloMunicipio, tipoVillaggio, informazioniEdifici) {
+function Villaggio(livelloMunicipio, tipoVillaggio, caselle) {
 
     this.livelloMunicipio = livelloMunicipio;
     this.tipoVillaggio = tipoVillaggio;
-    this.informazioniEdifici = informazioniEdifici;
+    this.caselle = caselle;
 }
 
 Villaggio.prototype.prova = function () {
@@ -26,9 +26,21 @@ Villaggio.prototype.setTipoVillaggio = function (tipoVillaggio) {
 };
 
 
-Villaggio.prototype.setInformazioniEdifici = function (informazioniEdifici) {
-    this.informazioniEdifici = informazioniEdifici;
+Villaggio.prototype.setCaselle = function (caselle) {
+    this.caselle = caselle;
     return this;
+};
+
+Villaggio.prototype.getLivelloMunicipio = function () {
+    return this.livelloMunicipio;
+};
+
+Villaggio.prototype.getTipoVillaggio = function () {
+    return this.tipoVillaggio;
+};
+
+Villaggio.prototype.getCaselle = function () {
+    return this.caselle;
 };
 
 /*Villaggio.prototype.calcoloLivelloEdifici = function (informazioniEdifici) {
