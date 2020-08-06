@@ -111,6 +111,9 @@
                                     </div>
 
                                     <th:block layout:fragment="script">
+                                                                                <script th:src="@{/mitech/assets/js/lodash.js}"></script>
+                                        <script th:src="@{/mitech/assets/js/application/ViewPartita.js}"></script>
+
                                         <script th:src="@{/mitech/assets/js/business/Truppa.js}"></script>
                                         <script th:src="@{/mitech/assets/js/sliderTruppe.js}"></script>
                                         <script  th:inline="javascript" th:src="@{/mitech/assets/js/business/Villaggio.js}"></script>
@@ -118,7 +121,6 @@
                                         <script th:src="@{/mitech/assets/js/business/Edificio.js}"></script>
                                         <script th:src="@{/mitech/assets/js/business/Partita.js}"></script>
                                         <script th:src="@{/mitech/assets/js/business/Casella.js}"></script>
-                                        <script th:src="@{/mitech/assets/js/application/ViewPartita.js}"></script>
 
 
                                         <script th:inline="javascript">
@@ -134,13 +136,17 @@
                                                     success: function (data) {
 
                                                         var oggettoTabellone = new Array();
+                           
                                                         var truppe = new Array();
+                                                        var oggettoTabelloneAux = new Array();
                                                         var oggettoTruppa;
                                                         var i;
                                                         for (i = 0; i < data[0].length; i++) {
-
+//clonedeep
                                                             oggettoTabellone.push(new Casella(data[0][i].posizione, data[0][i]['edificio'].nome, "vivo"));
+                                                            oggettoTabelloneAux= _.cloneDeep(oggettoTabellone);
                                                         }
+                                                       
                                                         //console.log(JSON.stringify(oggettoTabellone));
                                                         for (var i = 0; i < data[2].length; i++) {
                                                             if (data[2][0].truppa.tipologia === "attacco") {
@@ -169,7 +175,8 @@
                                                         }
 
                                                         const villaggio = new Villaggio(data[1].livelloGiocatore, "esercitazione", oggettoTabellone);
-                                                        const nuovaPartita = new Partita(villaggio, truppe, nomet);
+                                                        var viewPartita = new ViewPartita;
+                                                        const nuovaPartita = new Partita(villaggio, truppe, nomet, viewPartita);
                                                         nuovaPartita.costruisciVillaggioNemico();
 
                                                         /* function timeout(occupazione) {
@@ -182,31 +189,38 @@
                                                         $('.casella').click(function () {
                                                             var $this = $(this);
                                                             var occupazione = $this.attr("id");
-                                                            console.log("PRIMA      " + JSON.stringify(oggettoTabellone[occupazione - 1]));
-                                                            oggettoTabellone[occupazione - 1].statoCasella = 'truppa';
-                                                            console.log("DOPO      " + JSON.stringify(oggettoTabellone[occupazione - 1]));
-
+                                                            console.log(occupazione);
+                                                            nuovaPartita.checkCasellaErba(occupazione);
+                                                            oggettoTabellone[occupazione - 1].oggettoOccupante = 'truppa';
+                                                            oggettoTabelloneAux = _.cloneDeep(oggettoTabellone);
                                                             //nuovaPartita.avanzamentoTruppeInserite(occupazione);
-                                                            // poi un altro script setinterval che lo metti i un metodo della partita ogni secondo che cammina decidi cosa deve succedere alla casella 
-                                                            //timeout(occupazione);
                                                         });
                                                         setInterval(function () {
-                                                            var i;
-                                                            var oggettoTabelloneAux = new Array();
-                                                            for (i = 0; i < 36; i++) {
-                                                                var pippo = oggettoTabellone[i].statoCasella;
-                                                                oggettoTabelloneAux.push(oggettoTabellone[i]);
-                                                                oggettoTabelloneAux.push(oggettoTabellone[i]);
-                                                                if (pippo === 'truppa') {
-                                                                    console.log(oggettoTabelloneAux[i]);
-                                                                    oggettoTabelloneAux[i+1].statoCasella = 'truppa';
-                                                                    oggettoTabelloneAux[i].statoCasella = 'erba';
+                                                            //nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, oggettoTabellone);
+                                                           var i;
+                                                            console.log(oggettoTabelloneAux);
+                                                            for (i = 0; i < oggettoTabellone.length; i++) {
+                                                                 
+                                                                //console.log("DOPO   " + JSON.stringify(oggettoTabelloneAux[i]));
+                                                                if (oggettoTabellone[i].oggettoOccupante === 'truppa' && i<35) {
+                                                                   if(oggettoTabellone[i+1].oggettoOccupante === 'erba'){
+                                                                    oggettoTabelloneAux[i + 1].oggettoOccupante = 'truppa';
+                                                                    oggettoTabelloneAux[i].oggettoOccupante = 'erba';
                                                                     document.getElementById(i+2).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
-                                                                    document.getElementById(i+1).src = "/mitech/assets/images/villaggio/erba.png";
+                                                                    document.getElementById(i+1).src = "/mitech/assets/images/villaggio/erba.png";  
+                                                                   }else{
+                                                                       oggettoTabelloneAux[i].oggettoOccupante = 'truppa';
+                                                                       var nomeEdificioIncontrato = oggettoTabellone[i+1].oggettoOccupante;
+                                                                       console.log(oggettoTabelloneAux[i]);
+
+                                                                   }
+                                                                    
                                                                 }
                                                             }
-                                                            oggettoTabellone = oggettoTabelloneAux;
-                                                        }, 5000);
+                                                            
+                                                           console.log(oggettoTabelloneAux); 
+                                                           oggettoTabellone= _.cloneDeep(oggettoTabelloneAux);
+                                                        }, 1000);
                                                     },
                                                     error: function () {
                                                         alert('C’è stato un’errore');

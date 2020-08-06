@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//import viewPartita from '/mitech/assets/js/application/ViewPartita.js'
 
-function Partita(villaggio, truppe, nomeTruppa) {
+function Partita(villaggio, truppe, nomeTruppa, viewPartita) {
 
     this.villaggio = villaggio;
     this.truppe = truppe;
     this.nomeTruppa = nomeTruppa;
+    this.viewPartita = viewPartita;
+
 }
 
 Partita.prototype.setVillaggio = function (villaggio) {
@@ -38,41 +41,31 @@ Partita.prototype.avviaTimer = function () {
 
 Partita.prototype.costruisciVillaggioNemico = function () {
     var caselleVillaggioNemico = this.getVillaggio()['caselle'];
-   var viewPartita = new ViewPartita();
-   viewPartita.visualizzaVillaggioNemico(caselleVillaggioNemico);
+    //viewPartita.visualizzaVillaggioNemico(caselleVillaggioNemico);
+    this.viewPartita.visualizzaVillaggioNemico(caselleVillaggioNemico);
 }
-Partita.prototype.avanzamentoTruppeInserite = function (casellaInizialeTruppa) {
-    var casellaNext = parseInt(casellaInizialeTruppa) + 1;
-    var caselleVillaggioNemico = this.getVillaggio()['caselle'];
-    var j=casellaNext;
-    while(j<caselleVillaggioNemico.length && this.getVillaggio()['caselle'][j].oggettoOccupante === 'erba'){	
-	 console.log(JSON.stringify(this.getVillaggio()['caselle']));
-        console.log("oggettoOccupante     " + this.getVillaggio()['caselle'][j].oggettoOccupante);													
-	document.getElementById(casellaNext).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
-        document.getElementById(casellaInizialeTruppa).src = "/mitech/assets/images/villaggio/erba.png";   
-   
-	casellaInizialeTruppa =	parseInt(casellaInizialeTruppa) + 1;
-	casellaNext=parseInt(casellaNext) + 1;	
-        j++;		
-}
+Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, oggettoTabellone) {
+    var i;
+    console.log(oggettoTabelloneAux);
+    for (i = 0; i < 36; i++) {
 
-       /* if (document.getElementById(casellaNext).className === 'erba') {
-            document.getElementById(casellaNext).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
-            document.getElementById(casellaInizialeTruppa).src = "/mitech/assets/images/villaggio/erba.png";
-            console.log(casellaNext);
-        }else{
-            console.log(casellaNext);
+        //console.log("DOPO   " + JSON.stringify(oggettoTabelloneAux[i]));
+        if (oggettoTabellone[i].oggettoOccupante === 'truppa' && i < 35) {
+            oggettoTabelloneAux[i + 1].oggettoOccupante = 'truppa';
+            oggettoTabelloneAux[i].oggettoOccupante = 'erba';
+            this.viewPartita.camminoTruppa(i);
         }
-   
-    
-    return this;*/
+    }
+
+    console.log(oggettoTabelloneAux);
+    oggettoTabellone = _.cloneDeep(oggettoTabelloneAux);
 };
 
 
 
 Partita.prototype.checkCasellaErba = function (occupazione) {
     document.getElementById(occupazione).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
-    this.avanzamentoTruppeInserite(occupazione);
+//    this.avanzamentoTruppeInserite(occupazione);
 }
 
 /*   function checkCasellaEdificio(occupazione) {
