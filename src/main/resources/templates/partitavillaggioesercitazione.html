@@ -186,16 +186,12 @@
                                                           var truppeAggiornate = new Array();
                                                           for(y=1; y<truppe.length; y++){
                                                               if(truppe[y].nome == nomet){
-                                                                 console.log("prima      " + JSON.stringify(oggettoTabellone));
-                                                                  oggettoTabellone.splice(0, 1, new Casella(y, truppe[y], "vivo"));
-                                                                  //oggettoTabellone[y].oggettoOccupante = truppe[y]
-                                                                 console.log("dopo      " + JSON.stringify(oggettoTabellone));
-
+                                                                 //console.log("prima      " + JSON.stringify(truppe));
+                                                                  truppe.splice(y, 1);
+                                                                 // console.log("dopo      " + JSON.stringify(truppe));
+                                                                  oggettoTabellone.splice(occupazione - 1, 1, new Casella(occupazione, truppe[y], "vivo"));
                                                               }
                                                           }
-                                                            
-                                                           
-                                                            oggettoTabellone[occupazione - 1].oggettoOccupante.nome = nomet;
                                                             oggettoTabelloneAux = _.cloneDeep(oggettoTabellone);
                                                             //nuovaPartita.avanzamentoTruppeInserite(occupazione);
                                                         });
