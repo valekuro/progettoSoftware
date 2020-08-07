@@ -764,8 +764,8 @@ input[type="checkbox"] {
   background-repeat: no-repeat;
   background-position: center center;
   border-bottom-width: 0px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-size: cover;
   background-image: url(../images/bg/title-bar-01-bg.jpg);
 }
@@ -1380,7 +1380,7 @@ input[type="checkbox"] {
 }
 
 .section-space--ptb_60 {
-  padding-top: 60px;
+  padding-top: 20px;
   padding-bottom: 60px;
 }
 
@@ -2545,7 +2545,7 @@ input[type="checkbox"] {
 }
 
 .header__logo > a img {
-  width: 160px;
+  width: 33%;
 }
 
 .header__logo .dark-logo {
@@ -14488,7 +14488,7 @@ blockquote {
 
 .tabellavillaggio{
     background: #347C0A;
-    width: 70%;
+    width: 50%;
     border:0;
 }
 
@@ -14506,7 +14506,7 @@ blockquote {
 .mySlides {
   display: none;
   max-width:280px;
-  max-height:180px;
+  max-height:125px;
 }
 
 /* Next & previous buttons */
@@ -14525,6 +14525,9 @@ blockquote {
   user-select: none;
 }
 
+.bigButtonTruppe{
+      height: 60% !important;
+}
 /* Position the "next button" to the right */
 .next {
   right: 0;

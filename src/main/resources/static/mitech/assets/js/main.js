@@ -16,7 +16,7 @@
 	var $html = $('html');
 	var $body = $('body');
 
-	windows.on('scroll', function () {
+/*valentina header mobile	windows.on('scroll', function () {
 		var scroll = windows.scrollTop();
 		var headerHeight = sticky.height();
 
@@ -30,7 +30,7 @@
 
     });
     /*----------  Scroll to top  ----------*/
-    function scrollToTop() {
+ /*  valentina header mobile function scrollToTop() {
         var $scrollUp = $('#scroll-top'),
             $lastScrollTop = 0,
             $window = $(window);

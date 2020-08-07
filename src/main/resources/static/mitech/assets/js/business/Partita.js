@@ -41,19 +41,24 @@ Partita.prototype.costruisciVillaggioNemico = function () {
 }
 Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, oggettoTabellone) {
     var i;
-    for (i = 0; i < 36; i++) {
-   // console.log(oggettoTabelloneAux[i]);
+    for (i = 0; i < oggettoTabellone.length; i++) {
 
-        //console.log("DOPO   " + JSON.stringify(oggettoTabelloneAux[i]));
-        if (oggettoTabellone[i].oggettoOccupante.nome === 'truppa' && i < 35) {
-            oggettoTabelloneAux[i + 1].oggettoOccupante.nome = 'truppa';
-            oggettoTabelloneAux[i].oggettoOccupante.nome = 'erba';
-            this.viewPartita.camminoTruppa(i);
+        if (oggettoTabellone[i].oggettoOccupante.nome === nomet && i < 35) {
+            if (oggettoTabellone[i + 1].oggettoOccupante.nome === 'erba') {
+                oggettoTabelloneAux.splice(i + 1, 1, oggettoTabellone[i]);
+                oggettoTabelloneAux.splice(i, 1, oggettoTabellone[i + 1]);
+                document.getElementById(i + 2).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
+                document.getElementById(i + 1).src = "/mitech/assets/images/villaggio/erba.png";
+            } else {
+                //oggettoTabelloneAux.splice(i-1, i, nomet)
+                //oggettoTabelloneAux[i].oggettoOccupante.nome = nomet;
+            }
+
         }
     }
 
-    //console.log(oggettoTabelloneAux);
-    oggettoTabellone = _.cloneDeep(oggettoTabelloneAux);
+    //console.log(oggettoTabelloneAux); 
+    
 };
 
 

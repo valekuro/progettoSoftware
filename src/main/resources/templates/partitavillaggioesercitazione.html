@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="container">
-
+                <div class="row" style="padding-top: 2%">
                 <div class="col-lg-4">aaaprrr</div>
                 <div class="col-lg-8">
                     <table id="tabvillaggio" class="tabellavillaggio">
@@ -57,11 +57,17 @@
                         </tr>
 
                     </table>
+                    </div>
+                </div>
                     <div class="single-divider section-space--ptb_60 border-bottom">
                         <div class="row ">
                             <!-- <img src="/mitech/assets/images/favicon.png" th:src="@{/mitech/assets/images/favicon.png}" alt="" /> -->
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-1">
+                                  <button class="bigButtonTruppe w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
 
-                            <div class="col-lg-4">
+                            </div>
+                            <div class="col-lg-2">
                                 <div th:each="truppeDisponbili : ${truppeDisponbili}">
                                     <div th:each="i : ${#numbers.sequence(1, truppeDisponbili.quantita)}">
 
@@ -71,10 +77,11 @@
                                     </div>
 
                                 </div>
-
-                                <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-                                <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
-                            </div>
+                               </div>
+                            <div class="col-lg-1">
+                                <button class="bigButtonTruppe w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+                          </div>
+                            <div class="col-lg-4"></div>
 
                         </div>
                     </div>
@@ -197,33 +204,9 @@
                                                             //nuovaPartita.avanzamentoTruppeInserite(occupazione);
                                                         });
                                                         setInterval(function () {
-                                                         //  nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, oggettoTabellone);
-                                                           var i;
-                                                            for (i = 0; i < oggettoTabellone.length; i++) {
-
-                                                                if (oggettoTabellone[i].oggettoOccupante.nome === nomet && i<35) {
-                                                                   if(oggettoTabellone[i+1].oggettoOccupante.nome === 'erba'){
-                                                                        console.log("PRIMA   " + JSON.stringify(oggettoTabelloneAux));
-
-                                                                       oggettoTabelloneAux.splice(i+1, 1, oggettoTabellone[i]);
-                                                                        oggettoTabelloneAux.splice(i, 1, oggettoTabellone[i+1]);
-                                                                      console.log("DOPO   " + JSON.stringify(oggettoTabelloneAux));
-
-                                                                    //oggettoTabelloneAux[i + 1].oggettoOccupante.nome = nomet;
-                                                                   // oggettoTabelloneAux[i].oggettoOccupante.nome = 'erba';
-                                                                    document.getElementById(i+2).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
-                                                                    document.getElementById(i+1).src = "/mitech/assets/images/villaggio/erba.png";  
-                                                                   }else{
-                                                                       //oggettoTabelloneAux.splice(i-1, i, nomet)
-                                                                       //oggettoTabelloneAux[i].oggettoOccupante.nome = nomet;
-                                                                   }
-                                                                    
-                                                                }
-                                                            }
-                                                            
-                                                           //console.log(oggettoTabelloneAux); 
-                                                           oggettoTabellone= _.cloneDeep(oggettoTabelloneAux);
-                                                        }, 2000);
+                                                           nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, oggettoTabellone);
+                                                         oggettoTabellone = _.cloneDeep(oggettoTabelloneAux);
+                                                        }, 1000);
                                                     },
                                                     error: function () {
                                                         alert('C’è stato un’errore');
