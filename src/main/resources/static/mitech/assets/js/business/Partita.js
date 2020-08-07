@@ -5,10 +5,9 @@
  */
 //import viewPartita from '/mitech/assets/js/application/ViewPartita.js'
 
-function Partita(villaggio, truppe, nomeTruppa, viewPartita) {
+function Partita(villaggio, nomeTruppa, viewPartita) {
 
     this.villaggio = villaggio;
-    this.truppe = truppe;
     this.nomeTruppa = nomeTruppa;
     this.viewPartita = viewPartita;
 
@@ -19,10 +18,6 @@ Partita.prototype.setVillaggio = function (villaggio) {
     return this;
 };
 
-Partita.prototype.setTruppe = function (truppe) {
-    this.truppe = truppe;
-    return this;
-};
 
 
 Partita.prototype.setNomeTruppa = function (nomeTruppa) {
@@ -46,18 +41,18 @@ Partita.prototype.costruisciVillaggioNemico = function () {
 }
 Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, oggettoTabellone) {
     var i;
-    console.log(oggettoTabelloneAux);
     for (i = 0; i < 36; i++) {
+   // console.log(oggettoTabelloneAux[i]);
 
         //console.log("DOPO   " + JSON.stringify(oggettoTabelloneAux[i]));
-        if (oggettoTabellone[i].oggettoOccupante === 'truppa' && i < 35) {
-            oggettoTabelloneAux[i + 1].oggettoOccupante = 'truppa';
-            oggettoTabelloneAux[i].oggettoOccupante = 'erba';
+        if (oggettoTabellone[i].oggettoOccupante.nome === 'truppa' && i < 35) {
+            oggettoTabelloneAux[i + 1].oggettoOccupante.nome = 'truppa';
+            oggettoTabelloneAux[i].oggettoOccupante.nome = 'erba';
             this.viewPartita.camminoTruppa(i);
         }
     }
 
-    console.log(oggettoTabelloneAux);
+    //console.log(oggettoTabelloneAux);
     oggettoTabellone = _.cloneDeep(oggettoTabelloneAux);
 };
 

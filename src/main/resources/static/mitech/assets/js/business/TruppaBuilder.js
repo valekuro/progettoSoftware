@@ -12,7 +12,7 @@ let TruppaBuilder = function () {
 
     let nome;
     let tassoAggiornamentoColpi;
-    let guarigione;
+    let guarigioneLivelloIniziale;
     let tassoAggiornamentoResistenza;
     let resistenzaLivelloIniziale;
     let colpiLivelloIniziale;
@@ -28,8 +28,8 @@ let TruppaBuilder = function () {
             this.tassoAggiornamentoColpi = tassoAggiornamentoColpi;
             return this;
         },
-        setGuarigione: function (guarigione) {
-            this.guarigione = guarigione;
+        setGuarigioneLivelloIniziale: function (guarigioneLivelloIniziale) {
+            this.guarigioneLivelloIniziale = guarigioneLivelloIniziale;
             return this;
         },
         setTassoAggiornamentoResistenza: function (tassoAggiornamentoResistenza) {
@@ -53,7 +53,7 @@ let TruppaBuilder = function () {
             return this;
         },
         build: function () {
-            return new Truppa(nome, tassoAggiornamentoColpi,tassoAggiornamentoResistenza, guarigione, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia);
+            return new Truppa(nome, tassoAggiornamentoColpi,tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia);
         }
     };
 };

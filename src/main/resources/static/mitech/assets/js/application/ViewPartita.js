@@ -12,7 +12,7 @@ function ViewPartita() {
 ViewPartita.prototype.visualizzaVillaggioNemico = function (caselle) {
     var i;
     for (i = 0; i < 36; i++) {
-        document.getElementById(caselle[i].posizione).src = "/mitech/assets/images/villaggio/" + caselle[i].oggettoOccupante + ".png";
+        document.getElementById(caselle[i].posizione).src = "/mitech/assets/images/villaggio/" + caselle[i].oggettoOccupante.nome + ".png";
     }
 
 }

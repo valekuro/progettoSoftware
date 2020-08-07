@@ -136,91 +136,91 @@
                                                     success: function (data) {
 
                                                         var oggettoTabellone = new Array();
-                           
+                                                        var edifici = new Array();
                                                         var truppe = new Array();
                                                         var oggettoTabelloneAux = new Array();
                                                         var oggettoTruppa;
                                                         var i;
                                                         for (i = 0; i < data[0].length; i++) {
-//clonedeep
-                                                            oggettoTabellone.push(new Casella(data[0][i].posizione, data[0][i]['edificio'].nome, "vivo"));
+                                                            edifici.push(new Edificio(data[0][i]['edificio'].nome, data[0][i]['edificio'].tassoAggiornamentoColpi, data[0][i]['edificio'].tassoAggiornamentoResistenza, data[0][i]['edificio'].resistenzaLivelloIniziale, data[0][i]['edificio'].colpiLivelloIniziale))
+                                                            oggettoTabellone.push(new Casella(data[0][i].posizione, edifici[i], "vivo"));
                                                             oggettoTabelloneAux= _.cloneDeep(oggettoTabellone);
                                                         }
                                                        
                                                         //console.log(JSON.stringify(oggettoTabellone));
                                                         for (var i = 0; i < data[2].length; i++) {
-                                                            if (data[2][0].truppa.tipologia === "attacco") {
+                                                            if (data[2][i].truppa.tipologia === "attacco") {
                                                                 for (var j = 0; j < data[2][i].quantita; j++) {
                                                                     oggettoTruppa = new TruppaBuilder()
                                                                             .setNome(data[2][i].truppa.nomeTruppa)
                                                                             .setTassoAggiornamentoColpi(data[2][i].truppa.tassoAggiornamentoColpi)
-                                                                            .setTassoAggiornamentoResistenza(data[2][i].truppa.resistenza)
+                                                                            .setTassoAggiornamentoResistenza(data[2][i].truppa.tassoAggiornamentoResistenza)
                                                                             .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
                                                                             .setColpiLivelloIniziale(data[2][i].truppa.colpiLivelloIniziale)
                                                                     truppe.push(oggettoTruppa);
                                                                 }
-                                                            } else if (data[2][0].truppa.tipologia === "guarigione") {
+                                                            } else if (data[2][i].truppa.tipologia === "guarigione") {
                                                                 for (var j = 0; j < data[2][i].quantita; j++) {
                                                                     oggettoTruppa = new TruppaBuilder()
-                                                                            .setNome(data[2][i].nomeTruppa)
+                                                                            .setNome(data[2][i].truppa.nomeTruppa)
                                                                             .setTassoAggiornamentoGuarigione(data[2][i].truppa.tassoAggiornamentoGuarigione)
-                                                                            .setTassoAggiornamentoResistenza(data[2][i].truppa.resistenza)
+                                                                            .setTassoAggiornamentoResistenza(data[2][i].truppa.tassoAggiornamentoResistenza)
                                                                             .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
                                                                             .setGuarigioneLivelloIniziale(data[2][i].truppa.guarigioneLivelloIniziale)
                                                                     truppe.push(oggettoTruppa);
-                                                                    //console.log(JSON.stringify(oggettoTruppa));
                                                                 }
                                                             }
 
                                                         }
-
+                                                            
                                                         const villaggio = new Villaggio(data[1].livelloGiocatore, "esercitazione", oggettoTabellone);
                                                         var viewPartita = new ViewPartita;
-                                                        const nuovaPartita = new Partita(villaggio, truppe, nomet, viewPartita);
+                                                        const nuovaPartita = new Partita(villaggio, nomet, viewPartita);
                                                         nuovaPartita.costruisciVillaggioNemico();
-
-                                                        /* function timeout(occupazione) {
-                                                         setTimeout(function () {
-                                                         console.log(occupazione);
-                                                         
-                                                         timeout();
-                                                         }, 1000);
-                                                         }*/
-                                                        $('.casella').click(function () {
+                                                      $('.casella').click(function () {
                                                             var $this = $(this);
                                                             var occupazione = $this.attr("id");
-                                                            console.log(occupazione);
+                                                           // console.log(occupazione);
                                                             nuovaPartita.checkCasellaErba(occupazione);
-                                                            oggettoTabellone[occupazione - 1].oggettoOccupante = 'truppa';
+                                                          var y;
+                                                          var truppeAggiornate = new Array();
+                                                          for(y=1; y<truppe.length; y++){
+                                                              if(truppe[y].nome == nomet){
+                                                                 console.log("prima      " + JSON.stringify(oggettoTabellone));
+                                                                  oggettoTabellone.splice(0, 1, new Casella(y, truppe[y], "vivo"));
+                                                                  //oggettoTabellone[y].oggettoOccupante = truppe[y]
+                                                                 console.log("dopo      " + JSON.stringify(oggettoTabellone));
+
+                                                              }
+                                                          }
+                                                            
+                                                           
+                                                            oggettoTabellone[occupazione - 1].oggettoOccupante.nome = nomet;
                                                             oggettoTabelloneAux = _.cloneDeep(oggettoTabellone);
                                                             //nuovaPartita.avanzamentoTruppeInserite(occupazione);
                                                         });
                                                         setInterval(function () {
-                                                            //nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, oggettoTabellone);
+                                                           nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, oggettoTabellone);
                                                            var i;
-                                                            console.log(oggettoTabelloneAux);
                                                             for (i = 0; i < oggettoTabellone.length; i++) {
-                                                                 
                                                                 //console.log("DOPO   " + JSON.stringify(oggettoTabelloneAux[i]));
-                                                                if (oggettoTabellone[i].oggettoOccupante === 'truppa' && i<35) {
-                                                                   if(oggettoTabellone[i+1].oggettoOccupante === 'erba'){
-                                                                    oggettoTabelloneAux[i + 1].oggettoOccupante = 'truppa';
-                                                                    oggettoTabelloneAux[i].oggettoOccupante = 'erba';
+                                                                if (oggettoTabellone[i].oggettoOccupante.nome === 'truppa' && i<35) {
+                                                                   if(oggettoTabellone[i+1].oggettoOccupante.nome === 'erba'){
+                                                                    oggettoTabelloneAux[i + 1].oggettoOccupante.nome = 'truppa';
+                                                                    oggettoTabelloneAux[i].oggettoOccupante.nome = 'erba';
                                                                     document.getElementById(i+2).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
                                                                     document.getElementById(i+1).src = "/mitech/assets/images/villaggio/erba.png";  
                                                                    }else{
-                                                                       oggettoTabelloneAux[i].oggettoOccupante = 'truppa';
-                                                                       var nomeEdificioIncontrato = oggettoTabellone[i+1].oggettoOccupante;
-                                                                       console.log(oggettoTabelloneAux[i]);
-
+                                                                       oggettoTabelloneAux.splice(i-1, i, nomet)
+                                                                       //oggettoTabelloneAux[i].oggettoOccupante.nome = nomet;
                                                                    }
                                                                     
                                                                 }
                                                             }
                                                             
-                                                           console.log(oggettoTabelloneAux); 
+                                                           //console.log(oggettoTabelloneAux); 
                                                            oggettoTabellone= _.cloneDeep(oggettoTabelloneAux);
-                                                        }, 1000);
+                                                        }, 20000);
                                                     },
                                                     error: function () {
                                                         alert('C’è stato un’errore');
