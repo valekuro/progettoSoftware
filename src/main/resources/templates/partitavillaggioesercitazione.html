@@ -187,27 +187,34 @@
                                                           for(y=1; y<truppe.length; y++){
                                                               if(truppe[y].nome == nomet){
                                                                  //console.log("prima      " + JSON.stringify(truppe));
-                                                                  truppe.splice(y, 1);
                                                                  // console.log("dopo      " + JSON.stringify(truppe));
                                                                   oggettoTabellone.splice(occupazione - 1, 1, new Casella(occupazione, truppe[y], "vivo"));
+                                                                  truppe.splice(y, 1);
+
                                                               }
                                                           }
                                                             oggettoTabelloneAux = _.cloneDeep(oggettoTabellone);
                                                             //nuovaPartita.avanzamentoTruppeInserite(occupazione);
                                                         });
                                                         setInterval(function () {
-                                                           nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, oggettoTabellone);
+                                                         //  nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, oggettoTabellone);
                                                            var i;
                                                             for (i = 0; i < oggettoTabellone.length; i++) {
-                                                                //console.log("DOPO   " + JSON.stringify(oggettoTabelloneAux[i]));
-                                                                if (oggettoTabellone[i].oggettoOccupante.nome === 'truppa' && i<35) {
+
+                                                                if (oggettoTabellone[i].oggettoOccupante.nome === nomet && i<35) {
                                                                    if(oggettoTabellone[i+1].oggettoOccupante.nome === 'erba'){
-                                                                    oggettoTabelloneAux[i + 1].oggettoOccupante.nome = 'truppa';
-                                                                    oggettoTabelloneAux[i].oggettoOccupante.nome = 'erba';
+                                                                        console.log("PRIMA   " + JSON.stringify(oggettoTabelloneAux));
+
+                                                                       oggettoTabelloneAux.splice(i+1, 1, oggettoTabellone[i]);
+                                                                        oggettoTabelloneAux.splice(i, 1, oggettoTabellone[i+1]);
+                                                                      console.log("DOPO   " + JSON.stringify(oggettoTabelloneAux));
+
+                                                                    //oggettoTabelloneAux[i + 1].oggettoOccupante.nome = nomet;
+                                                                   // oggettoTabelloneAux[i].oggettoOccupante.nome = 'erba';
                                                                     document.getElementById(i+2).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
                                                                     document.getElementById(i+1).src = "/mitech/assets/images/villaggio/erba.png";  
                                                                    }else{
-                                                                       oggettoTabelloneAux.splice(i-1, i, nomet)
+                                                                       //oggettoTabelloneAux.splice(i-1, i, nomet)
                                                                        //oggettoTabelloneAux[i].oggettoOccupante.nome = nomet;
                                                                    }
                                                                     
@@ -216,7 +223,7 @@
                                                             
                                                            //console.log(oggettoTabelloneAux); 
                                                            oggettoTabellone= _.cloneDeep(oggettoTabelloneAux);
-                                                        }, 20000);
+                                                        }, 2000);
                                                     },
                                                     error: function () {
                                                         alert('C’è stato un’errore');
