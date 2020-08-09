@@ -10,4 +10,3 @@ function Avversario(){
 }
 
 Avversario.prototype=new Villaggio();
-Avversario.prototype.prova();

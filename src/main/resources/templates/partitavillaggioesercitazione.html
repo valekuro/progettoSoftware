@@ -143,47 +143,48 @@
                                                     success: function (data) {
 
                                                         var oggettoTabellone = new Array();
-                                                        var edifici = new Array();
                                                         var truppe = new Array();
                                                         var oggettoTabelloneAux = new Array();
-                                                        var oggettoTruppa;
+                                                        var edifici = new Array();
+   
+
                                                         var i;
                                                         for (i = 0; i < data[0].length; i++) {
                                                             edifici.push(new Edificio(data[0][i]['edificio'].nome, data[0][i]['edificio'].tassoAggiornamentoColpi, data[0][i]['edificio'].tassoAggiornamentoResistenza, data[0][i]['edificio'].resistenzaLivelloIniziale, data[0][i]['edificio'].colpiLivelloIniziale))
                                                             oggettoTabellone.push(new Casella(data[0][i].posizione, edifici[i], "vivo"));
-                                                            oggettoTabelloneAux= _.cloneDeep(oggettoTabellone);
+
                                                         }
-                                                       
+                                                        oggettoTabelloneAux = _.cloneDeep(oggettoTabellone);
+                                                        const villaggio = new Villaggio(data[1].livelloGiocatore, "esercitazione", oggettoTabellone);
+                                                      
+
                                                         //console.log(JSON.stringify(oggettoTabellone));
                                                         for (var i = 0; i < data[2].length; i++) {
                                                             if (data[2][i].truppa.tipologia === "attacco") {
                                                                 for (var j = 0; j < data[2][i].quantita; j++) {
-                                                                    oggettoTruppa = new TruppaBuilder()
+                                                                    truppe.push(new TruppaBuilder()
                                                                             .setNome(data[2][i].truppa.nomeTruppa)
                                                                             .setTassoAggiornamentoColpi(data[2][i].truppa.tassoAggiornamentoColpi)
                                                                             .setTassoAggiornamentoResistenza(data[2][i].truppa.tassoAggiornamentoResistenza)
                                                                             .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
-                                                                            .setColpiLivelloIniziale(data[2][i].truppa.colpiLivelloIniziale)
-                                                                    truppe.push(oggettoTruppa);
+                                                                            .setColpiLivelloIniziale(data[2][i].truppa.colpiLivelloIniziale));
                                                                 }
                                                             } else if (data[2][i].truppa.tipologia === "guarigione") {
                                                                 for (var j = 0; j < data[2][i].quantita; j++) {
-                                                                    oggettoTruppa = new TruppaBuilder()
+                                                                    truppe.push(new TruppaBuilder()
                                                                             .setNome(data[2][i].truppa.nomeTruppa)
                                                                             .setTassoAggiornamentoGuarigione(data[2][i].truppa.tassoAggiornamentoGuarigione)
                                                                             .setTassoAggiornamentoResistenza(data[2][i].truppa.tassoAggiornamentoResistenza)
                                                                             .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
-                                                                            .setGuarigioneLivelloIniziale(data[2][i].truppa.guarigioneLivelloIniziale)
-                                                                    truppe.push(oggettoTruppa);
+                                                                            .setGuarigioneLivelloIniziale(data[2][i].truppa.guarigioneLivelloIniziale));
                                                                 }
                                                             }
 
                                                         }
-                                                            
-                                                        const villaggio = new Villaggio(data[1].livelloGiocatore, "esercitazione", oggettoTabellone);
-                                                        var viewPartita = new ViewPartita;
-                                                        const nuovaPartita = new Partita(villaggio, nomet, viewPartita);
-                                                        nuovaPartita.costruisciVillaggioNemico();
+                                                        var viewPartita = new ViewPartita();
+
+                                                       const nuovaPartita = new Partita(villaggio, nomet, viewPartita, truppe);
+                                                       nuovaPartita.costruisciVillaggioNemico();
                                                       $('.casella').click(function () {
                                                             var $this = $(this);
                                                             var occupazione = $this.attr("id");
@@ -202,7 +203,7 @@
                                                             oggettoTabelloneAux = _.cloneDeep(oggettoTabellone);
                                                         });
                                                         setInterval(function () {
-                                                           nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, oggettoTabellone);
+                                                         nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, oggettoTabellone);
                                                          oggettoTabellone = _.cloneDeep(oggettoTabelloneAux);
                                                         }, 1000);
                                                     },

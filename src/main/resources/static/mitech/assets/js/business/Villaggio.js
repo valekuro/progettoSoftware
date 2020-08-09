@@ -12,9 +12,7 @@ function Villaggio(livelloMunicipio, tipoVillaggio, caselle) {
     this.caselle = caselle;
 }
 
-Villaggio.prototype.prova = function () {
-    return /*[[${posizioneEdificio[8]}]]*/;
-};
+
 Villaggio.prototype.setLivelloMunicipio = function (livelloMunicipio) {
     this.livelloMunicipio = livelloMunicipio;
     return this;
@@ -44,16 +42,16 @@ Villaggio.prototype.getCaselle = function () {
 };
 
 /*Villaggio.prototype.calcoloLivelloEdifici = function (informazioniEdifici) {
-    var infoEdificiBattaglia = new Array();
-    for (var i = 0; i < informazioniEdifici.length; i++) {
-        if ((informazioniEdifici[i][0].livelloDisponibilita) <= (this.livelloMunicipio)) {
-            var calcoloResistenzaLivello = 0;
-            var calcoloVitaLivello = 0;
-            calcoloResistenzaLivello = informazioniEdifici[i][0].resistenzaLivelloIniziale + (informazioniEdifici[i][0].tassoAggiornamentoResistenza * this.livelloMunicipio);
-            calcoloVitaLivello = informazioniEdifici[i][0].colpiLivelloIniziale + (informazioniEdifici[i][0].tassoAggiornamentoColpi * this.livelloMunicipio);
-            infoEdificiBattaglia.push([informazioniEdifici[i][0].nome, calcoloResistenzaLivello, calcoloVitaLivello, informazioniEdifici[i][0].tipologia]);
-        }
-    }
-    return infoEdificiBattaglia;
-};*/
+ var infoEdificiBattaglia = new Array();
+ for (var i = 0; i < informazioniEdifici.length; i++) {
+ if ((informazioniEdifici[i][0].livelloDisponibilita) <= (this.livelloMunicipio)) {
+ var calcoloResistenzaLivello = 0;
+ var calcoloVitaLivello = 0;
+ calcoloResistenzaLivello = informazioniEdifici[i][0].resistenzaLivelloIniziale + (informazioniEdifici[i][0].tassoAggiornamentoResistenza * this.livelloMunicipio);
+ calcoloVitaLivello = informazioniEdifici[i][0].colpiLivelloIniziale + (informazioniEdifici[i][0].tassoAggiornamentoColpi * this.livelloMunicipio);
+ infoEdificiBattaglia.push([informazioniEdifici[i][0].nome, calcoloResistenzaLivello, calcoloVitaLivello, informazioniEdifici[i][0].tipologia]);
+ }
+ }
+ return infoEdificiBattaglia;
+ };*/
 /*]]>*/

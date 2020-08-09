@@ -6,13 +6,12 @@
 
 
 function ViewPartita() {
-
 }
 
-ViewPartita.prototype.visualizzaVillaggioNemico = function (caselle) {
+ViewPartita.prototype.visualizzaVillaggioNemico = function (caselleVillaggioNemico) {
     var i;
     for (i = 0; i < 36; i++) {
-        document.getElementById(caselle[i].posizione).src = "/mitech/assets/images/villaggio/" + caselle[i].oggettoOccupante.nome + ".png";
+        document.getElementById(caselleVillaggioNemico[i].posizione).src = "/mitech/assets/images/villaggio/" + caselleVillaggioNemico[i].oggettoOccupante.nome + ".png";
     }
 
 }
