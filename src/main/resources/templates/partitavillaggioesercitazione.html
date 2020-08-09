@@ -187,7 +187,6 @@
                                                       $('.casella').click(function () {
                                                             var $this = $(this);
                                                             var occupazione = $this.attr("id");
-                                                           // console.log(occupazione);
                                                             nuovaPartita.checkCasellaErba(occupazione);
                                                           var y;
                                                           var truppeAggiornate = new Array();
@@ -201,7 +200,6 @@
                                                               }
                                                           }
                                                             oggettoTabelloneAux = _.cloneDeep(oggettoTabellone);
-                                                            //nuovaPartita.avanzamentoTruppeInserite(occupazione);
                                                         });
                                                         setInterval(function () {
                                                            nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, oggettoTabellone);
