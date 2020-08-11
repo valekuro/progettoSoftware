@@ -11,7 +11,9 @@ function ViewPartita() {
 ViewPartita.prototype.visualizzaVillaggioNemico = function (caselleVillaggioNemico) {
     var i;
     for (i = 0; i < 36; i++) {
-        document.getElementById(caselleVillaggioNemico[i].posizione).src = "/mitech/assets/images/villaggio/" + caselleVillaggioNemico[i].oggettoOccupante.nome + ".png";
+     //   console.log(caselleVillaggioNemico)
+        
+        document.getElementById(caselleVillaggioNemico[i][0]).src = "/mitech/assets/images/villaggio/" + caselleVillaggioNemico[i][1].nome + ".png";
     }
 
 }

@@ -53,8 +53,9 @@ let TruppaBuilder = function () {
             return this;
         },
         build: function () {
-            return new Truppa(nome, tassoAggiornamentoColpi,tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia);
+            return new Truppa(nome, tassoAggiornamentoColpi,guarigioneLivelloIniziale, tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia);
         }
     };
 };
 
+//TruppaBuilder.prototype = new CaratteristicheVita();

@@ -5,12 +5,11 @@
  */
 
 /*<![CDATA[*/
-function Villaggio(livelloMunicipio, tipoVillaggio, caselle) {
-
+function Villaggio(livelloMunicipio, tipoVillaggio, datiCaselle) {
     this.livelloMunicipio = livelloMunicipio;
     this.tipoVillaggio = tipoVillaggio;
-    this.caselle = caselle;
-}
+    this.caselle = this.creaCaselle(datiCaselle);
+  }
 
 
 Villaggio.prototype.setLivelloMunicipio = function (livelloMunicipio) {
@@ -41,17 +40,16 @@ Villaggio.prototype.getCaselle = function () {
     return this.caselle;
 };
 
-/*Villaggio.prototype.calcoloLivelloEdifici = function (informazioniEdifici) {
- var infoEdificiBattaglia = new Array();
- for (var i = 0; i < informazioniEdifici.length; i++) {
- if ((informazioniEdifici[i][0].livelloDisponibilita) <= (this.livelloMunicipio)) {
- var calcoloResistenzaLivello = 0;
- var calcoloVitaLivello = 0;
- calcoloResistenzaLivello = informazioniEdifici[i][0].resistenzaLivelloIniziale + (informazioniEdifici[i][0].tassoAggiornamentoResistenza * this.livelloMunicipio);
- calcoloVitaLivello = informazioniEdifici[i][0].colpiLivelloIniziale + (informazioniEdifici[i][0].tassoAggiornamentoColpi * this.livelloMunicipio);
- infoEdificiBattaglia.push([informazioniEdifici[i][0].nome, calcoloResistenzaLivello, calcoloVitaLivello, informazioniEdifici[i][0].tipologia]);
- }
- }
- return infoEdificiBattaglia;
- };*/
+Villaggio.prototype.creaCaselle = function (datiCaselle) {
+    var edifici = new Array();
+    var i;
+    for (i = 0; i < datiCaselle.length; i++) {
+    
+        edifici.push(new Array(datiCaselle[i].posizione, new Edificio(datiCaselle[i]['edificio'].nome, datiCaselle[i]['edificio'].tassoAggiornamentoColpi, datiCaselle[i]['edificio'].tassoAggiornamentoResistenza, datiCaselle[i]['edificio'].resistenzaLivelloIniziale, datiCaselle[i]['edificio'].colpiLivelloIniziale, this.livelloMunicipio)));
+    
+    }
+    console.log(edifici);
+    return edifici;
+}
+
 /*]]>*/

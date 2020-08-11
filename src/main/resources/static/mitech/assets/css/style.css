@@ -14592,3 +14592,19 @@ blockquote {
   from {opacity: .4}
   to {opacity: 1}
 }
+
+.casella{
+      border-color: green;
+
+}
+
+.casellaInAttacco { 
+  border-color: green;
+  animation-name: example;
+  animation-duration: 4s;
+}
+
+@keyframes example {
+  from {border-color: green;}
+  to {border-color: red;}
+}
