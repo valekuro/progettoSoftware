@@ -14487,7 +14487,7 @@ blockquote {
 */
 
 .tabellavillaggio{
-    background: #347C0A;
+    background-image: url('/mitech/assets/images/villaggio/erba.png');
     width: 50%;
     border:0;
 }

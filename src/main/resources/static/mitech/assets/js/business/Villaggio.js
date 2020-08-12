@@ -48,7 +48,6 @@ Villaggio.prototype.creaCaselle = function (datiCaselle) {
         edifici.push(new Array(datiCaselle[i].posizione, new Edificio(datiCaselle[i]['edificio'].nome, datiCaselle[i]['edificio'].tassoAggiornamentoColpi, datiCaselle[i]['edificio'].tassoAggiornamentoResistenza, datiCaselle[i]['edificio'].resistenzaLivelloIniziale, datiCaselle[i]['edificio'].colpiLivelloIniziale, this.livelloMunicipio)));
     
     }
-    console.log(edifici);
     return edifici;
 }
 

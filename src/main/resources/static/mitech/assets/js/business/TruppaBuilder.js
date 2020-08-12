@@ -54,8 +54,13 @@ let TruppaBuilder = function () {
         },
         build: function () {
             return new Truppa(nome, tassoAggiornamentoColpi,guarigioneLivelloIniziale, tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia);
+        },
+        calcoloVitaTotale: function (livelloGiocatore) {
+            return this.resistenzaLivelloIniziale + (this.tassoAggiornamentoResistenza * livelloGiocatore);
+        },
+        calcoloColpiTotale: function (livelloGiocatore) {
+            return this.colpiLivelloIniziale + (this.tassoAggiornamentoColpi * livelloGiocatore);
         }
     };
 };
 
-//TruppaBuilder.prototype = new CaratteristicheVita();
