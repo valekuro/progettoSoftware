@@ -28,7 +28,8 @@ jQuery(document).ready(function ($) {
                                 .setTassoAggiornamentoColpi(data[2][i].truppa.tassoAggiornamentoColpi)
                                 .setTassoAggiornamentoResistenza(data[2][i].truppa.tassoAggiornamentoResistenza)
                                 .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
-                                .setColpiLivelloIniziale(data[2][i].truppa.colpiLivelloIniziale));
+                                .setColpiLivelloIniziale(data[2][i].truppa.colpiLivelloIniziale)
+                                .setLivelloGiocatore(data[1].livelloGiocatore));
                     }
                 } else if (data[2][i].truppa.tipologia === "guarigione") {
                     for (var j = 0; j < data[2][i].quantita; j++) {
@@ -38,7 +39,8 @@ jQuery(document).ready(function ($) {
                                 .setTassoAggiornamentoGuarigione(data[2][i].truppa.tassoAggiornamentoGuarigione)
                                 .setTassoAggiornamentoResistenza(data[2][i].truppa.tassoAggiornamentoResistenza)
                                 .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
-                                .setGuarigioneLivelloIniziale(data[2][i].truppa.guarigioneLivelloIniziale));
+                                .setGuarigioneLivelloIniziale(data[2][i].truppa.guarigioneLivelloIniziale)
+                                .setLivelloGiocatore(data[1].livelloGiocatore));
                     }
                 }
 

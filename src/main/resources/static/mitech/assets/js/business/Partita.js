@@ -50,27 +50,32 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
 
         if (oggettoTabellone[i][1].nome === nomet && i < 35) {
             if (oggettoTabellone[i + 1][1].nome === 'erba') {
-                oggettoTabelloneAux.splice(i + 1, 1, oggettoTabellone[i]);
-                oggettoTabelloneAux.splice(i, 1, oggettoTabellone[i + 1]);
+                oggettoTabelloneAux[i] = _.cloneDeep(oggettoTabellone[i + 1]);
+                oggettoTabelloneAux[i+1] = _.cloneDeep(oggettoTabellone[i]);
                 document.getElementById(i + 1).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
                 document.getElementById(i).src = "/mitech/assets/images/villaggio/erba.png";
             } else {
-                let resistenzaEdificioTotale = this.villaggio['caselle'][i+1][1].calcoloVitaTotale(this.villaggio['livelloMunicipio']);
-                let resistenzaTruppaOccupanteTotale = oggettoTabellone[i][1].calcoloVitaTotale(this.villaggio['livelloMunicipio']);
-                console.log(this.villaggio['caselle'][i+1][1].calcoloVitaTotale(this.villaggio['livelloMunicipio']));
-                console.log(oggettoTabellone[i][1].calcoloVitaTotale(this.villaggio['livelloMunicipio']));
-                let colpiEdificioTotale = this.villaggio['caselle'][i+1][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
-                let colpiTruppaTotale = oggettoTabellone[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
-                this.villaggio['caselle'][i+1][1].vitaRimanente = resistenzaEdificioTotale - colpiTruppaTotale;
-               /* let colpiEdificioTotale = this.getVillaggio()['caselle'][i + 1].colpiLivelloIniziale + (this.getVillaggio()['caselle'][i + 1].tassoAggiornamentoColpi * this.getVillaggio()['livelloMunicipio']);
-                resistenzaEdificioTotale = resistenzaEdificioTotale - colpiTruppaOccupanteTotale;
-                resistenzaTruppaOccupanteTotale = resistenzaTruppaOccupanteTotale - colpiEdificioTotale;
-*/
+                // let resistenzaTruppaOccupanteTotale = oggettoTabellone[i][1].calcoloVitaTotale(this.villaggio['livelloMunicipio']);
+                //   console.log(oggettoTabellone[i][1].calcoloVitaTotale(this.villaggio['livelloMunicipio']));
+                // let colpiEdificioTotale = this.villaggio['caselle'][i+1][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
+                //resistenza edificio - colpotruppa
+                oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabellone[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
+                                    console.log(oggettoTabelloneAux[i + 1][1].vita);
+
+                if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
+                    console.log('edificio abbattuto');
+                } else {
+                    console.log('edificio ancora in vita');
+                }
+                /* let colpiEdificioTotale = this.getVillaggio()['caselle'][i + 1].colpiLivelloIniziale + (this.getVillaggio()['caselle'][i + 1].tassoAggiornamentoColpi * this.getVillaggio()['livelloMunicipio']);
+                 resistenzaEdificioTotale = resistenzaEdificioTotale - colpiTruppaOccupanteTotale;
+                 resistenzaTruppaOccupanteTotale = resistenzaTruppaOccupanteTotale - colpiEdificioTotale;
+                 */
                 //document.getElementById(i + 1).className = "casellaInAttacco";
-                                document.getElementById(i).src = "/mitech/assets/images/villaggio/erba.png"
+                document.getElementById(i).src = "/mitech/assets/images/villaggio/erba.png"
 
                 document.getElementById(i + 1).src = "/mitech/assets/images/truppe/arciere.gif"
-                                document.getElementById(i + 2).src = "/mitech/assets/images/villaggio/arcox.gif"
+                document.getElementById(i + 2).src = "/mitech/assets/images/villaggio/arcox.gif"
 
             }
         }

@@ -18,6 +18,7 @@ let TruppaBuilder = function () {
     let colpiLivelloIniziale;
     let tassoAggiornamentoGuarigione;
     let tipologia;
+    let livelloGiocatore;
 
     return {
         setNome: function (nome) {
@@ -52,8 +53,12 @@ let TruppaBuilder = function () {
             this.tipologia = tipologia;
             return this;
         },
+          setLivelloGiocatore: function (livelloGiocatore) {
+            this.livelloGiocatore = livelloGiocatore;
+            return this;
+        },
         build: function () {
-            return new Truppa(nome, tassoAggiornamentoColpi,guarigioneLivelloIniziale, tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia);
+            return new Truppa(nome, tassoAggiornamentoColpi,guarigioneLivelloIniziale, tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia, livelloGiocatore);
         },
         calcoloVitaTotale: function (livelloGiocatore) {
             return this.resistenzaLivelloIniziale + (this.tassoAggiornamentoResistenza * livelloGiocatore);

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-let Truppa = function(nome, tassoAggiornamentoColpi,guarigioneLivelloIniziale, tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia) {
+let Truppa = function(nome, tassoAggiornamentoColpi,guarigioneLivelloIniziale, tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia, livelloGiocatore) {
 
     this.nome = nome;
     this.tassoAggiornamentoColpi = tassoAggiornamentoColpi;
@@ -13,5 +13,7 @@ let Truppa = function(nome, tassoAggiornamentoColpi,guarigioneLivelloIniziale, t
     this.colpiLivelloIniziale = colpiLivelloIniziale;
     this.tassoAggiornamentoGuarigione = tassoAggiornamentoGuarigione;
     this.tipologia = tipologia;
+    this.livelloGiocatore = livelloGiocatore;
+
 }
 

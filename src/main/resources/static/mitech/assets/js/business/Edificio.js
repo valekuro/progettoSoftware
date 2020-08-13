@@ -13,7 +13,7 @@ function Edificio(nome, tassoAggiornamentoColpi, tassoAggiornamentoResistenza, r
     this.resistenzaLivelloIniziale = resistenzaLivelloIniziale;
     this.colpiLivelloIniziale = colpiLivelloIniziale;
     this.vita = this.calcoloVitaTotale(livelloGiocatore);
-    this.vitaRimanente = 0;
+    this.vitaRimanente = 1;
 
 }
 
