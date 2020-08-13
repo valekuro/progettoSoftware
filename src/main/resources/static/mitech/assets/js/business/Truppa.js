@@ -13,7 +13,7 @@ let Truppa = function(nome, tassoAggiornamentoColpi,guarigioneLivelloIniziale, t
     this.colpiLivelloIniziale = colpiLivelloIniziale;
     this.tassoAggiornamentoGuarigione = tassoAggiornamentoGuarigione;
     this.tipologia = tipologia;
-    this.livelloGiocatore = livelloGiocatore;
-
+    this.livelloGiocatore = livelloGiocatore; 
 }
+
 

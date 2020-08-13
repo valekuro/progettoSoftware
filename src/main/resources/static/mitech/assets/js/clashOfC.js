@@ -29,7 +29,8 @@ jQuery(document).ready(function ($) {
                                 .setTassoAggiornamentoResistenza(data[2][i].truppa.tassoAggiornamentoResistenza)
                                 .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
                                 .setColpiLivelloIniziale(data[2][i].truppa.colpiLivelloIniziale)
-                                .setLivelloGiocatore(data[1].livelloGiocatore));
+                                .setLivelloGiocatore(data[1].livelloGiocatore)
+                                .setVita());
                     }
                 } else if (data[2][i].truppa.tipologia === "guarigione") {
                     for (var j = 0; j < data[2][i].quantita; j++) {
@@ -40,7 +41,8 @@ jQuery(document).ready(function ($) {
                                 .setTassoAggiornamentoResistenza(data[2][i].truppa.tassoAggiornamentoResistenza)
                                 .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
                                 .setGuarigioneLivelloIniziale(data[2][i].truppa.guarigioneLivelloIniziale)
-                                .setLivelloGiocatore(data[1].livelloGiocatore));
+                                .setLivelloGiocatore(data[1].livelloGiocatore)
+                                .setVita());
                     }
                 }
 
@@ -71,7 +73,7 @@ jQuery(document).ready(function ($) {
             setInterval(function () {
                 nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, villaggio.caselle);
                 villaggio.caselle = _.cloneDeep(oggettoTabelloneAux);
-            }, 3000);
+            }, 4000);
         },
         error: function () {
             alert('C’è stato un’errore');
