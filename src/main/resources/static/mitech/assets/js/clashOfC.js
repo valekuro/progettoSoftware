@@ -60,12 +60,7 @@ jQuery(document).ready(function ($) {
                 var truppeAggiornate = new Array();
                 for (y = 1; y < truppe.length; y++) {
                     if (truppe[y].nome == nomet) {
-                        //console.log(truppe[y]);
-                     //  villaggio.caselle.splice([occupazione][y-1], 1, truppe[y]);
                         villaggio.caselle[occupazione][1] = truppe[y];
-                      // console.log(villaggio.caselle);
-
-
                     }
                 }
                 oggettoTabelloneAux = _.cloneDeep(villaggio.caselle);

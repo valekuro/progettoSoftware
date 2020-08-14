@@ -46,7 +46,6 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
     var i;
     for (i = 0; i < oggettoTabellone.length; i++) {
         if (oggettoTabellone[i][1].nome === nomet && i < 35) {
-            //se ho l'erba allora cammina e basta
             if (oggettoTabellone[i + 1][1].nome === 'erba') {
                 oggettoTabelloneAux[i] = _.cloneDeep(oggettoTabellone[i + 1]);
                 oggettoTabelloneAux[i + 1] = _.cloneDeep(oggettoTabellone[i]);
@@ -58,9 +57,9 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
                 oggettoTabelloneAux[i][1].vita = oggettoTabelloneAux[i][1].vita - oggettoTabelloneAux[i + 1][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
                 console.log('vita truppa dopo l attacco:    ' + JSON.stringify(oggettoTabelloneAux[i][1].vita));
                 if (oggettoTabelloneAux[i][1].vita <= 0) {
-                    this.morteTruppaSuCasella(oggettoTabelloneAux, i + 1);
+                    oggettoTabelloneAux[i][1] = _.cloneDeep(oggettoTabelloneAux[i-1][1])
+                   // this.morteTruppaSuCasella(oggettoTabelloneAux, i + 1);
                 }
-
             } else if (oggettoTabelloneAux[i + 1][1].colpiLivelloIniziale === 0) {
                 console.log('ho incontrato una costruzione! ');
                 this.viewPartita.animazioneLotta(oggettoTabelloneAux[i + 1][1].nome, i);
@@ -68,32 +67,16 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
                 oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
                 console.log('vita edificio dopo l attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
                 if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
-                    this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
-                    //se l'edificio non ha esaurito la vita allora risponde al fuoco e lotta
+                    console.log(oggettoTabelloneAux[i+1][1]);
+                    oggettoTabelloneAux[i + 1][1] = _.cloneDeep(oggettoTabelloneAux[i - 1][1])
+                    // this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
+                } else {
+                    oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
+
                 }
             }
-
-            /*        if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
-             this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
-             //se l'edificio non ha esaurito la vita allora risponde al fuoco e lotta
-             } else if (oggettoTabelloneAux[i + 1][1].vita > 0) {
-             console.log('edificio sopravvissuto all attacco, risponde al fuoco');
-             oggettoTabelloneAux[i][1].vita = oggettoTabelloneAux[i][1].vita - oggettoTabelloneAux[i + 1][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
-             console.log('vita truppa dopo l attacco della difesa sopravvissuta:    ' + JSON.stringify(oggettoTabelloneAux[i][1].vita));
-             
-             }
-             
-             if (oggettoTabelloneAux[i][1].vita <= 0) {
-             this.morteTruppaSuCasella(oggettoTabelloneAux, i + 1);
-             } else if (oggettoTabelloneAux[i][1].vita > 0){
-             console.log('truppa sopravvissuta all attacco, risponde al fuoco');
-             oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
-             console.log('vita edificio dopo l attacco della truppa sopravvissuta:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
-             }
-             */
         }
     }
-//console.log(oggettoTabelloneAux); 
 
 };
 
@@ -105,9 +88,9 @@ Partita.prototype.morteOggettoSuCasella = function (oggettoTabelloneAux, i) {
 
 Partita.prototype.morteTruppaSuCasella = function (oggettoTabelloneAux, i) {
     console.log('truppa abbattuta');
-    console.log(oggettoTabelloneAux[i - 1][1]);
+    //console.log(oggettoTabelloneAux[i - 1][1]);
     oggettoTabelloneAux[i - 1][1] = _.cloneDeep(oggettoTabelloneAux[i - 2][1]);
-    console.log(oggettoTabelloneAux[i - 1][1]);
+    //console.log(oggettoTabelloneAux[i - 1][1]);
     this.viewPartita.truppaDistrutta(i - 1);
 }
 
