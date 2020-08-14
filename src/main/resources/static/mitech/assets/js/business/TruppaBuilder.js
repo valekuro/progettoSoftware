@@ -59,7 +59,7 @@ let TruppaBuilder = function () {
         },
          setVita: function () {
              this.vita = this.calcoloVitaTotale(this.livelloGiocatore);
-             console.log(this.vita);
+            // console.log(this.vita);
              return this;
         },
 

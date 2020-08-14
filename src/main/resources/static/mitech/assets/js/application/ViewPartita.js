@@ -26,5 +26,10 @@ ViewPartita.prototype.camminoTruppa = function (i) {
 
 ViewPartita.prototype.edificioDistrutto = function (i) {
     this.camminoTruppa(i);
-    document.getElementById(i+2).src = "/mitech/assets/images/villaggio/erba.png";
+    document.getElementById(i + 2).src = "/mitech/assets/images/villaggio/erba.png";
+}
+ViewPartita.prototype.truppaDistrutta = function (i) {
+    document.getElementById(i + 2).src = "/mitech/assets/images/villaggio/erba.png";
+    document.getElementById(i + 1).src = "/mitech/assets/images/villaggio/erba.png";
+    document.getElementById(i).src = "/mitech/assets/images/villaggio/erba.png";
 }

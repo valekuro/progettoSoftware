@@ -73,7 +73,7 @@ jQuery(document).ready(function ($) {
             setInterval(function () {
                 nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, villaggio.caselle);
                 villaggio.caselle = _.cloneDeep(oggettoTabelloneAux);
-            }, 4000);
+            }, 1000);
         },
         error: function () {
             alert('C’è stato un’errore');

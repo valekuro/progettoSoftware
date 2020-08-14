@@ -51,50 +51,65 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
                 oggettoTabelloneAux[i] = _.cloneDeep(oggettoTabellone[i + 1]);
                 oggettoTabelloneAux[i + 1] = _.cloneDeep(oggettoTabellone[i]);
                 this.viewPartita.camminoTruppa(i);
-                //se l'edificio è di tipo difesa allora deve attaccare e difendersi
             } else if (oggettoTabelloneAux[i + 1][1].colpiLivelloIniziale !== 0) {
-                //resistenza edificio - colpotruppa --- i+1 edificio
+                console.log('ho incontrato una difesa! ');
+                this.viewPartita.animazioneLotta(oggettoTabelloneAux[i + 1][1].nome, i);
+                console.log('vita truppa prima dell attacco:    ' + JSON.stringify(oggettoTabelloneAux[i][1].vita));
+                oggettoTabelloneAux[i][1].vita = oggettoTabelloneAux[i][1].vita - oggettoTabelloneAux[i + 1][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
+                console.log('vita truppa dopo l attacco:    ' + JSON.stringify(oggettoTabelloneAux[i][1].vita));
+                if (oggettoTabelloneAux[i][1].vita <= 0) {
+                    this.morteTruppaSuCasella(oggettoTabelloneAux, i + 1);
+                }
+
+            } else if (oggettoTabelloneAux[i + 1][1].colpiLivelloIniziale === 0) {
+                console.log('ho incontrato una costruzione! ');
+                this.viewPartita.animazioneLotta(oggettoTabelloneAux[i + 1][1].nome, i);
+                console.log('vita edificio prima dell attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
                 oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
-                //resistenza truppa - colpoedificio --- i truppa
-              //  oggettoTabelloneAux[i][1].vita = oggettoTabelloneAux[i][1].vita - oggettoTabelloneAux[i + 1][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
-                //se l'edificio ha esaurito la vita allora ammazza
+                console.log('vita edificio dopo l attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
                 if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
                     this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
                     //se l'edificio non ha esaurito la vita allora risponde al fuoco e lotta
-                } else if (oggettoTabelloneAux[i + 1][1].vita > 0) {
-                    this.viewPartita.animazioneLotta(oggettoTabelloneAux[i + 1][1].nome, i);
-                    if (oggettoTabelloneAux[i][1].vita <= 0) {
-                            this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
-                    } else {
-                       // oggettoTabelloneAux[i][1].setVita = parseInt(oggettoTabelloneAux[i][1].vita) - parseInt(oggettoTabelloneAux[i + 1][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']));
-                       
-                    }
-                }
-
-            } else {
-                //se l'edificioè una costruzione allora deve combattere solo la truppa
-                oggettoTabelloneAux[i+1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
-                if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
-                    this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
-                }else{
-                  this.viewPartita.animazioneLotta(oggettoTabelloneAux[i + 1][1].nome, i);
-
                 }
             }
+
+            /*        if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
+             this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
+             //se l'edificio non ha esaurito la vita allora risponde al fuoco e lotta
+             } else if (oggettoTabelloneAux[i + 1][1].vita > 0) {
+             console.log('edificio sopravvissuto all attacco, risponde al fuoco');
+             oggettoTabelloneAux[i][1].vita = oggettoTabelloneAux[i][1].vita - oggettoTabelloneAux[i + 1][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
+             console.log('vita truppa dopo l attacco della difesa sopravvissuta:    ' + JSON.stringify(oggettoTabelloneAux[i][1].vita));
+             
+             }
+             
+             if (oggettoTabelloneAux[i][1].vita <= 0) {
+             this.morteTruppaSuCasella(oggettoTabelloneAux, i + 1);
+             } else if (oggettoTabelloneAux[i][1].vita > 0){
+             console.log('truppa sopravvissuta all attacco, risponde al fuoco');
+             oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
+             console.log('vita edificio dopo l attacco della truppa sopravvissuta:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
+             }
+             */
         }
     }
-
-    //console.log(oggettoTabelloneAux); 
+//console.log(oggettoTabelloneAux); 
 
 };
 
 Partita.prototype.morteOggettoSuCasella = function (oggettoTabelloneAux, i) {
     console.log('edificio abbattuto');
     oggettoTabelloneAux[i][1] = _.cloneDeep(oggettoTabelloneAux[i - 2][1]);
-
     this.viewPartita.edificioDistrutto(i - 1);
 }
 
+Partita.prototype.morteTruppaSuCasella = function (oggettoTabelloneAux, i) {
+    console.log('truppa abbattuta');
+    console.log(oggettoTabelloneAux[i - 1][1]);
+    oggettoTabelloneAux[i - 1][1] = _.cloneDeep(oggettoTabelloneAux[i - 2][1]);
+    console.log(oggettoTabelloneAux[i - 1][1]);
+    this.viewPartita.truppaDistrutta(i - 1);
+}
 
 Partita.prototype.checkCasellaErba = function (occupazione) {
     document.getElementById(occupazione).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
