@@ -14609,6 +14609,6 @@ blockquote {
   to {border-color: red;}
 }
 
-.truppa{
+.truppeDisponibiliAttacco, .truppeInactiveAttacco{
     width: 15%
 }

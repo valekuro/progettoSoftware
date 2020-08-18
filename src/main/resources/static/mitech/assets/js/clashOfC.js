@@ -6,7 +6,8 @@
 
 
 jQuery(document).ready(function ($) {
-      // $("button").click(function () {
+
+    // $("button").click(function () {
     $.ajax({
         type: "GET",
         contentType: "application/json",
@@ -37,7 +38,7 @@ jQuery(document).ready(function ($) {
                     }
                 } else if (data[2][i].truppa.tipologia === "guarigione") {
                     for (var q = 0; q < data[2][i].quantita; q++) {
- 
+
                         truppe.push(new TruppaBuilder()
 
                                 .setNome(data[2][i].truppa.nomeTruppa)
@@ -52,44 +53,47 @@ jQuery(document).ready(function ($) {
 
             }
 
+
             var viewPartita = new ViewPartita();
 
-            
-             //console.log(nomet.id);
-             const nuovaPartita = new Partita(villaggio, nomet, viewPartita, truppe);
-             nuovaPartita.costruisciVillaggioNemico();
-             $('.casella').click(function () {
-              
-             var $this = $(this);
-             var occupazione = $this.attr("id");
-             nuovaPartita.checkCasellaErba(occupazione);
-             var y;
-             for (y = 1; y < truppe.length; y++) {
-             if (truppe[y].nome == nomet) {
-             villaggio.caselle[occupazione][1] = truppe[y];
-             }
-             }
-                   var truppaUtilizzata = document.getElementsByName(nomet);
-                   var idHtmlTruppaUtilizzata = truppaUtilizzata.id;
-                   console.log(idHtmlTruppaUtilizzata);
-    if(truppaUtilizzata.length>1){
-        truppaUtilizzata[0].src='/mitech/assets/images/truppe/'+nomet+'_inactive.png';
-        truppaUtilizzata[0].className='inactive';
-    console.log(truppaUtilizzata[0]);
-    }else{
-        truppaUtilizzata.src='/mitech/assets/images/truppe/'+nomet+'_inactive.png';
-                truppaUtilizzata.className='inactive';
+            $('.truppeDisponibiliAttacco').click(function () {
+                var $this = $(this);
+                var nomeTruppaScelta = $this.attr("name");
+                console.log(nomeTruppaScelta);
+                nomet = nomeTruppaScelta;
+            });
+            //console.log(nomet.id);
+            const nuovaPartita = new Partita(villaggio, nomet, viewPartita, truppe);
+            nuovaPartita.costruisciVillaggioNemico();
+           
+            $('.casella').click(function () {
+                var $this = $(this);
+                var occupazione = $this.attr("id");
+                nuovaPartita.checkCasellaErba(occupazione);
+                var y;
+                for (y = 1; y < truppe.length; y++) {
+                    if (truppe[y].nome == nomet) {
+                        villaggio.caselle[occupazione][1] = truppe[y];
+                    }
+                }
+                var truppaUtilizzata = document.getElementsByName(nomet);
+                var ttt = document.getElementsByName(nomet + 'Inactive');
+                truppaUtilizzata[0].style.display = 'none';
+                ttt[0].style.display = 'block';
 
-    }
-             oggettoTabelloneAux = _.cloneDeep(villaggio.caselle);
-             });
-             setInterval(function () {
-             nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, villaggio.caselle);
-             villaggio.caselle = _.cloneDeep(oggettoTabelloneAux);
-             for (y = 1; y < truppe.length; y++) {
-             truppe.slice(y - 1, 1);
-             }
-             }, 1000);
+                    // truppaUtilizzata[0].src = '/mitech/assets/images/truppe/' + nomet + '_inactive.png';
+                    //truppaUtilizzata[0].className = 'inactive';
+                    //  console.log(truppaUtilizzata[0]);
+                
+                oggettoTabelloneAux = _.cloneDeep(villaggio.caselle);
+            });
+            setInterval(function () {
+                nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, villaggio.caselle);
+                villaggio.caselle = _.cloneDeep(oggettoTabelloneAux);
+                for (y = 1; y < truppe.length; y++) {
+                    truppe.slice(y - 1, 1);
+                }
+            }, 1000);
         },
         error: function () {
             alert('C’è stato un’errore');
