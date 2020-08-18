@@ -43,7 +43,7 @@ Partita.prototype.costruisciVillaggioNemico = function () {
     this.viewPartita.visualizzaVillaggioNemico(caselleVillaggioNemico);
 }
 Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, oggettoTabellone) {
-  
+
     var i;
     for (i = 0; i < oggettoTabellone.length; i++) {
         if (oggettoTabellone[i][1].nome === nomet && i < 35) {
@@ -58,7 +58,13 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
                 oggettoTabelloneAux[i][1].vita = oggettoTabelloneAux[i][1].vita - oggettoTabelloneAux[i + 1][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
                 console.log('vita truppa dopo l attacco:    ' + JSON.stringify(oggettoTabelloneAux[i][1].vita));
                 if (oggettoTabelloneAux[i][1].vita <= 0) {
-                   this.morteTruppaSuCasella(oggettoTabelloneAux, i);
+                    this.morteTruppaSuCasella(oggettoTabelloneAux, i);
+                    nomet="";
+                } else {
+                    oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
+                    if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
+                        this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
+                    }
                 }
             } else if (oggettoTabelloneAux[i + 1][1].colpiLivelloIniziale === 0) {
                 console.log('ho incontrato una costruzione! ');
@@ -67,12 +73,7 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
                 oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
                 console.log('vita edificio dopo l attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
                 if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
-                    console.log(oggettoTabelloneAux[i+1][1]);
-                    oggettoTabelloneAux[i + 1][1] = _.cloneDeep(oggettoTabelloneAux[i - 1][1])
-                    // this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
-                } else {
-                    oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
-
+                    this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
                 }
             }
         }
@@ -81,20 +82,14 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
 };
 
 Partita.prototype.morteOggettoSuCasella = function (oggettoTabelloneAux, i) {
-    console.log('edificio abbattuto');
-    oggettoTabelloneAux[i][1] = _.cloneDeep(oggettoTabelloneAux[i - 2][1]);
-    this.viewPartita.edificioDistrutto(i - 1);
+    oggettoTabelloneAux[i][1] = _.cloneDeep(oggettoTabelloneAux[i - 2][1])
+    //this.viewPartita.edificioDistrutto(i - 1);
 }
 
 Partita.prototype.morteTruppaSuCasella = function (oggettoTabelloneAux, i) {
-    console.log('truppa abbattuta');
-    console.log(oggettoTabelloneAux[i][1]);
-   
-    oggettoTabelloneAux[i][1] = _.cloneDeep(oggettoTabelloneAux[i-1][1])
-    
-    
-    //console.log(oggettoTabelloneAux[i - 1][1]);
-    this.viewPartita.truppaDistrutta(i - 1);
+    oggettoTabelloneAux[i][1] = _.cloneDeep(oggettoTabelloneAux[i - 1][1]);
+    //console.log(oggettoTabelloneAux[i + 1][1]);
+    this.viewPartita.truppaDistrutta(i - 1, oggettoTabelloneAux[i + 1][1].nome);
 }
 
 Partita.prototype.checkCasellaErba = function (occupazione) {
