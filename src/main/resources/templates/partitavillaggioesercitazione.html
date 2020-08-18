@@ -18,12 +18,7 @@
             </div>
             <div class="container">
                 <div class="row" style="padding-top: 2%">
-                    <div class="col-lg-4"> 
-                        <div class="newdiv" id="stocazzo">
-
-                        </div>
-                            
-                    </div>
+                    <div class="col-lg-4">aaaprrr</div>
                     <div class="col-lg-8">
                         <table id="tabvillaggio" class="tabellavillaggio">
                             <tr>
@@ -66,72 +61,82 @@
                 </div>
                 <div class="single-divider section-space--ptb_60 border-bottom">
                     <div class="row ">
-
-                        <div class="col-lg-4" id="pipo">
-
-
+                        <!-- <img src="/mitech/assets/images/favicon.png" th:src="@{/mitech/assets/images/favicon.png}" alt="" /> -->
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-1">
+                            <button class="bigButtonTruppe w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
 
                         </div>
+                        <div class="col-lg-2">
+                            <div th:each="truppeDisponbili : ${truppeDisponbili}">
+                                <div th:each="i : ${#numbers.sequence(1, truppeDisponbili.quantita)}">
 
-                    </div> 
+                                    <img id="truppa" class="mySlides flex" th:name="${truppeDisponbili.truppa.nomeTruppa}" th:src="@{${'/mitech/assets/images/truppe/' + truppeDisponbili.truppa.immagineTruppa}}" />
+                                    <div id="idtruppeaddestrate" style="display: none" th:text="${truppeDisponbili.truppa.id}"></div>
+                                    <div id="nometruppeaddestrate" style="display: none" th:text="${truppeDisponbili.truppa.nomeTruppa}"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <button class="bigButtonTruppe w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+                        </div>
+                        <div class="col-lg-4"></div>
+
+                    </div>
                 </div>
-
-                <div class="col-lg-4"></div>
-
             </div>
-        </div>
-        </div>
-        <!--  <div class="row">
-              <div class="col-md-12">
-                  ciao
-              </div>
-              <div class="col-12">
-
-                  miao
-              </div>
-
-
-              <div class="row">
-
+            <!--  <div class="row">
                   <div class="col-md-12">
-        <!-- section-title-wrap Start -->
-        bau
+                      ciao
+                  </div>
+                  <div class="col-12">
 
-        <!--        </div>
-                <div class="col-12">
-
-                    <div class="row">
+                      miao
+                  </div>
 
 
-                        cucu
+                  <div class="row">
+
+                      <div class="col-md-12">
+            <!-- section-title-wrap Start -->
+            bau
+
+            <!--        </div>
+                    <div class="col-12">
+
+                        <div class="row">
+
+
+                            cucu
+                    </div>
                 </div>
-            </div>
-        </div>-->
-        <br><br><hr><br><br>
-                            <div class="thick-short-line"></div>
-                            </div>
-                            </div>
+            </div>-->
+            <br><br><hr><br><br>
+                                <div class="thick-short-line"></div>
+                                </div>
+                                </div>
 
-                            <th:block layout:fragment="script">
-                                <script th:src="@{/mitech/assets/js/lodash.js}"></script>
-                                <script th:src="@{/mitech/assets/js/application/ViewPartita.js}"></script>
-                                <script th:src="@{/mitech/assets/js/business/CaratteristicheVita.js}"></script>
-                                <script th:src="@{/mitech/assets/js/business/TruppaBuilder.js}"></script>
-                                <!--  <script th:src="@{/mitech/assets/js/sliderTruppe.js}"></script> -->
+                                <th:block layout:fragment="script">
+                                    <script th:src="@{/mitech/assets/js/lodash.js}"></script>
+                                    <script th:src="@{/mitech/assets/js/application/ViewPartita.js}"></script>
+                                    <script th:src="@{/mitech/assets/js/business/CaratteristicheVita.js}"></script>
+                                    <script th:src="@{/mitech/assets/js/business/TruppaBuilder.js}"></script>
+                                    <script th:src="@{/mitech/assets/js/sliderTruppe.js}"></script>
 
-                                <script  th:inline="javascript" th:src="@{/mitech/assets/js/business/Villaggio.js}"></script>
-                                <script th:src="@{/mitech/assets/js/business/Edificio.js}"></script>
-                                <script th:src="@{/mitech/assets/js/business/Partita.js}"></script>
-                                <script th:src="@{/mitech/assets/js/business/Casella.js}"></script>
-                                <script th:src="@{/mitech/assets/js/clashOfC.js}"></script>
+                                    <script  th:inline="javascript" th:src="@{/mitech/assets/js/business/Villaggio.js}"></script>
+                                    <script th:src="@{/mitech/assets/js/business/Edificio.js}"></script>
+                                    <script th:src="@{/mitech/assets/js/business/Partita.js}"></script>
+                                    <script th:src="@{/mitech/assets/js/business/Casella.js}"></script>
+                                    <script th:src="@{/mitech/assets/js/clashOfC.js}"></script>
 
 
-                                <script th:inline="javascript">
-                                    /*<![CDATA[*/
+                                    <script th:inline="javascript">
+                                        /*<![CDATA[*/
 
-                                    /*]]>*/
-                                </script>
-                            </th:block>
-                            </body>
-                            </html>
+                                        /*]]>*/
+                                    </script>
+                                </th:block>
+                                </body>
+                                </html>
 

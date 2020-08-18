@@ -6,30 +6,7 @@
 
 
 jQuery(document).ready(function ($) {
-    // document.getElementsByClassName('truppa').onclick = function() { console.log('Click just happened'); };
-
-  //  var elements = document.getElementsByClassName('truppa');
-  //  console.log(elements);
-    var myFunction = function () {
-        console.log('Click just happened');
-        //var attribute = this.getAttribute("data-myattribute");
-        //alert(attribute);
-    };
-
- //   Array.from(elements).forEach(function (element) {
-  //      element.addEventListener('click', myFunction);
- ///   });
-
-document.addEventListener("DOMContentLoaded", function(){document.querySelectorAll(".element");
-                     var elements = document.getElementsByClassName('truppa'); 
-             for(var i=0;i<elements.length;i++){ 
-                elements[i].addEventListener("click", myFunction()); 
-              }
-})
-
-
-
-    // $("button").click(function () {
+      // $("button").click(function () {
     $.ajax({
         type: "GET",
         contentType: "application/json",
@@ -48,11 +25,6 @@ document.addEventListener("DOMContentLoaded", function(){document.querySelectorA
 
                 if (data[2][i].truppa.tipologia === "attacco") {
                     for (var j = 0; j < data[2][i].quantita; j++) {
-                        //console.log("attacco");
-                        //console.log(data[2][j]);
-                        $(".newdiv").append('<img id=\'' + data[2][j].truppa.nomeTruppa + '\' class="truppa" src = /mitech/assets/images/truppe/' + data[2][j].truppa.immagineTruppa + '>');
-                        $(".newdiv").append('<div id=\'' + data[2][j].truppa.id + '\' class="idtruppeaddestrate" style="display: none">' + data[2][j].truppa.id + '</div>');
-                        $(".newdiv").append('<div id=\'' + data[2][j].truppa.nomeTruppa + '\' class="nometruppeaddestrate" style="display: none">' + data[2][j].truppa.nomeTruppa + '</div>');
 
                         truppe.push(new TruppaBuilder()
                                 .setNome(data[2][i].truppa.nomeTruppa)
@@ -65,12 +37,7 @@ document.addEventListener("DOMContentLoaded", function(){document.querySelectorA
                     }
                 } else if (data[2][i].truppa.tipologia === "guarigione") {
                     for (var q = 0; q < data[2][i].quantita; q++) {
-                        // console.log("guarigione");
-                        //console.log(data[2][i]);
-                        $(".newdiv").append('<img id=\'' + data[2][i].truppa.nomeTruppa + '\' class="truppa" src = /mitech/assets/images/truppe/' + data[2][i].truppa.immagineTruppa + '>');
-                        $(".newdiv").append('<div id=\'' + data[2][i].truppa.id + '\' class="idtruppeaddestrate" style="display: none">' + data[2][i].truppa.id + '</div>');
-                        $(".newdiv").append('<div id=\'' + data[2][i].truppa.nomeTruppa + '\' class="nometruppeaddestrate" style="display: none">' + data[2][i].truppa.nomeTruppa + '</div>');
-
+ 
                         truppe.push(new TruppaBuilder()
 
                                 .setNome(data[2][i].truppa.nomeTruppa)
@@ -87,21 +54,33 @@ document.addEventListener("DOMContentLoaded", function(){document.querySelectorA
 
             var viewPartita = new ViewPartita();
 
-            /*
+            
              //console.log(nomet.id);
              const nuovaPartita = new Partita(villaggio, nomet, viewPartita, truppe);
              nuovaPartita.costruisciVillaggioNemico();
              $('.casella').click(function () {
+              
              var $this = $(this);
              var occupazione = $this.attr("id");
              nuovaPartita.checkCasellaErba(occupazione);
              var y;
-             var truppeAggiornate = new Array();
              for (y = 1; y < truppe.length; y++) {
              if (truppe[y].nome == nomet) {
              villaggio.caselle[occupazione][1] = truppe[y];
              }
              }
+                   var truppaUtilizzata = document.getElementsByName(nomet);
+                   var idHtmlTruppaUtilizzata = truppaUtilizzata.id;
+                   console.log(idHtmlTruppaUtilizzata);
+    if(truppaUtilizzata.length>1){
+        truppaUtilizzata[0].src='/mitech/assets/images/truppe/'+nomet+'_inactive.png';
+        truppaUtilizzata[0].className='inactive';
+    console.log(truppaUtilizzata[0]);
+    }else{
+        truppaUtilizzata.src='/mitech/assets/images/truppe/'+nomet+'_inactive.png';
+                truppaUtilizzata.className='inactive';
+
+    }
              oggettoTabelloneAux = _.cloneDeep(villaggio.caselle);
              });
              setInterval(function () {
@@ -110,11 +89,12 @@ document.addEventListener("DOMContentLoaded", function(){document.querySelectorA
              for (y = 1; y < truppe.length; y++) {
              truppe.slice(y - 1, 1);
              }
-             }, 1000);*/
+             }, 1000);
         },
         error: function () {
             alert('C’è stato un’errore');
         }
     });
     //});
+
 });
