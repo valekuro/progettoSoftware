@@ -102,7 +102,7 @@ jQuery(document).ready(function ($) {
                 //  for (y = 1; y < truppe.length; y++) {
                 // truppe.slice(y - 1, 1);
                 // }
-            }, 2000);
+            }, 4000);
         },
         error: function () {
             alert('C’è stato un’errore');

@@ -59,9 +59,13 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
                 console.log('vita truppa dopo l attacco:    ' + JSON.stringify(oggettoTabelloneAux[i][1].vita));
                 if (oggettoTabelloneAux[i][1].vita <= 0) {
                     this.morteTruppaSuCasella(oggettoTabelloneAux, i);
-                    nomet="";
+                    nomet = "";
                 } else {
+                    console.log('vita difesa prima dell attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
+
                     oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
+
+                    console.log('vita difesa dopo dell attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
                     if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
                         this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
                     }
