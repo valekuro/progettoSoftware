@@ -11,7 +11,7 @@ function Partita(villaggio, nomeTruppa, viewPartita, truppeAddestrate) {
     this.nomeTruppa = nomeTruppa;
     this.viewPartita = viewPartita;
     this.truppeAddestrate = truppeAddestrate;
-
+    this.ammontareDistruzioneParziale = 0;
 }
 
 Partita.prototype.setVillaggio = function (villaggio) {
@@ -42,8 +42,8 @@ Partita.prototype.costruisciVillaggioNemico = function () {
     var caselleVillaggioNemico = this.getVillaggio()['caselle'];
     this.viewPartita.visualizzaVillaggioNemico(caselleVillaggioNemico);
 }
-Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, oggettoTabellone) {
 
+Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, oggettoTabellone, quantitaTruppa) {
     var i;
     for (i = 0; i < oggettoTabellone.length; i++) {
         if (oggettoTabellone[i][1].nome === nomet && i < 35) {
@@ -67,6 +67,7 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
 
                     console.log('vita difesa dopo dell attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
                     if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
+                        console.log(this.calcoloParzialePunteggio(oggettoTabelloneAux[i + 1][1]));
                         this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
                     }
                 }
@@ -77,11 +78,35 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
                 oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
                 console.log('vita edificio dopo l attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
                 if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
+                        console.log(this.calcoloParzialePunteggio(oggettoTabelloneAux[i + 1][1]));
                     this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
                 }
             }
         }
     }
+    if (this.truppeAddestrate.length === quantitaTruppa.length) { 
+for (i = 0; i < oggettoTabellone.length; i++) {
+        if (oggettoTabellone[i][1].nome !== nomet && i < 35) {
+        
+        var risultati;
+        console.log('partita terminata');
+       risultati = 'Percentuale raggiunta: ' + this.ammontareDistruzioneParziale + '%';
+        if(this.ammontareDistruzioneParziale === 50){
+          risultati = risultati + '  Hai vinto, hai totalizzato: 1 stella';
+
+        }else if(this.ammontareDistruzioneParziale > 50 && this.ammontareDistruzioneParziale <= 99){
+          risultati = risultati + '  Hai vinto, hai totalizzato: 2 stelle';
+        }else if(this.ammontareDistruzioneParziale === 100){
+          risultati = risultati + '  Hai vinto, hai totalizzato: 3 stelle';
+        }else if(this.ammontareDistruzioneParziale < 50){
+          risultati = risultati + '  Hai perso, peccato!';
+        }
+        alert(risultati)
+}
+}
+
+    } 
+
 
 };
 
@@ -89,7 +114,16 @@ Partita.prototype.morteOggettoSuCasella = function (oggettoTabelloneAux, i) {
     oggettoTabelloneAux[i][1] = _.cloneDeep(oggettoTabelloneAux[i - 2][1])
     //this.viewPartita.edificioDistrutto(i - 1);
 }
+Partita.prototype.calcoloParzialePunteggio = function (oggettoTabelloneAux) {
+   
+ for(var pippo=0; pippo<this.villaggio.caselle.length; pippo++){
+if(oggettoTabelloneAux.nome === this.villaggio.caselle[pippo][1].nome){   
+   this.ammontareDistruzioneParziale = parseInt(this.ammontareDistruzioneParziale) + parseInt(this.villaggio.caselle[pippo][1].percentualeDistruzionePunteggio);   
+ return this.ammontareDistruzioneParziale;
+}
+                        }
 
+}
 Partita.prototype.morteTruppaSuCasella = function (oggettoTabelloneAux, i) {
     oggettoTabelloneAux[i][1] = _.cloneDeep(oggettoTabelloneAux[i - 1][1]);
     //console.log(oggettoTabelloneAux[i + 1][1]);

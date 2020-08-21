@@ -44,8 +44,7 @@ Villaggio.prototype.creaCaselle = function (datiCaselle) {
     var edifici = new Array();
     var i;
     for (i = 0; i < datiCaselle.length; i++) {
-    
-        edifici.push(new Array(datiCaselle[i].posizione, new Edificio(datiCaselle[i]['edificio'].nome, datiCaselle[i]['edificio'].tassoAggiornamentoColpi, datiCaselle[i]['edificio'].tassoAggiornamentoResistenza, datiCaselle[i]['edificio'].resistenzaLivelloIniziale, datiCaselle[i]['edificio'].colpiLivelloIniziale, this.livelloMunicipio)));
+        edifici.push(new Array(datiCaselle[i].posizione, new Edificio(datiCaselle[i]['edificio'].nome, datiCaselle[i]['edificio'].tassoAggiornamentoColpi, datiCaselle[i]['edificio'].tassoAggiornamentoResistenza, datiCaselle[i]['edificio'].resistenzaLivelloIniziale, datiCaselle[i]['edificio'].colpiLivelloIniziale, this.livelloMunicipio, datiCaselle[i]['edificio']['percentualeDistruzionePunteggio'])));
     
     }
     return edifici;

@@ -29,6 +29,7 @@ jQuery(document).ready(function ($) {
 
                         truppe.push(new TruppaBuilder()
                                 .setNome(data[2][i].truppa.nomeTruppa)
+                                .setQuantita(data[2][i].quantita)
                                 .setTassoAggiornamentoColpi(data[2][i].truppa.tassoAggiornamentoColpi)
                                 .setTassoAggiornamentoResistenza(data[2][i].truppa.tassoAggiornamentoResistenza)
                                 .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
@@ -42,6 +43,7 @@ jQuery(document).ready(function ($) {
                         truppe.push(new TruppaBuilder()
 
                                 .setNome(data[2][i].truppa.nomeTruppa)
+                                .setQuantita(data[2][i].quantita)
                                 .setTassoAggiornamentoGuarigione(data[2][i].truppa.tassoAggiornamentoGuarigione)
                                 .setTassoAggiornamentoResistenza(data[2][i].truppa.tassoAggiornamentoResistenza)
                                 .setResistenzaLivelloIniziale(data[2][i].truppa.resistenzaLivelloIniziale)
@@ -57,6 +59,7 @@ jQuery(document).ready(function ($) {
 
             var viewPartita = new ViewPartita();
             var indiceTruppa = 0;
+
             $('.truppeDisponibiliAttacco').click(function () {
                 var $this = $(this);
                 var nomeTruppaScelta = $this.attr("name");
@@ -77,27 +80,31 @@ jQuery(document).ready(function ($) {
             //console.log(nomet.id);
             const nuovaPartita = new Partita(villaggio, nomet, viewPartita, truppe);
             nuovaPartita.costruisciVillaggioNemico();
+            var quantitaTruppa = new Array();
 
             $('.casella').click(function () {
                 if (nomet === "") {
                     document.getElementById('warnings').innerHTML = "devi ancora selezionare la truppa";
-                }else{
-                var $this = $(this);
-                var occupazione = $this.attr("id");
-                nuovaPartita.checkCasellaErba(occupazione);
-                var y;
-                for (y = 1; y < truppe.length; y++) {
-                    if (truppe[y].nome == nomet) {
-                        villaggio.caselle[occupazione][1] = truppe[y];
+                } else {
+                    var $this = $(this);
+                    var occupazione = $this.attr("id");
+                    nuovaPartita.checkCasellaErba(occupazione);
+                    quantitaTruppa.push(nomet);
+                    var y;
+                    for (y = 1; y < truppe.length; y++) {
+                        if (truppe[y].nome == nomet) {
+                            villaggio.caselle[occupazione][1] = truppe[y];
+                        }
                     }
-                }
-                indiceTruppa = viewPartita.selezionaTruppa(indiceTruppa);
+                    indiceTruppa = viewPartita.selezionaTruppa(indiceTruppa);
 
-                oggettoTabelloneAux = _.cloneDeep(villaggio.caselle);
-            }
+                    oggettoTabelloneAux = _.cloneDeep(villaggio.caselle);
+                }
             });
+
             setInterval(function () {
-                nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, villaggio.caselle);
+
+                nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, villaggio.caselle, quantitaTruppa);
                 villaggio.caselle = _.cloneDeep(oggettoTabelloneAux);
                 //  for (y = 1; y < truppe.length; y++) {
                 // truppe.slice(y - 1, 1);

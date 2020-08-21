@@ -26,5 +26,5 @@ public class Edificio extends AbstractEntity<Long> {
     private int tassoAggiornamentoColpi;
     private int resistenzaLivelloIniziale;
     private int colpiLivelloIniziale;
-    
+    private int percentualeDistruzionePunteggio;
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-function Edificio(nome, tassoAggiornamentoColpi, tassoAggiornamentoResistenza, resistenzaLivelloIniziale, colpiLivelloIniziale, livelloGiocatore) {
+function Edificio(nome, tassoAggiornamentoColpi, tassoAggiornamentoResistenza, resistenzaLivelloIniziale, colpiLivelloIniziale, livelloGiocatore, percentualeDistruzionePunteggio) {
 
    // this.posizione = posizione;
 
@@ -14,7 +14,7 @@ function Edificio(nome, tassoAggiornamentoColpi, tassoAggiornamentoResistenza, r
     this.colpiLivelloIniziale = colpiLivelloIniziale;
     this.vita = this.calcoloVitaTotale(livelloGiocatore);
     this.vitaRimanente = 1;
-
+    this.percentualeDistruzionePunteggio = percentualeDistruzionePunteggio;
 }
 
 

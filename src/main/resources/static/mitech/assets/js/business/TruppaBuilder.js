@@ -11,6 +11,7 @@ document.body.appendChild(js);
 let TruppaBuilder = function () {
 
     let nome;
+    let quantita;
     let tassoAggiornamentoColpi;
     let guarigioneLivelloIniziale;
     let tassoAggiornamentoResistenza;
@@ -19,10 +20,14 @@ let TruppaBuilder = function () {
     let tassoAggiornamentoGuarigione;
     let tipologia;
     let livelloGiocatore;
-    let vita; 
+    let vita;
     return {
         setNome: function (nome) {
             this.nome = nome;
+            return this;
+        },
+        setQuantita: function (quantita) {
+            this.quantita = quantita;
             return this;
         },
         setTassoAggiornamentoColpi: function (tassoAggiornamentoColpi) {
@@ -37,15 +42,15 @@ let TruppaBuilder = function () {
             this.tassoAggiornamentoResistenza = tassoAggiornamentoResistenza;
             return this;
         },
-         setResistenzaLivelloIniziale: function (resistenzaLivelloIniziale) {
+        setResistenzaLivelloIniziale: function (resistenzaLivelloIniziale) {
             this.resistenzaLivelloIniziale = resistenzaLivelloIniziale;
             return this;
         },
-         setColpiLivelloIniziale: function (colpiLivelloIniziale) {
+        setColpiLivelloIniziale: function (colpiLivelloIniziale) {
             this.colpiLivelloIniziale = colpiLivelloIniziale;
             return this;
         },
-         setTassoAggiornamentoGuarigione: function (tassoAggiornamentoGuarigione) {
+        setTassoAggiornamentoGuarigione: function (tassoAggiornamentoGuarigione) {
             this.tassoAggiornamentoGuarigione = tassoAggiornamentoGuarigione;
             return this;
         },
@@ -53,18 +58,18 @@ let TruppaBuilder = function () {
             this.tipologia = tipologia;
             return this;
         },
-          setLivelloGiocatore: function (livelloGiocatore) {
+        setLivelloGiocatore: function (livelloGiocatore) {
             this.livelloGiocatore = livelloGiocatore;
             return this;
         },
-         setVita: function () {
-             this.vita = this.calcoloVitaTotale(this.livelloGiocatore);
+        setVita: function () {
+            this.vita = this.calcoloVitaTotale(this.livelloGiocatore);
             // console.log(this.vita);
-             return this;
+            return this;
         },
 
         build: function () {
-            return new Truppa(nome, tassoAggiornamentoColpi,guarigioneLivelloIniziale, tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia,vita, livelloGiocatore);
+            return new Truppa(nome, quantita, tassoAggiornamentoColpi, guarigioneLivelloIniziale, tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia, vita, livelloGiocatore);
         },
         calcoloVitaTotale: function (livelloGiocatore) {
             return this.resistenzaLivelloIniziale + (this.tassoAggiornamentoResistenza * livelloGiocatore);
