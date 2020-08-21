@@ -80,4 +80,6 @@ public class PartitaController {
         return avversarioEsercitazione;
     }
 
+    
+    
 }

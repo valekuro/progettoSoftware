@@ -14612,3 +14612,7 @@ blockquote {
 .truppeDisponibiliAttacco, .truppeInactiveAttacco{
     width: 80%
 }
+
+#risultatiEsercitazione{
+    display: none;
+}

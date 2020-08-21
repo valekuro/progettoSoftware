@@ -79,6 +79,10 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
                 console.log('vita edificio dopo l attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
                 if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
                         console.log(this.calcoloParzialePunteggio(oggettoTabelloneAux[i + 1][1]));
+
+
+
+
                     this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
                 }
             }
@@ -87,7 +91,6 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
     if (this.truppeAddestrate.length === quantitaTruppa.length) { 
 for (i = 0; i < oggettoTabellone.length; i++) {
         if (oggettoTabellone[i][1].nome !== nomet && i < 35) {
-        
         var risultati;
         console.log('partita terminata');
        risultati = 'Percentuale raggiunta: ' + this.ammontareDistruzioneParziale + '%';
@@ -101,7 +104,7 @@ for (i = 0; i < oggettoTabellone.length; i++) {
         }else if(this.ammontareDistruzioneParziale < 50){
           risultati = risultati + '  Hai perso, peccato!';
         }
-        alert(risultati)
+      this.viewPartita.cambioPagina(risultati);
 }
 }
 
