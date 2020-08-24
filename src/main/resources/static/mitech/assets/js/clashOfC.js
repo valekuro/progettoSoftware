@@ -103,6 +103,7 @@ jQuery(document).ready(function ($) {
             });
 
             setInterval(function () {
+                                nuovaPartita.checkGuaritoreSuVillaggio(oggettoTabelloneAux)
 
                 nuovaPartita.avanzamentoTruppeInserite(oggettoTabelloneAux, villaggio.caselle, quantitaTruppa);
                 villaggio.caselle = _.cloneDeep(oggettoTabelloneAux);

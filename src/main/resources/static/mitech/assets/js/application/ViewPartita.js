@@ -83,3 +83,11 @@ ViewPartita.prototype.cambioPagina = function (risultati) {
     document.getElementById('truppaInactive').style.display = 'none';
     document.getElementById('warnings').style.display = 'none';
 }
+
+ViewPartita.prototype.mostraGuaritore = function (j, i, guaritore) {
+    document.getElementById(j).src = '/mitech/assets/images/truppe/thumbnails/' + guaritore + '.png';
+    document.getElementById(i).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
+}
+ViewPartita.prototype.mantieniNumeroEdificiDistrutti = function (numeroEdificiDistrutti) {
+    document.getElementById('edificiDistrutti').innerHTML = 'Numero edifici distrutti: ' + numeroEdificiDistrutti;
+}

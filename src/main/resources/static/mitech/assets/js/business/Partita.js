@@ -13,6 +13,7 @@ function Partita(villaggio, nomeTruppa, viewPartita, truppeAddestrate) {
     this.truppeAddestrate = truppeAddestrate;
     this.ammontareDistruzioneParziale = 0;
     this.elisirRubato = 0;
+    this.edificiDistrutti = 0;
 }
 
 Partita.prototype.setVillaggio = function (villaggio) {
@@ -48,10 +49,12 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
     var i;
     for (i = 0; i < oggettoTabellone.length; i++) {
         if (oggettoTabellone[i][1].nome === nomet && i < 35) {
+
             if (oggettoTabellone[i + 1][1].nome === 'erba') {
                 oggettoTabelloneAux[i] = _.cloneDeep(oggettoTabellone[i + 1]);
                 oggettoTabelloneAux[i + 1] = _.cloneDeep(oggettoTabellone[i]);
                 this.viewPartita.camminoTruppa(i);
+                //oggettoTabelloneAux = _.cloneDeep(this.checkGuaritoreSuVillaggio(oggettoTabellone, i));
             } else if (oggettoTabelloneAux[i + 1][1].colpiLivelloIniziale !== 0) {
                 console.log('ho incontrato una difesa! ');
                 this.viewPartita.animazioneLotta(oggettoTabelloneAux[i + 1][1].nome, i);
@@ -67,7 +70,9 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
                     console.log('vita difesa dopo dell attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
                     if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
                         console.log(this.calcoloParzialePunteggio(oggettoTabelloneAux[i + 1][1]));
-                        this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
+                        this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1); 
+                        this.edificiDistrutti = parseInt(this.edificiDistrutti) + 1;
+                        this.viewPartita.mantieniNumeroEdificiDistrutti(this.edificiDistrutti);
                     }
                 }
             } else if (oggettoTabelloneAux[i + 1][1].colpiLivelloIniziale === 0) {
@@ -77,14 +82,14 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
                 oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
                 console.log('vita edificio dopo l attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
                 if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
-                             console.log(oggettoTabelloneAux[i + 1][1].nome);
-
                         if(oggettoTabelloneAux[i + 1][1].nome ==='estrattore' || oggettoTabelloneAux[i + 1][1].nome ==='deposito'){
-                             this.elisirRubato = (parseInt(this.villaggio.elisirDisponibileAlGiocatore) * 25) / 100
+                             this.elisirRubato = (parseInt(this.villaggio.elisirDisponibileAlGiocatore) * 25) / 100;
                              console.log(this.villaggio.elisirDisponibileAlGiocatore);
                         }
 
                     this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
+                    this.edificiDistrutti = parseInt(this.edificiDistrutti) + 1;
+                    this.viewPartita.mantieniNumeroEdificiDistrutti(this.edificiDistrutti);
                 }
             }
         }
@@ -114,6 +119,24 @@ for (i = 0; i < oggettoTabellone.length; i++) {
 
 
 };
+
+
+Partita.prototype.checkGuaritoreSuVillaggio = function (oggettoTabellone, j) {
+ var o;
+ var guaritore;
+    for (o = 0; o < oggettoTabellone.length; o++) {
+        if (oggettoTabellone[o][1].guarigioneLivelloIniziale > 0 && o < 35) {
+                guaritore = oggettoTabellone[o][1].nome;
+                oggettoTabellone[j-1][1] = _.cloneDeep(oggettoTabellone[o][1]);
+                oggettoTabellone[o][1] = _.cloneDeep(oggettoTabellone[j][1]);
+                this.viewPartita(j-1, o, guaritore);
+                return oggettoTabellone;
+        }
+
+    }
+
+}
+
 
 Partita.prototype.morteOggettoSuCasella = function (oggettoTabelloneAux, i) {
     oggettoTabelloneAux[i][1] = _.cloneDeep(oggettoTabelloneAux[i - 2][1])
