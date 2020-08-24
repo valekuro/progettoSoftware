@@ -5,9 +5,9 @@
  */
 //import viewPartita from '/mitech/assets/js/application/ViewPartita.js'
 
-function Partita(nomeTruppa, viewPartita, datiDiGioco) {
+function Partita(nomeTruppa, datiDiGioco) {
     this.nomeTruppa = nomeTruppa;
-    this.viewPartita = viewPartita;
+    this.viewPartita = new ViewPartita();
     this.datiDiGioco = datiDiGioco;   
     this.villaggio = new Villaggio(this.datiDiGioco[3].elisirDisponibileAlGiocatore, this.datiDiGioco[1].livelloGiocatore, "esercitazione", this.datiDiGioco[0]);
     this.oggettoTabelloneAux = new Array();
@@ -19,23 +19,16 @@ function Partita(nomeTruppa, viewPartita, datiDiGioco) {
     this.timer = new Timer(1);
 }
 
-Partita.prototype.setVillaggio = function (villaggio) {
-    this.villaggio = villaggio;
-    return this;
-};
 
-Partita.prototype.setTruppeAddestrate = function (truppeAddestrate) {
-    this.truppeAddestrate = truppeAddestrate;
-    return this;
-};
 
 Partita.prototype.setNomeTruppa = function (nomeTruppa) {
     this.nomeTruppa = nomeTruppa;
     return this;
 };
 
-Partita.prototype.getVillaggio = function () {
-    return this.villaggio;
+Partita.prototype.setDatiDiGioco = function (datiDiGioco) {
+    this.datiDiGioco = datiDiGioco;
+    return this;
 };
 
 Partita.prototype.avviaTimer = function () {
@@ -85,28 +78,33 @@ Partita.prototype.recuperaTruppeAddestrate = function () {
 
 Partita.prototype.iniziaPartita = function () {
    
+   this.viewPartita.aggiornareBannerAiutoMossa('Seleziona la truppa per l\'attacco tra le truppe disponibili');
    this.truppeAddestrate = this.recuperaTruppeAddestrate();
    this.costruisciVillaggioNemico();
+       this.avviaTimer();
+
    this.oggettoTabelloneAux = _.cloneDeep(this.villaggio.caselle);   
    this.selezionareCasella();   
    this.selezionareTruppaDisponibile();   
-   this.gestioneTruppeInattive();    
-   setInterval(function () {
-                this.avanzamentoTruppeInserite();
-                this.villaggio.caselle = _.cloneDeep(this.oggettoTabelloneAux);
-            }, 4000);
-   };
+   this.gestioneTruppeInattive();      
+   setInterval(this.gestionePartita().bind($(this)), 4000); 
+},
+
+Partita.prototype.gestionePartita = function () {
+    this.avanzamentoTruppeInserite().bind($(this));
+    this.villaggio.caselle = _.cloneDeep(this.oggettoTabelloneAux);
+},
 
 Partita.prototype.selezionareCasella = function () {
             var indiceTruppa = 0;
-
     $('.casella').click(function () {
                 if (nomet === "") {
-                    document.getElementById('warnings').innerHTML = "devi ancora selezionare la truppa";
+                    this.viewPartita.aggiornareBannerAiutoMossa("Non hai ancora selezionato la truppa!");
                 } else {
                     var $this = $(this);
                     var occupazione = $this.attr("id");
-                    this.checkCasellaErba(occupazione);
+                    console.log(occupazione);
+                    this.viewPartita.posizionaTruppaSuCasella(occupazione);
                     this.conteggioTruppeUtilizzate.push(nomet);
                     var y;
                     for (y = 1; y < this.truppeAddestrate.length; y++) {
@@ -121,9 +119,8 @@ Partita.prototype.selezionareCasella = function () {
 };
 
 Partita.prototype.costruisciVillaggioNemico = function () {
-    var caselleVillaggioNemico = this.getVillaggio()['caselle'];
+    var caselleVillaggioNemico = this.villaggio.caselle;
     this.viewPartita.visualizzaVillaggioNemico(caselleVillaggioNemico);
-    this.avviaTimer();
 }
 
 Partita.prototype.selezionareTruppaDisponibile = function () {
@@ -132,7 +129,7 @@ Partita.prototype.selezionareTruppaDisponibile = function () {
                 var nomeTruppaScelta = $this.attr("name");
                 console.log(nomeTruppaScelta);
                 nomet = nomeTruppaScelta;
-                document.getElementById('warnings').innerHTML = "seleziona la casella";
+                this.viewPartita.aggiornareBannerAiutoMossa("Hai selezionato la truppa "+nomet+", ora seleziona la casella su cui vuoi posizionare la truppa scelta.");
 
                 //    $this.style.border = "1px solid";
                 //   $this.style.padding = "10px";
@@ -144,7 +141,7 @@ Partita.prototype.selezionareTruppaDisponibile = function () {
 Partita.prototype.gestioneTruppeInattive = function () {
    $('.truppeInactiveAttacco').click(function () {
                 nomet = "";
-                document.getElementById('warnings').innerHTML = "hai già usato questa truppa!";
+                this.viewPartita.aggiornareBannerAiutoMossa("Hai già usato questa truppa e non è più disponibile, prova a selezionare una truppa diversa tra quelle disponibili!");
             });
 
 
@@ -260,10 +257,7 @@ Partita.prototype.morteTruppaSuCasella = function (oggettoTabelloneAux, i) {
     this.viewPartita.truppaDistrutta(i - 1, oggettoTabelloneAux[i + 1][1].nome);
 }
 
-Partita.prototype.checkCasellaErba = function (occupazione) {
-    document.getElementById(occupazione).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
-//    this.avanzamentoTruppeInserite(occupazione);
-}
+
 
 /*   function checkCasellaEdificio(occupazione) {
  //var oggetto = document.getElementById('edificioincasella' + occupazione).src;

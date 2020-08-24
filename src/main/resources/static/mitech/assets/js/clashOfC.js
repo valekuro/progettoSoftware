@@ -14,10 +14,9 @@ jQuery(document).ready(function ($) {
         dataType: "json",
         url: '/attacco_esercitazione/partitavillaggioesercitazione',
         success: function (data) {
-            document.getElementById('warnings').innerHTML = "seleziona la truppa";
-            var viewPartita = new ViewPartita();
-            const nuovaPartita = new Partita(nomet, viewPartita, data);
+            const nuovaPartita = new Partita(nomet, data);
             nuovaPartita.iniziaPartita();
+            
         },
         error: function () {
             alert('C’è stato un’errore');

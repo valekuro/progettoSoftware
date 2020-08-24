@@ -57,14 +57,14 @@ Timer.prototype.calcDistance = function(countDownDate){
         // Find the distance between now an the count down date
         this.distance = countDownDate - now;
        
-        console.log(countDownDate);
-        console.log(now);
+      // console.log(countDownDate);
+      //  console.log(now);
         // Time calculations for days, hours, minutes and seconds
         //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((parseInt(this.distance) % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((parseInt(this.distance) % (1000 * 60)) / 1000);
         
-        console.log(this.distance);
+      //  console.log(this.distance);
         // Output the result in an element with id="demo"
         document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s "; 
 }

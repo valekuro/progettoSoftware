@@ -9,6 +9,14 @@ var nomet;
 function ViewPartita() {
 }
 
+ViewPartita.prototype.posizionaTruppaSuCasella = function (occupazione) {
+    document.getElementById(occupazione).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
+}
+
+ViewPartita.prototype.aggiornareBannerAiutoMossa = function (frase) {
+    document.getElementById('warnings').innerHTML = frase;
+}
+
 ViewPartita.prototype.visualizzaVillaggioNemico = function (caselleVillaggioNemico) {
     var i;
     for (i = 0; i < 36; i++) {
