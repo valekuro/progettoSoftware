@@ -5,15 +5,16 @@
  */
 //import viewPartita from '/mitech/assets/js/application/ViewPartita.js'
 
-function Partita(villaggio, nomeTruppa, viewPartita, truppeAddestrate) {
+function Partita(villaggio, nomeTruppa, viewPartita, datiDiGioco) {
 
     this.villaggio = villaggio;
     this.nomeTruppa = nomeTruppa;
     this.viewPartita = viewPartita;
-    this.truppeAddestrate = truppeAddestrate;
+    this.datiDiGioco = datiDiGioco;
     this.ammontareDistruzioneParziale = 0;
     this.elisirRubato = 0;
     this.edificiDistrutti = 0;
+    this.timer = new Timer(1);
 }
 
 Partita.prototype.setVillaggio = function (villaggio) {
@@ -36,25 +37,72 @@ Partita.prototype.getVillaggio = function () {
 };
 
 Partita.prototype.avviaTimer = function () {
-    console.log("avvia timer");
+    console.log("avvia timer");    
+    this.timer.start();
     return this;
 };
+
+
+Partita.prototype.recuperaTruppeAddestrate = function () {
+      var truppe = new Array();
+      for (var i = 0; i <  this.datiDiGioco[2].length; i++) {
+
+                if ( this.datiDiGioco[2][i].truppa.tipologia === "attacco") {
+                    for (var j = 0; j <  this.datiDiGioco[2][i].quantita; j++) {
+
+                        truppe.push(new TruppaBuilder()
+                                .setNome( this.datiDiGioco[2][i].truppa.nomeTruppa)
+                                .setQuantita( this.datiDiGioco[2][i].quantita)
+                                .setTassoAggiornamentoColpi( this.datiDiGioco[2][i].truppa.tassoAggiornamentoColpi)
+                                .setTassoAggiornamentoResistenza( this.datiDiGioco[2][i].truppa.tassoAggiornamentoResistenza)
+                                .setResistenzaLivelloIniziale( this.datiDiGioco[2][i].truppa.resistenzaLivelloIniziale)
+                                .setColpiLivelloIniziale( this.datiDiGioco[2][i].truppa.colpiLivelloIniziale)
+                                .setLivelloGiocatore( this.datiDiGioco[1].livelloGiocatore)
+                                .setVita());
+                    }
+                } else if (data[2][i].truppa.tipologia === "guarigione") {
+                    for (var q = 0; q <  this.datiDiGioco[2][i].quantita; q++) {
+
+                        truppe.push(new TruppaBuilder()
+
+                                .setNome( this.datiDiGioco[2][i].truppa.nomeTruppa)
+                                .setQuantita( this.datiDiGioco[2][i].quantita)
+                                .setTassoAggiornamentoGuarigione( this.datiDiGioco[2][i].truppa.tassoAggiornamentoGuarigione)
+                                .setTassoAggiornamentoResistenza( this.datiDiGioco[2][i].truppa.tassoAggiornamentoResistenza)
+                                .setResistenzaLivelloIniziale( this.datiDiGioco[2][i].truppa.resistenzaLivelloIniziale)
+                                .setGuarigioneLivelloIniziale( this.datiDiGioco[2][i].truppa.guarigioneLivelloIniziale)
+                                .setLivelloGiocatore( this.datiDiGioco[1].livelloGiocatore)
+                                .setVita());
+                    }
+                }
+
+            }
+            return truppe;
+};
+
+
+Partita.prototype.iniziaPartita = function () {
+   
+};
+
 
 Partita.prototype.costruisciVillaggioNemico = function () {
     var caselleVillaggioNemico = this.getVillaggio()['caselle'];
     this.viewPartita.visualizzaVillaggioNemico(caselleVillaggioNemico);
+    this.avviaTimer();
 }
 
 Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, oggettoTabellone, quantitaTruppa) {
     var i;
     for (i = 0; i < oggettoTabellone.length; i++) {
-        if (oggettoTabellone[i][1].nome === nomet && i < 35) {
+        if (oggettoTabellone[i][1].nome === nomet && oggettoTabellone[i][1].nome !== 'guaritore' && i < 35) {
 
             if (oggettoTabellone[i + 1][1].nome === 'erba') {
                 oggettoTabelloneAux[i] = _.cloneDeep(oggettoTabellone[i + 1]);
                 oggettoTabelloneAux[i + 1] = _.cloneDeep(oggettoTabellone[i]);
                 this.viewPartita.camminoTruppa(i);
                 //oggettoTabelloneAux = _.cloneDeep(this.checkGuaritoreSuVillaggio(oggettoTabellone, i));
+                //this.checkGuaritoreSuVillaggio(oggettoTabellone, i);
             } else if (oggettoTabelloneAux[i + 1][1].colpiLivelloIniziale !== 0) {
                 console.log('ho incontrato una difesa! ');
                 this.viewPartita.animazioneLotta(oggettoTabelloneAux[i + 1][1].nome, i);
@@ -94,28 +142,24 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
             }
         }
     }
-    if (this.truppeAddestrate.length === quantitaTruppa.length) { 
-for (i = 0; i < oggettoTabellone.length; i++) {
-        if (oggettoTabellone[i][1].nome !== nomet && i < 35) {
-        var risultati;
-        console.log('partita terminata');
-       risultati = 'Percentuale raggiunta: ' + this.ammontareDistruzioneParziale + '%';
-        if(this.ammontareDistruzioneParziale === 50){
-          risultati = risultati + '  Hai vinto, hai totalizzato: 1 stella ';
-        }else if(this.ammontareDistruzioneParziale > 50 && this.ammontareDistruzioneParziale <= 99){
-          risultati = risultati + '  Hai vinto, hai totalizzato: 2 stelle ';
-        }else if(this.ammontareDistruzioneParziale === 100){
-          risultati = risultati + '  Hai vinto, hai totalizzato: 3 stelle ';
-        }else if(this.ammontareDistruzioneParziale < 50){
-          risultati = risultati + '  Hai perso, peccato! ';
+ console.log(this.timer);
+  if(this.timer.distance < 0){
+        console.log('tempo scaduto');   
+        console.log(this.x);
+        clearInterval(this.timer.x);
+        document.getElementById("demo").innerHTML = "Fine partita!";
+        this.viewPartita.visualizzaRisultatiPartita(this.ammontareDistruzioneParziale, this.elisirRubato);
+
+  }
+  if (this.truppeAddestrate.length === quantitaTruppa.length) { 
+        for (i = 0; i < oggettoTabellone.length; i++) {
+          if (oggettoTabellone[i][1].nome !== nomet && i < 35) {
+          this.viewPartita.visualizzaRisultatiPartita(this.ammontareDistruzioneParziale, this.elisirRubato);
+
+          }
         }
-      risultati = risultati + 'Hai ottenuto '+this.elisirRubato+' Elisir'
-      this.viewPartita.cambioPagina(risultati);
 
-}
-}
-
-    } 
+  } 
 
 
 };
@@ -129,8 +173,8 @@ Partita.prototype.checkGuaritoreSuVillaggio = function (oggettoTabellone, j) {
                 guaritore = oggettoTabellone[o][1].nome;
                 oggettoTabellone[j-1][1] = _.cloneDeep(oggettoTabellone[o][1]);
                 oggettoTabellone[o][1] = _.cloneDeep(oggettoTabellone[j][1]);
-                this.viewPartita(j-1, o, guaritore);
-                return oggettoTabellone;
+                this.viewPartita.mostraGuaritore(j-1, o, guaritore);
+               // return oggettoTabellone;
         }
 
     }

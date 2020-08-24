@@ -76,7 +76,19 @@ ViewPartita.prototype.selezionaTruppa = function (indiceTruppa) {
  });
  }*/
 
-ViewPartita.prototype.cambioPagina = function (risultati) {
+ViewPartita.prototype.visualizzaRisultatiPartita = function (ammontareDistruzioneParziale, elisirRubato) {
+     var risultati;
+       risultati = 'Percentuale raggiunta: ' + ammontareDistruzioneParziale + '%';
+        if(ammontareDistruzioneParziale === 50){
+          risultati = risultati + '  Hai vinto, hai totalizzato: 1 stella ';
+        }else if(ammontareDistruzioneParziale > 50 && ammontareDistruzioneParziale <= 99){
+          risultati = risultati + '  Hai vinto, hai totalizzato: 2 stelle ';
+        }else if(ammontareDistruzioneParziale === 100){
+          risultati = risultati + '  Hai vinto, hai totalizzato: 3 stelle ';
+        }else if(ammontareDistruzioneParziale < 50){
+          risultati = risultati + '  Hai perso, peccato! ';
+        }
+      risultati = risultati + 'Hai ottenuto '+elisirRubato+' Elisir';
     document.getElementById('villaggio').style.display = 'none';
     document.getElementById('risultatiEsercitazione').style.display = 'block';
     document.getElementById('risultatiEsercitazione').innerHTML = risultati;
