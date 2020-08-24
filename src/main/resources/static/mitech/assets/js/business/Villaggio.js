@@ -5,7 +5,8 @@
  */
 
 /*<![CDATA[*/
-function Villaggio(livelloMunicipio, tipoVillaggio, datiCaselle) {
+function Villaggio(elisirDisponibileAlGiocatore, livelloMunicipio, tipoVillaggio, datiCaselle) {
+    this.elisirDisponibileAlGiocatore = elisirDisponibileAlGiocatore;
     this.livelloMunicipio = livelloMunicipio;
     this.tipoVillaggio = tipoVillaggio;
     this.caselle = this.creaCaselle(datiCaselle);
@@ -25,6 +26,11 @@ Villaggio.prototype.setTipoVillaggio = function (tipoVillaggio) {
 
 Villaggio.prototype.setCaselle = function (caselle) {
     this.caselle = caselle;
+    return this;
+};
+
+Villaggio.prototype.setElisirDisponibileAlGiocatore = function (caselle) {
+    this.elisirDisponibileAlGiocatore = elisirDisponibileAlGiocatore;
     return this;
 };
 

@@ -44,7 +44,7 @@ public class PartitaController {
     private GiocatoreService giocatoreservice;
     @Autowired
     private GiocatoretruppeRepository giocatoretrupperepository;
- 
+
     @GetMapping("")
     public String inizioPartitaVillaggioEsercitazione(Model model) throws BusinessException {
         villaggiocontroller.VillaggioPage(model);
@@ -60,11 +60,15 @@ public class PartitaController {
     public ArrayList PosizioneEdificiCaselle(Model model) throws BusinessException {
         List<Casella> cercaPosizioneEdificiInCasella = casellaservice.findAll();
         Giocatore giocatoreAutenticato = giocatoreservice.findById((long) 2);
+        Giocatore giocatoreVirtualeEsercitazione = giocatoreservice.findById((long) 1);
+
         List<giocatoretruppe> listaTruppe = giocatoretrupperepository.findTruppeByIdgiocatore((long) 2);
         ArrayList datiPartita = new ArrayList();
         datiPartita.add(cercaPosizioneEdificiInCasella);
         datiPartita.add(giocatoreAutenticato);
         datiPartita.add(listaTruppe);
+        datiPartita.add(giocatoreVirtualeEsercitazione);
+
         model.addAttribute("cercaPosizioneEdificiInCasella", cercaPosizioneEdificiInCasella);
         model.addAttribute("listaTruppe", listaTruppe);
         return datiPartita;
@@ -80,6 +84,4 @@ public class PartitaController {
         return avversarioEsercitazione;
     }
 
-    
-    
 }

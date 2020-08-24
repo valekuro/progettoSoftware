@@ -16,7 +16,7 @@ jQuery(document).ready(function ($) {
         success: function (data) {
             var truppe = new Array();
             var oggettoTabelloneAux = new Array();
-            const villaggio = new Villaggio(data[1].livelloGiocatore, "esercitazione", data[0]);
+            const villaggio = new Villaggio(data[3].elisirDisponibileAlGiocatore, data[1].livelloGiocatore, "esercitazione", data[0]);
             oggettoTabelloneAux = _.cloneDeep(villaggio.caselle);
             var e;
 

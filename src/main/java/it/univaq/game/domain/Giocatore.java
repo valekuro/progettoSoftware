@@ -27,7 +27,7 @@ public class Giocatore extends AbstractEntity<Long> {
     @EqualsAndHashCode.Include
     private String nickname;
     private int livelloGiocatore;
-
+    private int elisirDisponibileAlGiocatore;
     /*@JsonIgnore
     @ManyToMany()
     

@@ -12,6 +12,7 @@ function Partita(villaggio, nomeTruppa, viewPartita, truppeAddestrate) {
     this.viewPartita = viewPartita;
     this.truppeAddestrate = truppeAddestrate;
     this.ammontareDistruzioneParziale = 0;
+    this.elisirRubato = 0;
 }
 
 Partita.prototype.setVillaggio = function (villaggio) {
@@ -62,9 +63,7 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
                     nomet = "";
                 } else {
                     console.log('vita difesa prima dell attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
-
                     oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
-
                     console.log('vita difesa dopo dell attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
                     if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
                         console.log(this.calcoloParzialePunteggio(oggettoTabelloneAux[i + 1][1]));
@@ -78,10 +77,12 @@ Partita.prototype.avanzamentoTruppeInserite = function (oggettoTabelloneAux, ogg
                 oggettoTabelloneAux[i + 1][1].vita = oggettoTabelloneAux[i + 1][1].vita - oggettoTabelloneAux[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
                 console.log('vita edificio dopo l attacco:    ' + JSON.stringify(oggettoTabelloneAux[i + 1][1].vita));
                 if (oggettoTabelloneAux[i + 1][1].vita <= 0) {
-                        console.log(this.calcoloParzialePunteggio(oggettoTabelloneAux[i + 1][1]));
+                             console.log(oggettoTabelloneAux[i + 1][1].nome);
 
-
-
+                        if(oggettoTabelloneAux[i + 1][1].nome ==='estrattore' || oggettoTabelloneAux[i + 1][1].nome ==='deposito'){
+                             this.elisirRubato = (parseInt(this.villaggio.elisirDisponibileAlGiocatore) * 25) / 100
+                             console.log(this.villaggio.elisirDisponibileAlGiocatore);
+                        }
 
                     this.morteOggettoSuCasella(oggettoTabelloneAux, i + 1);
                 }
@@ -95,16 +96,17 @@ for (i = 0; i < oggettoTabellone.length; i++) {
         console.log('partita terminata');
        risultati = 'Percentuale raggiunta: ' + this.ammontareDistruzioneParziale + '%';
         if(this.ammontareDistruzioneParziale === 50){
-          risultati = risultati + '  Hai vinto, hai totalizzato: 1 stella';
-
+          risultati = risultati + '  Hai vinto, hai totalizzato: 1 stella ';
         }else if(this.ammontareDistruzioneParziale > 50 && this.ammontareDistruzioneParziale <= 99){
-          risultati = risultati + '  Hai vinto, hai totalizzato: 2 stelle';
+          risultati = risultati + '  Hai vinto, hai totalizzato: 2 stelle ';
         }else if(this.ammontareDistruzioneParziale === 100){
-          risultati = risultati + '  Hai vinto, hai totalizzato: 3 stelle';
+          risultati = risultati + '  Hai vinto, hai totalizzato: 3 stelle ';
         }else if(this.ammontareDistruzioneParziale < 50){
-          risultati = risultati + '  Hai perso, peccato!';
+          risultati = risultati + '  Hai perso, peccato! ';
         }
+      risultati = risultati + 'Hai ottenuto '+this.elisirRubato+' Elisir'
       this.viewPartita.cambioPagina(risultati);
+
 }
 }
 
