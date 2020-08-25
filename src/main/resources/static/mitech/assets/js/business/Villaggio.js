@@ -9,6 +9,7 @@ function Villaggio(elisirDisponibileAlGiocatore, livelloMunicipio, tipoVillaggio
     this.elisirDisponibileAlGiocatore = elisirDisponibileAlGiocatore;
     this.livelloMunicipio = livelloMunicipio;
     this.tipoVillaggio = tipoVillaggio;
+    this.datiCaselle = datiCaselle;
     this.caselle = this.creaCaselle(datiCaselle);
   }
 
@@ -20,12 +21,6 @@ Villaggio.prototype.setLivelloMunicipio = function (livelloMunicipio) {
 
 Villaggio.prototype.setTipoVillaggio = function (tipoVillaggio) {
     this.tipoVillaggio = tipoVillaggio;
-    return this;
-};
-
-
-Villaggio.prototype.setCaselle = function (caselle) {
-    this.caselle = caselle;
     return this;
 };
 
@@ -46,11 +41,11 @@ Villaggio.prototype.getCaselle = function () {
     return this.caselle;
 };
 
-Villaggio.prototype.creaCaselle = function (datiCaselle) {
+Villaggio.prototype.creaCaselle = function () {
     var edifici = new Array();
     var i;
-    for (i = 0; i < datiCaselle.length; i++) {
-        edifici.push(new Array(datiCaselle[i].posizione, new Edificio(datiCaselle[i]['edificio'].nome, datiCaselle[i]['edificio'].tassoAggiornamentoColpi, datiCaselle[i]['edificio'].tassoAggiornamentoResistenza, datiCaselle[i]['edificio'].resistenzaLivelloIniziale, datiCaselle[i]['edificio'].colpiLivelloIniziale, this.livelloMunicipio, datiCaselle[i]['edificio']['percentualeDistruzionePunteggio'])));
+    for (i = 0; i < this.datiCaselle.length; i++) {
+        edifici.push(new Array(this.datiCaselle[i].posizione, new Edificio(this.datiCaselle[i]['edificio'].nome, this.datiCaselle[i]['edificio'].tassoAggiornamentoColpi, this.datiCaselle[i]['edificio'].tassoAggiornamentoResistenza, this.datiCaselle[i]['edificio'].resistenzaLivelloIniziale, this.datiCaselle[i]['edificio'].colpiLivelloIniziale, this.livelloMunicipio, this.datiCaselle[i]['edificio']['percentualeDistruzionePunteggio'])));
     
     }
     return edifici;

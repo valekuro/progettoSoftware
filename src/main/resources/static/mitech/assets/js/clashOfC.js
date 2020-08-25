@@ -16,7 +16,19 @@ jQuery(document).ready(function ($) {
         success: function (data) {
             const nuovaPartita = new Partita(nomet, data);
             nuovaPartita.iniziaPartita();
-            
+            var indiceTruppa = 0;
+            $('.casella').click(function () {
+                var $this = $(this);
+                var occupazione = $this.attr("id");
+                nuovaPartita.selezionareCasella(indiceTruppa, occupazione);
+
+            });
+            $('.truppeDisponibiliAttacco').click(function () {
+                var $this = $(this);
+                var nomeTruppaScelta = $this.attr("name");
+                nuovaPartita.selezionareTruppaDisponibile(nomeTruppaScelta);
+
+            });
         },
         error: function () {
             alert('C’è stato un’errore');

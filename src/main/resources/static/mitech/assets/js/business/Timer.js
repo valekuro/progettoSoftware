@@ -8,47 +8,12 @@ function Timer(durata) {
     this.durata = durata;
     this.distance;
     this.x;
+    this.partita;
 }
 
-Timer.prototype.start = function () {
-   var countDownDate = new Date();
-    countDownDate.setMinutes(countDownDate.getMinutes() + this.durata); // timestamp
-
-    countDownDate = new Date(countDownDate); // Date object
-
-    this.tempoRimanente(countDownDate);
-//document.getElementById("demo").innerHTML = countDownDate.getMinutes();
-
-// Update the count down every 1 second
-    //var x = setInterval(function () {
-     /* setInterval(function () {
-        // Get todays date and time
-        var now = new Date();
-
-        // Find the distance between now an the count down date
-        this.distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Output the result in an element with id="demo"
-        document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
-        
-        // If the count down is over, write some text 
-            if (distance < 0) {
-         clearInterval(x);
-         document.getElementById("demo").innerHTML = "Fine partita!";
-         this.scaduto=true;
-         var viewPartita = new ViewPartita();
-         var risultati;
-         
-         risultati = 'scaduto il tempo';
-         viewPartita.cambioPagina(risultati);
-         }
-    }, 1000);*/
-
+Timer.prototype.start = function (calMeth) {
+   
+    this.x = setInterval(()=>calMeth(), 80000);
 }
 
 
@@ -56,7 +21,7 @@ Timer.prototype.calcDistance = function(countDownDate){
         var now = new Date();
         // Find the distance between now an the count down date
         this.distance = countDownDate - now;
-       
+        this.partita();
       // console.log(countDownDate);
       //  console.log(now);
         // Time calculations for days, hours, minutes and seconds

@@ -10,6 +10,7 @@ function ViewPartita() {
 }
 
 ViewPartita.prototype.posizionaTruppaSuCasella = function (occupazione) {
+    console.log(occupazione)
     document.getElementById(occupazione).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
 }
 
@@ -62,6 +63,12 @@ ViewPartita.prototype.selezionaTruppa = function (indiceTruppa) {
     return indiceTruppa;
 }
 
+ViewPartita.prototype.vistaTimer = function(minutes, seconds){
+
+        document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s "; 
+}
+
+
 /*ViewPartita.prototype.cambioPagina = function() {
  
  $.ajax({
@@ -111,3 +118,4 @@ ViewPartita.prototype.mostraGuaritore = function (j, i, guaritore) {
 ViewPartita.prototype.mantieniNumeroEdificiDistrutti = function (numeroEdificiDistrutti) {
     document.getElementById('edificiDistrutti').innerHTML = 'Numero edifici distrutti: ' + numeroEdificiDistrutti;
 }
+
