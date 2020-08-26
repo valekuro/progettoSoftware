@@ -10,7 +10,6 @@ function ViewPartita() {
 }
 
 ViewPartita.prototype.posizionaTruppaSuCasella = function (occupazione) {
-    console.log(occupazione)
     document.getElementById(occupazione).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
 }
 
@@ -25,28 +24,25 @@ ViewPartita.prototype.visualizzaVillaggioNemico = function (caselleVillaggioNemi
     }
 }
 ViewPartita.prototype.animazioneLotta = function (nomeEdificio, i) {
-    document.getElementById(i).src = "/mitech/assets/images/villaggio/erba.png";
-    document.getElementById(i + 1).src = "/mitech/assets/images/truppe/" + nomet + ".gif";
-    document.getElementById(i + 2).src = "/mitech/assets/images/villaggio/" + nomeEdificio + ".gif";
+    document.getElementById(i).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
 }
 ViewPartita.prototype.camminoTruppa = function (i) {
     document.getElementById(i + 1).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
     document.getElementById(i).src = "/mitech/assets/images/villaggio/erba.png";
 }
 
-ViewPartita.prototype.edificioDistrutto = function (i) {
-    this.camminoTruppa(i);
-    document.getElementById(i + 2).src = "/mitech/assets/images/villaggio/erba.png";
+ViewPartita.prototype.ripristinoTruppaSopravvissutaStatica = function (truppa, i) {
+    document.getElementById(i+1).src = '/mitech/assets/images/truppe/'+truppa+'.png';
 }
-ViewPartita.prototype.truppaDistrutta = function (i, nomeEdificioSopravvissuto) {
-    document.getElementById(i + 1).src = "/mitech/assets/images/villaggio/erba.png";
-    document.getElementById(i + 2).src = "/mitech/assets/images/villaggio/erba.png";
-    document.getElementById(i + 3).src = '/mitech/assets/images/villaggio/' + nomeEdificioSopravvissuto + '.png';
 
-    /* document.getElementById(i + 2).src = "/mitech/assets/images/villaggio/erba.png";
-     document.getElementById(i + 1).src = "/mitech/assets/images/villaggio/erba.png";
-     document.getElementById(i).src = '/mitech/assets/images/villaggio/'+nomeEdificioSopravvissuto+'.png';*/
+ViewPartita.prototype.ripristinoEdificioSopravvissutoStatico = function (edificio, i) {
+    document.getElementById(i+1).src = '/mitech/assets/images/villaggio/'+edificio+'.png';
 }
+
+ViewPartita.prototype.distruzioneOggettoMorto = function (i) {
+    document.getElementById(i).src = "/mitech/assets/images/villaggio/erba.png";
+}
+
 
 ViewPartita.prototype.selezionaTruppa = function (indiceTruppa) {
     var truppaUtilizzata = document.getElementsByName(nomet);
