@@ -59,7 +59,8 @@ Partita.prototype.recuperaTruppeAddestrate = function () {
                         .setResistenzaLivelloIniziale(this.datiDiGioco[2][i].truppa.resistenzaLivelloIniziale)
                         .setColpiLivelloIniziale(this.datiDiGioco[2][i].truppa.colpiLivelloIniziale)
                         .setLivelloGiocatore(this.datiDiGioco[1].livelloGiocatore)
-                        .setVita());
+                        .setVita()
+                        .setTipologia(this.datiDiGioco[2][i].truppa.tipologia));
             }
         } else if (this.datiDiGioco[2][i].truppa.tipologia === "guarigione") {
             for (var q = 0; q < this.datiDiGioco[2][i].quantita; q++) {
@@ -73,7 +74,8 @@ Partita.prototype.recuperaTruppeAddestrate = function () {
                         .setResistenzaLivelloIniziale(this.datiDiGioco[2][i].truppa.resistenzaLivelloIniziale)
                         .setGuarigioneLivelloIniziale(this.datiDiGioco[2][i].truppa.guarigioneLivelloIniziale)
                         .setLivelloGiocatore(this.datiDiGioco[1].livelloGiocatore)
-                        .setVita());
+                        .setVita()
+                        .setTipologia(this.datiDiGioco[2][i].truppa.tipologia));
             }
         }
 
@@ -101,6 +103,7 @@ Partita.prototype.gestionePartita = function () {
     this.avanzamentoTruppeInserite();
 };
 Partita.prototype.selezionareCasella = function (indiceTruppa, occupazione) {
+    this.viewPartita.aggiornareBannerAiutoMossa('Battaglia in corso...')
     if (nomet === "" || nomet === undefined) {
         this.viewPartita.aggiornareBannerAiutoMossa("Non hai ancora selezionato la truppa!");
     } else {
@@ -128,19 +131,16 @@ Partita.prototype.selezionareTruppaDisponibile = function (nomeTruppaScelta) {
 }
 
 Partita.prototype.gestioneTruppeInattive = function () {
-    $('.truppeInactiveAttacco').click(function () {
-        nomet = "";
-        this.viewPartita.aggiornareBannerAiutoMossa("Hai già usato questa truppa e non è più disponibile, prova a selezionare una truppa diversa tra quelle disponibili!");
-    });
-
-
+    nomet = "";
+    this.viewPartita.aggiornareBannerAiutoMossa("Hai già usato questa truppa e non è più disponibile, prova a selezionare una truppa diversa tra quelle disponibili!");
 }
 
 Partita.prototype.avanzamentoTruppeInserite = function () {
     var i;
     var inserireErbaSuOggettoMortoSuCasella;
     for (i = 1; i < this.villaggio.caselle.length; i++) {
-        switch (this.villaggio.caselle[i][1].nome) {
+        console.log(this.villaggio.caselle[i][1]);
+        switch (this.villaggio.caselle[i][1].tipologia) {
             case "erba":
                 inserireErbaSuOggettoMortoSuCasella = this.villaggio.caselle[i][1];
                 if (this.villaggio.caselle[i - 1][1].nome === nomet && nomet !== undefined) {
@@ -151,32 +151,60 @@ Partita.prototype.avanzamentoTruppeInserite = function () {
                     this.villaggio.caselle[i - 1][1] = _.cloneDeep(erbaAux);
                 }
                 break;
-            case nomet:
+            case "attacco":
                 if (this.villaggio.caselle[i][1].vita > 0) {
-                    if (this.villaggio.caselle[i + 1][1].colpiLivelloIniziale !== 0) {
-                        console.log(this.villaggio.caselle[i][1].nome);
+                    if (this.villaggio.caselle[i + 1][1].nome !== 'erba') {
                         this.viewPartita.animazioneLotta(this.villaggio.caselle[i][1].nome, i + 1);
                         //console.log('vita difesa prima dell attacco: '+JSON.stringify(this.villaggio.caselle[i + 1][1].vita));
                         this.villaggio.caselle[i + 1][1].vita = this.villaggio.caselle[i + 1][1].vita - this.villaggio.caselle[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
+                        if (this.villaggio.caselle[i + 1][1].nome === 'estrattore' || this.villaggio.caselle[i + 1][1].nome === 'deposito') {
+                            this.elisirRubato = (parseInt(this.villaggio.elisirDisponibileAlGiocatore) * 25) / 100;
+                        }
                     }
                 } else {
-                    this.viewPartita.ripristinoEdificioSopravvissutoStatico(this.villaggio.caselle[i+1][1].nome,i+1);
+                    this.viewPartita.ripristinoEdificioSopravvissutoStatico(this.villaggio.caselle[i + 1][1].nome, i + 1);
                     this.viewPartita.distruzioneOggettoMorto(i + 1);
                     this.villaggio.caselle[i][1] = _.cloneDeep(inserireErbaSuOggettoMortoSuCasella);
                 }
                 break;
-            case "arcox":
+            case "difesa":
+            //case "cannone":
+            //case "tesla":
+            //case "eroe":
+            //case "mago":
                 if (this.villaggio.caselle[i][1].vita > 0) {
                     if (this.villaggio.caselle[i - 1][1].nome === nomet) {
                         this.viewPartita.animazioneLotta(this.villaggio.caselle[i][1].nome, i + 1);
                         this.villaggio.caselle[i - 1][1].vita = this.villaggio.caselle[i - 1][1].vita - this.villaggio.caselle[i][1].calcoloColpiTotale(this.villaggio['livelloMunicipio']);
                     }
                 } else {
-                    this.viewPartita.ripristinoTruppaSopravvissutaStatica(this.villaggio.caselle[i+1][1].nome,i);
+                    this.viewPartita.ripristinoTruppaSopravvissutaStatica(this.villaggio.caselle[i + 1][1].nome, i);
                     this.viewPartita.distruzioneOggettoMorto(i + 1);
                     this.villaggio.caselle[i][1] = _.cloneDeep(inserireErbaSuOggettoMortoSuCasella);
+                     this.edificiDistrutti = parseInt(this.edificiDistrutti) + 1;
+                     this.viewPartita.mantieniNumeroEdificiDistrutti(this.edificiDistrutti);
+
+                }
+            break;
+            
+           case "costruzione":
+           //case "laboratorio":
+           //case "caserma":
+           case "municipio":
+                if (this.villaggio.caselle[i][1].vita <= 0) {
+                    this.viewPartita.ripristinoTruppaSopravvissutaStatica(this.villaggio.caselle[i + 1][1].nome, i);
+                    this.viewPartita.distruzioneOggettoMorto(i + 1);
+                    this.villaggio.caselle[i][1] = _.cloneDeep(inserireErbaSuOggettoMortoSuCasella);
+                     this.edificiDistrutti = parseInt(this.edificiDistrutti) + 1;
+                     this.viewPartita.mantieniNumeroEdificiDistrutti(this.edificiDistrutti);
+
                 }
                 break;
+            //case this.villaggio.caselle[i][1].colpiLivelloIniziale === 0 :
+            //case "costruttore":
+           // case "laboratorio":
+          
+        
         }
     }
 }

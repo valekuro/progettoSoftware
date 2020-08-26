@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-function Edificio(nome, tassoAggiornamentoColpi, tassoAggiornamentoResistenza, resistenzaLivelloIniziale, colpiLivelloIniziale, livelloGiocatore, percentualeDistruzionePunteggio) {
+function Edificio(nome, tassoAggiornamentoColpi, tassoAggiornamentoResistenza, resistenzaLivelloIniziale, colpiLivelloIniziale, livelloGiocatore, percentualeDistruzionePunteggio, tipologia) {
 
    // this.posizione = posizione;
 
@@ -15,6 +15,7 @@ function Edificio(nome, tassoAggiornamentoColpi, tassoAggiornamentoResistenza, r
     this.vita = this.calcoloVitaTotale(livelloGiocatore);
     this.vitaRimanente = 1;
     this.percentualeDistruzionePunteggio = percentualeDistruzionePunteggio;
+    this.tipologia = tipologia;
 }
 
 Edificio.prototype.setNome = function (nome) {
@@ -46,6 +47,12 @@ Edificio.prototype.setVitaRimanente = function (vitaRimanente) {
     this.vitaRimanente = vitaRimanente;
     return this;
 };
+
+Edificio.prototype.setTipologia = function (tipologia) {
+    this.tipologia = tipologia;
+    return this;
+};
+
 Edificio.prototype.calcoloVitaTotale = function (livelloGiocatore) {
     return this.resistenzaLivelloIniziale + (this.tassoAggiornamentoResistenza * livelloGiocatore);
 };

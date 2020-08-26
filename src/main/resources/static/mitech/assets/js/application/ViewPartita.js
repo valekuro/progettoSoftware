@@ -24,11 +24,17 @@ ViewPartita.prototype.visualizzaVillaggioNemico = function (caselleVillaggioNemi
     }
 }
 ViewPartita.prototype.animazioneLotta = function (nomeEdificio, i) {
-    document.getElementById(i).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
+    if(nomeEdificio === nomet){
+            document.getElementById(i-1).src = '/mitech/assets/images/villaggio/erba.png';
+            document.getElementById(i).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
+    } else {
+            document.getElementById(i).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
+    }
 }
 ViewPartita.prototype.camminoTruppa = function (i) {
+    document.getElementById(i).src = '/mitech/assets/images/villaggio/erba.png';
     document.getElementById(i + 1).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
-    document.getElementById(i).src = "/mitech/assets/images/villaggio/erba.png";
+    document.getElementById(i+2).src = "/mitech/assets/images/villaggio/erba.png";
 }
 
 ViewPartita.prototype.ripristinoTruppaSopravvissutaStatica = function (truppa, i) {

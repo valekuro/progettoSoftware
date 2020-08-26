@@ -29,6 +29,10 @@ jQuery(document).ready(function ($) {
                 nuovaPartita.selezionareTruppaDisponibile(nomeTruppaScelta);
 
             });
+            
+            $('.truppeInactiveAttacco').click(function () {    
+                nuovaPartita.gestioneTruppeInattive();
+            });
         },
         error: function () {
             alert('C’è stato un’errore');
