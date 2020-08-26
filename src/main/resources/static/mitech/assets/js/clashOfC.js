@@ -23,6 +23,11 @@ jQuery(document).ready(function ($) {
                 nuovaPartita.selezionareCasella(indiceTruppa, occupazione);
 
             });
+            
+             /*$('.step').click(function () {
+                 nuovaPartita.avanzamentoTruppeInserite();
+
+            });*/
             $('.truppeDisponibiliAttacco').click(function () {
                 var $this = $(this);
                 var nomeTruppaScelta = $this.attr("name");

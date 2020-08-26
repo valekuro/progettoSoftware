@@ -42,13 +42,13 @@ Villaggio.prototype.getCaselle = function () {
 };
 
 Villaggio.prototype.creaCaselle = function () {
-    var edifici = new Array();
+    var caselle = new Array();
     var i;
     for (i = 0; i < this.datiCaselle.length; i++) {
-        edifici.push(new Array(this.datiCaselle[i].posizione, new Edificio(this.datiCaselle[i]['edificio'].nome, this.datiCaselle[i]['edificio'].tassoAggiornamentoColpi, this.datiCaselle[i]['edificio'].tassoAggiornamentoResistenza, this.datiCaselle[i]['edificio'].resistenzaLivelloIniziale, this.datiCaselle[i]['edificio'].colpiLivelloIniziale, this.livelloMunicipio, this.datiCaselle[i]['edificio']['percentualeDistruzionePunteggio'], this.datiCaselle[i]['edificio']['tipologia'])));
+        caselle.push(new Casella(this.datiCaselle[i].posizione, new Edificio(this.datiCaselle[i]['edificio'].nome, this.datiCaselle[i]['edificio'].tassoAggiornamentoColpi, this.datiCaselle[i]['edificio'].tassoAggiornamentoResistenza, this.datiCaselle[i]['edificio'].resistenzaLivelloIniziale, this.datiCaselle[i]['edificio'].colpiLivelloIniziale, this.livelloMunicipio, this.datiCaselle[i]['edificio']['percentualeDistruzionePunteggio'], this.datiCaselle[i]['edificio']['tipologia']), 'ok'));
     
     }
-    return edifici;
+    return caselle;
 }
 
 /*]]>*/
