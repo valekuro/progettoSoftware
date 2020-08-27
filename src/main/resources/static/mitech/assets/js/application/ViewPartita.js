@@ -23,6 +23,15 @@ ViewPartita.prototype.visualizzaVillaggioNemico = function (caselleVillaggioNemi
        document.getElementById(caselleVillaggioNemico[i].posizione).src = "/mitech/assets/images/villaggio/" + caselleVillaggioNemico[i].oggettoOccupante.nome + ".png";
     }
 }
+
+
+ViewPartita.prototype.visualizzaPropostaVillaggioNemico = function (posizione, oggettoOccupante) {
+    var i;
+    for (i = 0; i < 36; i++) {
+       document.getElementById(posizione).src = "/mitech/assets/images/villaggio/" + oggettoOccupante;
+    }
+}
+
 ViewPartita.prototype.animazioneLotta = function (nomeEdificio, i) {
     if(nomeEdificio === nomet){
             document.getElementById(i-1).src = '/mitech/assets/images/villaggio/erba.png';

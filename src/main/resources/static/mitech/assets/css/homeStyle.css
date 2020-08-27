@@ -1,0 +1,119 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27 ago 2020, 09:59:25
+    Author     : Valentina
+
+palette:
+scuri:
+#2b2024
+#a80038
+chiari:
+#fd0054
+#fbf9fa
+*/
+
+.menuStarted{
+    padding: 10% 10% 10% 10%;
+    border: 1px solid;
+    border-color: red;
+}
+
+.attaccoEsercitazione{
+    border: 3px solid;
+    border-color: green;
+}
+
+.intestazione{
+    padding: 3%;
+}
+.headerLogoClash{
+    width: 100% !important;
+}
+
+.wrapdue {
+
+    background: linear-gradient(90deg, #a22b1b 50%, #e6a341  50%);
+    position: relative;
+    padding: 40px;
+    box-sizing: border-box;
+}
+.wrapdue:before,
+.wrapdue:after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 10px;
+    background: linear-gradient(90deg, #e6a341 50%, #a22b1b 50%);
+    left: 25%;
+}
+.wrapdue:before {top: 15px;}
+.wrapdue:after {bottom: 15px;}
+.wrapdue p {
+    background: white;
+    margin: 0;
+    padding: 50px 0;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    color: #7A7B82;
+    line-height: 1.5;
+}
+
+
+a.button25 {
+position: relative;
+display: inline-block;
+width: 10em;
+height: 2.5em;
+line-height: 2.5em;
+vertical-align: middle;
+text-align: center;
+text-decoration: none;
+text-shadow: 0 -1px 1px #777;
+color: #fbf9fa !important;
+outline: none;
+border: 2px solid #be5b27;
+border-radius: 5px;
+box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
+background: linear-gradient(#e6a341, #be5b27 48%, #a22b1b 52%, #86594d);
+}
+a.button25:active {
+top: .1em;
+left: .1em;
+box-shadow: 0 0 0 60px rgba(0,0,0,.05) inset;
+}
+
+
+
+
+.informazioni{
+    width: 10%;
+}
+
+.helpWarnings{
+    font-family: fantasy;
+    font-size: 20px;
+    display: inline;
+}
+
+.bottoneMenu{
+    padding: 5% 0 !important;
+}
+
+.vaffanculo{
+        width: 60px;
+    padding: 0px;
+    display: inline-block;
+}
+
+
+#quantitaTruppaDisponibile {
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%
+    }
