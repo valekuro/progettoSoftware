@@ -13,24 +13,14 @@ ViewPartita.prototype.posizionaTruppaSuCasella = function (occupazione) {
     document.getElementById(occupazione).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
 }
 
-ViewPartita.prototype.aggiornareBannerAiutoMossa = function (frase) {
+ViewPartita.prototype.informazioniStatoPartita = function (frase) {
     document.getElementById('warnings').innerHTML = frase;
 }
 
-ViewPartita.prototype.visualizzaVillaggioNemico = function (caselleVillaggioNemico) {
-    var i;
-    for (i = 0; i < 36; i++) {
-       document.getElementById(caselleVillaggioNemico[i].posizione).src = "/mitech/assets/images/villaggio/" + caselleVillaggioNemico[i].oggettoOccupante.nome + ".png";
-    }
+ViewPartita.prototype.visualizzaVillaggioNemico = function (posizione, nome) {
+       document.getElementById(posizione).src = "/mitech/assets/images/villaggio/" + nome + ".png";
 }
 
-
-ViewPartita.prototype.visualizzaPropostaVillaggioNemico = function (posizione, oggettoOccupante) {
-    var i;
-    for (i = 0; i < 36; i++) {
-       document.getElementById(posizione).src = "/mitech/assets/images/villaggio/" + oggettoOccupante;
-    }
-}
 
 ViewPartita.prototype.animazioneLotta = function (nomeEdificio, i) {
     if(nomeEdificio === nomet){
@@ -45,7 +35,6 @@ ViewPartita.prototype.camminoTruppa = function (oggettoOccupante, i) {
     document.getElementById(36).src = '/mitech/assets/images/villaggio/erba.png';
     document.getElementById(1).src = '/mitech/assets/images/truppe/thumbnails/' + oggettoOccupante + '.png';
     }else{
-   
     document.getElementById(i).src = '/mitech/assets/images/villaggio/erba.png';
     document.getElementById(i + 1).src = '/mitech/assets/images/truppe/thumbnails/' + oggettoOccupante + '.png';
     }
@@ -69,11 +58,12 @@ ViewPartita.prototype.selezionaTruppa = function (indiceTruppa) {
     var truppaInattiva = document.getElementsByName(nomet + 'Inactive');
     if (truppaUtilizzata.length > 1) {
         truppaUtilizzata[indiceTruppa].style.display = 'none';
-        truppaInattiva[indiceTruppa].style.display = 'block';
+       // document.getElementsByName('quantitaTruppaDisponibile').style.display = 'none';
+        truppaInattiva[indiceTruppa].style.display = 'inline';
         indiceTruppa = indiceTruppa + 1;
     } else {
         truppaUtilizzata[0].style.display = 'none';
-        truppaInattiva[0].style.display = 'block';
+        truppaInattiva[0].style.display = 'inline';
 
     }
     return indiceTruppa;

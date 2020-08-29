@@ -65,26 +65,26 @@ chiari:
 
 
 a.button25 {
-position: relative;
-display: inline-block;
-width: 10em;
-height: 2.5em;
-line-height: 2.5em;
-vertical-align: middle;
-text-align: center;
-text-decoration: none;
-text-shadow: 0 -1px 1px #777;
-color: #fbf9fa !important;
-outline: none;
-border: 2px solid #be5b27;
-border-radius: 5px;
-box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
-background: linear-gradient(#e6a341, #be5b27 48%, #a22b1b 52%, #86594d);
+    position: relative;
+    display: inline-block;
+    width: 10em;
+    height: 2.5em;
+    line-height: 2.5em;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 -1px 1px #777;
+    color: #fbf9fa !important;
+    outline: none;
+    border: 2px solid #be5b27;
+    border-radius: 5px;
+    box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
+    background: linear-gradient(#e6a341, #be5b27 48%, #a22b1b 52%, #86594d);
 }
 a.button25:active {
-top: .1em;
-left: .1em;
-box-shadow: 0 0 0 60px rgba(0,0,0,.05) inset;
+    top: .1em;
+    left: .1em;
+    box-shadow: 0 0 0 60px rgba(0,0,0,.05) inset;
 }
 
 
@@ -104,16 +104,30 @@ box-shadow: 0 0 0 60px rgba(0,0,0,.05) inset;
     padding: 5% 0 !important;
 }
 
-.vaffanculo{
-        width: 60px;
+.truppeContainer{
+    width: 60px;
     padding: 0px;
     display: inline-block;
 }
 
 
 #quantitaTruppaDisponibile {
-      width: 20px;
-      height: 20px;
-      background: red;
-      border-radius: 50%
-    }
+    width: 20px;
+    height: 20px;
+    background: #e6a341;
+    border-radius: 50%;
+    border: 2px solid;
+    border-color: #a22b1b;
+        margin-top: -20px;
+    margin-left: 32px;
+    position: absolute;
+}
+.paragrafoQuantitaTruppaDisponibile{
+    color: #a22b1b;
+    font-size: 11px;
+    margin-left: 4px;
+}
+
+#truppeDisponibiliAttacco{
+    position:relative;
+}
