@@ -7,21 +7,21 @@
 function Timer(durata) {
     this.durata = durata;
     this.distance;
-    this.x;
+    this.tempo;
     this.partita;
 }
 
 Timer.prototype.start = function (calMeth) {
    
-    this.x = setInterval(()=>calMeth(), 80000);
+    this.tempo = setInterval(()=>calMeth(), 1000);
 }
 
 
-Timer.prototype.calcDistance = function(countDownDate){
+Timer.prototype.calcolaDistanza = function(countDownDate){
         var now = new Date();
         // Find the distance between now an the count down date
         this.distance = countDownDate - now;
-        this.partita();
+       // this.partita();
       // console.log(countDownDate);
       //  console.log(now);
         // Time calculations for days, hours, minutes and seconds
@@ -31,11 +31,13 @@ Timer.prototype.calcDistance = function(countDownDate){
         
       //  console.log(this.distance);
         // Output the result in an element with id="demo"
-        document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s "; 
+        document.getElementById('demo').innerHTML = minutes + "m " + seconds + "s ";
+        var viewPartita = new ViewPartita();
+        viewPartita.aggiornaInformazioniStatoPartita('demo', minutes + "m " + seconds + "s ");
 }
 Timer.prototype.tempoRimanente = function (countDownDate) {
     var test = this;
-    this.x = setInterval(function(){test.calcDistance(countDownDate);}, 1000);
+    this.tempo = setInterval(function(){test.calcolaDistanza(countDownDate);}, 1000);
 
 }
 

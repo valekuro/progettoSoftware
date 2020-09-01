@@ -14,8 +14,9 @@ jQuery(document).ready(function ($) {
         dataType: "json",
         url: '/attacco_esercitazione/partitavillaggioesercitazione',
         success: function (data) {
-            const nuovaPartita = new Partita(nomet, data);
+            const nuovaPartita = new Partita(data);
             nuovaPartita.iniziaPartita();
+
             var indiceTruppa = 0;
             $('.casella').click(function () {
                 var $this = $(this);
@@ -23,19 +24,19 @@ jQuery(document).ready(function ($) {
                 nuovaPartita.selezionareCasella(indiceTruppa, occupazione);
 
             });
-            
-             /*$('.step').click(function () {
-                 nuovaPartita.avanzamentoTruppeInserite();
 
-            });*/
+            /*$('.step').click(function () {
+             nuovaPartita.avanzamentoTruppeInserite();
+             
+             });*/
             $('.truppeDisponibiliAttacco').click(function () {
                 var $this = $(this);
                 var nomeTruppaScelta = $this.attr("name");
                 nuovaPartita.selezionareTruppaDisponibile(nomeTruppaScelta);
 
             });
-            
-            $('.truppeInactiveAttacco').click(function () {    
+
+            $('.truppeInactiveAttacco').click(function () {
                 nuovaPartita.gestioneTruppeInattive();
             });
         },

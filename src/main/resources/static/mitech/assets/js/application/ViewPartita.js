@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var nomet;
-
 
 function ViewPartita() {
 }
 
-ViewPartita.prototype.posizionaTruppaSuCasella = function (occupazione) {
-    document.getElementById(occupazione).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
+ViewPartita.prototype.posizionaTruppaSuCasella = function (occupazione, truppa) {
+    document.getElementById(occupazione).src = '/mitech/assets/images/truppe/thumbnails/' + truppa + '.png';
 }
 
-ViewPartita.prototype.informazioniStatoPartita = function (frase) {
-    document.getElementById('warnings').innerHTML = frase;
+ViewPartita.prototype.aggiornaInformazioniStatoPartita = function (id, frase) {
+    //ricorda:         document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s "; 
+    document.getElementById(id).innerHTML = frase;
 }
 
 ViewPartita.prototype.visualizzaVillaggioNemico = function (posizione, nome) {
@@ -22,30 +21,26 @@ ViewPartita.prototype.visualizzaVillaggioNemico = function (posizione, nome) {
 }
 
 
-ViewPartita.prototype.animazioneLotta = function (nomeEdificio, i) {
-    if(nomeEdificio === nomet){
-            document.getElementById(i-1).src = '/mitech/assets/images/villaggio/erba.png';
-            document.getElementById(i).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
-    } else {
-            document.getElementById(i).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
-    }
-}
-ViewPartita.prototype.camminoTruppa = function (oggettoOccupante, i) {
-    if(i===0){
+ViewPartita.prototype.animazioneLottaTruppa = function (nomeEdificio, indice) {
+            document.getElementById(indice-1).src = '/mitech/assets/images/villaggio/erba.png';
+            document.getElementById(indice).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
+};
+
+ViewPartita.prototype.animazioneLottaEdificio = function (nomeEdificio, indice) {
+            document.getElementById(indice).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
+};
+ViewPartita.prototype.camminoTruppa = function (oggettoOccupante, indice) {
+    if(indice===0){
     document.getElementById(36).src = '/mitech/assets/images/villaggio/erba.png';
-    document.getElementById(1).src = '/mitech/assets/images/truppe/thumbnails/' + oggettoOccupante + '.png';
+    document.getElementById(indice+1).src = '/mitech/assets/images/truppe/thumbnails/' + oggettoOccupante + '.png';
     }else{
-    document.getElementById(i).src = '/mitech/assets/images/villaggio/erba.png';
-    document.getElementById(i + 1).src = '/mitech/assets/images/truppe/thumbnails/' + oggettoOccupante + '.png';
+    document.getElementById(indice).src = '/mitech/assets/images/villaggio/erba.png';
+    document.getElementById(indice + 1).src = '/mitech/assets/images/truppe/thumbnails/' + oggettoOccupante + '.png';
     }
 }
 
-ViewPartita.prototype.ripristinoTruppaSopravvissutaStatica = function (truppa, i) {
-    document.getElementById(i+1).src = '/mitech/assets/images/truppe/'+truppa+'.png';
-}
-
-ViewPartita.prototype.ripristinoEdificioSopravvissutoStatico = function (edificio, i) {
-    document.getElementById(i+1).src = '/mitech/assets/images/villaggio/'+edificio+'.png';
+ViewPartita.prototype.ripristinoOggettoSopravvissuto = function (tipo, truppa, indice) {
+    document.getElementById(indice+1).src = '/mitech/assets/images/'+tipo+'/'+truppa+'.png';
 }
 
 ViewPartita.prototype.distruzioneOggettoMorto = function (i) {
@@ -53,9 +48,9 @@ ViewPartita.prototype.distruzioneOggettoMorto = function (i) {
 }
 
 
-ViewPartita.prototype.selezionaTruppa = function (indiceTruppa) {
-    var truppaUtilizzata = document.getElementsByName(nomet);
-    var truppaInattiva = document.getElementsByName(nomet + 'Inactive');
+ViewPartita.prototype.selezionaTruppa = function (indiceTruppa, nomeTruppa) {
+    var truppaUtilizzata = document.getElementsByName(nomeTruppa);
+    var truppaInattiva = document.getElementsByName(nomeTruppa + 'Inactive');
     if (truppaUtilizzata.length > 1) {
         truppaUtilizzata[indiceTruppa].style.display = 'none';
        // document.getElementsByName('quantitaTruppaDisponibile').style.display = 'none';
@@ -69,10 +64,6 @@ ViewPartita.prototype.selezionaTruppa = function (indiceTruppa) {
     return indiceTruppa;
 }
 
-ViewPartita.prototype.vistaTimer = function(minutes, seconds){
-
-        document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s "; 
-}
 
 
 /*ViewPartita.prototype.cambioPagina = function() {
@@ -109,7 +100,7 @@ ViewPartita.prototype.visualizzaRisultatiPartita = function (ammontareDistruzion
         }else if(ammontareDistruzioneParziale < 50){
           risultati = risultati + '  Hai perso, peccato! ';
         }
-      risultati = risultati + 'Hai ottenuto '+elisirRubato+' Elisir';
+      risultati = risultati + 'Se fosse stata una partita vera avresti ottenuto '+elisirRubato+' Elisir';
     document.getElementById('villaggio').style.display = 'none';
     document.getElementById('risultatiEsercitazione').style.display = 'block';
     document.getElementById('risultatiEsercitazione').innerHTML = risultati;
@@ -117,10 +108,7 @@ ViewPartita.prototype.visualizzaRisultatiPartita = function (ammontareDistruzion
     document.getElementById('warnings').style.display = 'none';
 }
 
-ViewPartita.prototype.mostraGuaritore = function (j, i, guaritore) {
-    document.getElementById(j).src = '/mitech/assets/images/truppe/thumbnails/' + guaritore + '.png';
-    document.getElementById(i).src = '/mitech/assets/images/truppe/thumbnails/' + nomet + '.png';
-}
+
 ViewPartita.prototype.mantieniNumeroEdificiDistrutti = function (numeroEdificiDistrutti) {
     document.getElementById('edificiDistrutti').innerHTML = 'Numero edifici distrutti: ' + numeroEdificiDistrutti;
 }

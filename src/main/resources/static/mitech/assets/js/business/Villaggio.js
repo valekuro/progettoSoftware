@@ -10,7 +10,7 @@ function Villaggio(elisirDisponibileAlGiocatore, livelloMunicipio, tipoVillaggio
     this.livelloMunicipio = livelloMunicipio;
     this.tipoVillaggio = tipoVillaggio;
     this.datiCaselle = datiCaselle;
-    this.caselle = this.creaCaselle(datiCaselle);
+   // this.caselle = this.creaCaselle(datiCaselle);
   }
 
 
@@ -24,7 +24,7 @@ Villaggio.prototype.setTipoVillaggio = function (tipoVillaggio) {
     return this;
 };
 
-Villaggio.prototype.setElisirDisponibileAlGiocatore = function (caselle) {
+Villaggio.prototype.setElisirDisponibileAlGiocatore = function (elisirDisponibileAlGiocatore) {
     this.elisirDisponibileAlGiocatore = elisirDisponibileAlGiocatore;
     return this;
 };
@@ -41,7 +41,7 @@ Villaggio.prototype.getCaselle = function () {
     return this.caselle;
 };
 
-Villaggio.prototype.creaCaselle = function () {
+/*Villaggio.prototype.creaCaselle = function () {
     var caselle = new Array();
     var i;
     for (i = 0; i < this.datiCaselle.length; i++) {
