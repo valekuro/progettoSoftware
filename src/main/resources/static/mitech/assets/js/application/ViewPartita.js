@@ -17,31 +17,32 @@ ViewPartita.prototype.aggiornaInformazioniStatoPartita = function (id, frase) {
 }
 
 ViewPartita.prototype.visualizzaVillaggioNemico = function (posizione, nome) {
-     document.getElementById(posizione).src = "/mitech/assets/images/villaggio/" + nome + ".png";
-       
+    document.getElementById(posizione).src = "/mitech/assets/images/villaggio/" + nome + ".png";
+
 }
 
 
 ViewPartita.prototype.animazioneLottaTruppa = function (nomeEdificio, indice) {
-            document.getElementById(indice-1).src = '/mitech/assets/images/villaggio/erba.png';
-            document.getElementById(indice).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
+    document.getElementById(indice - 1).src = '/mitech/assets/images/villaggio/erba.png';
+    document.getElementById(indice).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
 };
 
 ViewPartita.prototype.animazioneLottaEdificio = function (nomeEdificio, indice) {
-            document.getElementById(indice).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
+    document.getElementById(indice).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
 };
 ViewPartita.prototype.camminoTruppa = function (oggettoOccupante, indice) {
-    if(indice===0){
-    document.getElementById(36).src = '/mitech/assets/images/villaggio/erba.png';
-    document.getElementById(indice+1).src = '/mitech/assets/images/truppe/thumbnails/' + oggettoOccupante + '.png';
-    }else{
-    document.getElementById(indice).src = '/mitech/assets/images/villaggio/erba.png';
-    document.getElementById(indice + 1).src = '/mitech/assets/images/truppe/thumbnails/' + oggettoOccupante + '.png';
+    console.log(indice);
+    if (indice === 0) {
+        document.getElementById(36).src = '/mitech/assets/images/villaggio/erba.png';
+        document.getElementById(indice + 1).src = '/mitech/assets/images/truppe/thumbnails/' + oggettoOccupante + '.png';
+    } else {
+        document.getElementById(indice).src = '/mitech/assets/images/villaggio/erba.png';
+        document.getElementById(indice + 1).src = '/mitech/assets/images/truppe/thumbnails/' + oggettoOccupante + '.png';
     }
 }
 
 ViewPartita.prototype.ripristinoOggettoSopravvissuto = function (tipo, truppa, indice) {
-    document.getElementById(indice+1).src = '/mitech/assets/images/'+tipo+'/'+truppa+'.png';
+    document.getElementById(indice + 1).src = '/mitech/assets/images/' + tipo + '/' + truppa + '.png';
 }
 
 ViewPartita.prototype.distruzioneOggettoMorto = function (i) {
@@ -54,7 +55,7 @@ ViewPartita.prototype.selezionaTruppa = function (indiceTruppa, nomeTruppa) {
     var truppaInattiva = document.getElementsByName(nomeTruppa + 'Inactive');
     if (truppaUtilizzata.length > 1) {
         truppaUtilizzata[indiceTruppa].style.display = 'none';
-       // document.getElementsByName('quantitaTruppaDisponibile').style.display = 'none';
+        // document.getElementsByName('quantitaTruppaDisponibile').style.display = 'none';
         truppaInattiva[indiceTruppa].style.display = 'inline';
         indiceTruppa = indiceTruppa + 1;
     } else {
@@ -90,18 +91,18 @@ ViewPartita.prototype.selezionaTruppa = function (indiceTruppa, nomeTruppa) {
  }*/
 
 ViewPartita.prototype.visualizzaRisultatiPartita = function (ammontareDistruzioneParziale, elisirRubato) {
-     var risultati;
-       risultati = 'Percentuale raggiunta: ' + ammontareDistruzioneParziale + '%';
-        if(ammontareDistruzioneParziale === 50){
-          risultati = risultati + '  Hai vinto, hai totalizzato: 1 stella ';
-        }else if(ammontareDistruzioneParziale > 50 && ammontareDistruzioneParziale <= 99){
-          risultati = risultati + '  Hai vinto, hai totalizzato: 2 stelle ';
-        }else if(ammontareDistruzioneParziale === 100){
-          risultati = risultati + '  Hai vinto, hai totalizzato: 3 stelle ';
-        }else if(ammontareDistruzioneParziale < 50){
-          risultati = risultati + '  Hai perso, peccato! ';
-        }
-      risultati = risultati + 'Se fosse stata una partita vera avresti ottenuto '+elisirRubato+' Elisir';
+    var risultati;
+    risultati = 'Percentuale raggiunta: ' + ammontareDistruzioneParziale + '%';
+    if (ammontareDistruzioneParziale === 50) {
+        risultati = risultati + '  Hai vinto, hai totalizzato: 1 stella ';
+    } else if (ammontareDistruzioneParziale > 50 && ammontareDistruzioneParziale <= 99) {
+        risultati = risultati + '  Hai vinto, hai totalizzato: 2 stelle ';
+    } else if (ammontareDistruzioneParziale === 100) {
+        risultati = risultati + '  Hai vinto, hai totalizzato: 3 stelle ';
+    } else if (ammontareDistruzioneParziale < 50) {
+        risultati = risultati + '  Hai perso, peccato! ';
+    }
+    risultati = risultati + 'Se fosse stata una partita vera avresti ottenuto ' + elisirRubato + ' Elisir';
     document.getElementById('villaggio').style.display = 'none';
     document.getElementById('risultatiEsercitazione').style.display = 'block';
     document.getElementById('risultatiEsercitazione').innerHTML = risultati;
