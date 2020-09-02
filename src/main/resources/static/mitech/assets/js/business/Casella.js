@@ -5,11 +5,10 @@
  */
 
 
-function Casella(posizione, oggettoOccupante, statoCasella) {
+function Casella(posizione, oggettoOccupante) {
 
     this.posizione = posizione;
     this.oggettoOccupante = oggettoOccupante;
-    this.statoCasella = statoCasella;
 }
 
 Casella.prototype.setPosizione = function (posizione) {
@@ -20,7 +19,4 @@ Casella.prototype.setOggettoOccupante = function (oggettoOccupante) {
     this.oggettoOccupante = oggettoOccupante;
     return this;
 };
-Casella.prototype.setStatoCasella = function (statoCasella) {
-    this.statoCasella = statoCasella;
-    return this;
-};
+

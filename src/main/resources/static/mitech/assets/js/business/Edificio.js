@@ -3,60 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-function Edificio(nome, tassoAggiornamentoColpi, tassoAggiornamentoResistenza, resistenzaLivelloIniziale, colpiLivelloIniziale, livelloGiocatore, percentualeDistruzionePunteggio, tipologia) {
+function Edificio(nome, tassoAggiornamentoColpi, tassoAggiornamentoResistenza, resistenzaLivelloIniziale, colpiLivelloIniziale, tipologia, livelloGiocatore, percentualeDistruzionePunteggio) {
 
    // this.posizione = posizione;
-
-    this.nome = nome;
-    this.tassoAggiornamentoColpi = tassoAggiornamentoColpi;
-    this.tassoAggiornamentoResistenza = tassoAggiornamentoResistenza;
-    this.resistenzaLivelloIniziale = resistenzaLivelloIniziale;
-    this.colpiLivelloIniziale = colpiLivelloIniziale;
-    this.vita = this.calcoloVitaTotale(livelloGiocatore);
-    this.vitaRimanente = 1;
     this.percentualeDistruzionePunteggio = percentualeDistruzionePunteggio;
-    this.tipologia = tipologia;
+    ProprietaOggettoSuCaselle.call(this, nome, tassoAggiornamentoResistenza, resistenzaLivelloIniziale, tipologia,livelloGiocatore,tassoAggiornamentoColpi,  colpiLivelloIniziale);
+
+   
 }
+Edificio.prototype = Object.create(ProprietaOggettoSuCaselle.prototype);
+Object.defineProperty(Edificio.prototype, 'constructor', { 
+    value: Edificio, 
+    enumerable: true, // so that it does not appear in 'for in' loop
+    writable: true });
 
-Edificio.prototype.setNome = function (nome) {
-    this.nome = nome;
-    return this;
-};
-
-Edificio.prototype.setTassoAggiornamentoColpi = function (tassoAggiornamentoColpi) {
-    this.tassoAggiornamentoColpi = tassoAggiornamentoColpi;
-    return this;
-};
-
-Edificio.prototype.setResistenzaLivelloIniziale = function (resistenzaLivelloIniziale) {
-    this.resistenzaLivelloIniziale = resistenzaLivelloIniziale;
-    return this;
-};
-
-Edificio.prototype.setColpiLivelloIniziale = function (colpiLivelloIniziale) {
-    this.colpiLivelloIniziale = colpiLivelloIniziale;
-    return this;
-};
-
-Edificio.prototype.setPercentualeDistruzionePunteggio = function (percentualeDistruzionePunteggio) {
-    this.percentualeDistruzionePunteggio = percentualeDistruzionePunteggio;
-    return this;
-};
-
-Edificio.prototype.setVitaRimanente = function (vitaRimanente) {
-    this.vitaRimanente = vitaRimanente;
-    return this;
-};
-
-Edificio.prototype.setTipologia = function (tipologia) {
-    this.tipologia = tipologia;
-    return this;
-};
-
-Edificio.prototype.calcoloVitaTotale = function (livelloGiocatore) {
-    return this.resistenzaLivelloIniziale + (this.tassoAggiornamentoResistenza * livelloGiocatore);
-};
-
-Edificio.prototype.calcoloColpiTotale = function (livelloGiocatore) {
-    return this.colpiLivelloIniziale + (this.tassoAggiornamentoColpi * livelloGiocatore);
-};

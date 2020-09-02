@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-let Truppa = function(nome, quantita, tassoAggiornamentoColpi,guarigioneLivelloIniziale, tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia, livelloGiocatore) {
-
-    this.nome = nome;
+let Truppa = function(nome, quantita, tassoAggiornamentoColpi, guarigioneLivelloIniziale, tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia, vita, livelloGiocatore, colpi) {
+  ProprietaOggettoSuCaselle.call(this, nome, tassoAggiornamentoResistenza, resistenzaLivelloIniziale, tipologia,livelloGiocatore,tassoAggiornamentoColpi,  colpiLivelloIniziale);
     this.quantita = quantita;
-    this.tassoAggiornamentoColpi = tassoAggiornamentoColpi;
     this.guarigioneLivelloIniziale = guarigioneLivelloIniziale;
-    this.tassoAggiornamentoResistenza = tassoAggiornamentoResistenza;
-    this.resistenzaLivelloIniziale = resistenzaLivelloIniziale;
-    this.colpiLivelloIniziale = colpiLivelloIniziale;
     this.tassoAggiornamentoGuarigione = tassoAggiornamentoGuarigione;
-    this.tipologia = tipologia;
-    this.livelloGiocatore = livelloGiocatore; 
+
+   
 }
+Truppa.prototype = Object.create(ProprietaOggettoSuCaselle.prototype);
+Object.defineProperty(Truppa.prototype, 'constructor', { 
+    value: Truppa, 
+    enumerable: true, // so that it does not appear in 'for in' loop
+    writable: true });
+
+
 
 

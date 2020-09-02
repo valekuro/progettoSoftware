@@ -17,7 +17,8 @@ ViewPartita.prototype.aggiornaInformazioniStatoPartita = function (id, frase) {
 }
 
 ViewPartita.prototype.visualizzaVillaggioNemico = function (posizione, nome) {
-       document.getElementById(posizione).src = "/mitech/assets/images/villaggio/" + nome + ".png";
+     document.getElementById(posizione).src = "/mitech/assets/images/villaggio/" + nome + ".png";
+       
 }
 
 

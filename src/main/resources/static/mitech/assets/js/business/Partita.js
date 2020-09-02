@@ -50,36 +50,41 @@ Partita.prototype.recuperaTruppeAddestrate = function () {
 
         if (this.datiDiGioco[2][i].truppa.tipologia === "attacco") {
             for (var j = 0; j < this.datiDiGioco[2][i].quantita; j++) {
-
-                truppe.push(new TruppaBuilder()
-                        .setNome(this.datiDiGioco[2][i].truppa.nomeTruppa)
-                        .setQuantita(this.datiDiGioco[2][i].quantita)
-                        .setTassoAggiornamentoColpi(this.datiDiGioco[2][i].truppa.tassoAggiornamentoColpi)
-                        .setTassoAggiornamentoResistenza(this.datiDiGioco[2][i].truppa.tassoAggiornamentoResistenza)
-                        .setResistenzaLivelloIniziale(this.datiDiGioco[2][i].truppa.resistenzaLivelloIniziale)
-                        .setColpiLivelloIniziale(this.datiDiGioco[2][i].truppa.colpiLivelloIniziale)
-                        .setLivelloGiocatore(this.datiDiGioco[1].livelloGiocatore)
-                        .setVita()
-                        .setTipologia(this.datiDiGioco[2][i].truppa.tipologia));
+                var TruppaDisponibileAux = new BuilderTruppa()
+                TruppaDisponibileAux.setNome(this.datiDiGioco[2][i].truppa.nomeTruppa)
+                TruppaDisponibileAux.setQuantita(this.datiDiGioco[2][i].quantita)
+                TruppaDisponibileAux.setTassoAggiornamentoColpi(this.datiDiGioco[2][i].truppa.tassoAggiornamentoColpi)
+                TruppaDisponibileAux.setTassoAggiornamentoResistenza(this.datiDiGioco[2][i].truppa.tassoAggiornamentoResistenza)
+                TruppaDisponibileAux.setResistenzaLivelloIniziale(this.datiDiGioco[2][i].truppa.resistenzaLivelloIniziale)
+                TruppaDisponibileAux.setColpiLivelloIniziale(this.datiDiGioco[2][i].truppa.colpiLivelloIniziale)
+                TruppaDisponibileAux.setLivelloGiocatore(this.datiDiGioco[1].livelloGiocatore)
+                TruppaDisponibileAux.setVita()
+                TruppaDisponibileAux.setColpi()
+                TruppaDisponibileAux.setTipologia(this.datiDiGioco[2][i].truppa.tipologia)
+                TruppaDisponibileAux.build();
+                truppe.push(TruppaDisponibileAux);
             }
         } else if (this.datiDiGioco[2][i].truppa.tipologia === "guarigione") {
             for (var q = 0; q < this.datiDiGioco[2][i].quantita; q++) {
+                var TruppaDisponibileAux = new BuilderTruppa()
+                TruppaDisponibileAux.setNome(this.datiDiGioco[2][i].truppa.nomeTruppa)
+                TruppaDisponibileAux.setQuantita(this.datiDiGioco[2][i].quantita)
+                TruppaDisponibileAux.setTassoAggiornamentoColpi(this.datiDiGioco[2][i].truppa.tassoAggiornamentoColpi)
+                TruppaDisponibileAux.setTassoAggiornamentoResistenza(this.datiDiGioco[2][i].truppa.tassoAggiornamentoResistenza)
+                TruppaDisponibileAux.setResistenzaLivelloIniziale(this.datiDiGioco[2][i].truppa.resistenzaLivelloIniziale)
+                TruppaDisponibileAux.setColpiLivelloIniziale(this.datiDiGioco[2][i].truppa.colpiLivelloIniziale)
+                TruppaDisponibileAux.setLivelloGiocatore(this.datiDiGioco[1].livelloGiocatore)
+                TruppaDisponibileAux.setVita()
+                TruppaDisponibileAux.setColpi()
+                TruppaDisponibileAux.setTipologia(this.datiDiGioco[2][i].truppa.tipologia)
+                TruppaDisponibileAux.build();
+                truppe.push(TruppaDisponibileAux);
 
-                truppe.push(new TruppaBuilder()
-
-                        .setNome(this.datiDiGioco[2][i].truppa.nomeTruppa)
-                        .setQuantita(this.datiDiGioco[2][i].quantita)
-                        .setTassoAggiornamentoGuarigione(this.datiDiGioco[2][i].truppa.tassoAggiornamentoGuarigione)
-                        .setTassoAggiornamentoResistenza(this.datiDiGioco[2][i].truppa.tassoAggiornamentoResistenza)
-                        .setResistenzaLivelloIniziale(this.datiDiGioco[2][i].truppa.resistenzaLivelloIniziale)
-                        .setGuarigioneLivelloIniziale(this.datiDiGioco[2][i].truppa.guarigioneLivelloIniziale)
-                        .setLivelloGiocatore(this.datiDiGioco[1].livelloGiocatore)
-                        .setVita()
-                        .setTipologia(this.datiDiGioco[2][i].truppa.tipologia));
             }
         }
 
     }
+    console.log(truppe);
     return truppe;
 };
 
@@ -88,14 +93,20 @@ Partita.prototype.iniziaPartita = function () {
 
 
     for (var i = 0; i < this.villaggio['datiCaselle'].length; i++) {
+        // console.log(this.villaggio['datiCaselle'][i].posizione);
+
+        //console.log(this.villaggio['datiCaselle'][i].oggettoOccupante.nome);
         this.viewPartita.visualizzaVillaggioNemico(this.villaggio['datiCaselle'][i].posizione, this.villaggio['datiCaselle'][i].oggettoOccupante.nome);
     }
+    //console.log(this.villaggio['datiCaselle']);
+
     this.viewPartita.aggiornaInformazioniStatoPartita('warnings', 'Seleziona la truppa per l\'attacco tra le truppe disponibili');
     this.truppeAddestrate = this.recuperaTruppeAddestrate();
 
     var countDownDate = new Date();
     countDownDate.setMinutes(countDownDate.getMinutes() + this.timer.durata); // timestamp
     this.countDownDate = new Date(countDownDate); // Date object
+
     this.timer.start(() => this.attacco());
     this.timer.tempoRimanente(countDownDate);
 };
@@ -139,6 +150,7 @@ Partita.prototype.selezionareTruppaDisponibile = function (nomeTruppaScelta) {
 
 Partita.prototype.attacco = function () {
     var i;
+
     this.oggettoTabelloneAux = _.cloneDeep(this.villaggio['datiCaselle']);
 
     for (i = 0; i < this.villaggio['datiCaselle'].length; i++) {
@@ -153,7 +165,7 @@ Partita.prototype.attacco = function () {
                             this.oggettoTabelloneAux[i].oggettoOccupante = _.cloneDeep(this.villaggio['datiCaselle'][i + 1].oggettoOccupante);
                             this.viewPartita.camminoTruppa(this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome, i + 1);
                         } else {
-                            this.oggettoTabelloneAux[i].oggettoOccupante.vita = this.oggettoTabelloneAux[i].oggettoOccupante.vita - this.oggettoTabelloneAux[i + 1].oggettoOccupante.calcoloColpiTotale(this.villaggio['livelloMunicipio']);
+                            this.oggettoTabelloneAux[i].oggettoOccupante.vita = this.oggettoTabelloneAux[i].oggettoOccupante.vita - this.oggettoTabelloneAux[i + 1].oggettoOccupante.colpi;
                         }
                     } else {
                         this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Ops, una truppa è morta :( ")
@@ -162,7 +174,18 @@ Partita.prototype.attacco = function () {
                         this.nomeTruppa = "";
                         this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Hai già usato questa truppa e non è più disponibile, prova a selezionare una truppa diversa tra quelle disponibili!");
                         this.oggettoTabelloneAux[i].oggettoOccupante = null;
-                        this.oggettoTabelloneAux[i].oggettoOccupante = new Edificio('erba', 0, 0, 0, 0, this.villaggio.livelloMunicipio, 0, 'erba');
+                        var erba = new BuilderEdificio()
+                                .setNome('erba')
+                                .setTassoAggiornamentoColpi(0)
+                                .setTassoAggiornamentoResistenza(0)
+                                .setResistenzaLivelloIniziale(0)
+                                .setColpiLivelloIniziale(0)
+                                .setLivelloGiocatore(this.villaggio.livelloMunicipio)
+                                .setPercentualeDistruzionePunteggio(0)
+                                .setTipologia('erba')
+                                .build();
+                        this.oggettoTabelloneAux[i].oggettoOccupante = erba;
+                        //new BuilderEdificio('erba', 0, 0, 0, 0, this.villaggio.livelloMunicipio, 0, 'erba');
                     }
                 }
                 break;
@@ -181,7 +204,7 @@ Partita.prototype.attacco = function () {
                                 this.viewPartita.animazioneLottaEdificio(this.oggettoTabelloneAux[i].oggettoOccupante.nome, i + 1);
                             }
                             //   console.log('vita difesa prima dell attacco: '+JSON.stringify(this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita));
-                            this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita = this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita - this.oggettoTabelloneAux[i].oggettoOccupante.calcoloColpiTotale(this.villaggio['livelloMunicipio']);
+                            this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita = this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita - this.oggettoTabelloneAux[i].oggettoOccupante.colpi;
                             //   console.log('vita difesa dopo attacco: '+JSON.stringify(this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita));
 
                             if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'estrattore' || this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'deposito') {
@@ -195,7 +218,17 @@ Partita.prototype.attacco = function () {
                         this.nomeTruppa = "";
                         this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Hai già usato questa truppa e non è più disponibile, prova a selezionare una truppa diversa tra quelle disponibili!");
                         this.oggettoTabelloneAux[i].oggettoOccupante = null;
-                        this.oggettoTabelloneAux[i].oggettoOccupante = new Edificio('erba', 0, 0, 0, 0, this.villaggio.livelloMunicipio, 0, 'erba');
+                        var erba = new BuilderEdificio()
+                                .setNome('erba')
+                                .setTassoAggiornamentoColpi(0)
+                                .setTassoAggiornamentoResistenza(0)
+                                .setResistenzaLivelloIniziale(0)
+                                .setColpiLivelloIniziale(0)
+                                .setLivelloGiocatore(this.villaggio.livelloMunicipio)
+                                .setPercentualeDistruzionePunteggio(0)
+                                .setTipologia('erba')
+                                .build();
+                        this.oggettoTabelloneAux[i].oggettoOccupante = erba;
                     }
                 } else {
                     if (this.oggettoTabelloneAux[0].oggettoOccupante.nome === 'erba') {
@@ -221,7 +254,17 @@ Partita.prototype.attacco = function () {
                     this.viewPartita.ripristinoOggettoSopravvissuto('truppe', this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome, i);
                     this.viewPartita.distruzioneOggettoMorto(i + 1);
                     this.oggettoTabelloneAux[i].oggettoOccupante = null;
-                    this.oggettoTabelloneAux[i].oggettoOccupante = new Edificio('erba', 0, 0, 0, 0, this.villaggio.livelloMunicipio, 0, 'erba');
+                    var erba = new BuilderEdificio()
+                                .setNome('erba')
+                                .setTassoAggiornamentoColpi(0)
+                                .setTassoAggiornamentoResistenza(0)
+                                .setResistenzaLivelloIniziale(0)
+                                .setColpiLivelloIniziale(0)
+                                .setLivelloGiocatore(this.villaggio.livelloMunicipio)
+                                .setPercentualeDistruzionePunteggio(0)
+                                .setTipologia('erba')
+                                .build();
+                        this.oggettoTabelloneAux[i].oggettoOccupante = erba;
                     this.edificiDistrutti = parseInt(this.edificiDistrutti) + 1;
                     this.viewPartita.mantieniNumeroEdificiDistrutti(this.edificiDistrutti);
 

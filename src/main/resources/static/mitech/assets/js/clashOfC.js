@@ -6,7 +6,8 @@
 
 
 jQuery(document).ready(function ($) {
-
+    //var Ferrari = new automobileSpider('a', 'b', 'sfffs');
+    //Ferrari.mettiInMoto();
     // $("button").click(function () {
     $.ajax({
         type: "GET",
