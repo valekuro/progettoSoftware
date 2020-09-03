@@ -17,6 +17,7 @@ function BuilderTruppa() {
     let tipologia;
     let livelloGiocatore;
     let vita;
+    let vitaMassima;// = this.vita;
     let colpi;
     let potereGuarigione;
 }
@@ -80,6 +81,10 @@ BuilderTruppa.prototype.setColpi = function () {
     this.colpi = this.calcoloColpiTotale();
     return this;
 }
+BuilderTruppa.prototype.setVitaMassima = function () {
+    this.vitaMassima = this.calcoloVitaTotale();
+    return this
+}
 
 BuilderTruppa.prototype.setPotereGuarigione = function () {
     this.potereGuarigione = this.guarigioneTotale();
@@ -101,6 +106,6 @@ BuilderTruppa.prototype.guarigioneTotale = function () {
 }
 
 BuilderTruppa.prototype.build = function () {
-    return new Truppa(this.nome, this.quantita, this.tassoAggiornamentoColpi, this.guarigioneLivelloIniziale, this.tassoAggiornamentoResistenza, this.guarigioneLivelloIniziale, this.resistenzaLivelloIniziale, this.colpiLivelloIniziale, this.tassoAggiornamentoGuarigione, this.tipologia, this.vita, this.livelloGiocatore, this.colpi, this.potereGuarigione);
+    return new Truppa(this.nome, this.quantita, this.tassoAggiornamentoColpi, this.guarigioneLivelloIniziale, this.tassoAggiornamentoResistenza, this.guarigioneLivelloIniziale, this.resistenzaLivelloIniziale, this.colpiLivelloIniziale, this.tassoAggiornamentoGuarigione, this.tipologia, this.vita, this.livelloGiocatore, this.colpi, this.potereGuarigione, this.vitaMassima);
 }
 

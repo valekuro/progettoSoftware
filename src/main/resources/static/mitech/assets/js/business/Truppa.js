@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-let Truppa = function(nome, quantita, tassoAggiornamentoColpi, guarigioneLivelloIniziale, tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia, vita, livelloGiocatore, colpi, potereGuarigione) {
+let Truppa = function(nome, quantita, tassoAggiornamentoColpi, guarigioneLivelloIniziale, tassoAggiornamentoResistenza, guarigioneLivelloIniziale, resistenzaLivelloIniziale, colpiLivelloIniziale, tassoAggiornamentoGuarigione, tipologia, vita, livelloGiocatore, colpi, potereGuarigione, vitaMassima) {
   ProprietaOggettoSuCaselle.call(this, nome, tassoAggiornamentoResistenza, resistenzaLivelloIniziale, tipologia,livelloGiocatore,tassoAggiornamentoColpi,  colpiLivelloIniziale);
     this.quantita = quantita;
+    this.vitaMassima = vitaMassima;
     this.guarigioneLivelloIniziale = guarigioneLivelloIniziale;
     this.tassoAggiornamentoGuarigione = tassoAggiornamentoGuarigione;
    // this.guarigione = guarigione;

@@ -31,7 +31,6 @@ ViewPartita.prototype.animazioneLottaEdificio = function (nomeEdificio, indice) 
     document.getElementById(indice).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
 };
 ViewPartita.prototype.camminoTruppa = function (oggettoOccupante, indice) {
-    console.log(indice);
     if (indice === 0) {
         document.getElementById(36).src = '/mitech/assets/images/villaggio/erba.png';
         document.getElementById(indice + 1).src = '/mitech/assets/images/truppe/thumbnails/' + oggettoOccupante + '.png';
