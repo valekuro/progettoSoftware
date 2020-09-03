@@ -112,6 +112,6 @@ ViewPartita.prototype.visualizzaRisultatiPartita = function (ammontareDistruzion
 
 
 ViewPartita.prototype.mantieniNumeroEdificiDistrutti = function (numeroEdificiDistrutti) {
-    document.getElementById('edificiDistrutti').innerHTML = 'Numero edifici distrutti: ' + numeroEdificiDistrutti;
+    document.getElementById('edificiDistrutti').innerHTML = 'Edifici distrutti: ' + numeroEdificiDistrutti;
 }
 

@@ -26,6 +26,15 @@ chiari:
     border: 3px solid;
     border-color: green;
 }
+.intestazione-partita{
+            background-color: rgba(162,43,27, 0.1); 
+
+}
+
+.truppe-diponibili-c{
+                background-color: rgba(162,43,27, 0.1); 
+
+}
 
 .intestazione{
     padding: 3%;
