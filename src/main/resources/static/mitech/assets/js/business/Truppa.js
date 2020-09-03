@@ -8,10 +8,7 @@ let Truppa = function(nome, quantita, tassoAggiornamentoColpi, guarigioneLivello
     this.quantita = quantita;
     this.vitaMassima = vitaMassima;
     this.guarigioneLivelloIniziale = guarigioneLivelloIniziale;
-    this.tassoAggiornamentoGuarigione = tassoAggiornamentoGuarigione;
-   // this.guarigione = guarigione;
-
-   
+    this.tassoAggiornamentoGuarigione = tassoAggiornamentoGuarigione; 
 }
 Truppa.prototype = Object.create(ProprietaOggettoSuCaselle.prototype);
 Object.defineProperty(Truppa.prototype, 'constructor', { 

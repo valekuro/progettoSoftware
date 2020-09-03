@@ -9,7 +9,6 @@ function Villaggio(elisirDisponibileAlGiocatore, livelloMunicipio, tipoVillaggio
     this.livelloMunicipio = livelloMunicipio;
     this.tipoVillaggio = tipoVillaggio;
     this.datiCaselle = datiCaselle;
-   // this.caselle = this.creaCaselle(datiCaselle);
-  }
+}
 
 

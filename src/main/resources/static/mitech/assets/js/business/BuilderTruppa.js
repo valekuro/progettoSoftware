@@ -17,7 +17,7 @@ function BuilderTruppa() {
     let tipologia;
     let livelloGiocatore;
     let vita;
-    let vitaMassima;// = this.vita;
+    let vitaMassima;
     let colpi;
     let potereGuarigione;
 }

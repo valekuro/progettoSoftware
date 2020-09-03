@@ -72,10 +72,7 @@ BuilderEdificio.prototype.calcoloColpiTotale = function (livelloGiocatore) {
 }
 
  BuilderEdificio.prototype.calcoloVitaTotale = function () {
-                 console.log(this.livelloGiocatore);
-
     return this.resistenzaLivelloIniziale + (this.tassoAggiornamentoResistenza * this.livelloGiocatore);
-
 }
 
 BuilderEdificio.prototype.setPercentualeDistruzionePunteggio = function (percentualeDistruzionePunteggio) {

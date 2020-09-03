@@ -9,12 +9,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-
- var js = document.createElement("script");
- js.type = "text/javascript";
- js.src = '/mitech/assets/js/business/Villaggio.js';
- document.body.appendChild(js);
-  */
+ */
 function BuilderVillaggio() {
     let livelloMunicipio;
     let tipoVillaggio;
@@ -48,9 +43,7 @@ BuilderVillaggio.prototype.buildCaselle = function () {
         var caselle = new Array();
 
     var i;
-    for (i = 0; i < 36; i++) {
-       //console.log(this.datiCaselle[i]['edificio']);
-     
+    for (i = 0; i < 36; i++) {     
        caselle.push(new Casella(this.datiCaselle[i].posizione,  new BuilderEdificio() 
                .setNome(this.datiCaselle[i]['edificio'].nome)
                .setTassoAggiornamentoColpi(this.datiCaselle[i]['edificio'].tassoAggiornamentoColpi)
@@ -61,8 +54,6 @@ BuilderVillaggio.prototype.buildCaselle = function () {
                .setVita()
                .setPercentualeDistruzionePunteggio(this.datiCaselle[i]['edificio']['percentualeDistruzionePunteggio'])
                .setTipologia(this.datiCaselle[i]['edificio']['tipologia'])));
-        //caselle.push(new Casella(this.datiCaselle[i].posizione, new Edificio(this.datiCaselle[i]['edificio'].nome, this.datiCaselle[i]['edificio'].tassoAggiornamentoColpi, this.datiCaselle[i]['edificio'].tassoAggiornamentoResistenza, this.datiCaselle[i]['edificio'].resistenzaLivelloIniziale, this.datiCaselle[i]['edificio'].colpiLivelloIniziale, this.livelloMunicipio, this.datiCaselle[i]['edificio']['percentualeDistruzionePunteggio'], this.datiCaselle[i]['edificio']['tipologia']), 'ok'));
-        
     }
     return caselle;
 };
