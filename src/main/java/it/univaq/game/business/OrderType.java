@@ -9,7 +9,7 @@ import lombok.Data;
 
 /**
  *
- * @author Sonia Barbieri
+ * @author Valentina
  */
 @Data
 public class OrderType {

@@ -12,7 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
- * @author Sonia Barbieri
+ * @author Valentina
  */
 
 @Data

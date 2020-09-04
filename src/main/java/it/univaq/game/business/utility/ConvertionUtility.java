@@ -13,7 +13,7 @@ import org.springframework.data.domain.Sort;
 
 /**
  *
- * @author Sonia Barbieri
+ * @author Valentina
  */
 public class ConvertionUtility {
 

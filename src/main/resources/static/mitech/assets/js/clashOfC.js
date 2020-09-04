@@ -6,10 +6,7 @@
 
 
 jQuery(document).ready(function ($) {
-    //var Ferrari = new automobileSpider('a', 'b', 'sfffs');
-    //Ferrari.mettiInMoto();
-    // $("button").click(function () {
-    $.ajax({
+     $.ajax({
         type: "GET",
         contentType: "application/json",
         dataType: "json",
@@ -39,6 +36,4 @@ jQuery(document).ready(function ($) {
             alert('Ci sono problemi con la connessione al Server :( riprova più tardi :)');
         }
     });
-    //});
-
 });
