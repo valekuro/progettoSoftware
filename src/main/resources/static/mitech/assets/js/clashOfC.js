@@ -23,18 +23,12 @@ jQuery(document).ready(function ($) {
                 var $this = $(this);
                 var occupazione = $this.attr("id");
                 nuovaPartita.selezionareCasella(indiceTruppa, occupazione);
-
             });
 
-            /*$('.step').click(function () {
-             nuovaPartita.avanzamentoTruppeInserite();
-             
-             });*/
             $('.truppeDisponibiliAttacco').click(function () {
                 var $this = $(this);
                 var nomeTruppaScelta = $this.attr("name");
                 nuovaPartita.selezionareTruppaDisponibile(nomeTruppaScelta);
-
             });
 
             $('.truppeInactiveAttacco').click(function () {
@@ -42,7 +36,7 @@ jQuery(document).ready(function ($) {
             });
         },
         error: function () {
-            alert('C’è stato un’errore');
+            alert('Ci sono problemi con la connessione al Server :( riprova più tardi :)');
         }
     });
     //});
