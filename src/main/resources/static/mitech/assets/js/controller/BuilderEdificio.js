@@ -5,7 +5,7 @@
  */
 var js = document.createElement("script");
 js.type = "text/javascript";
-js.src = '/mitech/assets/js/business/Edificio.js';
+js.src = '/mitech/assets/js/controller/Edificio.js';
 
 function BuilderEdificio() {
     var nome;
