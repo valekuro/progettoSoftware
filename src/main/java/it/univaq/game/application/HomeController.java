@@ -30,8 +30,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("")
 public class HomeController {
 
-    @Autowired
-    private AvversarioService avversarioservice;
+   // @Autowired
+  //  private AvversarioService avversarioservice;
     //private CasellaService casellaservice;
    // private EdificioService edificioservice;
    // private CasellaRepository casellarepository;
@@ -39,7 +39,7 @@ public class HomeController {
 
     @GetMapping("")
     public String homePage(Model model) throws BusinessException {
-        model.addAttribute("mySessionAttribute", avversarioservice.findAvversarioByPosizione((Integer) 5));
+      //  model.addAttribute("mySessionAttribute", avversarioservice.findAvversarioByPosizione((Integer) 5));
         return "home";
     }
 }
