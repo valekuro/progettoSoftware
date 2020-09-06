@@ -36,10 +36,6 @@ public class JpaCasella implements CasellaService {
         casellaRepository.save(n);
     }
 
-    //@Override
-    //public Casella findById(Long id) throws BusinessException {
-    //return casellaRepository.findById(id);
-    //}
     @Override
     @Transactional(readOnly = true)
     public List<Casella> findAll() throws BusinessException {
@@ -47,16 +43,4 @@ public class JpaCasella implements CasellaService {
         return casella;
     }
 
-    /*@Override
-    @Transactional(readOnly = true)
-    public ResponseGrid<Casella> findAllCasellaPaginated(RequestGrid requestGrid) throws BusinessException {
-        Pageable pageable = ConvertionUtility.requestGrid2Pageable(requestGrid);
-        Page<Casella> page = casellaRepository.findAllCasellaPaginated(requestGrid.getSearch().getValue(), requestGrid.getSearch().getValue2(), pageable);
-        return new ResponseGrid<>(requestGrid.getDraw(), page.getTotalElements(), page.getTotalElements(), page.getContent());
-    }*/
-
-    //@Transactional(readOnly = true)
-    // public List<Casella> findAll() throws BusinessException {
-    //    return casellaRepository.findAll();
-    //}
-}
+ }

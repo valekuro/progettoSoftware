@@ -18,8 +18,6 @@ import java.util.List;
 @Repository
 public interface CasellaRepository extends JpaRepository<Casella, Long>{
     public List<Casella> findAll();
-    //public ResponseGrid<Casella> findAllFaqPaginated(RequestGrid requestGrid);
-    //Page<Casella> findAllCasellaPaginated(Integer posizione, Long idedificio_id, Pageable pageable);
 
 
 }

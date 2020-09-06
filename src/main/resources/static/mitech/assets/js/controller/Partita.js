@@ -187,7 +187,7 @@ Partita.prototype.attacco = function () {
                                 this.viewPartita.ripristinoOggettoSopravvissuto('villaggio', this.villaggio['datiCaselle'][i + 1].oggettoOccupante.nome, i + 1);
                                 this.viewPartita.distruzioneOggettoMorto(i + 1);
                                 this.nomeTruppa = "";
-                                this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Hai già usato questa truppa e non è più disponibile, prova a selezionare una truppa diversa tra quelle disponibili!");
+                                //this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Hai già usato questa truppa e non è più disponibile, prova a selezionare una truppa diversa tra quelle disponibili!");
                                 this.oggettoTabelloneAux[i].oggettoOccupante = null;
                                 var erba = new BuilderEdificio()
                                         .setNome('erba')

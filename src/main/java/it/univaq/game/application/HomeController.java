@@ -32,9 +32,9 @@ public class HomeController {
 
     @Autowired
     private AvversarioService avversarioservice;
-    private CasellaService casellaservice;
-    private EdificioService edificioservice;
-    private CasellaRepository casellarepository;
+    //private CasellaService casellaservice;
+   // private EdificioService edificioservice;
+   // private CasellaRepository casellarepository;
     
 
     @GetMapping("")
@@ -42,34 +42,4 @@ public class HomeController {
         model.addAttribute("mySessionAttribute", avversarioservice.findAvversarioByPosizione((Integer) 5));
         return "home";
     }
-    
-   /* @GetMapping("/attacco_esercitazione")
-    public String villaggioEsercitazione(Model model) throws BusinessException{
-        return "villaggioesercitazione";
-    }*/
-
-    /*@GetMapping("test")
-    public String startAddNews(Model model, Errors errors) throws BusinessException {
-        Edificio ed = new Edificio();
-        model.addAttribute("edificio", ed);
-        return "news";
-    }
-    
-    @PostMapping("news")   
-    public String addCasella(@ModelAttribute("edifici") Edificio ed, Errors errors) throws BusinessException {
-        ed=new Edificio();
-        ed.setImmagine("prova.jpeg");
-        ed.setNome("prova");
-        ed.setId((long) 20);
-        c.create(ed);
-        return "/news";
-    }*/
-        /*casella.setPosizione(3);
-        casella.setIDEdificio(ed);
-        casella.setId((long) 2);
-        casellaservice.create(casella);
-
-        return "/news";
-    }*/
-
 }
