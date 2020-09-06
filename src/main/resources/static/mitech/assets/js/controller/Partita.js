@@ -16,6 +16,7 @@ function Partita(datiDiGioco) {
     this.edificiDistrutti = 0;
     this.timer = new Timer(2);
     this.countDownDate;
+    let truppeInCampo;
 }
 
 Partita.prototype.recuperaDatiDiGioco = function (datiDiGioco) {
@@ -90,6 +91,8 @@ Partita.prototype.iniziaPartita = function () {
     }
     this.viewPartita.aggiornaInformazioniStatoPartita('warnings', 'Seleziona la truppa per l\'attacco tra le truppe disponibili');
     this.truppeAddestrate = this.recuperaTruppeAddestrate();
+    this.truppeInCampo = this.truppeAddestrate.length;
+
     var countDownDate = new Date();
     countDownDate.setMinutes(countDownDate.getMinutes() + this.timer.durata); // timestamp
     this.countDownDate = new Date(countDownDate); // Date object
@@ -136,6 +139,10 @@ Partita.prototype.selezionareTruppaDisponibile = function (nomeTruppaScelta) {
 
 
 Partita.prototype.attacco = function () {
+   console.log('truppeAddestrate.lenght');
+   console.log(this.truppeAddestrate.length);
+   console.log('truppeInCampo');
+   console.log(this.truppeInCampo);
     var i;
     this.oggettoTabelloneAux = _.cloneDeep(this.villaggio['datiCaselle']);
     for (i = 0; i < this.villaggio['datiCaselle'].length; i++) {
@@ -159,9 +166,9 @@ Partita.prototype.attacco = function () {
                                         this.viewPartita.animazioneLottaEdificio(this.oggettoTabelloneAux[i].oggettoOccupante.nome, i + 1);
                                     }
                                     //diminuisco vita edificio
-                                   // console.log('vita difesa prima dell attacco: '+JSON.stringify(this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita));
+                                    // console.log('vita difesa prima dell attacco: '+JSON.stringify(this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita));
                                     this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita = this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita - this.oggettoTabelloneAux[i].oggettoOccupante.colpi;
-                                   // console.log('vita difesa dopo attacco: '+JSON.stringify(this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita));
+                                    // console.log('vita difesa dopo attacco: '+JSON.stringify(this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita));
                                     //truppa ruba Elisir
                                     if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'estrattore' || this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'deposito') {
                                         this.rubaElisir();
@@ -169,6 +176,7 @@ Partita.prototype.attacco = function () {
                                 }
                                 //se la vita della truppa è minore di zero
                             } else {
+                                this.truppeInCampo = parseInt(this.truppeInCampo) - 1;
                                 this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Ops, una truppa è morta :( ")
                                 this.viewPartita.ripristinoOggettoSopravvissuto('villaggio', this.villaggio['datiCaselle'][i + 1].oggettoOccupante.nome, i + 1);
                                 this.viewPartita.distruzioneOggettoMorto(i + 1);
@@ -201,16 +209,20 @@ Partita.prototype.attacco = function () {
                                     this.oggettoTabelloneAux[i + 1].oggettoOccupante = _.cloneDeep(this.villaggio['datiCaselle'][i].oggettoOccupante);
                                     this.oggettoTabelloneAux[i].oggettoOccupante = _.cloneDeep(this.villaggio['datiCaselle'][i + 1].oggettoOccupante);
                                     this.viewPartita.camminoTruppa(this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome, i + 1);
-                                } else if(this.oggettoTabelloneAux[i + 1].oggettoOccupante.tipologia === 'edificioDifesa'){
+                                } else if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.tipologia === 'edificioDifesa') {
                                     this.oggettoTabelloneAux[i].oggettoOccupante.vita = this.oggettoTabelloneAux[i].oggettoOccupante.vita - this.oggettoTabelloneAux[i + 1].oggettoOccupante.colpi;
-                                } else if(this.oggettoTabelloneAux[i + 1].oggettoOccupante.tipologia === 'truppaAttacco'){
-                                    console.log('guarigione');
-                                    console.log( this.oggettoTabelloneAux[i+1].oggettoOccupante);
-                                    if(this.oggettoTabelloneAux[i+1].oggettoOccupante.vita > this.oggettoTabelloneAux[i+1].oggettoOccupante.vitaMassima){
-                                        this.oggettoTabelloneAux[i+1].oggettoOccupante.vita = this.oggettoTabelloneAux[i+1].oggettoOccupante.vita + this.oggettoTabelloneAux[i].oggettoOccupante.potereGuarigione;
+                                } else if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.tipologia === 'truppaAttacco') {
+
+                                    if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita < this.oggettoTabelloneAux[i + 1].oggettoOccupante.vitaMassima) {
+                                        console.log(this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome + this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita);
+                                        this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita = this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita + this.oggettoTabelloneAux[i].oggettoOccupante.potereGuarigione;
+                                        console.log('guarigione');
+                                        console.log(this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome + this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita);
                                     }
                                 }
-                            } else {
+                            } else {                                
+                                this.truppeInCampo = parseInt(this.truppeInCampo) - 1;
+
                                 this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Ops, una truppa è morta :( ")
                                 this.viewPartita.ripristinoOggettoSopravvissuto('villaggio', this.villaggio['datiCaselle'][i + 1].oggettoOccupante.nome, i + 1);
                                 this.viewPartita.distruzioneOggettoMorto(i + 1);
@@ -235,8 +247,8 @@ Partita.prototype.attacco = function () {
                             this.viewPartita.camminoTruppa(this.oggettoTabelloneAux[0].oggettoOccupante.nome, 0);
                         }
                         break;
-             }
-             break;
+                }
+                break;
             case 'BuilderEdificio':
             switch (this.villaggio['datiCaselle'][i].oggettoOccupante.tipologia) {
                 case 'edificioDifesa':
@@ -288,27 +300,39 @@ Partita.prototype.attacco = function () {
                         this.viewPartita.mantieniNumeroEdificiDistrutti(this.edificiDistrutti);
                     }
                     break;
-            break;
+                    break;
             }
         }
-              this.finePartita(i);
+        this.finePartita(i);
     }
     this.villaggio['datiCaselle'] = _.cloneDeep(this.oggettoTabelloneAux);
 };
 
 Partita.prototype.finePartita = function (i) {
-    if (this.truppeAddestrate.length === 0) {
-        if (this.oggettoTabelloneAux[i].oggettoOccupante.nome !== this.nomeTruppa) {
-            clearInterval(this.timer.tempo);
-            document.getElementById("demo").innerHTML = "Fine partita!";
-            this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
-        }
+
+//this.villaggio['datiCaselle'][i].oggettoOccupante.constructor.name
+    if (this.truppeAddestrate.length === 0 && this.truppeInCampo === 0) {
+      
+                  clearInterval(this.timer.tempo);
+        document.getElementById("demo").innerHTML = "Fine partita!";
+        this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
+
+           
     }
-    if (this.timer.distance < 0) {
+
+    if (this.edificiDistrutti === 11) {
         clearInterval(this.timer.tempo);
         document.getElementById("demo").innerHTML = "Fine partita!";
         this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
+
     }
+
+
+if (this.timer.distance < 0) {
+    clearInterval(this.timer.tempo);
+    document.getElementById("demo").innerHTML = "Fine partita!";
+    this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
+}
 }
 
 Partita.prototype.calcoloRisultatoParziale = function (i) {
