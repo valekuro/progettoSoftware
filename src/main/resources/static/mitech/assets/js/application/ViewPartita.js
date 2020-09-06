@@ -105,8 +105,10 @@ ViewPartita.prototype.visualizzaRisultatiPartita = function (ammontareDistruzion
     document.getElementById('villaggio').style.display = 'none';
     document.getElementById('risultatiEsercitazione').style.display = 'block';
     document.getElementById('risultatiEsercitazione').innerHTML = risultati;
-    document.getElementById('truppaInactive').style.display = 'none';
+    //document.getElementById('truppaInactive').style.display = 'none';
     document.getElementById('warnings').style.display = 'none';
+        document.getElementById('idWarning').style.display = 'none';
+
 }
 
 

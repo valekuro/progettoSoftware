@@ -17,7 +17,15 @@ function Partita(datiDiGioco) {
     this.timer = new Timer(2);
     this.countDownDate;
     let truppeInCampo;
+    this.edificiAttaccabiliPresentiInVillaggioNemico = 0;
 }
+Partita.prototype.numeroEdificiAttaccabiliPresentiInVillaggioNemico = function () {
+   for (var u = 0; u < this.villaggio['datiCaselle'].length; u++) {
+        if (this.villaggio['datiCaselle'][u].oggettoOccupante.tipologia !== 'erba') {
+            this.edificiAttaccabiliPresentiInVillaggioNemico = this.edificiAttaccabiliPresentiInVillaggioNemico + 1;
+        }
+    }
+};
 
 Partita.prototype.recuperaDatiDiGioco = function (datiDiGioco) {
     this.datiDiGioco = datiDiGioco;
@@ -89,6 +97,7 @@ Partita.prototype.iniziaPartita = function () {
     for (var i = 0; i < this.villaggio['datiCaselle'].length; i++) {
         this.viewPartita.visualizzaVillaggioNemico(this.villaggio['datiCaselle'][i].posizione, this.villaggio['datiCaselle'][i].oggettoOccupante.nome);
     }
+    this.numeroEdificiAttaccabiliPresentiInVillaggioNemico();
     this.viewPartita.aggiornaInformazioniStatoPartita('warnings', 'Seleziona la truppa per l\'attacco tra le truppe disponibili');
     this.truppeAddestrate = this.recuperaTruppeAddestrate();
     this.truppeInCampo = this.truppeAddestrate.length;
@@ -98,6 +107,7 @@ Partita.prototype.iniziaPartita = function () {
     this.countDownDate = new Date(countDownDate); // Date object
     this.timer.start(() => this.attacco());
     this.timer.tempoRimanente(countDownDate);
+   
 };
 
 Partita.prototype.selezionareCasella = function (indiceTruppa, occupazione) {
@@ -139,10 +149,6 @@ Partita.prototype.selezionareTruppaDisponibile = function (nomeTruppaScelta) {
 
 
 Partita.prototype.attacco = function () {
-   console.log('truppeAddestrate.lenght');
-   console.log(this.truppeAddestrate.length);
-   console.log('truppeInCampo');
-   console.log(this.truppeInCampo);
     var i;
     this.oggettoTabelloneAux = _.cloneDeep(this.villaggio['datiCaselle']);
     for (i = 0; i < this.villaggio['datiCaselle'].length; i++) {
@@ -214,13 +220,10 @@ Partita.prototype.attacco = function () {
                                 } else if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.tipologia === 'truppaAttacco') {
 
                                     if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita < this.oggettoTabelloneAux[i + 1].oggettoOccupante.vitaMassima) {
-                                        console.log(this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome + this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita);
                                         this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita = this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita + this.oggettoTabelloneAux[i].oggettoOccupante.potereGuarigione;
-                                        console.log('guarigione');
-                                        console.log(this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome + this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita);
                                     }
                                 }
-                            } else {                                
+                            } else {
                                 this.truppeInCampo = parseInt(this.truppeInCampo) - 1;
 
                                 this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Ops, una truppa è morta :( ")
@@ -309,30 +312,21 @@ Partita.prototype.attacco = function () {
 };
 
 Partita.prototype.finePartita = function (i) {
-
-//this.villaggio['datiCaselle'][i].oggettoOccupante.constructor.name
     if (this.truppeAddestrate.length === 0 && this.truppeInCampo === 0) {
-      
-                  clearInterval(this.timer.tempo);
-        document.getElementById("demo").innerHTML = "Fine partita!";
-        this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
-
-           
-    }
-
-    if (this.edificiDistrutti === 11) {
         clearInterval(this.timer.tempo);
-        document.getElementById("demo").innerHTML = "Fine partita!";
+        this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
         this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
-
     }
-
-
-if (this.timer.distance < 0) {
-    clearInterval(this.timer.tempo);
-    document.getElementById("demo").innerHTML = "Fine partita!";
-    this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
-}
+    if (this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico) {
+        clearInterval(this.timer.tempo);
+        this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
+        this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
+    }
+    if (this.timer.distance < 0) {
+        clearInterval(this.timer.tempo);
+        this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Tempo scaduto!')
+        this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
+    }
 }
 
 Partita.prototype.calcoloRisultatoParziale = function (i) {

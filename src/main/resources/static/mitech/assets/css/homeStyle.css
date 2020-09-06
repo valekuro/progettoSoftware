@@ -32,6 +32,8 @@ chiari:
 }
 
 .truppe-diponibili-c{
+        display:block;
+
                 background-color: rgba(162,43,27, 0.1); 
 
 }
@@ -108,7 +110,9 @@ a.button25:active {
     font-size: 20px;
     display: inline;
 }
-
+.idWarning{
+    display:inline;
+}
 .bottoneMenu{
     padding: 5% 0 !important;
 }
