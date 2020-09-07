@@ -20,7 +20,7 @@ function Partita(datiDiGioco) {
     this.edificiAttaccabiliPresentiInVillaggioNemico = 0;
 }
 Partita.prototype.numeroEdificiAttaccabiliPresentiInVillaggioNemico = function () {
-   for (var u = 0; u < this.villaggio['datiCaselle'].length; u++) {
+    for (var u = 0; u < this.villaggio['datiCaselle'].length; u++) {
         if (this.villaggio['datiCaselle'][u].oggettoOccupante.tipologia !== 'erba') {
             this.edificiAttaccabiliPresentiInVillaggioNemico = this.edificiAttaccabiliPresentiInVillaggioNemico + 1;
         }
@@ -107,7 +107,7 @@ Partita.prototype.iniziaPartita = function () {
     this.countDownDate = new Date(countDownDate); // Date object
     this.timer.start(() => this.attacco());
     this.timer.tempoRimanente(countDownDate);
-   
+
 };
 
 Partita.prototype.selezionareCasella = function (indiceTruppa, occupazione) {
@@ -156,7 +156,9 @@ Partita.prototype.attacco = function () {
             case 'BuilderTruppa':
                 switch (this.villaggio['datiCaselle'][i].oggettoOccupante.tipologia) {
                     case 'truppaAttacco':
-                        if (i < 35) {
+                        if (i < this.villaggio['datiCaselle'].length - 1) {
+                            console.log(this.villaggio['datiCaselle'].length - 1);
+
                             //se la vita della truppa è maggiore di zero
                             if (this.oggettoTabelloneAux[i].oggettoOccupante.vita > 0) {
                                 //i = truppa e i+1 = erba
@@ -209,7 +211,8 @@ Partita.prototype.attacco = function () {
                         }
                         break;
                     case 'truppaGuarigione':
-                        if (i < 35) {
+                        if (i < this.villaggio['datiCaselle'].length - 1) {
+                            console.log(this.villaggio['datiCaselle'].length - 1);
                             if (this.oggettoTabelloneAux[i].oggettoOccupante.vita > 0) {
                                 if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'erba') {
                                     this.oggettoTabelloneAux[i + 1].oggettoOccupante = _.cloneDeep(this.villaggio['datiCaselle'][i].oggettoOccupante);
