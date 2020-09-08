@@ -5,9 +5,8 @@
       xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <body>
-            <div class="site-wrapper-reveal  section-space--pt__120" layout:fragment="content">
-                <div id="contenitoreAjax">
 
+                <div class="site-wrapper-reveal  section-space--pt__120" layout:fragment="content">
                     <!-- <p th:text="${mySessionAttribute}"></p>-->
                     <div class="row">
                         <div class="col-lg-4">
@@ -26,20 +25,36 @@
                         <div class="col-lg-4"></div>
                         <div class="col-lg-4 wrapdue">
                             <p class="bottoneMenu">
-                                <a class="button25" id="entraInClash" th:href="@{/menugames}" >Entra in Clash</a>
+                                <a class="button25" th:href="@{/attacco_esercitazione}">Attacco Esercitazione</a>
+                            </p>
+
+                            <p class="bottoneMenu">
+                                <a class="button25" th:href="@{/aggiungitruppa}">Aggiungi Truppa</a>
                             </p>
 
 
                         </div>
                         <div class="col-lg-4"></div>
                     </div>
-                </div>
-            </div>
-            <th:block layout:fragment="script">
+               </div>
+           <th:block layout:fragment="script">
                 <script type="text/javascript" th:inline="javascript">
-                  
+                   window.onload = function() {
+                            $.ajax({
+                                type: "GET",
+                                url: "/menugames/caricamento_dati_partita/2",
+                                contentType: "application/json",
+                                dataType: "json",
+                                success: function (data) {
+                                    console.log(data);
+                                },
+                                error: function () {
+                                    alert("Chiamata fallita!!!");
+                                }
+                            });
+                        };
                 </script>
             </th:block>
-        </body>
+    </body>
     </head>
 </html>

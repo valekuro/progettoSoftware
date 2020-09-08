@@ -6,6 +6,7 @@
 
 
 jQuery(document).ready(function ($) {
+    
      $.ajax({
         type: "GET",
         contentType: "application/json",
