@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/attacco_esercitazione/partitavillaggioesercitazione")
-public class PartitaController {
+public class PartitaController{
 
     @Autowired
     private VillaggioController villaggiocontroller;
@@ -53,6 +53,7 @@ public class PartitaController {
         return "partitavillaggioesercitazione";
     }
 
+        
     @RequestMapping(
             value = "",
             produces = "application/json")
@@ -71,9 +72,10 @@ public class PartitaController {
 
         model.addAttribute("cercaPosizioneEdificiInCasella", cercaPosizioneEdificiInCasella);
         model.addAttribute("listaTruppe", listaTruppe);
-        return datiPartita;
+            return datiPartita;
     }
 
+    
     @RequestMapping(
             value = "avversario",
             produces = "application/json")

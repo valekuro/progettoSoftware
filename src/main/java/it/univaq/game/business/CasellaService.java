@@ -8,6 +8,7 @@ package it.univaq.game.business;
 import it.univaq.game.business.exceptions.BusinessException;
 import it.univaq.game.domain.Casella;
 import java.util.List;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -17,6 +18,5 @@ public interface CasellaService {
     public void create(Casella n) throws BusinessException;
     //public Casella findById(Long id) throws BusinessException;
     public List<Casella> findAll() throws BusinessException;
-    //public ResponseGrid<Casella> findAllCasellaPaginated(RequestGrid requestGrid) throws BusinessException;
-
+    public List<Casella> findCaselleByIdGiocatore(@Param("idgiocatore") long idgiocatore) throws BusinessException;
 }

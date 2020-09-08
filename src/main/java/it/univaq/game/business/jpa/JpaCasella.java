@@ -42,5 +42,12 @@ public class JpaCasella implements CasellaService {
         List<Casella> casella = casellaRepository.findAll();
         return casella;
     }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Casella> findCaselleByIdGiocatore(long idgiocatore) throws BusinessException{
+        List<Casella> caselle = casellaRepository.findCaselleByIdGiocatore(idgiocatore);
+        return caselle;
+    }
 
  }

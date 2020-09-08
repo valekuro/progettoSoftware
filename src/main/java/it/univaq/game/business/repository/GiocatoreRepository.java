@@ -8,6 +8,8 @@ package it.univaq.game.business.repository;
 import it.univaq.game.domain.Giocatore;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,6 +17,10 @@ import org.springframework.stereotype.Repository;
  * @author Valentina
  */
 @Repository
-public interface GiocatoreRepository  extends JpaRepository<Giocatore, Long>{
-     public List<Giocatore> findAll();
+public interface GiocatoreRepository extends JpaRepository<Giocatore, Long> {
+
+    public List<Giocatore> findAll();
+
+    @Query(value = "SELECT * FROM giocatore n WHERE n.livello_giocatore = :livelloGiocatore ORDER BY rand() LIMIT 1", nativeQuery = true)
+    Giocatore findByLivelloGiocatore(@Param("livelloGiocatore") int livelloGiocatore);
 }

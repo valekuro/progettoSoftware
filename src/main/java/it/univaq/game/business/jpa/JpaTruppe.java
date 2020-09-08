@@ -31,6 +31,12 @@ public class JpaTruppe implements TruppeService {
     TruppeRepository truppeRepository;
 
     @Override
+    public void create(Truppe n) throws BusinessException {
+        truppeRepository.save(n);
+    }
+
+    
+    @Override
     @Transactional(readOnly = true)
     public List<Truppe> findAll() throws BusinessException {
         List<Truppe> truppe = truppeRepository.findAll();

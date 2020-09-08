@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"          
+      layout:decorate="~{layout/public/layout}"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+    <body>
+        <div class="content-body" layout:fragment="content">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">                                
+                            <h3 >INSERIMENTO TRUPPA</h3>
+                        </div>          
+                        <div class="card-content">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form id="form_news" th:action="${#request.getRequestURI()}" th:object="${truppe}" class="form-horizontal" novalidate method="post">
+               <input type="hidden" th:field="*{id}"/>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4 col-sm-4 form-group">
+                        <label for="label-textarea">Nome: </label>
+                        <input name="nome_truppa" type="text" class="form-control" id="titolo" rows="2" placeholder="Nome">            
+                    </div>
+
+                    <div class="col-md-6"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4 col-sm-4 form-group">
+                        <label for="label-textarea">Tipologia: </label><br>
+                            <input type="radio" id="truppaAttacco" name="tipologiaTruppa" value="truppaAttacco">
+                                <label for="truppaAttacco">Truppa d'attacco</label><br>
+                                    <input type="radio" id="truppaGuarigione" name="tipologiaTruppa" value="truppaGuarigione">
+                                        <label for="truppaGuarigione">Truppa di guarigione</label><br>
+                                            </div>
+
+                                            <div class="col-md-6"></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-4 col-sm-4 form-group">
+                                                    <label for="label-textarea">Immagine truppa statica: </label>
+                                                    <input type="file" name="file1">
+                                                            </div>
+
+                                                            <div class="col-md-6"></div>
+                                                            </div>
+                                                            <div class='row'>
+                                                                <div class="col-md-4"></div>
+                                                                <div class="col-md-4 col-sm-4 form-group"><button type="submit" class="btn btn-primary">Invia</button></div>
+                                                                <div class="col-md-4"></div>
+                                                            </div>
+                                                            </form>
+                                                            </div>
+                                                            </body>
+                                                            </html>

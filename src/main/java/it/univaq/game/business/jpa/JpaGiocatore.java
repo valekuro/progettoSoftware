@@ -41,4 +41,11 @@ public class JpaGiocatore  implements GiocatoreService{
         });    
         return giocatore;    
     }
+    
+ @Override
+    @Transactional(readOnly = true)
+    public Giocatore findByLivelloGiocatore(int livelloGiocatore) throws BusinessException {
+        Giocatore giocatore = giocatoreRepository.findByLivelloGiocatore(3);    
+        return giocatore;    
+    }
 }

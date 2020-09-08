@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
  * @author Valentina
  */
 public interface TruppeService {
+    void create(Truppe n) throws BusinessException;
     public List<Truppe> findAll() throws BusinessException;
     public ResponseGrid<Truppe> findAllTruppePaginated(RequestGrid requestGrid) throws BusinessException;
 }
