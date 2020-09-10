@@ -70,15 +70,16 @@
 
                     </div>
                 </div>
-            <div class="single-divider section-space--ptb_60 border-bottom truppe-diponibili-c" id="truppedisponibilipartita">
-                ciao
-            </div>
-                            </div> 
+                <div class="single-divider section-space--ptb_60 border-bottom truppe-diponibili-c" id="truppedisponibilipartita">
+                    ciao
+                </div>
+            </div> 
 
             <th:block layout:fragment="script">
                 <script type="text/javascript" th:inline="javascript">
                     var giocatore = null;
                     var avversario = null;
+                    var datiCaselle = null;
                     window.onload = function () {
                         $.ajax({
                             type: "GET",
@@ -115,7 +116,7 @@
                                     //$("#contenitoreAjax").html(data2);
                                     const viewPartita = new ViewPartita();
                                     avversario = new Giocatore(data[0].nickname, data[0].livelloGiocatore, data[0].elisirDisponibileAlGiocatore);
-
+                                    datiCaselle = data[1];
                                     for (var i = 0; i < data[1].length; i++) {
                                         viewPartita.visualizzaVillaggioNemico(data[1][i].posizione, data[1][i]['edificio'].nome)
                                     }
@@ -130,7 +131,6 @@
                                 url: "/menugames/villaggioesercitazione",
                                 dataType: "html",
                                 success: function (data) {
-                                    console.log(data);
                                     $('#menulatosinistro').html(data);
                                 },
                                 error: function () {
@@ -148,7 +148,7 @@
                                 dataType: "json",
                                 success: function (data) {
                                     const viewPartita = new ViewPartita();
-
+                                    datiCaselle = data[1];
                                     avversario = new Giocatore(data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore);
                                     for (var i = 0; i < data[0].length; i++) {
                                         viewPartita.visualizzaVillaggioNemico(data[0][i].posizione, data[0][i]['edificio'].nome)

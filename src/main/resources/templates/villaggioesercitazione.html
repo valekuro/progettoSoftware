@@ -1,8 +1,8 @@
 
 <p class="helpWarnings"><img class="informazioni" th:src="@{/mitech/assets/images/logo/info.png}">HELP:</p>
-<p>Questo è il villaggio proposto per l'esercitazione in base al tuo livello di Municipio.
+<div id="warnings">Questo è il villaggio proposto per l'esercitazione in base al tuo livello di Municipio.
     Vuoi procedere con l'attacco?
-</p>
+</div>
 
 <p>
     <a class="button25" id="iniziapartitaesercitazione">Inizia Partita</a> <br>
@@ -24,8 +24,9 @@
                     dataType: "html",
                     success: function (data) {
                         $("#truppedisponibilipartita").append(data);
-                        partita = new Partita(giocatore, avversario);
+                        partita = new Partita(giocatore, avversario, datiCaselle);
                         partita.iniziaPartita();
+                        document.getElementById('iniziapartitaesercitazione').style.display="none";
                     },
                     error: function () {
 

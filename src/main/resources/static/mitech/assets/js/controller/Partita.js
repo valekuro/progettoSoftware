@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 
-function Partita(datiDiGioco) {
+function Partita(giocatore, avversario, datiCaselle) {
     this.nomeTruppa;
     this.viewPartita = new ViewPartita();
-    this.datiDiGioco = datiDiGioco;
+    //this.datiDiGioco = datiDiGioco;
+    this.giocatore=giocatore;
+    this.datiCaselle = datiCaselle;
+    this.avversario = avversario;
     this.villaggio = this.creaVillaggioAvversario();
     this.oggettoTabelloneAux = new Array();
     this.truppeAddestrate = new Array();
@@ -27,29 +30,38 @@ Partita.prototype.numeroEdificiAttaccabiliPresentiInVillaggioNemico = function (
     }
 };
 
-Partita.prototype.recuperaDatiDiGioco = function (datiDiGioco) {
+/*Partita.prototype.recuperaDatiDiGioco = function (datiDiGioco) {
     this.datiDiGioco = datiDiGioco;
+    return this;
+};*/
+
+Partita.prototype.setGiocatore = function (giocatore) {
+    this.giocatore = giocatore;
     return this;
 };
 
-Partita.prototype.setDatiDiGioco = function (datiDiGioco) {
-    this.datiDiGioco = datiDiGioco;
+Partita.prototype.setAvversario = function (avversario) {
+    this.avversario = avversario;
     return this;
 };
 
+Partita.prototype.setDatiCaselle = function (datiCaselle) {
+    this.datiCaselle = datiCaselle;
+    return this;
+};
 
 Partita.prototype.creaVillaggioAvversario = function () {
     var villaggioAvversario = new BuilderVillaggio();
-    villaggioAvversario.setElisirDisponibileAlGiocatore(this.datiDiGioco[3].elisirDisponibileAlGiocatore);
-    villaggioAvversario.setLivelloMunicipio(this.datiDiGioco[1].livelloGiocatore);
+    villaggioAvversario.setElisirDisponibileAlGiocatore(this.giocatore.elisirDisponibileAlGiocatore);
+    villaggioAvversario.setLivelloMunicipio(this.giocatore.livelloGiocatore);
     villaggioAvversario.setTipoVillaggio('esercitazione');
     // console.log(this.datiDiGioco[0]);
-    villaggioAvversario.setDatiCaselle(this.datiDiGioco[0]);
+    villaggioAvversario.setDatiCaselle(this.datiCaselle[0]);
     villaggioAvversario.buildCaselle();
     return villaggioAvversario.build();
 };
 
-Partita.prototype.recuperaTruppeAddestrate = function () {
+/*Partita.prototype.recuperaTruppeAddestrate = function () {
     var truppe = new Array();
     for (var i = 0; i < this.datiDiGioco[2].length; i++) {
         if (this.datiDiGioco[2][i].truppa.tipologia === "truppaAttacco") {
@@ -90,7 +102,7 @@ Partita.prototype.recuperaTruppeAddestrate = function () {
 
     }
     return truppe;
-};
+};*/
 
 
 Partita.prototype.iniziaPartita = function () {
@@ -99,8 +111,8 @@ Partita.prototype.iniziaPartita = function () {
     }
     this.numeroEdificiAttaccabiliPresentiInVillaggioNemico();
     this.viewPartita.aggiornaInformazioniStatoPartita('warnings', 'Seleziona la truppa per l\'attacco tra le truppe disponibili');
-    this.truppeAddestrate = this.recuperaTruppeAddestrate();
-    this.truppeInCampo = this.truppeAddestrate.length;
+    this.truppeAddestrate = this.giocatore.recuperaTruppeAddestrate();
+    this.truppeInCampo = this.giocatore.truppeDisponibili.length;
 
     var countDownDate = new Date();
     countDownDate.setMinutes(countDownDate.getMinutes() + this.timer.durata); // timestamp
