@@ -42,12 +42,13 @@ chiari:
     padding: 3%;
 }
 .headerLogoClash{
-    width: 100% !important;
+    width: 50% !important;
 }
+
 
 .wrapdue {
 
-    background: linear-gradient(90deg, #a22b1b 50%, #e6a341  50%);
+    background: linear-gradient(90deg, #a22b1b 30%, #e6a341  50%);
     position: relative;
     padding: 40px;
     box-sizing: border-box;
@@ -58,7 +59,7 @@ chiari:
     position: absolute;
     width: 50%;
     height: 10px;
-    background: linear-gradient(90deg, #e6a341 50%, #a22b1b 50%);
+   //background: linear-gradient(90deg, #e6a341 50%, #a22b1b 30%);
     left: 25%;
 }
 .wrapdue:before {top: 15px;}
@@ -66,7 +67,7 @@ chiari:
 .wrapdue p {
     background: white;
     margin: 0;
-    padding: 50px 0;
+    padding: 30px 0;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     font-style: italic;
@@ -143,4 +144,15 @@ a.button25:active {
 
 #truppeDisponibiliAttacco{
     position:relative;
+}
+
+.tabellavillaggio{
+    background-image: url('/mitech/assets/images/villaggio/erba.png');
+    width: 70%;
+    border-image: url('/mitech/assets/images/villaggio/villaggioBorder.png') 30% round;
+}
+
+#contenitoreVillaggio{
+    padding-left: 15%;
+    align-content: center;
 }

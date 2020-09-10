@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
 /**
  *
  * @author Valentina
@@ -38,31 +37,34 @@ public class CercaVillaggioController {
     @Autowired
     private GiocatoretruppeRepository giocatoretrupperepository;
 
-      @GetMapping("")
+    @GetMapping("")
     public String propostaVillaggioMultigiocatore(Model model) throws BusinessException {
-        
+
         return "partitamultigiocatore";
     }
-    
+
     @RequestMapping(
             value = "/{id}",
             produces = "application/json")
     @ResponseBody
-    public ArrayList PosizioneEdificiCaselle(Model model, @PathVariable(value="id") long id) throws BusinessException {
+    public ArrayList PosizioneEdificiCaselle(Model model, @PathVariable(value = "id") long id) throws BusinessException {
+        ArrayList datiPartita = new ArrayList();
+
         Giocatore giocatore = giocatoreservice.findById((long) id);
         Giocatore giocatoreAvversario = giocatoreservice.findByLivelloGiocatore(giocatore.getLivelloGiocatore());
-       // List<giocatoretruppe> listaTruppe = giocatoretrupperepository.findTruppeByIdgiocatore(id);
+
+        // List<giocatoretruppe> listaTruppe = giocatoretrupperepository.findTruppeByIdgiocatore(id);
+        // do {
+        //       giocatoreAvversario = giocatoreservice.findByLivelloGiocatore(giocatore.getLivelloGiocatore());
+        //  } while (giocatore.getNickname() == giocatoreAvversario.getNickname());
         List<Casella> caselleGiocatoreAvversario = casellaservice.findCaselleByIdGiocatore(giocatoreAvversario.getId());
-        
-        ArrayList datiPartita = new ArrayList();
-     
-       // datiPartita.add(listaTruppe);
         datiPartita.add(caselleGiocatoreAvversario);
         datiPartita.add(giocatoreAvversario);
-    //    model.addAttribute("cercaPosizioneEdificiInCasella", cercaPosizioneEdificiInCasella);
         model.addAttribute("datiPartita", datiPartita);
         return datiPartita;
+
     }
 
     
+   
 }

@@ -14487,12 +14487,6 @@ blockquote {
     Author     : Valentina
 */
 
-.tabellavillaggio{
-    background-image: url('/mitech/assets/images/villaggio/erba.png');
-    width: 60%;
-     border: 25px solid !important;
-    border-image: url('/mitech/assets/images/villaggio/villaggioBorder.png') 30% round;
-}
 
 
 * {box-sizing:border-box}

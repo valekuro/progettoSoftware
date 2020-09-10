@@ -6,55 +6,163 @@
     <head>
         <body>
 
-                <div class="site-wrapper-reveal  section-space--pt__120" layout:fragment="content">
-                    <!-- <p th:text="${mySessionAttribute}"></p>-->
-                    <div class="row">
-                        <div class="col-lg-4">
+            <div class="site-wrapper-reveal  section-space--pt__120" layout:fragment="content">
 
+                <!-- <p th:text="${mySessionAttribute}"></p>-->
+
+                <div class="row" id="intestazioneClash">
+                    <div class="col-lg-4" >
+                        <div class="headerLogoClash">
+                            <a th:href="@{/}">
+                                <img th:src="@{/mitech/assets/images/logo/logo_clash.png}"  class="img-fluid" alt="">
+                            </a>
                         </div>
-                        <div class="col-lg-4" >
-                            <div class="headerLogoClash">
-                                <a th:href="@{/}">
-                                    <img th:src="@{/mitech/assets/images/logo/logo_clash.png}"  class="img-fluid" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4"></div>
-                        <div class="col-lg-4 wrapdue">
+                    <div class="col-lg-8" id="utenteloggato"></div>
+                </div> 
+
+                <div class="row">
+                    <div class="col-lg-4" id="menulatosinistro">
+                        <div class="wrapdue" >
                             <p class="bottoneMenu">
-                                <a class="button25" th:href="@{/attacco_esercitazione}">Attacco Esercitazione</a>
+                                <a class="button25" id="attaccoesercitazione" >Esercitazione</a>
                             </p>
 
                             <p class="bottoneMenu">
-                                <a class="button25" th:href="@{/aggiungitruppa}">Aggiungi Truppa</a>
+                                <a class="button25" id="attaccomultigiocatore" >Multigiocatore</a>
                             </p>
 
-
                         </div>
-                        <div class="col-lg-4"></div>
                     </div>
-               </div>
-           <th:block layout:fragment="script">
+
+
+                    <div class="col-lg-8" id="contenitoreVillaggio">
+
+                        <table id="tabvillaggio" class="tabellavillaggio">
+                            <tr>
+                                <td th:each="i : ${#numbers.sequence(1, 6)}">
+                                    <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td th:each="i : ${#numbers.sequence(7, 12)}">
+                                    <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
+                                </td>   
+                            </tr>
+
+                            <tr>
+                                <td th:each="i : ${#numbers.sequence(13, 18)}">
+                                    <img style="width: 100%" th:class="casella" th:id="__${i}__"/>
+                                </td>   
+                            </tr>
+
+                            <tr>
+                                <td th:each="i : ${#numbers.sequence(19, 24)}">
+                                    <img style="width: 100%" th:class="casella" th:id="__${i}__"/>                                   </tr>
+                            <tr>
+                                <td th:each="i : ${#numbers.sequence(25, 30)}">
+                                    <img style="width: 100%" th:class="casella" th:id="__${i}__"/>                                     </td>   
+                            </tr>
+                            <tr>
+                                <td th:each="i : ${#numbers.sequence(31, 36)}">
+                                    <img style="width: 100%" th:class="casella" th:id="__${i}__"/>                                   </tr>
+                        </table>
+
+                    </div>
+                </div>
+            <div class="single-divider section-space--ptb_60 border-bottom truppe-diponibili-c" id="truppedisponibilipartita">
+                ciao
+            </div>
+                            </div> 
+
+            <th:block layout:fragment="script">
                 <script type="text/javascript" th:inline="javascript">
-                   window.onload = function() {
+                    var giocatore = null;
+                    var avversario = null;
+                    window.onload = function () {
+                        $.ajax({
+                            type: "GET",
+                            //url: "/menugames/caricamento_dati_partita/2",
+                            url: "/menugames/homegiocatore2",
+                            contentType: "application/json",
+                            dataType: "json",
+                            success: function (data) {
+                                //console.log(data);
+                                const viewPartita = new ViewPartita();
+                                var truppeGiocatore = data[2];
+                                console.log(data[2]);
+                                giocatore = new Giocatore(data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[2]);
+                                viewPartita.aggiornaInformazioniStatoPartita("utenteloggato", "Ciao, " + giocatore.nickname);
+                                for (var i = 0; i < data[0].length; i++) {
+                                    viewPartita.visualizzaVillaggioNemico(data[0][i].posizione, data[0][i]['edificio'].nome)
+
+                                }
+                            },
+                            error: function () {
+                                alert("Chiamata fallita!!!");
+                            }
+                        });
+                    };
+
+                    jQuery(document).ready(function ($) {
+                        $('#attaccoesercitazione').click(function () {
                             $.ajax({
                                 type: "GET",
-                                url: "/menugames/caricamento_dati_partita/2",
+                                url: "/menugames/partitaesercitazione1",
                                 contentType: "application/json",
                                 dataType: "json",
                                 success: function (data) {
-                                    console.log(data);
+                                    //$("#contenitoreAjax").html(data2);
+                                    const viewPartita = new ViewPartita();
+                                    avversario = new Giocatore(data[0].nickname, data[0].livelloGiocatore, data[0].elisirDisponibileAlGiocatore);
+
+                                    for (var i = 0; i < data[1].length; i++) {
+                                        viewPartita.visualizzaVillaggioNemico(data[1][i].posizione, data[1][i]['edificio'].nome)
+                                    }
                                 },
                                 error: function () {
                                     alert("Chiamata fallita!!!");
                                 }
                             });
-                        };
+
+                            $.ajax({
+                                type: "GET",
+                                url: "/menugames/villaggioesercitazione",
+                                dataType: "html",
+                                success: function (data) {
+                                    console.log(data);
+                                    $('#menulatosinistro').html(data);
+                                },
+                                error: function () {
+                                    alert("Chiamata fallita!!!");
+                                }
+                            });
+                        });
+
+
+                        $('#attaccomultigiocatore').click(function () {
+                            $.ajax({
+                                type: "GET",
+                                url: "/menugames/caricamento_dati_partita/2",
+                                ontentType: "application/json",
+                                dataType: "json",
+                                success: function (data) {
+                                    const viewPartita = new ViewPartita();
+
+                                    avversario = new Giocatore(data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore);
+                                    for (var i = 0; i < data[0].length; i++) {
+                                        viewPartita.visualizzaVillaggioNemico(data[0][i].posizione, data[0][i]['edificio'].nome)
+
+                                    }
+                                },
+                                error: function () {
+                                    alert("Chiamata fallita!!!");
+                                }
+                            });
+                        });
+                    });
                 </script>
             </th:block>
-    </body>
+        </body>
     </head>
 </html>
