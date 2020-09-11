@@ -18,7 +18,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-8" id="utenteloggato"></div>
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4" id="utenteloggato"></div>
                 </div> 
 
                 <div class="row">
@@ -75,28 +76,26 @@
                 </div>
             </div> 
 
+
             <th:block layout:fragment="script">
+
                 <script type="text/javascript" th:inline="javascript">
                     var giocatore = null;
                     var avversario = null;
                     var datiCaselle = null;
                     window.onload = function () {
+
                         $.ajax({
                             type: "GET",
-                            //url: "/menugames/caricamento_dati_partita/2",
                             url: "/menugames/homegiocatore2",
                             contentType: "application/json",
                             dataType: "json",
                             success: function (data) {
-                                //console.log(data);
                                 const viewPartita = new ViewPartita();
-                                var truppeGiocatore = data[2];
-                                console.log(data[2]);
                                 giocatore = new Giocatore(data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[2]);
                                 viewPartita.aggiornaInformazioniStatoPartita("utenteloggato", "Ciao, " + giocatore.nickname);
                                 for (var i = 0; i < data[0].length; i++) {
                                     viewPartita.visualizzaVillaggioNemico(data[0][i].posizione, data[0][i]['edificio'].nome)
-
                                 }
                             },
                             error: function () {
@@ -104,6 +103,7 @@
                             }
                         });
                     };
+
 
                     jQuery(document).ready(function ($) {
                         $('#attaccoesercitazione').click(function () {
@@ -113,9 +113,8 @@
                                 contentType: "application/json",
                                 dataType: "json",
                                 success: function (data) {
-                                    //$("#contenitoreAjax").html(data2);
                                     const viewPartita = new ViewPartita();
-                                    avversario = new Giocatore(data[0].nickname, data[0].livelloGiocatore, data[0].elisirDisponibileAlGiocatore);
+                                    avversario = new Giocatore(data[0].nickname, data[0].livelloGiocatore, data[0].elisirDisponibileAlGiocatore, data[1]);
                                     datiCaselle = data[1];
                                     for (var i = 0; i < data[1].length; i++) {
                                         viewPartita.visualizzaVillaggioNemico(data[1][i].posizione, data[1][i]['edificio'].nome)
@@ -123,9 +122,9 @@
                                 },
                                 error: function () {
                                     alert("Chiamata fallita!!!");
-                                }
-                            });
+                                },
 
+                            });
                             $.ajax({
                                 type: "GET",
                                 url: "/menugames/villaggioesercitazione",
@@ -138,8 +137,6 @@
                                 }
                             });
                         });
-
-
                         $('#attaccomultigiocatore').click(function () {
                             $.ajax({
                                 type: "GET",
@@ -148,18 +145,23 @@
                                 dataType: "json",
                                 success: function (data) {
                                     const viewPartita = new ViewPartita();
-                                    datiCaselle = data[1];
-                                    avversario = new Giocatore(data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore);
+                                    datiCaselle = data[0];
+                                    avversario = new Giocatore(data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[0]);
                                     for (var i = 0; i < data[0].length; i++) {
                                         viewPartita.visualizzaVillaggioNemico(data[0][i].posizione, data[0][i]['edificio'].nome)
 
                                     }
+
                                 },
                                 error: function () {
                                     alert("Chiamata fallita!!!");
                                 }
                             });
                         });
+
+
+                
+
                     });
                 </script>
             </th:block>

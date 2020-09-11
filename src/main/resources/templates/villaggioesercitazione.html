@@ -15,26 +15,43 @@
 <th:block layout:fragment="script">
     <script type="text/javascript" th:inline="javascript">
         var partita = null;
-        jQuery(document).ready(function ($) {
+    jQuery(document).ready(function ($) {
+        $('#iniziapartitaesercitazione').click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/menugames/iniziapartitaesercitazione",
+                dataType: "html",
+                success: function (data) {
+                    $("#truppedisponibilipartita").append(data);
+                    document.getElementById('iniziapartitaesercitazione').style.display = "none";
+                    partita = new Partita(giocatore, avversario, datiCaselle);
+                    partita.iniziaPartita();
 
-            $('#iniziapartitaesercitazione').click(function () {
-                $.ajax({
-                    type: "GET",
-                    url: "/menugames/iniziapartitaesercitazione",
-                    dataType: "html",
-                    success: function (data) {
-                        $("#truppedisponibilipartita").append(data);
-                        partita = new Partita(giocatore, avversario, datiCaselle);
-                        partita.iniziaPartita();
-                        document.getElementById('iniziapartitaesercitazione').style.display="none";
-                    },
-                    error: function () {
+                },
+                error: function () {
 
-                        alert("Chiamata fallita!!!");
-                    },
+                    alert("Chiamata fallita!!!");
+                },
 
-                });
             });
+
+
+            $.ajax({
+                type: "GET",
+                url: "/menugames/intestazionepartita",
+                dataType: "html",
+                success: function (data) {
+                    $("#intestazioneClash").html(data);
+                },
+                error: function () {
+                    alert("Chiamata fallita!!!");
+                },
+
+            });
+
         });
+
+      
+     });
     </script>
 </th:block>

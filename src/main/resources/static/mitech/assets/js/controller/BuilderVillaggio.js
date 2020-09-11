@@ -41,10 +41,9 @@ BuilderVillaggio.prototype.setDatiCaselle = function (datiCaselle) {
 
 BuilderVillaggio.prototype.buildCaselle = function () {
         var caselle = new Array();
-        console.log(datiCaselle)
     var i;
     for (i = 0; i < this.datiCaselle.length; i++) {     
-       caselle.push(new Casella(this.datiCaselle[i]['edificio'].posizione,  new BuilderEdificio() 
+       caselle.push(new Casella(this.datiCaselle[i].posizione,  new BuilderEdificio() 
                .setNome(this.datiCaselle[i]['edificio'].nome)
                .setTassoAggiornamentoColpi(this.datiCaselle[i]['edificio'].tassoAggiornamentoColpi)
                .setTassoAggiornamentoResistenza(this.datiCaselle[i]['edificio'].tassoAggiornamentoResistenza)
@@ -52,8 +51,8 @@ BuilderVillaggio.prototype.buildCaselle = function () {
                .setColpiLivelloIniziale(this.datiCaselle[i]['edificio'].colpiLivelloIniziale)
                .setLivelloGiocatore(this.livelloMunicipio)
                .setVita()
-               .setPercentualeDistruzionePunteggio(this.datiCaselle[i]['percentualeDistruzionePunteggio'])
-               .setTipologia(this.datiCaselle[i]['tipologia'])));
+               .setPercentualeDistruzionePunteggio(this.datiCaselle[i]['edificio']['percentualeDistruzionePunteggio'])
+               .setTipologia(this.datiCaselle[i]['edificio']['tipologia'])));
     }
     return caselle;
 };

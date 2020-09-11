@@ -1,181 +1,186 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	
-	<title th:text="#{common.applicationtitle}">Game</title>
-	<!-- Favicon -->
-        <link rel="icon" th:href="@{/mitech/assets/images/favicon.png}" href="../../static/mitech/assets/images/favicon.png">
+    <head>
 
-        <!-- CSS
-            ============================================ -->
-        <link rel="stylesheet" th:href="@{/public/myStyle.css}" href="../../static/public/myStyle.css">
-        
-            <link rel="stylesheet" th:href="@{/mitech/assets/css/homeStyle.css}" href="./../static/mitech/assets/css/homeStyle.css">
-        	
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" th:href="@{/mitech/assets/css/vendor/bootstrap.min.css}" href="../../static/mitech/assets/css/vendor/bootstrap.min.css">
 
-        <!-- Font Family CSS -->
-        <link rel="stylesheet" th:href="@{/mitech/assets/css/vendor/cerebrisans.css}" href="../../static/mitech/assets/css/vendor/cerebrisans.css">
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-        <!-- FontAwesome CSS -->
-        <link rel="stylesheet" th:href="@{/mitech/assets/css/vendor/fontawesome-all.min.css}" href="../../static/mitech/assets/css/vendor/fontawesome-all.min.css">
-        <!-- Swiper slider CSS -->
-        <link rel="stylesheet" th:href="@{/mitech/assets/css/plugins/swiper.min.css}" href="../../static/mitech/assets/css/plugins/swiper.min.css">
+                    <title th:text="#{common.applicationtitle}">Game</title>
+                    <!-- Favicon -->
+                    <link rel="icon" th:href="@{/mitech/assets/images/favicon.png}" href="../../static/mitech/assets/images/favicon.png">
 
-        <!-- animate-text CSS -->
-        <link rel="stylesheet" th:href="@{/mitech/assets/css/plugins/animate-text.css}" href="../../static/mitech/assets/css/plugins/animate-text.css">
+                        <!-- CSS
+                            ============================================ -->
+                        <link rel="stylesheet" th:href="@{/public/myStyle.css}" href="../../static/public/myStyle.css">
 
-        <!-- Animate CSS -->
-        <link rel="stylesheet" th:href="@{/mitech/assets/css/plugins/animate.min.css}" href="../../static/mitech/assets/css/plugins/animate.min.css">
+                            <link rel="stylesheet" th:href="@{/mitech/assets/css/homeStyle.css}" href="./../static/mitech/assets/css/homeStyle.css">
 
-        <!-- Light gallery CSS -->
-        <link rel="stylesheet" th:href="@{/mitech/assets/css/plugins/lightgallery.min.css}" href="../../static/mitech/assets/css/plugins/lightgallery.min.css">
-        
-        <!-- DataTables -->
-        <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" th:href="@{/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}">
-        <link rel="stylesheet" href="../../plugins/datatables-buttons/css/dataTables.bootstrap4.min.css" th:href="@{/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}">
+                                <!-- Bootstrap CSS -->
+                                <link rel="stylesheet" th:href="@{/mitech/assets/css/vendor/bootstrap.min.css}" href="../../static/mitech/assets/css/vendor/bootstrap.min.css">
 
-        
-<!--         All min. CSS 
-        <link rel="stylesheet" th:href="@{/mitech/assets/css/vendor/vendor.min.css}" href="../../static/mitech/assets/css/vendor/vendor.min.css">
-        <link rel="stylesheet" th:href="@{/mitech/assets/css/plugins/plugins.min.css}" href="../../static/mitech/assets/css/plugins/plugins.min.css">-->
+                                    <!-- Font Family CSS -->
+                                    <link rel="stylesheet" th:href="@{/mitech/assets/css/vendor/cerebrisans.css}" href="../../static/mitech/assets/css/vendor/cerebrisans.css">
 
-        <!-- Main Style CSS -->
-        <link rel="stylesheet" th:href="@{/mitech/assets/css/style.css}" href="../../static/mitech/assets/css/style.css">
+                                        <!-- FontAwesome CSS -->
+                                        <link rel="stylesheet" th:href="@{/mitech/assets/css/vendor/fontawesome-all.min.css}" href="../../static/mitech/assets/css/vendor/fontawesome-all.min.css">
+                                            <!-- Swiper slider CSS -->
+                                            <link rel="stylesheet" th:href="@{/mitech/assets/css/plugins/swiper.min.css}" href="../../static/mitech/assets/css/plugins/swiper.min.css">
 
-</head>
+                                                <!-- animate-text CSS -->
+                                                <link rel="stylesheet" th:href="@{/mitech/assets/css/plugins/animate-text.css}" href="../../static/mitech/assets/css/plugins/animate-text.css">
 
-<body>
+                                                    <!-- Animate CSS -->
+                                                    <link rel="stylesheet" th:href="@{/mitech/assets/css/plugins/animate.min.css}" href="../../static/mitech/assets/css/plugins/animate.min.css">
 
-    <div class="preloader-activate preloader-active open_tm_preloader">
-        <div class="preloader-area-wrap">
-            <div class="spinner d-flex justify-content-center align-items-center h-100">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-            </div>
-        </div>
-    </div>
-    
-<!--<div class="header-area">
-     <div class="header-top-bar-info bg-gray d-none d-lg-block" th:replace="~{layout/public/header :: header}"></div>
-     <div class="header-bottom-wrap bg-white header-sticky" th:replace="~{layout/public/menu :: menu}"></div>
-</div>
-   
+                                                        <!-- Light gallery CSS -->
+                                                        <link rel="stylesheet" th:href="@{/mitech/assets/css/plugins/lightgallery.min.css}" href="../../static/mitech/assets/css/plugins/lightgallery.min.css">
 
-<!--  <aside th:replace="~{layout/admin/menu :: menu}"></aside>-->
-    <div layout:fragment="content"></div>
+                                                            <!-- DataTables -->
+                                                            <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" th:href="@{/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}">
+                                                                <link rel="stylesheet" href="../../plugins/datatables-buttons/css/dataTables.bootstrap4.min.css" th:href="@{/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}">
 
-  <!-- Main Footer 
-  <div class="footer-area-wrapper reveal-footer bg-gray" th:replace="~{layout/public/footer :: footer}"></div>-->
 
-<!--====================  scroll top ====================-->
-    <a href="#" class="scroll-top" id="scroll-top">
-        <i class="arrow-top fal fa-long-arrow-up"></i>
-        <i class="arrow-bottom fal fa-long-arrow-up"></i>
-    </a>
-<!--====================  End of scroll top  ====================-->
-<!--====================  mobile menu overlay ====================-->
-    <!-- <div th:replace="~{layout/public/menu-mobile :: menu-mobile}"></div>
-<!--====================  End of mobile menu overlay  ====================
-    <div class="cookie-message">
-        <p>Questo sito utilizza cookie tecnici, analytics e di terze parti. Proseguendo nella navigazione accetti l’utilizzo dei cookie.
-            <button data-accept="cookie-message" class="cookie-message-btn cookie-message-confirm my-close-button">Accetto<span class="sr-only"> i cookies</span></button>
-        </p>
-    </div>-->
-    
+                                                                    <!--         All min. CSS 
+                                                                            <link rel="stylesheet" th:href="@{/mitech/assets/css/vendor/vendor.min.css}" href="../../static/mitech/assets/css/vendor/vendor.min.css">
+                                                                            <link rel="stylesheet" th:href="@{/mitech/assets/css/plugins/plugins.min.css}" href="../../static/mitech/assets/css/plugins/plugins.min.css">-->
 
-        <!-- JS LIBRARY============================================ -->
-       
-        <!-- Modernizer JS -->
-        <script  th:src="@{/mitech/assets/js/vendor/modernizr-2.8.3.min.js}" src="../../mitech/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+                                                                    <!-- Main Style CSS -->
+                                                                    <link rel="stylesheet" th:href="@{/mitech/assets/css/style.css}" href="../../static/mitech/assets/css/style.css">
 
-        <!-- jQuery JS -->
-        <script  th:src="@{/mitech/assets/js/vendor/jquery-3.3.1.min.js}" src="../../mitech/assets/js/vendor/jquery-3.3.1.min.js"></script>
+                                                                        </head>
 
-        <!-- Bootstrap JS -->
-        <script  th:src="@{/mitech/assets/js/vendor/bootstrap.min.js}" src="../../mitech/assets/js/vendor/bootstrap.min.js"></script>
-        <!-- Swiper Slider JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/swiper.min.js}" src="../../mitech/assets/js/plugins/swiper.min.js"></script>
+                                                                        <body>
 
-        <!-- Light gallery JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/lightgallery.min.js}" src="../../mitech/assets/js/plugins/lightgallery.min.js"></script>
+                                                                            <div class="preloader-activate preloader-active open_tm_preloader">
+                                                                                <div class="preloader-area-wrap">
+                                                                                    <div class="spinner d-flex justify-content-center align-items-center h-100">
+                                                                                        <div class="bounce1"></div>
+                                                                                        <div class="bounce2"></div>
+                                                                                        <div class="bounce3"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
 
-        <!-- Waypoints JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/waypoints.min.js}" src="../../mitech/assets/js/plugins/waypoints.min.js"></script>
+                                                                            <!--<div class="header-area">
+                                                                                 <div class="header-top-bar-info bg-gray d-none d-lg-block" th:replace="~{layout/public/header :: header}"></div>
+                                                                                 <div class="header-bottom-wrap bg-white header-sticky" th:replace="~{layout/public/menu :: menu}"></div>
+                                                                            </div>
+                                                                               
+                                                                            
+                                                                            <!--  <aside th:replace="~{layout/admin/menu :: menu}"></aside>-->
+                                                                            <div layout:fragment="content"></div>
 
-        <!-- Counter down JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/countdown.min.js}" src="../../mitech/assets/js/plugins/countdown.min.js"></script>
+                                                                            <!-- Main Footer 
+                                                                            <div class="footer-area-wrapper reveal-footer bg-gray" th:replace="~{layout/public/footer :: footer}"></div>-->
 
-        <!-- Isotope JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/isotope.min.js}" src="../../mitech/assets/js/plugins/isotope.min.js"></script>
+                                                                            <!--====================  scroll top ====================-->
+                                                                            <a href="#" class="scroll-top" id="scroll-top">
+                                                                                <i class="arrow-top fal fa-long-arrow-up"></i>
+                                                                                <i class="arrow-bottom fal fa-long-arrow-up"></i>
+                                                                            </a>
+                                                                            <!--====================  End of scroll top  ====================-->
+                                                                            <!--====================  mobile menu overlay ====================-->
+                                                                            <!-- <div th:replace="~{layout/public/menu-mobile :: menu-mobile}"></div>
+                                                                            <!--====================  End of mobile menu overlay  ====================
+                                                                                <div class="cookie-message">
+                                                                                    <p>Questo sito utilizza cookie tecnici, analytics e di terze parti. Proseguendo nella navigazione accetti l’utilizzo dei cookie.
+                                                                                        <button data-accept="cookie-message" class="cookie-message-btn cookie-message-confirm my-close-button">Accetto<span class="sr-only"> i cookies</span></button>
+                                                                                    </p>
+                                                                                </div>-->
 
-        <!-- Masonry JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/masonry.min.js}" src="../../mitech/assets/js/plugins/masonry.min.js"></script>
 
-        <!-- ImagesLoaded JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/images-loaded.min.js}" src="../../mitech/assets/js/plugins/images-loaded.min.js"></script>
+                                                                            <!-- JS LIBRARY============================================ -->
+                                                                            <!-- Modernizer JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/vendor/modernizr-2.8.3.min.js}" src="../../mitech/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
-        <!-- Wavify JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/wavify.js}" src="../../mitech/assets/js/plugins/wavify.js"></script>
+                                                                            <!-- jQuery JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/vendor/jquery-3.3.1.min.js}" src="../../mitech/assets/js/vendor/jquery-3.3.1.min.js"></script>
 
-        <!-- jQuery Wavify JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/jquery.wavify.js}" src="../../mitech/assets/js/plugins/jquery.wavify.js"></script>
+                                                                            <!-- Bootstrap JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/vendor/bootstrap.min.js}" src="../../mitech/assets/js/vendor/bootstrap.min.js"></script>
+                                                                            <!-- Swiper Slider JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/swiper.min.js}" src="../../mitech/assets/js/plugins/swiper.min.js"></script>
 
-        <!-- circle progress JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/circle-progress.min.js}" src="../../mitech/assets/js/plugins/circle-progress.min.js"></script>
+                                                                            <!-- Light gallery JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/lightgallery.min.js}" src="../../mitech/assets/js/plugins/lightgallery.min.js"></script>
 
-        <!-- counterup JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/counterup.min.js}" src="../../mitech/assets/js/plugins/counterup.min.js"></script>
+                                                                            <!-- Waypoints JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/waypoints.min.js}" src="../../mitech/assets/js/plugins/waypoints.min.js"></script>
 
-        <!-- wow JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/wow.min.js}" src="../../mitech/assets/js/plugins/wow.min.js"></script>
+                                                                            <!-- Counter down JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/countdown.min.js}" src="../../mitech/assets/js/plugins/countdown.min.js"></script>
 
-        <!-- animation text JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/animation-text.min.js}" src="../../mitech/assets/js/plugins/animation-text.min.js"></script>
+                                                                            <!-- Isotope JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/isotope.min.js}" src="../../mitech/assets/js/plugins/isotope.min.js"></script>
 
-        <!-- Vivus JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/vivus.min.js}" src="../../mitech/assets/js/plugins/vivus.min.js"></script>
+                                                                            <!-- Masonry JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/masonry.min.js}" src="../../mitech/assets/js/plugins/masonry.min.js"></script>
 
-        <!-- Some plugins JS -->
-       <script  th:src="@{/mitech/assets/js/plugins/some-plugins.js}" src="../../mitech/assets/js/plugins/some-plugins.js"></script>
+                                                                            <!-- ImagesLoaded JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/images-loaded.min.js}" src="../../mitech/assets/js/plugins/images-loaded.min.js"></script>
 
-        <!-- Particles JS -->
-        <script th:src="@{/mitech/assets/js/plugins/particles.js}" src="../../mitech/assets/js/plugins/particles.js"></script>
-        <!-- cookie JS -->
-        <script th:src="@{/public/jquery.cookieBar.min.js}" src="../../public/bootstrap-itaia.min.js"></script>
-       
-       <!-- DataTables -->
-	<script src="../../plugins/datatables/jquery.dataTables.min.js" th:src="@{/adminlte/plugins/datatables/jquery.dataTables.min.js}"></script>
-	<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" th:src="@{/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
-	
-        <!-- Main JS -->
-        <script th:src="@{/mitech/assets/js/main.js}" src="../../mitech/assets/js/main.js"></script>
-  
-        
-        <!--SCRIPT VALENTINA CLASH OF CLANS-->
-            <script th:src="@{/mitech/assets/js/lodash.js}"></script>
-                                   <script th:src="@{/mitech/assets/js/presentation/ViewPartita.js}"></script>
-                                    <script th:src="@{/mitech/assets/js/controller/ProprietaOggettoSuCaselle.js}"></script>
-                                    <script th:src="@{/mitech/assets/js/controller/Truppa.js}"></script>
-                                    <script th:src="@{/mitech/assets/js/controller/BuilderEdificio.js}"></script>
-                                    <script th:src="@{/mitech/assets/js/controller/BuilderTruppa.js}"></script>
-                                    <script th:src="@{/mitech/assets/js/controller/Timer.js}"></script>
-                                    <script  th:inline="javascript" th:src="@{/mitech/assets/js/controller/Villaggio.js}"></script>
-                                    <script th:src="@{/mitech/assets/js/controller/Edificio.js}"></script>
-                                    <script th:src="@{/mitech/assets/js/controller/Partita.js}"></script>
-                                    <script th:src="@{/mitech/assets/js/controller/Casella.js}"></script>
-                                    <script th:src="@{/mitech/assets/js/controller/Giocatore.js}"></script>
-                                    <script th:src="@{/mitech/assets/js/controller/BuilderVillaggio.js}"></script>
-        <!-- BEGIN: Page JS-->
-        <th:block layout:fragment="script"></th:block>  
+                                                                            <!-- Wavify JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/wavify.js}" src="../../mitech/assets/js/plugins/wavify.js"></script>
 
-        <!-- END: Page JS-->
-  
-</body>
-</html>
+                                                                            <!-- jQuery Wavify JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/jquery.wavify.js}" src="../../mitech/assets/js/plugins/jquery.wavify.js"></script>
+
+                                                                            <!-- circle progress JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/circle-progress.min.js}" src="../../mitech/assets/js/plugins/circle-progress.min.js"></script>
+
+                                                                            <!-- counterup JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/counterup.min.js}" src="../../mitech/assets/js/plugins/counterup.min.js"></script>
+
+                                                                            <!-- wow JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/wow.min.js}" src="../../mitech/assets/js/plugins/wow.min.js"></script>
+
+                                                                            <!-- animation text JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/animation-text.min.js}" src="../../mitech/assets/js/plugins/animation-text.min.js"></script>
+
+                                                                            <!-- Vivus JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/vivus.min.js}" src="../../mitech/assets/js/plugins/vivus.min.js"></script>
+
+                                                                            <!-- Some plugins JS -->
+                                                                            <script  th:src="@{/mitech/assets/js/plugins/some-plugins.js}" src="../../mitech/assets/js/plugins/some-plugins.js"></script>
+
+                                                                            <!-- Particles JS -->
+                                                                            <script th:src="@{/mitech/assets/js/plugins/particles.js}" src="../../mitech/assets/js/plugins/particles.js"></script>
+                                                                            <!-- cookie JS -->
+                                                                            <script th:src="@{/public/jquery.cookieBar.min.js}" src="../../public/bootstrap-itaia.min.js"></script>
+
+                                                                            <!-- DataTables -->
+                                                                            <script src="../../plugins/datatables/jquery.dataTables.min.js" th:src="@{/adminlte/plugins/datatables/jquery.dataTables.min.js}"></script>
+                                                                            <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" th:src="@{/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+
+                                                                            <!-- Main JS -->
+                                                                            <script th:src="@{/mitech/assets/js/main.js}" src="../../mitech/assets/js/main.js"></script>
+
+
+                                                                            <!--SCRIPT VALENTINA CLASH OF CLANS-->
+                                                                            <script th:src="@{/mitech/assets/js/lodash.js}"></script>
+                                                                            <script th:src="@{/mitech/assets/js/presentation/ViewPartita.js}"></script>
+                                                                            <script th:src="@{/mitech/assets/js/controller/ProprietaOggettoSuCaselle.js}"></script>
+                                                                            <script th:src="@{/mitech/assets/js/controller/Truppa.js}"></script>
+                                                                            <script th:src="@{/mitech/assets/js/controller/BuilderEdificio.js}"></script>
+                                                                            <script th:src="@{/mitech/assets/js/controller/BuilderTruppa.js}"></script>
+                                                                            <script th:src="@{/mitech/assets/js/controller/Timer.js}"></script>
+                                                                            <script  th:inline="javascript" th:src="@{/mitech/assets/js/controller/Villaggio.js}"></script>
+                                                                            <script th:src="@{/mitech/assets/js/controller/Edificio.js}"></script>
+                                                                            <script th:src="@{/mitech/assets/js/controller/Partita.js}"></script>
+                                                                            <script th:src="@{/mitech/assets/js/controller/Casella.js}"></script>
+                                                                            <script th:src="@{/mitech/assets/js/controller/Giocatore.js}"></script>
+                                                                            <script th:src="@{/mitech/assets/js/controller/BuilderVillaggio.js}"></script>
+
+
+                                                                            <!-- BEGIN: Page JS-->
+                                                                            <th:block layout:fragment="script">
+
+                                                                            </th:block>  
+
+                                                                            <!-- END: Page JS-->
+
+                                                                        </body>
+                                                                        </html>

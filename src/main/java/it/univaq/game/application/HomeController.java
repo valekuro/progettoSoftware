@@ -58,6 +58,11 @@ public class HomeController {
         return "villaggioesercitazione";
     }
     
+     @GetMapping("/menugames/intestazionepartita")
+    String visualizzaIntestazionepartita(Model model) throws BusinessException {
+        return "intestazionepartita";
+    }
+    
      @GetMapping("/menugames/iniziapartitaesercitazione")
     public String inizioPartitaVillaggioEsercitazione(Model model) throws BusinessException {
         List<giocatoretruppe> truppeDisponbili = giocatoretrupperepository.findTruppeByIdgiocatore((long) 2);
