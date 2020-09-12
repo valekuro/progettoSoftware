@@ -281,27 +281,32 @@ Partita.prototype.attacco = function () {
 
             }
         }
-        this.finePartita(i);
+        this.finePartita();
     }
     this.villaggio['datiCaselle'] = _.cloneDeep(this.oggettoTabelloneAux);
 };
 
-Partita.prototype.finePartita = function (i) {
-    if (this.truppeAddestrate.length === 0 && this.truppeInCampo === 0) {
-        clearInterval(this.timer.tempo);
-        this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
-        this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
+Partita.prototype.finePartita = function () {
+    //if (this.avversario.nickname === 'esercitazione') {
+    if (this.truppeAddestrate.length === 0 && this.truppeInCampo === false) {
+        this.finePartitaEsercitazione()
     }
     if (this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico) {
-        clearInterval(this.timer.tempo);
-        this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
-        this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
+        this.finePartitaEsercitazione()
+
     }
     if (this.timer.distance < 0) {
-        clearInterval(this.timer.tempo);
-        this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Tempo scaduto!')
-        this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
+        this.finePartitaEsercitazione()
+
     }
+
+    // }
+}
+
+Partita.prototype.finePartitaEsercitazione = function () {
+    clearInterval(this.timer.tempo);
+    this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
+    this.viewPartita.visualizzaRisultatiPartitaEsercitazione(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
 }
 
 Partita.prototype.calcoloRisultatoParziale = function (i) {
@@ -313,11 +318,11 @@ Partita.prototype.rubaElisir = function () {
     this.elisirRubato = (parseInt(this.villaggio.elisirDisponibileAlGiocatore) * 25) / 100;
 }
 
-Partita.prototype.calcoloRisultatoTotale = function () {
-    if (this.timer.distance < 0) {
-        clearInterval(this.timer.tempo);
-        document.getElementById("demo").innerHTML = "Fine partita!";
-        this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
-
-    }
-}
+/*Partita.prototype.calcoloRisultatoTotale = function () {
+ if (this.timer.distance < 0) {
+ clearInterval(this.timer.tempo);
+ document.getElementById("demo").innerHTML = "Fine partita!";
+ this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
+ 
+ }
+ }*/

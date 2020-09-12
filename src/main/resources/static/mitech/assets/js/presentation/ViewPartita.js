@@ -89,7 +89,7 @@ ViewPartita.prototype.selezionaTruppa = function (indiceTruppa, nomeTruppa) {
  });
  }*/
 
-ViewPartita.prototype.visualizzaRisultatiPartita = function (ammontareDistruzioneParziale, elisirRubato) {
+ViewPartita.prototype.visualizzaRisultatiPartitaEsercitazione = function (ammontareDistruzioneParziale, elisirRubato) {
     var risultati;
     risultati = 'Percentuale raggiunta: ' + ammontareDistruzioneParziale + '%';
     if (ammontareDistruzioneParziale === 50) {
@@ -102,16 +102,34 @@ ViewPartita.prototype.visualizzaRisultatiPartita = function (ammontareDistruzion
         risultati = risultati + '  Hai perso, peccato! ';
     }
     risultati = risultati + 'Se fosse stata una partita vera avresti ottenuto ' + elisirRubato + ' Elisir';
+   // document.getElementById('villaggio').style.display = 'none';
+    document.getElementById('risultati').style.display = 'block';
+    document.getElementById('risultati').innerHTML = risultati;
+    //document.getElementById('truppaInactive').style.display = 'none';
+    document.getElementsByClassName('helpWarnings').style.display = 'none';
+
+}
+
+ViewPartita.prototype.visualizzaRisultatiPartitaMultigiocatore = function (ammontareDistruzioneParziale, elisirRubato, coppeVinteGiocatore, coppePerseAvversario) {
+var risultati;
+    risultati = 'Percentuale raggiunta: ' + ammontareDistruzioneParziale + '%';
+    if (ammontareDistruzioneParziale === 50) {
+        risultati = risultati + '  Hai vinto '+coppeVinteGiocatore+' coppe! Hai totalizzato: 1 stella ';
+    } else if (ammontareDistruzioneParziale > 50 && ammontareDistruzioneParziale <= 99) {
+        risultati = risultati + '  Hai vinto '+coppeVinteGiocatore+' coppe! Hai totalizzato: 2 stella ';
+    } else if (ammontareDistruzioneParziale === 100) {
+        risultati = risultati + '  Hai vinto '+coppeVinteGiocatore+' coppe! Hai totalizzato: 3 stella ';
+    } else if (ammontareDistruzioneParziale < 50) {
+        risultati = risultati + '  Hai perso '+coppeVinteGiocatore+' peccato! ';
+    }
+    risultati = risultati + 'Hai ottenuto ' + elisirRubato + ' Elisir';
     document.getElementById('villaggio').style.display = 'none';
     document.getElementById('risultatiEsercitazione').style.display = 'block';
     document.getElementById('risultatiEsercitazione').innerHTML = risultati;
     //document.getElementById('truppaInactive').style.display = 'none';
     document.getElementById('warnings').style.display = 'none';
         document.getElementById('idWarning').style.display = 'none';
-
 }
-
-
 ViewPartita.prototype.mantieniNumeroEdificiDistrutti = function (numeroEdificiDistrutti) {
     document.getElementById('edificiDistrutti').innerHTML = 'Edifici distrutti: ' + numeroEdificiDistrutti;
 }

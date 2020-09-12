@@ -157,6 +157,18 @@
                                     alert("Chiamata fallita!!!");
                                 }
                             });
+                            
+                             $.ajax({
+                                type: "GET",
+                                url: "/menugames/villaggioesercitazione",
+                                dataType: "html",
+                                success: function (data) {
+                                    $('#menulatosinistro').html(data);
+                                },
+                                error: function () {
+                                    alert("Chiamata fallita!!!");
+                                }
+                            });
                         });
 
 
