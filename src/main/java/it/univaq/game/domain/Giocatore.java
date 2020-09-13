@@ -28,6 +28,7 @@ public class Giocatore extends AbstractEntity<Long> {
     private String nickname;
     private int livelloGiocatore;
     private int elisirDisponibileAlGiocatore;
+    private int coppe;
     /*@JsonIgnore
     @ManyToMany()
     

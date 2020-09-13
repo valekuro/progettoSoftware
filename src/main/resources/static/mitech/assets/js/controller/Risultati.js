@@ -11,7 +11,7 @@ function Risultati(elisirRubato, ammontareDistruzioneParziale) {
     this.risultati = new Array();
 }
 
-Risultati.prototype.finePartitaMultigiocatore = function (elisirAvversario, giocatoreCoppe, giocatoreElisir, avversarioCoppe, avversarioElisir) {
+Risultati.prototype.finePartitaMultigiocatore = function (elisirAvversario, giocatoreElisir, giocatoreCoppe, avversarioCoppe) {
     clearInterval(this.timer.tempo);
     let coppeVinteGiocatore = 0;
     let coppePerseGiocatoreSconfitta = 0;
@@ -54,8 +54,3 @@ Risultati.prototype.finePartitaMultigiocatore = function (elisirAvversario, gioc
  });
  }*/
 
-Risultati.prototype.finePartitaEsercitazione = function () {
-    clearInterval(this.timer.tempo);
-    this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
-    this.viewPartita.visualizzaRisultatiPartitaEsercitazione(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
-}

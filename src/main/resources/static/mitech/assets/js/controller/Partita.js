@@ -281,7 +281,8 @@ Partita.prototype.attacco = function () {
 
             }
         }
-        console.log(this.avversario.nickname);
+        console.log(this.avversario);
+        console.log(this.giocatore);
         this.finePartita();
     }
     this.villaggio['datiCaselle'] = _.cloneDeep(this.oggettoTabelloneAux);
@@ -292,6 +293,12 @@ Partita.prototype.finePartita = function () {
     if ((this.truppeAddestrate.length === 0 && this.truppeInCampo === 0)|| this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico || this.timer.distance < 0) {
         this.finePartitaEsercitazione()
     }
+   }else{
+     if ((this.truppeAddestrate.length === 0 && this.truppeInCampo === 0)|| this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico || this.timer.distance < 0) {
+         var fineGioco = new Risultati(this.elisirRubato, this.ammontareDistruzioneParziale);
+        // fineGioco.finePartitaMultigiocatore(this.avversario.quantitaElisirDisponibile, this.giocatore.quantitaElisirDisponibile);
+        }
+  
    }
 }
 
