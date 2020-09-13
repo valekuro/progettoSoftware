@@ -26,9 +26,5 @@ Timer.prototype.calcolaDistanza = function(countDownDate){
         viewPartita.aggiornaInformazioniStatoPartita('demo', minutes + "m " + seconds + "s ");
 }
 
-Timer.prototype.tempoRimanente = function (countDownDate) {
-    var test = this;
-    this.tempo = setInterval(function(){test.calcolaDistanza(countDownDate);}, 1000);
 
-}
 

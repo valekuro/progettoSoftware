@@ -5,10 +5,12 @@
  */
 
 
-function Giocatore(nickname, livelloGiocatore, quantitaElisirDisponibile, truppeDisponibili){
+function Giocatore(id, nickname, livelloGiocatore, quantitaElisirDisponibile, coppe, truppeDisponibili){
+    this.id = id;
     this.nickname = nickname;
     this.livelloGiocatore = livelloGiocatore;
     this.quantitaElisirDisponibile = quantitaElisirDisponibile;
+    this.coppe = coppe;
     this.truppeDisponibili = truppeDisponibili;
 }
 

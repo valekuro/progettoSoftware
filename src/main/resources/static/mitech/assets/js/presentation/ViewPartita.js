@@ -23,8 +23,14 @@ ViewPartita.prototype.visualizzaVillaggioNemico = function (posizione, nome) {
 
 
 ViewPartita.prototype.animazioneLottaTruppa = function (nomeEdificio, indice) {
+  
+    if(indice === 1){
+        document.getElementById(indice).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
+    }else{
+    
     document.getElementById(indice - 1).src = '/mitech/assets/images/villaggio/erba.png';
     document.getElementById(indice).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
+}
 };
 
 ViewPartita.prototype.animazioneLottaEdificio = function (nomeEdificio, indice) {

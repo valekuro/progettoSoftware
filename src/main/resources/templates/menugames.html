@@ -87,12 +87,13 @@
 
                         $.ajax({
                             type: "GET",
-                            url: "/menugames/homegiocatore2",
+                            url: "/menugames/homegiocatore/2",
                             contentType: "application/json",
                             dataType: "json",
                             success: function (data) {
                                 const viewPartita = new ViewPartita();
-                                giocatore = new Giocatore(data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[2]);
+                                console.log(data[1]);
+                                giocatore = new Giocatore(data[1].id, data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[1].coppe, data[2]);
                                 viewPartita.aggiornaInformazioniStatoPartita("utenteloggato", "Ciao, " + giocatore.nickname);
                                 for (var i = 0; i < data[0].length; i++) {
                                     viewPartita.visualizzaVillaggioNemico(data[0][i].posizione, data[0][i]['edificio'].nome)
@@ -114,7 +115,7 @@
                                 dataType: "json",
                                 success: function (data) {
                                     const viewPartita = new ViewPartita();
-                                    avversario = new Giocatore(data[0].nickname, data[0].livelloGiocatore, data[0].elisirDisponibileAlGiocatore, data[1]);
+                                    avversario = new Giocatore(data[0].id, data[0].nickname, data[0].livelloGiocatore, data[0].elisirDisponibileAlGiocatore, data[0].coppe, data[1]);
                                     datiCaselle = data[1];
                                     for (var i = 0; i < data[1].length; i++) {
                                         viewPartita.visualizzaVillaggioNemico(data[1][i].posizione, data[1][i]['edificio'].nome)
@@ -146,7 +147,7 @@
                                 success: function (data) {
                                     const viewPartita = new ViewPartita();
                                     datiCaselle = data[0];
-                                    avversario = new Giocatore(data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[0]);
+                                    avversario = new Giocatore(data[1].id, data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[1].coppe, data[0]);
                                     for (var i = 0; i < data[0].length; i++) {
                                         viewPartita.visualizzaVillaggioNemico(data[0][i].posizione, data[0][i]['edificio'].nome)
 

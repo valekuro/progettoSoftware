@@ -5,52 +5,100 @@
  */
 
 
-function Risultati(elisirRubato, ammontareDistruzioneParziale) {
+function Risultati(elisirRubato, ammontareDistruzioneParziale, Giocatore, Avversario) {
+    this.Giocatore=Giocatore;
+    this.Avversario = Avversario;
     this.ammontareDistruzioneParziale = ammontareDistruzioneParziale;
     this.elisirRubato = elisirRubato;
     this.risultati = new Array();
+    this.coppeTotaliGiocatore = 0;
+    this.coppeTotaliAvversario = 0;
+    this.elisirTotaleGiocatore = 0;
+    this.elisirTotaleAvversario = 0;
+    this.coppeVinteGiocatore = 0;
+
+
 }
 
 Risultati.prototype.finePartitaMultigiocatore = function (elisirAvversario, giocatoreElisir, giocatoreCoppe, avversarioCoppe) {
-    clearInterval(this.timer.tempo);
     let coppeVinteGiocatore = 0;
-    let coppePerseGiocatoreSconfitta = 0;
-    let coppeVinteAvversarioSconfitta = 0;
     let quantitaCoppePerStella = 7;
     let coppePerseAvversario = 0;
+
     if (this.ammontareDistruzioneParziale === 50) {
-        coppeVinteGiocatore = coppeVinteGiocatore + quantitaCoppePerStella;
-        coppePerseAvversario = coppePerseAvversario + quantitaCoppePerStella;
+        this.calcolaBottino(1, quantitaCoppePerStella, giocatoreCoppe, avversarioCoppe, giocatoreElisir, elisirAvversario);
     } else if (this.ammontareDistruzioneParziale > 50 && this.ammontareDistruzioneParziale <= 99) {
-        coppeVinteGiocatore = coppeVinteGiocatore + (quantitaCoppePerStella * 2);
-        coppePerseAvversario = coppePerseAvversario + (quantitaCoppePerStella * 2);
+        this.calcolaBottino(2, quantitaCoppePerStella, giocatoreCoppe, avversarioCoppe, giocatoreElisir, elisirAvversario);
     } else if (this.ammontareDistruzioneParziale === 100) {
-        coppeVinteGiocatore = coppeVinteGiocatore + (quantitaCoppePerStella * 3);
-        coppePerseAvversario = coppePerseAvversario + (quantitaCoppePerStella * 3);
+        this.calcolaBottino(3, quantitaCoppePerStella, giocatoreCoppe, avversarioCoppe, giocatoreElisir, elisirAvversario);
+
 
     } else if (this.ammontareDistruzioneParziale < 50) {
-        coppePerseGiocatoreSconfitta = quantitaCoppePerStella;
-        coppeVinteAvversarioSconfitta = quantitaCoppePerStella;
+        this.aumentaCoppeAvversario(avversarioCoppe);
+        this.diminuisciCoppeAvversario(giocatoreCoppe);
     }
-    this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
-    this.viewPartita.visualizzaRisultatiPartitaMultigiocatore(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato, coppeVinteGiocatore, coppePerseAvversario);
+    
+  var viewrisultati = new ViewPartita();
+   viewrisultati.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
+   viewrisultati.visualizzaRisultatiPartitaMultigiocatore(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato, this.coppeVinteGiocatore, this.coppePerseAvversario);
+    this.inviaDatiPartita()
+
 }
 
 
+Risultati.prototype.calcolaBottino = function (n, quantitaCoppePerStella, giocatoreCoppe, avversarioCoppe, giocatoreElisir, elisirAvversario) {
 
-/*Risultati.prototype.inviaDatiPartita = function () {
- $.ajax({
- type: "POST",
- url: "",
- contentType: "application/json",
- dataType: "json",
- data: 
- success: function (data) {
- 
- },
- error: function () {
- alert("Chiamata fallita!!!");
- }
- });
- }*/
+    this.coppeVinteGiocatore = quantitaCoppePerStella * n;
+    this.coppePerseAvversario = quantitaCoppePerStella * n;
+    this.aumentaCoppeGiocatore(giocatoreCoppe);
+    this.diminuisciCoppeAvversario(this.coppePerseAvversario, avversarioCoppe);
+    this.aumentaElisirGiocatore(giocatoreElisir);
+    this.diminuisciElisirAvversario(elisirAvversario);
+}
+
+Risultati.prototype.aumentaCoppeGiocatore = function (giocatoreCoppe) {
+    this.coppeTotaliGiocatore = this.coppeVinteGiocatore + giocatoreCoppe;
+}
+
+
+Risultati.prototype.diminuisciCoppeGiocatore = function (giocatoreCoppe) {
+    this.coppeTotaliGiocatore = giocatoreCoppe - 10;
+}
+
+Risultati.prototype.aumentaElisirGiocatore = function (giocatoreElisir) {
+    this.elisirTotaleGiocatore = this.elisirRubato + giocatoreElisir;
+}
+
+Risultati.prototype.diminuisciCoppeAvversario = function (avversarioCoppe) {
+    this.coppeTotaliAvversario = avversarioCoppe - this.coppePerseAvversario;
+}
+
+Risultati.prototype.aumentaCoppeAvversario = function (avversarioCoppe) {
+    this.coppeTotaliAvversario = avversarioCoppe + 10;
+}
+
+Risultati.prototype.diminuisciElisirAvversario = function (elisirAvversario) {
+    this.elisirTotaleAvversario = elisirAvversario - this.elisirRubato;
+}
+
+Risultati.prototype.inviaDatiPartita = function () {
+
+    $.ajax({
+        type: "PUT",
+        url: '/giocatore/'+this.Giocatore.id,
+        contentType: "application/json",
+        data: JSON.stringify({"nickname": this.Giocatore.nickname, 
+            "livelloGiocatore": this.Giocatore.livelloGiocatore, 
+            "elisirDisponibileAlGiocatore": this.elisirTotaleGiocatore, 
+            "coppe": this.coppeTotaliGiocatore}),
+        success: function (risposta) {
+            $("div#warnings").html(risposta);
+        },
+        // ed una per il caso di fallimento
+        error: function () {
+            alert("Chiamata fallita!!!");
+        }
+    });
+}
+
 

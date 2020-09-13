@@ -16,7 +16,15 @@ import org.springframework.data.repository.query.Param;
  * @author Valentina
  */
 public interface GiocatoreService {
+
     public List<Giocatore> findAll() throws BusinessException;
+
     Giocatore findById(Long id) throws BusinessException;
-    Giocatore findByLivelloGiocatore(@Param("livelloGiocatore") int livelloGiocatore) throws BusinessException;
+
+    Giocatore findByLivelloGiocatore(@Param("livelloGiocatore") int livelloGiocatore, @Param("id") long idGiocatore) throws BusinessException;
+
+    void update(Giocatore giocatore) throws BusinessException;
+    
+    void create(Giocatore n) throws BusinessException;
+
 }

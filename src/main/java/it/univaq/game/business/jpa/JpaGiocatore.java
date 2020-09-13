@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("giocatore")
 @Transactional
-public class JpaGiocatore  implements GiocatoreService{
+public class JpaGiocatore implements GiocatoreService {
 
     @Autowired
     GiocatoreRepository giocatoreRepository;
@@ -32,20 +32,31 @@ public class JpaGiocatore  implements GiocatoreService{
         List<Giocatore> listaGiocatori = giocatoreRepository.findAll();
         return listaGiocatori;
     }
-    
+
     @Override
     @Transactional(readOnly = true)
     public Giocatore findById(Long id) throws BusinessException {
         Giocatore giocatore = giocatoreRepository.findById(id).orElseThrow(() -> {
             return new BusinessException("Giocatore non trovato");
-        });    
-        return giocatore;    
+        });
+        return giocatore;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Giocatore findByLivelloGiocatore(int livelloGiocatore, long idGiocatore) throws BusinessException {
+        Giocatore giocatore = giocatoreRepository.findByLivelloGiocatore(livelloGiocatore, idGiocatore);
+        return giocatore;
+    }
+
+    @Override
+    @Transactional
+    public void update(Giocatore giocatore) {
+        giocatoreRepository.save(giocatore);
     }
     
- @Override
-    @Transactional(readOnly = true)
-    public Giocatore findByLivelloGiocatore(int livelloGiocatore) throws BusinessException {
-        Giocatore giocatore = giocatoreRepository.findByLivelloGiocatore(3);    
-        return giocatore;    
+       @Override
+    public void create(Giocatore giocatore) throws BusinessException {
+        giocatoreRepository.save(giocatore);
     }
 }

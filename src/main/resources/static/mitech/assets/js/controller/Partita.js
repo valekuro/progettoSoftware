@@ -17,7 +17,7 @@ function Partita(giocatore, avversario, datiCaselle) {
     this.ammontareDistruzioneParziale = 0;
     this.elisirRubato = 0;
     this.edificiDistrutti = 0;
-    this.timer = new Timer(2);
+    this.timer = new Timer(1);
     this.countDownDate;
     let truppeInCampo;
     this.edificiAttaccabiliPresentiInVillaggioNemico = 0;
@@ -74,7 +74,7 @@ Partita.prototype.iniziaPartita = function () {
     countDownDate.setMinutes(countDownDate.getMinutes() + this.timer.durata); // timestamp
     this.countDownDate = new Date(countDownDate); // Date object
     this.timer.start(() => this.attacco());
-    this.timer.tempoRimanente(countDownDate);
+ 
 
 };
 
@@ -118,6 +118,9 @@ Partita.prototype.selezionareTruppaDisponibile = function (nomeTruppaScelta) {
 
 Partita.prototype.attacco = function () {
     var i;
+    
+    this.timer.calcolaDistanza(this.countDownDate)
+  
     this.oggettoTabelloneAux = _.cloneDeep(this.villaggio['datiCaselle']);
     for (i = 0; i < this.villaggio['datiCaselle'].length; i++) {
         switch (this.villaggio['datiCaselle'][i].oggettoOccupante.constructor.name) {
@@ -281,8 +284,6 @@ Partita.prototype.attacco = function () {
 
             }
         }
-        console.log(this.avversario);
-        console.log(this.giocatore);
         this.finePartita();
     }
     this.villaggio['datiCaselle'] = _.cloneDeep(this.oggettoTabelloneAux);
@@ -290,16 +291,17 @@ Partita.prototype.attacco = function () {
 
 Partita.prototype.finePartita = function () {
     if (this.avversario.nickname === 'esercitazione') {
-    if ((this.truppeAddestrate.length === 0 && this.truppeInCampo === 0)|| this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico || this.timer.distance < 0) {
-        this.finePartitaEsercitazione()
-    }
-   }else{
-     if ((this.truppeAddestrate.length === 0 && this.truppeInCampo === 0)|| this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico || this.timer.distance < 0) {
-         var fineGioco = new Risultati(this.elisirRubato, this.ammontareDistruzioneParziale);
-        // fineGioco.finePartitaMultigiocatore(this.avversario.quantitaElisirDisponibile, this.giocatore.quantitaElisirDisponibile);
+        if ((this.truppeAddestrate.length === 0 && this.truppeInCampo === 0) || this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico || this.timer.distance < 0) {
+            this.finePartitaEsercitazione()
         }
-  
-   }
+    } else {
+        if ((this.truppeAddestrate.length === 0 && this.truppeInCampo === 0) || this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico || this.timer.distance < 0) {
+            clearInterval(this.timer.tempo);
+            var fineGioco = new Risultati(this.elisirRubato, this.ammontareDistruzioneParziale, this.giocatore, this.avversario);
+            fineGioco.finePartitaMultigiocatore(this.avversario.quantitaElisirDisponibile, this.giocatore.quantitaElisirDisponibile, this.giocatore.coppe, this.avversario.coppe);
+        }
+
+    }
 }
 
 Partita.prototype.finePartitaEsercitazione = function () {
