@@ -281,26 +281,18 @@ Partita.prototype.attacco = function () {
 
             }
         }
+        console.log(this.avversario.nickname);
         this.finePartita();
     }
     this.villaggio['datiCaselle'] = _.cloneDeep(this.oggettoTabelloneAux);
 };
 
 Partita.prototype.finePartita = function () {
-    //if (this.avversario.nickname === 'esercitazione') {
-    if (this.truppeAddestrate.length === 0 && this.truppeInCampo === false) {
+    if (this.avversario.nickname === 'esercitazione') {
+    if ((this.truppeAddestrate.length === 0 && this.truppeInCampo === 0)|| this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico || this.timer.distance < 0) {
         this.finePartitaEsercitazione()
     }
-    if (this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico) {
-        this.finePartitaEsercitazione()
-
-    }
-    if (this.timer.distance < 0) {
-        this.finePartitaEsercitazione()
-
-    }
-
-    // }
+   }
 }
 
 Partita.prototype.finePartitaEsercitazione = function () {

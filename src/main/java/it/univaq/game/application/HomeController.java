@@ -58,6 +58,11 @@ public class HomeController {
         return "villaggioesercitazione";
     }
     
+         @GetMapping("/menugames/villaggiomultigiocatore")
+    String visualizzaVillaggioMultigiocatore(Model model) throws BusinessException {
+        return "villaggiomultigiocatore";
+    }
+    
      @GetMapping("/menugames/intestazionepartita")
     String visualizzaIntestazionepartita(Model model) throws BusinessException {
         return "intestazionepartita";

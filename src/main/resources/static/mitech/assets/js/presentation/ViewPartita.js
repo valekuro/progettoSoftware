@@ -102,11 +102,8 @@ ViewPartita.prototype.visualizzaRisultatiPartitaEsercitazione = function (ammont
         risultati = risultati + '  Hai perso, peccato! ';
     }
     risultati = risultati + 'Se fosse stata una partita vera avresti ottenuto ' + elisirRubato + ' Elisir';
-   // document.getElementById('villaggio').style.display = 'none';
-    document.getElementById('risultati').style.display = 'block';
+    document.getElementById('warnings').style.display = 'none';
     document.getElementById('risultati').innerHTML = risultati;
-    //document.getElementById('truppaInactive').style.display = 'none';
-    document.getElementsByClassName('helpWarnings').style.display = 'none';
 
 }
 

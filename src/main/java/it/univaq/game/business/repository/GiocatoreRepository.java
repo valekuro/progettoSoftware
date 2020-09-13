@@ -21,6 +21,6 @@ public interface GiocatoreRepository extends JpaRepository<Giocatore, Long> {
 
     public List<Giocatore> findAll();
 
-    @Query(value = "SELECT * FROM giocatore n WHERE n.livello_giocatore = :livelloGiocatore ORDER BY rand() LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM giocatore n WHERE n.livello_giocatore = :livelloGiocatore and n.id != 1 and n.id != 2 ORDER BY rand() LIMIT 1", nativeQuery = true)
     Giocatore findByLivelloGiocatore(@Param("livelloGiocatore") int livelloGiocatore);
 }
