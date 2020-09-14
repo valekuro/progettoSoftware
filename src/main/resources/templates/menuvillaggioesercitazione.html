@@ -8,7 +8,7 @@
     <a class="button25" id="iniziapartitaesercitazione">Inizia Partita</a> <br>
 </p>
 <p>
-    <a class="button25" id="annullaPartita" href="#"  th:href="@{/}" >Annulla</a>
+    <a class="button25" id="annullaPartita" href="#"  th:href="@{/clash_of_clans}" >Annulla</a>
 </p>
 
 
@@ -19,7 +19,7 @@
         $('#iniziapartitaesercitazione').click(function () {
             $.ajax({
                 type: "GET",
-                url: "/menugames/iniziapartitaesercitazione",
+                url: "/clash_of_clans/recupera_truppe_giocatore",
                 dataType: "html",
                 success: function (data) {
                     $("#truppedisponibilipartita").append(data);
@@ -38,7 +38,7 @@
 
             $.ajax({
                 type: "GET",
-                url: "/menugames/intestazionepartita",
+                url: "/clash_of_clans/intestazione_partita",
                 dataType: "html",
                 success: function (data) {
                     $("#intestazioneClash").html(data);

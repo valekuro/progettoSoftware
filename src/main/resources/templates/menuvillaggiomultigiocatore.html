@@ -8,7 +8,7 @@
     <a class="button25" id="iniziapartitamultigiocatore">Inizia Partita</a> <br>
 </p>
 <p>
-    <a class="button25" id="annullaPartita" href="#"  th:href="@{/}" >Annulla</a>
+    <a class="button25" id="annullaPartita" href="#"  th:href="@{/clash_of_clans}" >Annulla</a>
 </p>
 
 <p>
@@ -22,7 +22,7 @@
             $('#iniziapartitamultigiocatore').click(function () {
                 $.ajax({
                     type: "GET",
-                    url: "/menugames/iniziapartitaesercitazione",
+                    url: "/clash_of_clans/recupera_truppe_giocatore",
                     dataType: "html",
                     success: function (data) {
                         $("#truppedisponibilipartita").append(data);
@@ -43,7 +43,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "/menugames/intestazionepartita",
+                    url: "/clash_of_clans/intestazione_partita",
                     dataType: "html",
                     success: function (data) {
                         $("#intestazioneClash").html(data);
@@ -58,17 +58,18 @@
             $('#prossimaproposta').click(function () {
                 $.ajax({
                     type: "GET",
-                    url: "/menugames/caricamento_dati_partita/2",
+                    url: "/giocatore/caricamento_dati_giocatore_multigiocatore/2",
                     ontentType: "application/json",
                     dataType: "json",
                     success: function (data) {
                         const viewPartita = new ViewPartita();
                         datiCaselle = data[0];
-                        avversario = new Giocatore(data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[0]);
+                        avversario = new Giocatore(data[1].id, data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[1].coppe, data[0]);
                         for (var i = 0; i < data[0].length; i++) {
                             viewPartita.visualizzaVillaggioNemico(data[0][i].posizione, data[0][i]['edificio'].nome)
 
                         }
+                                    document.getElementById('avversario').innerHTML="Il tuo avversario è "+ avversario.nickname +" e possiede "+avversario.coppe+" coppe."
 
                     },
                     error: function () {

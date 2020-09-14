@@ -71,30 +71,6 @@ ViewPartita.prototype.selezionaTruppa = function (indiceTruppa, nomeTruppa) {
     return indiceTruppa;
 }
 
-
-
-/*ViewPartita.prototype.cambioPagina = function() {
- 
- $.ajax({
- // definisco il tipo della chiamata
- type: "POST",
- // specifico la URL della risorsa da contattare
- url: "/attacco_esercitazione/partitavillaggioesercitazione",
- // passo dei dati alla risorsa remota
- data: "nome=giovanni&cognome=belelli",
- // definisco il formato della risposta
- dataType: "html",
- // imposto un'azione per il caso di successo
- success: function (risposta) {
- $("div#pluto").html(risposta);
- },
- // ed una per il caso di fallimento
- error: function () {
- alert("Chiamata fallita!!!");
- }
- });
- }*/
-
 ViewPartita.prototype.visualizzaRisultatiPartitaEsercitazione = function (ammontareDistruzioneParziale, elisirRubato) {
     var risultati;
     risultati = 'Percentuale raggiunta: ' + ammontareDistruzioneParziale + '%';
@@ -113,7 +89,7 @@ ViewPartita.prototype.visualizzaRisultatiPartitaEsercitazione = function (ammont
 
 }
 
-ViewPartita.prototype.visualizzaRisultatiPartitaMultigiocatore = function (ammontareDistruzioneParziale, elisirRubato, coppeVinteGiocatore, coppePerseAvversario) {
+ViewPartita.prototype.visualizzaRisultatiPartitaMultigiocatore = function (ammontareDistruzioneParziale, elisirRubato, coppeVinteGiocatore, coppePerseAvversario, nicknameAvversario) {
 var risultati;
     risultati = 'Percentuale raggiunta: ' + ammontareDistruzioneParziale + '%';
     if (ammontareDistruzioneParziale === 50) {
@@ -125,7 +101,9 @@ var risultati;
     } else if (ammontareDistruzioneParziale < 50) {
         risultati = risultati + '  Hai perso '+coppeVinteGiocatore+' peccato! ';
     }
-    risultati = risultati + 'Hai ottenuto ' + elisirRubato + ' Elisir';
+    risultati = risultati + 'Hai ottenuto ' + parseInt(elisirRubato) + ' Elisir';
+    
+    risultati = risultati + '\n \n'+ nicknameAvversario + ' ha perso ' + coppePerseAvversario + ' coppe e ha perso '+parseInt(elisirRubato)+' Elisir.';
      document.getElementById('warnings').style.display = 'none';
     document.getElementById('risultati').innerHTML = risultati;
 }

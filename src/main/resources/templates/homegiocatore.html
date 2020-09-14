@@ -19,12 +19,15 @@
                         </div>
                     </div>
                     <div class="col-lg-4"></div>
-                    <div class="col-lg-4" id="utenteloggato"></div>
+                    <div class="col-lg-4">
+                        <span id="log"><img id="ominologin" src="/mitech/assets/images/icons/omino.png"/></span>
+                        <span id="utenteloggato"> </span>
+                        
+                    </div>
                 </div> 
-
+                <div class="row"><div id="avversario"></div></div>
                 <div class="row">
                     <div class="col-lg-4" id="menulatosinistro">
-                        <div class="wrapdue" >
                             <p class="bottoneMenu">
                                 <a class="button25" id="attaccoesercitazione" >Esercitazione</a>
                             </p>
@@ -33,7 +36,6 @@
                                 <a class="button25" id="attaccomultigiocatore" >Multigiocatore</a>
                             </p>
 
-                        </div>
                     </div>
 
 
@@ -71,8 +73,8 @@
 
                     </div>
                 </div>
-                <div class="single-divider section-space--ptb_60 border-bottom truppe-diponibili-c" id="truppedisponibilipartita">
-                    ciao
+                <div id="truppedisponibilipartita" class="single-divider section-space--ptb_60 border-bottom truppe-diponibili-c" >
+                   <p style="font-size: xx-small;">Esame Ingegneria del Software - Prof. Cicerone - Studente: Valentina D'Orazio - 2020</p>
                 </div>
             </div> 
 
@@ -87,7 +89,7 @@
 
                         $.ajax({
                             type: "GET",
-                            url: "/menugames/homegiocatore/2",
+                            url: "/giocatore/caricamento_dati_utente_loggato/2",
                             contentType: "application/json",
                             dataType: "json",
                             success: function (data) {
@@ -110,7 +112,7 @@
                         $('#attaccoesercitazione').click(function () {
                             $.ajax({
                                 type: "GET",
-                                url: "/menugames/partitaesercitazione1",
+                                url: "/clash_of_clans/start_partita_esercitazione/1",
                                 contentType: "application/json",
                                 dataType: "json",
                                 success: function (data) {
@@ -128,7 +130,7 @@
                             });
                             $.ajax({
                                 type: "GET",
-                                url: "/menugames/villaggioesercitazione",
+                                url: "/clash_of_clans/menu_villaggio_esercitazione",
                                 dataType: "html",
                                 success: function (data) {
                                     $('#menulatosinistro').html(data);
@@ -141,7 +143,7 @@
                         $('#attaccomultigiocatore').click(function () {
                             $.ajax({
                                 type: "GET",
-                                url: "/menugames/caricamento_dati_partita/2",
+                                url: "/giocatore/caricamento_dati_giocatore_multigiocatore/2",
                                 ontentType: "application/json",
                                 dataType: "json",
                                 success: function (data) {
@@ -150,8 +152,8 @@
                                     avversario = new Giocatore(data[1].id, data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[1].coppe, data[0]);
                                     for (var i = 0; i < data[0].length; i++) {
                                         viewPartita.visualizzaVillaggioNemico(data[0][i].posizione, data[0][i]['edificio'].nome)
-
                                     }
+                                    document.getElementById('avversario').innerHTML="Il tuo avversario è "+ avversario.nickname +" e possiede "+avversario.coppe+" coppe."
 
                                 },
                                 error: function () {
@@ -161,7 +163,7 @@
                             
                              $.ajax({
                                 type: "GET",
-                                url: "/menugames/villaggiomultigiocatore",
+                                url: "/clash_of_clans/menu_villaggio_multigiocatore",
                                 dataType: "html",
                                 success: function (data) {
                                     $('#menulatosinistro').html(data);

@@ -74,7 +74,7 @@ Partita.prototype.iniziaPartita = function () {
     countDownDate.setMinutes(countDownDate.getMinutes() + this.timer.durata); // timestamp
     this.countDownDate = new Date(countDownDate); // Date object
     this.timer.start(() => this.attacco());
- 
+
 
 };
 
@@ -118,9 +118,9 @@ Partita.prototype.selezionareTruppaDisponibile = function (nomeTruppaScelta) {
 
 Partita.prototype.attacco = function () {
     var i;
-    
+
     this.timer.calcolaDistanza(this.countDownDate)
-  
+
     this.oggettoTabelloneAux = _.cloneDeep(this.villaggio['datiCaselle']);
     for (i = 0; i < this.villaggio['datiCaselle'].length; i++) {
         switch (this.villaggio['datiCaselle'][i].oggettoOccupante.constructor.name) {
@@ -290,25 +290,25 @@ Partita.prototype.attacco = function () {
 };
 
 Partita.prototype.finePartita = function () {
+    var fineGioco = new Risultati(this.elisirRubato, this.ammontareDistruzioneParziale, this.giocatore, this.avversario);
+
     if (this.avversario.nickname === 'esercitazione') {
         if ((this.truppeAddestrate.length === 0 && this.truppeInCampo === 0) || this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico || this.timer.distance < 0) {
-            this.finePartitaEsercitazione()
+            clearInterval(this.timer.tempo);
+            fineGioco.finePartitaEsercitazione();
         }
     } else {
         if ((this.truppeAddestrate.length === 0 && this.truppeInCampo === 0) || this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico || this.timer.distance < 0) {
             clearInterval(this.timer.tempo);
-            var fineGioco = new Risultati(this.elisirRubato, this.ammontareDistruzioneParziale, this.giocatore, this.avversario);
             fineGioco.finePartitaMultigiocatore(this.avversario.quantitaElisirDisponibile, this.giocatore.quantitaElisirDisponibile, this.giocatore.coppe, this.avversario.coppe);
+            fineGioco.inviaDatiPartita()
+
         }
 
     }
 }
 
-Partita.prototype.finePartitaEsercitazione = function () {
-    clearInterval(this.timer.tempo);
-    this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
-    this.viewPartita.visualizzaRisultatiPartitaEsercitazione(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
-}
+
 
 Partita.prototype.calcoloRisultatoParziale = function (i) {
     this.ammontareDistruzioneParziale = parseInt(this.ammontareDistruzioneParziale) + parseInt(this.oggettoTabelloneAux[i].oggettoOccupante.percentualeDistruzionePunteggio);
@@ -319,11 +319,3 @@ Partita.prototype.rubaElisir = function () {
     this.elisirRubato = (parseInt(this.villaggio.elisirDisponibileAlGiocatore) * 25) / 100;
 }
 
-/*Partita.prototype.calcoloRisultatoTotale = function () {
- if (this.timer.distance < 0) {
- clearInterval(this.timer.tempo);
- document.getElementById("demo").innerHTML = "Fine partita!";
- this.viewPartita.visualizzaRisultatiPartita(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
- 
- }
- }*/

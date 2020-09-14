@@ -26,15 +26,14 @@ chiari:
     border: 3px solid;
     border-color: green;
 }
-.intestazione-partita{
-            background-color: rgba(162,43,27, 0.1); 
-
+#intestazioneClash{
+    background-color: rgba(162,43,27, 0.1); 
 }
 
 .truppe-diponibili-c{
-        display:block;
+    display:block;
 
-                background-color: rgba(162,43,27, 0.1); 
+    background-color: rgba(162,43,27, 0.1); 
 
 }
 
@@ -42,7 +41,8 @@ chiari:
     padding: 3%;
 }
 .headerLogoClash{
-    width: 50% !important;
+    width: 80% !important;
+    padding-left: 22%;
 }
 
 
@@ -59,7 +59,7 @@ chiari:
     position: absolute;
     width: 50%;
     height: 10px;
-   //background: linear-gradient(90deg, #e6a341 50%, #a22b1b 30%);
+    //background: linear-gradient(90deg, #e6a341 50%, #a22b1b 30%);
     left: 25%;
 }
 .wrapdue:before {top: 15px;}
@@ -132,7 +132,7 @@ a.button25:active {
     border-radius: 50%;
     border: 2px solid;
     border-color: #a22b1b;
-        margin-top: -20px;
+    margin-top: -20px;
     margin-left: 32px;
     position: absolute;
 }
@@ -144,15 +144,47 @@ a.button25:active {
 
 #truppeDisponibiliAttacco{
     position:relative;
+    padding-top: 0px !important;
+    padding-bottom: 2% !important;
 }
 
 .tabellavillaggio{
     background-image: url('/mitech/assets/images/villaggio/erba.png');
-    width: 70%;
+    width: 65%;
     border-image: url('/mitech/assets/images/villaggio/villaggioBorder.png') 30% round;
 }
 
+#utenteloggato{
+    font-size: 16px;
+    padding-top: 1%;
+}
+
+#demo, #edificiDistrutti{
+    padding: 2%;
+        font-size: larger;
+}
+
 #contenitoreVillaggio{
+        padding-top: 2%;
+
     padding-left: 15%;
     align-content: center;
+    padding-bottom: 2%;
+}
+
+#menulatosinistro{
+    padding-left: 10%;
+    padding-top: 3%;
+} 
+
+#ominologin{
+    width: 5%;
+}
+#log{
+    padding-left: 60%
+}
+
+#avversario{
+    padding-left: 8%;
+    padding-top: 1%;
 }

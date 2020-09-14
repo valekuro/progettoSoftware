@@ -12,18 +12,20 @@ function Risultati(elisirRubato, ammontareDistruzioneParziale, Giocatore, Avvers
     this.elisirRubato = elisirRubato;
     this.risultati = new Array();
     this.coppeTotaliGiocatore = 0;
-    this.coppeTotaliAvversario = 0;
+    this.coppeTotaliAvversario;
     this.elisirTotaleGiocatore = 0;
     this.elisirTotaleAvversario = 0;
     this.coppeVinteGiocatore = 0;
-
+    this.viewPartita = new ViewPartita();
 
 }
 
+Risultati.prototype.finePartitaEsercitazione = function(){
+    this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
+    this.viewPartita.visualizzaRisultatiPartitaEsercitazione(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato);
+}
 Risultati.prototype.finePartitaMultigiocatore = function (elisirAvversario, giocatoreElisir, giocatoreCoppe, avversarioCoppe) {
-    let coppeVinteGiocatore = 0;
     let quantitaCoppePerStella = 7;
-    let coppePerseAvversario = 0;
 
     if (this.ammontareDistruzioneParziale === 50) {
         this.calcolaBottino(1, quantitaCoppePerStella, giocatoreCoppe, avversarioCoppe, giocatoreElisir, elisirAvversario);
@@ -35,13 +37,11 @@ Risultati.prototype.finePartitaMultigiocatore = function (elisirAvversario, gioc
 
     } else if (this.ammontareDistruzioneParziale < 50) {
         this.aumentaCoppeAvversario(avversarioCoppe);
-        this.diminuisciCoppeAvversario(giocatoreCoppe);
+        this.diminuisciCoppeGiocatore(giocatoreCoppe);
     }
     
-  var viewrisultati = new ViewPartita();
-   viewrisultati.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
-   viewrisultati.visualizzaRisultatiPartitaMultigiocatore(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato, this.coppeVinteGiocatore, this.coppePerseAvversario);
-    this.inviaDatiPartita()
+   this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
+   this.viewPartita.visualizzaRisultatiPartitaMultigiocatore(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato, this.coppeVinteGiocatore, this.coppePerseAvversario, this.Avversario.nickname);
 
 }
 
@@ -51,7 +51,7 @@ Risultati.prototype.calcolaBottino = function (n, quantitaCoppePerStella, giocat
     this.coppeVinteGiocatore = quantitaCoppePerStella * n;
     this.coppePerseAvversario = quantitaCoppePerStella * n;
     this.aumentaCoppeGiocatore(giocatoreCoppe);
-    this.diminuisciCoppeAvversario(this.coppePerseAvversario, avversarioCoppe);
+    this.diminuisciCoppeAvversario(avversarioCoppe);
     this.aumentaElisirGiocatore(giocatoreElisir);
     this.diminuisciElisirAvversario(elisirAvversario);
 }
@@ -70,7 +70,7 @@ Risultati.prototype.aumentaElisirGiocatore = function (giocatoreElisir) {
 }
 
 Risultati.prototype.diminuisciCoppeAvversario = function (avversarioCoppe) {
-    this.coppeTotaliAvversario = avversarioCoppe - this.coppePerseAvversario;
+    this.coppeTotaliAvversario = parseInt(avversarioCoppe) - parseInt(this.coppePerseAvversario);
 }
 
 Risultati.prototype.aumentaCoppeAvversario = function (avversarioCoppe) {
@@ -82,7 +82,6 @@ Risultati.prototype.diminuisciElisirAvversario = function (elisirAvversario) {
 }
 
 Risultati.prototype.inviaDatiPartita = function () {
-
     $.ajax({
         type: "PUT",
         url: '/giocatore/'+this.Giocatore.id,
@@ -94,7 +93,22 @@ Risultati.prototype.inviaDatiPartita = function () {
         success: function (risposta) {
             $("div#warnings").html(risposta);
         },
-        // ed una per il caso di fallimento
+        error: function () {
+            alert("Chiamata fallita!!!");
+        }
+    });
+    
+     $.ajax({
+        type: "PUT",
+        url: '/giocatore/'+this.Avversario.id,
+        contentType: "application/json",
+        data: JSON.stringify({"nickname": this.Avversario.nickname, 
+            "livelloGiocatore": this.Avversario.livelloGiocatore, 
+            "elisirDisponibileAlGiocatore": this.elisirTotaleAvversario, 
+            "coppe": this.coppeTotaliAvversario}),
+        success: function (risposta) {
+            $("div#warnings").html(risposta);
+        },
         error: function () {
             alert("Chiamata fallita!!!");
         }
