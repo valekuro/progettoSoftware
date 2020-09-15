@@ -90,9 +90,11 @@ Partita.prototype.selezionareCasella = function (indiceTruppa, occupazione) {
                     var quantitaRimanenteTruppa = document.getElementById(this.nomeTruppa).textContent;
                     quantitaRimanenteTruppa = parseInt(quantitaRimanenteTruppa) - 1;
                     this.viewPartita.aggiornaInformazioniStatoPartita(this.nomeTruppa, quantitaRimanenteTruppa)
-                    //document.getElementById(this.nomeTruppa).innerHTML = quantitaRimanenteTruppa;
                     if (quantitaRimanenteTruppa === 0) {
-                        this.cancellaTruppaUtilizzata(this.truppeAddestrate[y].id);
+                        console.log(this.avversario.tipoVillaggio);
+                        if(this.avversario.tipoVillaggio !== 'esercitazione'){
+                            this.cancellaTruppaUtilizzata(this.truppeAddestrate[y].id);
+                    }
                         indiceTruppa = this.viewPartita.selezionaTruppa(indiceTruppa, this.nomeTruppa);
                     }
                     this.truppeAddestrate.splice(y, 1);
