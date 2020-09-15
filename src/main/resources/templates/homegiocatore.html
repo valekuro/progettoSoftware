@@ -94,7 +94,6 @@
                             dataType: "json",
                             success: function (data) {
                                 const viewPartita = new ViewPartita();
-                               // console.log(data[2][0].quantita);
                                 giocatore = new Giocatore(data[1].id, data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[1].coppe, data[2], data[0], "");
                                 viewPartita.aggiornaInformazioniStatoPartita("utenteloggato", "Ciao, " + giocatore.nickname);
                                 for (var i = 0; i < data[0].length; i++) {

@@ -85,7 +85,6 @@ Partita.prototype.selezionareCasella = function (indiceTruppa, occupazione) {
             do {
                 if (this.truppeAddestrate[y].nome === this.nomeTruppa) {
                     trovato = true;
-                    console.log(this.truppeAddestrate[y].id)
                     this.viewPartita.posizionaTruppaSuCasella(occupazione, this.nomeTruppa);
                     this.avversario.villaggioGiocatore['datiCaselle'][occupazione - 1].oggettoOccupante = this.truppeAddestrate[y];
                     var quantitaRimanenteTruppa = document.getElementById(this.nomeTruppa).textContent;
@@ -299,7 +298,6 @@ Partita.prototype.attacco = function () {
 
 Partita.prototype.finePartita = function () {
     var fineGioco = new Risultati(this.elisirRubato, this.ammontareDistruzioneParziale, this.giocatore, this.avversario);
-
     if (this.avversario.nickname === 'esercitazione') {
         if ((this.truppeAddestrate.length === 0 && this.truppeInCampo === 0) || this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico || this.timer.distance < 0) {
             clearInterval(this.timer.tempo);
@@ -324,6 +322,6 @@ Partita.prototype.calcoloRisultatoParziale = function (i) {
 
 
 Partita.prototype.rubaElisir = function () {
-    this.elisirRubato = (parseInt(this.avversario.villaggioGiocatore.elisirDisponibileAlGiocatore) * 25) / 100;
+    this.elisirRubato = (parseInt(this.avversario.quantitaElisirDisponibile) * 25) / 100;
 }
 
