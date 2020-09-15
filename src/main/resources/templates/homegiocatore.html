@@ -22,19 +22,19 @@
                     <div class="col-lg-4">
                         <span id="log"><img id="ominologin" src="/mitech/assets/images/icons/omino.png"/></span>
                         <span id="utenteloggato"> </span>
-                        
+
                     </div>
                 </div> 
                 <div class="row"><div id="avversario"></div></div>
                 <div class="row">
                     <div class="col-lg-4" id="menulatosinistro">
-                            <p class="bottoneMenu">
-                                <a class="button25" id="attaccoesercitazione" >Esercitazione</a>
-                            </p>
+                        <p class="bottoneMenu">
+                            <a class="button25" id="attaccoesercitazione" >Esercitazione</a>
+                        </p>
 
-                            <p class="bottoneMenu">
-                                <a class="button25" id="attaccomultigiocatore" >Multigiocatore</a>
-                            </p>
+                        <p class="bottoneMenu">
+                            <a class="button25" id="attaccomultigiocatore" >Multigiocatore</a>
+                        </p>
 
                     </div>
 
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div id="truppedisponibilipartita" class="single-divider section-space--ptb_60 border-bottom truppe-diponibili-c" >
-                   <p style="font-size: xx-small;">Esame Ingegneria del Software - Prof. Cicerone - Studente: Valentina D'Orazio - 2020</p>
+                    <p style="font-size: xx-small;">Esame Ingegneria del Software - Prof. Cicerone - Studente: Valentina D'Orazio - 2020</p>
                 </div>
             </div> 
 
@@ -94,8 +94,8 @@
                             dataType: "json",
                             success: function (data) {
                                 const viewPartita = new ViewPartita();
-                                console.log(data[1]);
-                                giocatore = new Giocatore(data[1].id, data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[1].coppe, data[2]);
+                               // console.log(data[2][0].quantita);
+                                giocatore = new Giocatore(data[1].id, data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[1].coppe, data[2], data[0], "");
                                 viewPartita.aggiornaInformazioniStatoPartita("utenteloggato", "Ciao, " + giocatore.nickname);
                                 for (var i = 0; i < data[0].length; i++) {
                                     viewPartita.visualizzaVillaggioNemico(data[0][i].posizione, data[0][i]['edificio'].nome)
@@ -117,7 +117,7 @@
                                 dataType: "json",
                                 success: function (data) {
                                     const viewPartita = new ViewPartita();
-                                    avversario = new Giocatore(data[0].id, data[0].nickname, data[0].livelloGiocatore, data[0].elisirDisponibileAlGiocatore, data[0].coppe, data[1]);
+                                    avversario = new Giocatore(data[0].id, data[0].nickname, data[0].livelloGiocatore, data[0].elisirDisponibileAlGiocatore, data[0].coppe, '', data[1], 'esercitazione');
                                     datiCaselle = data[1];
                                     for (var i = 0; i < data[1].length; i++) {
                                         viewPartita.visualizzaVillaggioNemico(data[1][i].posizione, data[1][i]['edificio'].nome)
@@ -148,20 +148,18 @@
                                 dataType: "json",
                                 success: function (data) {
                                     const viewPartita = new ViewPartita();
-                                    datiCaselle = data[0];
-                                    avversario = new Giocatore(data[1].id, data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[1].coppe, data[0]);
+                                    avversario = new Giocatore(data[0][0]['giocatore'].id, data[0][0]['giocatore'].nickname, data[0][0]['giocatore'].livelloGiocatore, data[0][0]['giocatore'].elisirDisponibileAlGiocatore, data[0][0]['giocatore'].coppe, [], data[0], 'multigiocatore');
                                     for (var i = 0; i < data[0].length; i++) {
                                         viewPartita.visualizzaVillaggioNemico(data[0][i].posizione, data[0][i]['edificio'].nome)
                                     }
-                                    document.getElementById('avversario').innerHTML="Il tuo avversario è "+ avversario.nickname +" e possiede "+avversario.coppe+" coppe."
-
+                                    viewPartita.aggiornaInformazioniStatoPartita("avversario", "Il tuo avversario è " + avversario.nickname + " e possiede " + avversario.coppe + " coppe.");
                                 },
                                 error: function () {
                                     alert("Chiamata fallita!!!");
                                 }
                             });
-                            
-                             $.ajax({
+
+                            $.ajax({
                                 type: "GET",
                                 url: "/clash_of_clans/menu_villaggio_multigiocatore",
                                 dataType: "html",
@@ -175,7 +173,7 @@
                         });
 
 
-                
+
 
                     });
                 </script>

@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 
-function Partita(giocatore, avversario, datiCaselle) {
+function Partita(giocatore, avversario) {
     this.nomeTruppa;
     this.viewPartita = new ViewPartita();
     //this.datiDiGioco = datiDiGioco;
     this.giocatore = giocatore;
-    this.datiCaselle = datiCaselle;
+    // this.datiCaselle = datiCaselle;
     this.avversario = avversario;
-    this.villaggio = this.creaVillaggioAvversario();
     this.oggettoTabelloneAux = new Array();
     this.truppeAddestrate = new Array();
     this.ammontareDistruzioneParziale = 0;
@@ -23,8 +22,8 @@ function Partita(giocatore, avversario, datiCaselle) {
     this.edificiAttaccabiliPresentiInVillaggioNemico = 0;
 }
 Partita.prototype.numeroEdificiAttaccabiliPresentiInVillaggioNemico = function () {
-    for (var u = 0; u < this.villaggio['datiCaselle'].length; u++) {
-        if (this.villaggio['datiCaselle'][u].oggettoOccupante.tipologia !== 'erba') {
+    for (var u = 0; u < this.avversario.villaggioGiocatore['datiCaselle'].length; u++) {
+        if (this.avversario.villaggioGiocatore['datiCaselle'][u].oggettoOccupante.tipologia !== 'erba') {
             this.edificiAttaccabiliPresentiInVillaggioNemico = this.edificiAttaccabiliPresentiInVillaggioNemico + 1;
         }
     }
@@ -50,38 +49,32 @@ Partita.prototype.setDatiCaselle = function (datiCaselle) {
     return this;
 };
 
-Partita.prototype.creaVillaggioAvversario = function () {
-    var villaggioAvversario = new BuilderVillaggio();
-    villaggioAvversario.setElisirDisponibileAlGiocatore(this.avversario.quantitaElisirDisponibile);
-    villaggioAvversario.setLivelloMunicipio(this.avversario.livelloGiocatore);
-    villaggioAvversario.setTipoVillaggio('esercitazione');
-    villaggioAvversario.setDatiCaselle(this.datiCaselle);
-    villaggioAvversario.buildCaselle();
-    return villaggioAvversario.build();
-};
+/*Partita.prototype.creaVillaggioAvversario = function () {
+ var villaggioAvversario = new BuilderVillaggio();
+ villaggioAvversario.setElisirDisponibileAlGiocatore(this.avversario.quantitaElisirDisponibile);
+ villaggioAvversario.setLivelloMunicipio(this.avversario.livelloGiocatore);
+ villaggioAvversario.setTipoVillaggio('esercitazione');
+ villaggioAvversario.setDatiCaselle(this.datiCaselle);
+ villaggioAvversario.buildCaselle();
+ return villaggioAvversario.build();
+ };*/
 
 
 Partita.prototype.iniziaPartita = function () {
-    /* for (var i = 0; i < this.villaggio['datiCaselle'].length; i++) {
-     this.viewPartita.visualizzaVillaggioNemico(this.villaggio['datiCaselle'][i].posizione, this.villaggio['datiCaselle'][i].oggettoOccupante.nome);
-     }*/
     this.numeroEdificiAttaccabiliPresentiInVillaggioNemico();
     this.viewPartita.aggiornaInformazioniStatoPartita('warnings', 'Seleziona la truppa per l\'attacco tra le truppe disponibili');
     this.truppeAddestrate = this.giocatore.recuperaTruppeAddestrate();
     this.truppeInCampo = this.giocatore.truppeDisponibili.length;
-
     var countDownDate = new Date();
     countDownDate.setMinutes(countDownDate.getMinutes() + this.timer.durata); // timestamp
     this.countDownDate = new Date(countDownDate); // Date object
     this.timer.start(() => this.attacco());
-
-
 };
 
 Partita.prototype.selezionareCasella = function (indiceTruppa, occupazione) {
     this.viewPartita.aggiornaInformazioniStatoPartita('warnings', 'Battaglia in corso...')
-    if (this.villaggio['datiCaselle'][occupazione - 1].oggettoOccupante.tipologia === 'edificioDifesa' || this.villaggio['datiCaselle'][occupazione - 1].oggettoOccupante.tipologia === 'edificioCostruzione'
-            || this.villaggio['datiCaselle'][occupazione - 1].oggettoOccupante.tipologia === 'municipio') {
+    if (this.avversario.villaggioGiocatore['datiCaselle'][occupazione - 1].oggettoOccupante.tipologia === 'edificioDifesa' || this.avversario.villaggioGiocatore['datiCaselle'][occupazione - 1].oggettoOccupante.tipologia === 'edificioCostruzione'
+            || this.avversario.villaggioGiocatore['datiCaselle'][occupazione - 1].oggettoOccupante.tipologia === 'municipio') {
         this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Non puoi posizionare la truppa su un edificio! Prova a posizionare la truppa sull'erba!");
     } else if (this.nomeTruppa === "" || this.nomeTruppa === undefined) {
         this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Non hai ancora selezionato la truppa!");
@@ -92,12 +85,15 @@ Partita.prototype.selezionareCasella = function (indiceTruppa, occupazione) {
             do {
                 if (this.truppeAddestrate[y].nome === this.nomeTruppa) {
                     trovato = true;
+                    console.log(this.truppeAddestrate[y].id)
                     this.viewPartita.posizionaTruppaSuCasella(occupazione, this.nomeTruppa);
-                    this.villaggio['datiCaselle'][occupazione - 1].oggettoOccupante = this.truppeAddestrate[y];
+                    this.avversario.villaggioGiocatore['datiCaselle'][occupazione - 1].oggettoOccupante = this.truppeAddestrate[y];
                     var quantitaRimanenteTruppa = document.getElementById(this.nomeTruppa).textContent;
                     quantitaRimanenteTruppa = parseInt(quantitaRimanenteTruppa) - 1;
-                    document.getElementById(this.nomeTruppa).innerHTML = quantitaRimanenteTruppa;
+                    this.viewPartita.aggiornaInformazioniStatoPartita(this.nomeTruppa, quantitaRimanenteTruppa)
+                    //document.getElementById(this.nomeTruppa).innerHTML = quantitaRimanenteTruppa;
                     if (quantitaRimanenteTruppa === 0) {
+                        this.cancellaTruppaUtilizzata(this.truppeAddestrate[y].id);
                         indiceTruppa = this.viewPartita.selezionaTruppa(indiceTruppa, this.nomeTruppa);
                     }
                     this.truppeAddestrate.splice(y, 1);
@@ -106,9 +102,21 @@ Partita.prototype.selezionareCasella = function (indiceTruppa, occupazione) {
             } while (y < this.truppeAddestrate.length && trovato === false);
         }
     }
-    this.oggettoTabelloneAux = _.cloneDeep(this.villaggio['datiCaselle']);
+    this.oggettoTabelloneAux = _.cloneDeep(this.avversario.villaggioGiocatore['datiCaselle']);
 };
 
+Partita.prototype.cancellaTruppaUtilizzata = function (id) {
+    $.ajax({
+        type: "DELETE",
+        url: "/truppe/"+id,
+        success: function (data) {
+            console.log('ho cancellato');
+        },
+        error: function () {
+            alert("Chiamata fallita!!!");
+        }
+    });
+}
 
 Partita.prototype.selezionareTruppaDisponibile = function (nomeTruppaScelta) {
     this.nomeTruppa = nomeTruppaScelta;
@@ -121,19 +129,19 @@ Partita.prototype.attacco = function () {
 
     this.timer.calcolaDistanza(this.countDownDate)
 
-    this.oggettoTabelloneAux = _.cloneDeep(this.villaggio['datiCaselle']);
-    for (i = 0; i < this.villaggio['datiCaselle'].length; i++) {
-        switch (this.villaggio['datiCaselle'][i].oggettoOccupante.constructor.name) {
+    this.oggettoTabelloneAux = _.cloneDeep(this.avversario.villaggioGiocatore['datiCaselle']);
+    for (i = 0; i < this.avversario.villaggioGiocatore['datiCaselle'].length; i++) {
+        switch (this.avversario.villaggioGiocatore['datiCaselle'][i].oggettoOccupante.constructor.name) {
             case 'BuilderTruppa':
-                switch (this.villaggio['datiCaselle'][i].oggettoOccupante.tipologia) {
+                switch (this.avversario.villaggioGiocatore['datiCaselle'][i].oggettoOccupante.tipologia) {
                     case 'truppaAttacco':
-                        if (i < this.villaggio['datiCaselle'].length - 1) {
+                        if (i < this.avversario.villaggioGiocatore['datiCaselle'].length - 1) {
                             //se la vita della truppa è maggiore di zero
                             if (this.oggettoTabelloneAux[i].oggettoOccupante.vita > 0) {
                                 //i = truppa e i+1 = erba
                                 if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'erba') {
-                                    this.oggettoTabelloneAux[i + 1].oggettoOccupante = _.cloneDeep(this.villaggio['datiCaselle'][i].oggettoOccupante);
-                                    this.oggettoTabelloneAux[i].oggettoOccupante = _.cloneDeep(this.villaggio['datiCaselle'][i + 1].oggettoOccupante);
+                                    this.oggettoTabelloneAux[i + 1].oggettoOccupante = _.cloneDeep(this.avversario.villaggioGiocatore['datiCaselle'][i].oggettoOccupante);
+                                    this.oggettoTabelloneAux[i].oggettoOccupante = _.cloneDeep(this.avversario.villaggioGiocatore['datiCaselle'][i + 1].oggettoOccupante);
                                     this.viewPartita.camminoTruppa(this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome, i + 1);
                                     //i = truppa e i+1 != erba
                                 } else if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.constructor.name !== 'BuilderTruppa') {
@@ -155,7 +163,7 @@ Partita.prototype.attacco = function () {
                             } else {
                                 this.truppeInCampo = parseInt(this.truppeInCampo) - 1;
                                 this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Ops, una truppa è morta :( ")
-                                this.viewPartita.ripristinoOggettoSopravvissuto('villaggio', this.villaggio['datiCaselle'][i + 1].oggettoOccupante.nome, i + 1);
+                                this.viewPartita.ripristinoOggettoSopravvissuto('villaggio', this.avversario.villaggioGiocatore['datiCaselle'][i + 1].oggettoOccupante.nome, i + 1);
                                 this.viewPartita.distruzioneOggettoMorto(i + 1);
                                 this.nomeTruppa = "";
                                 //this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Hai già usato questa truppa e non è più disponibile, prova a selezionare una truppa diversa tra quelle disponibili!");
@@ -166,24 +174,24 @@ Partita.prototype.attacco = function () {
                                         .setTassoAggiornamentoResistenza(0)
                                         .setResistenzaLivelloIniziale(0)
                                         .setColpiLivelloIniziale(0)
-                                        .setLivelloGiocatore(this.villaggio.livelloMunicipio)
+                                        .setLivelloGiocatore(this.avversario.villaggioGiocatore.livelloMunicipio)
                                         .setPercentualeDistruzionePunteggio(0)
                                         .setTipologia('erba')
                                         .build();
                                 this.oggettoTabelloneAux[i].oggettoOccupante = erba;
                             }
                         } else if (this.oggettoTabelloneAux[0].oggettoOccupante.nome === 'erba') {
-                            this.oggettoTabelloneAux[0].oggettoOccupante = _.cloneDeep(this.villaggio['datiCaselle'][i].oggettoOccupante);
-                            this.oggettoTabelloneAux[i].oggettoOccupante = _.cloneDeep(this.villaggio['datiCaselle'][0].oggettoOccupante);
+                            this.oggettoTabelloneAux[0].oggettoOccupante = _.cloneDeep(this.avversario.villaggioGiocatore['datiCaselle'][i].oggettoOccupante);
+                            this.oggettoTabelloneAux[i].oggettoOccupante = _.cloneDeep(this.avversario.villaggioGiocatore['datiCaselle'][0].oggettoOccupante);
                             this.viewPartita.camminoTruppa(this.oggettoTabelloneAux[0].oggettoOccupante.nome, 0);
                         }
                         break;
                     case 'truppaGuarigione':
-                        if (i < this.villaggio['datiCaselle'].length - 1) {
+                        if (i < this.avversario.villaggioGiocatore['datiCaselle'].length - 1) {
                             if (this.oggettoTabelloneAux[i].oggettoOccupante.vita > 0) {
                                 if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'erba') {
-                                    this.oggettoTabelloneAux[i + 1].oggettoOccupante = _.cloneDeep(this.villaggio['datiCaselle'][i].oggettoOccupante);
-                                    this.oggettoTabelloneAux[i].oggettoOccupante = _.cloneDeep(this.villaggio['datiCaselle'][i + 1].oggettoOccupante);
+                                    this.oggettoTabelloneAux[i + 1].oggettoOccupante = _.cloneDeep(this.avversario.villaggioGiocatore['datiCaselle'][i].oggettoOccupante);
+                                    this.oggettoTabelloneAux[i].oggettoOccupante = _.cloneDeep(this.avversario.villaggioGiocatore['datiCaselle'][i + 1].oggettoOccupante);
                                     this.viewPartita.camminoTruppa(this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome, i + 1);
                                 } else if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.tipologia === 'edificioDifesa') {
                                     this.oggettoTabelloneAux[i].oggettoOccupante.vita = this.oggettoTabelloneAux[i].oggettoOccupante.vita - this.oggettoTabelloneAux[i + 1].oggettoOccupante.colpi;
@@ -195,7 +203,7 @@ Partita.prototype.attacco = function () {
                             } else {
                                 this.truppeInCampo = parseInt(this.truppeInCampo) - 1;
                                 this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Ops, una truppa è morta :( ")
-                                this.viewPartita.ripristinoOggettoSopravvissuto('villaggio', this.villaggio['datiCaselle'][i + 1].oggettoOccupante.nome, i + 1);
+                                this.viewPartita.ripristinoOggettoSopravvissuto('villaggio', this.avversario.villaggioGiocatore['datiCaselle'][i + 1].oggettoOccupante.nome, i + 1);
                                 this.viewPartita.distruzioneOggettoMorto(i + 1);
                                 this.nomeTruppa = "";
                                 this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Hai già usato questa truppa e non è più disponibile, prova a selezionare una truppa diversa tra quelle disponibili!");
@@ -206,22 +214,22 @@ Partita.prototype.attacco = function () {
                                         .setTassoAggiornamentoResistenza(0)
                                         .setResistenzaLivelloIniziale(0)
                                         .setColpiLivelloIniziale(0)
-                                        .setLivelloGiocatore(this.villaggio.livelloMunicipio)
+                                        .setLivelloGiocatore(this.avversario.villaggioGiocatore.livelloMunicipio)
                                         .setPercentualeDistruzionePunteggio(0)
                                         .setTipologia('erba')
                                         .build();
                                 this.oggettoTabelloneAux[i].oggettoOccupante = erba;
                             }
                         } else if (this.oggettoTabelloneAux[0].oggettoOccupante.nome === 'erba') {
-                            this.oggettoTabelloneAux[0].oggettoOccupante = _.cloneDeep(this.villaggio['datiCaselle'][i].oggettoOccupante);
-                            this.oggettoTabelloneAux[i].oggettoOccupante = _.cloneDeep(this.villaggio['datiCaselle'][0].oggettoOccupante);
+                            this.oggettoTabelloneAux[0].oggettoOccupante = _.cloneDeep(this.avversario.villaggioGiocatore['datiCaselle'][i].oggettoOccupante);
+                            this.oggettoTabelloneAux[i].oggettoOccupante = _.cloneDeep(this.avversario.villaggioGiocatore['datiCaselle'][0].oggettoOccupante);
                             this.viewPartita.camminoTruppa(this.oggettoTabelloneAux[0].oggettoOccupante.nome, 0);
                         }
                         break;
                 }
                 break;
             case 'BuilderEdificio':
-            switch (this.villaggio['datiCaselle'][i].oggettoOccupante.tipologia) {
+            switch (this.avversario.villaggioGiocatore['datiCaselle'][i].oggettoOccupante.tipologia) {
                 case 'edificioDifesa':
                     //vita edificio maggiore di zero
                     if (this.oggettoTabelloneAux[i].oggettoOccupante.vita > 0) {
@@ -233,7 +241,7 @@ Partita.prototype.attacco = function () {
                             }
                             //diminuisco la vita della truppa
                             //console.log('vita truppa prima dell attacco: '+JSON.stringify(this.oggettoTabelloneAux[i - 1].oggettoOccupante.vita));
-                            this.oggettoTabelloneAux[i - 1].oggettoOccupante.vita = this.oggettoTabelloneAux[i - 1].oggettoOccupante.vita - this.oggettoTabelloneAux[i].oggettoOccupante.calcoloColpiTotale(this.villaggio['livelloMunicipio']);
+                            this.oggettoTabelloneAux[i - 1].oggettoOccupante.vita = this.oggettoTabelloneAux[i - 1].oggettoOccupante.vita - this.oggettoTabelloneAux[i].oggettoOccupante.calcoloColpiTotale(this.avversario.villaggioGiocatore['livelloMunicipio']);
                             //console.log('vita truppa dopo dell attacco: '+JSON.stringify(this.oggettoTabelloneAux[i - 1].oggettoOccupante.vita));
                         }
                         //se la vita dell'edificio è minore di zero
@@ -249,7 +257,7 @@ Partita.prototype.attacco = function () {
                                 .setTassoAggiornamentoResistenza(0)
                                 .setResistenzaLivelloIniziale(0)
                                 .setColpiLivelloIniziale(0)
-                                .setLivelloGiocatore(this.villaggio.livelloMunicipio)
+                                .setLivelloGiocatore(this.avversario.villaggioGiocatore.livelloMunicipio)
                                 .setPercentualeDistruzionePunteggio(0)
                                 .setTipologia('erba')
                                 .build();
@@ -270,7 +278,7 @@ Partita.prototype.attacco = function () {
                                 .setTassoAggiornamentoResistenza(0)
                                 .setResistenzaLivelloIniziale(0)
                                 .setColpiLivelloIniziale(0)
-                                .setLivelloGiocatore(this.villaggio.livelloMunicipio)
+                                .setLivelloGiocatore(this.avversario.villaggioGiocatore.livelloMunicipio)
                                 .setPercentualeDistruzionePunteggio(0)
                                 .setTipologia('erba')
                                 .build();
@@ -286,7 +294,7 @@ Partita.prototype.attacco = function () {
         }
         this.finePartita();
     }
-    this.villaggio['datiCaselle'] = _.cloneDeep(this.oggettoTabelloneAux);
+    this.avversario.villaggioGiocatore['datiCaselle'] = _.cloneDeep(this.oggettoTabelloneAux);
 };
 
 Partita.prototype.finePartita = function () {
@@ -316,6 +324,6 @@ Partita.prototype.calcoloRisultatoParziale = function (i) {
 
 
 Partita.prototype.rubaElisir = function () {
-    this.elisirRubato = (parseInt(this.villaggio.elisirDisponibileAlGiocatore) * 25) / 100;
+    this.elisirRubato = (parseInt(this.avversario.villaggioGiocatore.elisirDisponibileAlGiocatore) * 25) / 100;
 }
 

@@ -24,4 +24,11 @@ public interface GiocatoretruppeRepository extends JpaRepository<giocatoretruppe
      
      @Query("SELECT t FROM giocatoretruppe t WHERE t.idgiocatore = :idgiocatore")
      public List<giocatoretruppe> findTruppeByIdgiocatore(@Param("idgiocatore") Long idgiocatore);
+     
+     public void deleteById(Long id);
+    // @Query("DELETE g FROM giocatoretruppe g WHERE g.id = :id")
+    // public void deleteTruppaByIdgiocatore(@Param("id") Long id);
+     //@Query("delete from giocatoretruppe b where b.idgiocatore=:idgiocatore and b.truppa = :idtruppa")
+     //@Query(value= "delete from giocatoretruppe where idgiocatore = :idgiocatore and idtruppa = :idtruppa", nativeQuery = true)
+     //public void deleteTruppaByIdgiocatore(@Param("idgiocatore") Long idgiocatore, @Param("idtruppa") Long idtruppa);
 }

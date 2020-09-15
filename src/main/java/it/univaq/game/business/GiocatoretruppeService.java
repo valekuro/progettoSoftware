@@ -19,7 +19,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface GiocatoretruppeService {
+
     public List<giocatoretruppe> findAll() throws BusinessException;
+
     public List<giocatoretruppe> findTruppeByIdgiocatore(@Param("idgiocatore") Long idgiocatore) throws BusinessException;
+
+    public void deleteById(Long id) throws BusinessException;
+    //public void deleteTruppaByIdgiocatore(@Param("idgiocatore") Long idgiocatore, @Param("idtruppa") Long idtruppa);
+    //public void deleteTruppaByIdgiocatore(@Param("id") Long id) throws BusinessException;
 
 }

@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,5 +41,17 @@ public class JpaGiocatoretruppe implements GiocatoretruppeService {
     public List<giocatoretruppe> findTruppeByIdgiocatore(Long idgiocatore) throws BusinessException {
         List<giocatoretruppe> truppeGiocatore = giocatoretruppeRepository.findTruppeByIdgiocatore(idgiocatore);
         return truppeGiocatore;
+    }
+    
+ /*   @Override
+    @Transactional(readOnly = true)
+    public void deleteTruppaByIdgiocatore(Long id) throws BusinessException{
+      giocatoretruppeRepository.deleteTruppaByIdgiocatore(id);
+      //      giocatoretruppeRepository.deleteTruppaByIdgiocatore(idgiocatore, idtruppa);
+
+    }*/
+    
+    public void deleteById(Long id) throws BusinessException{
+        giocatoretruppeRepository.deleteById(id);
     }
 }

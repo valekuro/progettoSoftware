@@ -13,6 +13,7 @@ import it.univaq.game.business.RequestGrid;
 import it.univaq.game.business.ResponseGrid;
 import it.univaq.game.business.repository.CasellaRepository;
 import java.util.List;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

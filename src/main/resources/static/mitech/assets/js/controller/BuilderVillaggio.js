@@ -40,7 +40,8 @@ BuilderVillaggio.prototype.setDatiCaselle = function (datiCaselle) {
 };
 
 BuilderVillaggio.prototype.buildCaselle = function () {
-        var caselle = new Array();
+
+    var caselle = new Array();
     var i;
     for (i = 0; i < this.datiCaselle.length; i++) {     
        caselle.push(new Casella(this.datiCaselle[i].posizione,  new BuilderEdificio() 
@@ -54,6 +55,7 @@ BuilderVillaggio.prototype.buildCaselle = function () {
                .setPercentualeDistruzionePunteggio(this.datiCaselle[i]['edificio']['percentualeDistruzionePunteggio'])
                .setTipologia(this.datiCaselle[i]['edificio']['tipologia'])));
     }
+
     return caselle;
 };
 

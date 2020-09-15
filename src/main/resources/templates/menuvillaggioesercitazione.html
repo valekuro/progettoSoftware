@@ -24,7 +24,7 @@
                 success: function (data) {
                     $("#truppedisponibilipartita").append(data);
                     document.getElementById('iniziapartitaesercitazione').style.display = "none";
-                    partita = new Partita(giocatore, avversario, datiCaselle);
+                    partita = new Partita(giocatore, avversario);
                     partita.iniziaPartita();
 
                 },

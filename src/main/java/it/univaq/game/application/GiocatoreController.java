@@ -65,7 +65,7 @@ public class GiocatoreController {
         List<Casella> caselleGiocatoreAvversario = casellaservice.findCaselleByIdGiocatore(giocatoreAvversario.getId());
         ArrayList datiPartita = new ArrayList();
         datiPartita.add(caselleGiocatoreAvversario);
-        datiPartita.add(giocatoreAvversario);
+        
         return datiPartita;
     }
 
