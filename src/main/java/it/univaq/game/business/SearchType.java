@@ -9,11 +9,10 @@ import lombok.Data;
 
 /**
  *
- * @author Valentina D'Orazio
+ * @author Valentina
  */
 @Data
 public class SearchType {
-	
 	private int value;
         private Long value2;
         private String value3;

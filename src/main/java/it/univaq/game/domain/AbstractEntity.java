@@ -15,8 +15,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+
 
 /**
  *
@@ -35,16 +34,6 @@ public abstract class AbstractEntity<ID> implements Serializable {
     @EqualsAndHashCode.Include
     protected ID id;
 
-   /* @Version
-    protected int version;
-    
-    
-    @Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @CreationTimestamp
-    @EqualsAndHashCode.Include
-    protected LocalDateTime dataCreazione;
-    */
-    
     
     public boolean isNew() {
       return id == null;

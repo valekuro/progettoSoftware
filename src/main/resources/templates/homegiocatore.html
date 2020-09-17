@@ -115,9 +115,8 @@
                                 contentType: "application/json",
                                 dataType: "json",
                                 success: function (data) {
-                                    const viewPartita = new ViewPartita();
                                     avversario = new Giocatore(data[0].id, data[0].nickname, data[0].livelloGiocatore, data[0].elisirDisponibileAlGiocatore, data[0].coppe, '', data[1], 'esercitazione');
-                                    datiCaselle = data[1];
+                                    const viewPartita = new ViewPartita();
                                     for (var i = 0; i < data[1].length; i++) {
                                         viewPartita.visualizzaVillaggioNemico(data[1][i].posizione, data[1][i]['edificio'].nome)
                                     }

@@ -7,16 +7,14 @@
 function Partita(giocatore, avversario) {
     this.nomeTruppa;
     this.viewPartita = new ViewPartita();
-    //this.datiDiGioco = datiDiGioco;
     this.giocatore = giocatore;
-    // this.datiCaselle = datiCaselle;
     this.avversario = avversario;
     this.oggettoTabelloneAux = new Array();
     this.truppeAddestrate = new Array();
     this.ammontareDistruzioneParziale = 0;
     this.elisirRubato = 0;
     this.edificiDistrutti = 0;
-    this.timer = new Timer(1);
+    this.timer;
     this.countDownDate;
     let truppeInCampo;
     this.edificiAttaccabiliPresentiInVillaggioNemico = 0;
@@ -29,10 +27,6 @@ Partita.prototype.numeroEdificiAttaccabiliPresentiInVillaggioNemico = function (
     }
 };
 
-/*Partita.prototype.recuperaDatiDiGioco = function (datiDiGioco) {
- this.datiDiGioco = datiDiGioco;
- return this;
- };*/
 
 Partita.prototype.setGiocatore = function (giocatore) {
     this.giocatore = giocatore;
@@ -49,22 +43,12 @@ Partita.prototype.setDatiCaselle = function (datiCaselle) {
     return this;
 };
 
-/*Partita.prototype.creaVillaggioAvversario = function () {
- var villaggioAvversario = new BuilderVillaggio();
- villaggioAvversario.setElisirDisponibileAlGiocatore(this.avversario.quantitaElisirDisponibile);
- villaggioAvversario.setLivelloMunicipio(this.avversario.livelloGiocatore);
- villaggioAvversario.setTipoVillaggio('esercitazione');
- villaggioAvversario.setDatiCaselle(this.datiCaselle);
- villaggioAvversario.buildCaselle();
- return villaggioAvversario.build();
- };*/
-
-
 Partita.prototype.iniziaPartita = function () {
     this.numeroEdificiAttaccabiliPresentiInVillaggioNemico();
     this.viewPartita.aggiornaInformazioniStatoPartita('warnings', 'Seleziona la truppa per l\'attacco tra le truppe disponibili');
     this.truppeAddestrate = this.giocatore.recuperaTruppeAddestrate();
     this.truppeInCampo = this.giocatore.truppeDisponibili.length;
+    this.timer = new Timer(1);
     var countDownDate = new Date();
     countDownDate.setMinutes(countDownDate.getMinutes() + this.timer.durata); // timestamp
     this.countDownDate = new Date(countDownDate); // Date object
@@ -92,9 +76,9 @@ Partita.prototype.selezionareCasella = function (indiceTruppa, occupazione) {
                     this.viewPartita.aggiornaInformazioniStatoPartita(this.nomeTruppa, quantitaRimanenteTruppa)
                     if (quantitaRimanenteTruppa === 0) {
                         console.log(this.avversario.tipoVillaggio);
-                        if(this.avversario.tipoVillaggio !== 'esercitazione'){
+                        if (this.avversario.tipoVillaggio !== 'esercitazione') {
                             this.cancellaTruppaUtilizzata(this.truppeAddestrate[y].id);
-                    }
+                        }
                         indiceTruppa = this.viewPartita.selezionaTruppa(indiceTruppa, this.nomeTruppa);
                     }
                     this.truppeAddestrate.splice(y, 1);
@@ -109,7 +93,7 @@ Partita.prototype.selezionareCasella = function (indiceTruppa, occupazione) {
 Partita.prototype.cancellaTruppaUtilizzata = function (id) {
     $.ajax({
         type: "DELETE",
-        url: "/truppe/"+id,
+        url: "/truppe/" + id,
         success: function (data) {
             console.log('ho cancellato');
         },

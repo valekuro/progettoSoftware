@@ -5,7 +5,14 @@
  */
 
 function ViewPartita() {
+      if (typeof ViewPartita.single_instance === "undefined") {
+          console.log('creo nuovo oggetto partita');
+        ViewPartita.single_instance = this;
+    }
+    console.log('singleton');
+    return ViewPartita.single_instance;
 }
+
 
 ViewPartita.prototype.posizionaTruppaSuCasella = function (occupazione, truppa) {
     document.getElementById(occupazione).src = '/mitech/assets/images/truppe/thumbnails/' + truppa + '.png';
@@ -23,14 +30,14 @@ ViewPartita.prototype.visualizzaVillaggioNemico = function (posizione, nome) {
 
 
 ViewPartita.prototype.animazioneLottaTruppa = function (nomeEdificio, indice) {
-  
-    if(indice === 1){
+
+    if (indice === 1) {
         document.getElementById(indice).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
-    }else{
-    
-    document.getElementById(indice - 1).src = '/mitech/assets/images/villaggio/erba.png';
-    document.getElementById(indice).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
-}
+    } else {
+
+        document.getElementById(indice - 1).src = '/mitech/assets/images/villaggio/erba.png';
+        document.getElementById(indice).src = "/mitech/assets/images/gif/" + nomeEdificio + ".gif";
+    }
 };
 
 ViewPartita.prototype.animazioneLottaEdificio = function (nomeEdificio, indice) {
@@ -90,21 +97,21 @@ ViewPartita.prototype.visualizzaRisultatiPartitaEsercitazione = function (ammont
 }
 
 ViewPartita.prototype.visualizzaRisultatiPartitaMultigiocatore = function (ammontareDistruzioneParziale, elisirRubato, coppeVinteGiocatore, coppePerseAvversario, nicknameAvversario) {
-var risultati;
+    var risultati;
     risultati = 'Percentuale raggiunta: ' + ammontareDistruzioneParziale + '%';
     if (ammontareDistruzioneParziale === 50) {
-        risultati = risultati + '  Hai vinto '+coppeVinteGiocatore+' coppe! Hai totalizzato: 1 stella ';
+        risultati = risultati + '  Hai vinto ' + coppeVinteGiocatore + ' coppe! Hai totalizzato: 1 stella ';
     } else if (ammontareDistruzioneParziale > 50 && ammontareDistruzioneParziale <= 99) {
-        risultati = risultati + '  Hai vinto '+coppeVinteGiocatore+' coppe! Hai totalizzato: 2 stella ';
+        risultati = risultati + '  Hai vinto ' + coppeVinteGiocatore + ' coppe! Hai totalizzato: 2 stella ';
     } else if (ammontareDistruzioneParziale === 100) {
-        risultati = risultati + '  Hai vinto '+coppeVinteGiocatore+' coppe! Hai totalizzato: 3 stella ';
+        risultati = risultati + '  Hai vinto ' + coppeVinteGiocatore + ' coppe! Hai totalizzato: 3 stella ';
     } else if (ammontareDistruzioneParziale < 50) {
-        risultati = risultati + '  Hai perso '+coppeVinteGiocatore+' peccato! ';
+        risultati = risultati + '  Hai perso ' + coppeVinteGiocatore + ' peccato! ';
     }
     risultati = risultati + 'Hai ottenuto ' + parseInt(elisirRubato) + ' Elisir';
-    
-    risultati = risultati + '\n \n'+ nicknameAvversario + ' ha perso ' + coppePerseAvversario + ' coppe e ha perso '+parseInt(elisirRubato)+' Elisir.';
-     document.getElementById('warnings').style.display = 'none';
+
+    risultati = risultati + '\n \n' + nicknameAvversario + ' ha perso ' + coppePerseAvversario + ' coppe e ha perso ' + parseInt(elisirRubato) + ' Elisir.';
+    document.getElementById('warnings').style.display = 'none';
     document.getElementById('risultati').innerHTML = risultati;
 }
 ViewPartita.prototype.mantieniNumeroEdificiDistrutti = function (numeroEdificiDistrutti) {
