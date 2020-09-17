@@ -6,10 +6,8 @@
 
 function ViewPartita() {
       if (typeof ViewPartita.single_instance === "undefined") {
-          console.log('creo nuovo oggetto partita');
         ViewPartita.single_instance = this;
     }
-    console.log('singleton');
     return ViewPartita.single_instance;
 }
 

@@ -75,7 +75,6 @@ Partita.prototype.selezionareCasella = function (indiceTruppa, occupazione) {
                     quantitaRimanenteTruppa = parseInt(quantitaRimanenteTruppa) - 1;
                     this.viewPartita.aggiornaInformazioniStatoPartita(this.nomeTruppa, quantitaRimanenteTruppa)
                     if (quantitaRimanenteTruppa === 0) {
-                        console.log(this.avversario.tipoVillaggio);
                         if (this.avversario.tipoVillaggio !== 'esercitazione') {
                             this.cancellaTruppaUtilizzata(this.truppeAddestrate[y].id);
                         }

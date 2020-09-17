@@ -93,8 +93,8 @@
                             contentType: "application/json",
                             dataType: "json",
                             success: function (data) {
-                                const viewPartita = new ViewPartita();
                                 giocatore = new Giocatore(data[1].id, data[1].nickname, data[1].livelloGiocatore, data[1].elisirDisponibileAlGiocatore, data[1].coppe, data[2], data[0], "");
+                                const viewPartita = new ViewPartita();
                                 viewPartita.aggiornaInformazioniStatoPartita("utenteloggato", "Ciao, " + giocatore.nickname);
                                 for (var i = 0; i < data[0].length; i++) {
                                     viewPartita.visualizzaVillaggioNemico(data[0][i].posizione, data[0][i]['edificio'].nome)
