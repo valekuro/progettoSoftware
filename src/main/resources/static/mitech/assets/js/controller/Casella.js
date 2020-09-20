@@ -20,3 +20,14 @@ Casella.prototype.setOggettoOccupante = function (oggettoOccupante) {
     return this;
 };
 
+Casella.prototype.resetCasella = function (){
+    this.oggettoOccupante = new BuilderEdificio()
+                                        .setNome('erba')
+                                        .setTassoAggiornamentoColpi(0)
+                                        .setTassoAggiornamentoResistenza(0)
+                                        .setResistenzaLivelloIniziale(0)
+                                        .setColpiLivelloIniziale(0)
+                                        .setPercentualeDistruzionePunteggio(0)
+                                        .setTipologia('erba')
+                                        .build();
+}

@@ -62,6 +62,9 @@ BuilderVillaggio.prototype.buildCaselle = function (datiCaselle) {
     return caselle;
 };
 
+//BuilderVillaggio.prototype.resetCasella = function (indice) {
+
+//};
 
 BuilderVillaggio.prototype.build = function () {
     return new Villaggio(this.elisirDisponibileAlGiocatore, this.livelloMunicipio, this.tipoVillaggio);
