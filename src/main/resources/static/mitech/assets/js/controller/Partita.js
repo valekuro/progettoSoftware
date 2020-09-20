@@ -112,7 +112,6 @@ Partita.prototype.attacco = function () {
     var i;
 
     this.timer.calcolaDistanza(this.countDownDate)
-
     this.oggettoTabelloneAux = _.cloneDeep(this.avversario.villaggioGiocatore['datiCaselle']);
     for (i = 0; i < this.avversario.villaggioGiocatore['datiCaselle'].length; i++) {
         switch (this.avversario.villaggioGiocatore['datiCaselle'][i].oggettoOccupante.constructor.name) {

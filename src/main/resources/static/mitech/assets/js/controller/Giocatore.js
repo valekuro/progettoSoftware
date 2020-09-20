@@ -12,9 +12,8 @@ function Giocatore(id, nickname, livelloGiocatore, quantitaElisirDisponibile, co
     this.quantitaElisirDisponibile = quantitaElisirDisponibile;
     this.coppe = coppe;
     this.truppeDisponibili = truppeDisponibili;
-    this.datiCaselle = datiCaselle;
     this.tipoVillaggio = tipoVillaggio;;
-    this.villaggioGiocatore = this.creaVillaggio();
+    this.villaggioGiocatore = this.creaVillaggio(datiCaselle);
 }
 
 Giocatore.prototype.recuperaTruppeAddestrate = function () {
@@ -62,12 +61,12 @@ Giocatore.prototype.recuperaTruppeAddestrate = function () {
     return truppe;
 };
 
-Giocatore.prototype.creaVillaggio = function () {
+Giocatore.prototype.creaVillaggio = function (datiCaselle) {
     var villaggio = new BuilderVillaggio();
     villaggio.setElisirDisponibileAlGiocatore(this.quantitaElisirDisponibile);
     villaggio.setLivelloMunicipio(this.livelloGiocatore);
     villaggio.setTipoVillaggio(this.tipoVillaggio);
-    villaggio.setDatiCaselle(this.datiCaselle);
-    villaggio.buildCaselle();
-    return villaggio.build();
+    villaggio.setDatiCaselle(datiCaselle);
+    villaggio.build();
+    return villaggio;
 }
