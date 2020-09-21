@@ -48,7 +48,7 @@ Partita.prototype.iniziaPartita = function () {
     this.viewPartita.aggiornaInformazioniStatoPartita('warnings', 'Seleziona la truppa per l\'attacco tra le truppe disponibili');
     this.truppeAddestrate = this.giocatore.recuperaTruppeAddestrate();
     this.truppeInCampo = this.giocatore.truppeDisponibili.length;
-    this.timer = new Timer(1);
+    this.timer = new Timer(2);
     var countDownDate = new Date();
     countDownDate.setMinutes(countDownDate.getMinutes() + this.timer.durata); // timestamp
     this.countDownDate = new Date(countDownDate); // Date object
@@ -138,9 +138,9 @@ Partita.prototype.attacco = function () {
                                     this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita = this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita - this.oggettoTabelloneAux[i].oggettoOccupante.colpi;
                                     // console.log('vita difesa dopo attacco: '+JSON.stringify(this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita));
                                     //truppa ruba Elisir
-                                    if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'estrattore' || this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'deposito') {
-                                        this.rubaElisir();
-                                    }
+                                    //if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'estrattore' || this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'deposito') {
+                                      //  this.rubaElisir();
+                                    //}
                                 }
                                 //se la vita della truppa è minore di zero
                             } else {
@@ -222,6 +222,9 @@ Partita.prototype.attacco = function () {
                 case "edificioCostruzione":
                 case "municipio":
                     if (this.oggettoTabelloneAux[i].oggettoOccupante.vita <= 0) {
+                         if (this.oggettoTabelloneAux[i].oggettoOccupante.nome === 'estrattore' || this.oggettoTabelloneAux[i].oggettoOccupante.nome === 'deposito') {
+                                this.rubaElisir();
+                        }
                         this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Hai sconfitto una costruzione! Ottimo Lavoro ;)")
                         this.calcoloRisultatoParziale(i);
                         this.oggettoTabelloneAux[i].oggettoOccupante = null;
@@ -230,6 +233,7 @@ Partita.prototype.attacco = function () {
                         this.viewPartita.distruzioneOggettoMorto(i + 1);
                         this.edificiDistrutti = parseInt(this.edificiDistrutti) + 1;
                         this.viewPartita.mantieniNumeroEdificiDistrutti(this.edificiDistrutti);
+                       
                     }
                     break;
 
@@ -251,10 +255,7 @@ Partita.prototype.finePartita = function () {
         if ((this.truppeAddestrate.length === 0 && this.truppeInCampo === 0) || this.edificiDistrutti === this.edificiAttaccabiliPresentiInVillaggioNemico || this.timer.distance < 0) {
             clearInterval(this.timer.tempo);
             fineGioco.finePartitaMultigiocatore(this.avversario.quantitaElisirDisponibile, this.giocatore.quantitaElisirDisponibile, this.giocatore.coppe, this.avversario.coppe);
-            fineGioco.inviaDatiPartita()
-
         }
-
     }
 }
 
@@ -266,6 +267,6 @@ Partita.prototype.calcoloRisultatoParziale = function (i) {
 
 
 Partita.prototype.rubaElisir = function () {
-    this.elisirRubato = (parseInt(this.avversario.quantitaElisirDisponibile) * 25) / 100;
+    this.elisirRubato = this.elisirRubato + (parseInt(this.avversario.quantitaElisirDisponibile) * 20) / 100;
 }
 

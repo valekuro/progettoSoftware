@@ -42,7 +42,7 @@ Risultati.prototype.finePartitaMultigiocatore = function (elisirAvversario, gioc
     
    this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
    this.viewPartita.visualizzaRisultatiPartitaMultigiocatore(parseInt(this.ammontareDistruzioneParziale), this.elisirRubato, this.coppeVinteGiocatore, this.coppePerseAvversario, this.Avversario.nickname);
-
+   this.inviaDatiPartita();
 }
 
 
