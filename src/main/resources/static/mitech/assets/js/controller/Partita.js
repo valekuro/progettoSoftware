@@ -38,11 +38,6 @@ Partita.prototype.setAvversario = function (avversario) {
     return this;
 };
 
-Partita.prototype.setDatiCaselle = function (datiCaselle) {
-    this.datiCaselle = datiCaselle;
-    return this;
-};
-
 Partita.prototype.iniziaPartita = function () {
     this.numeroEdificiAttaccabiliPresentiInVillaggioNemico();
     this.viewPartita.aggiornaInformazioniStatoPartita('warnings', 'Seleziona la truppa per l\'attacco tra le truppe disponibili');
@@ -94,7 +89,7 @@ Partita.prototype.cancellaTruppaUtilizzata = function (id) {
         type: "DELETE",
         url: "/truppe/" + id,
         success: function (data) {
-            console.log('ho cancellato');
+            console.log('ho cancellato la truppa');
         },
         error: function () {
             alert("Chiamata fallita!!!");
@@ -137,10 +132,6 @@ Partita.prototype.attacco = function () {
                                     // console.log('vita difesa prima dell attacco: '+JSON.stringify(this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita));
                                     this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita = this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita - this.oggettoTabelloneAux[i].oggettoOccupante.colpi;
                                     // console.log('vita difesa dopo attacco: '+JSON.stringify(this.oggettoTabelloneAux[i + 1].oggettoOccupante.vita));
-                                    //truppa ruba Elisir
-                                    //if (this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'estrattore' || this.oggettoTabelloneAux[i + 1].oggettoOccupante.nome === 'deposito') {
-                                      //  this.rubaElisir();
-                                    //}
                                 }
                                 //se la vita della truppa è minore di zero
                             } else {
@@ -149,7 +140,6 @@ Partita.prototype.attacco = function () {
                                 this.viewPartita.ripristinoOggettoSopravvissuto('villaggio', this.avversario.villaggioGiocatore['datiCaselle'][i + 1].oggettoOccupante.nome, i + 1);
                                 this.viewPartita.distruzioneOggettoMorto(i + 1);
                                 this.nomeTruppa = "";
-                                //this.viewPartita.aggiornaInformazioniStatoPartita('warnings', "Hai già usato questa truppa e non è più disponibile, prova a selezionare una truppa diversa tra quelle disponibili!");
                                 this.oggettoTabelloneAux[i].oggettoOccupante = null;
                                 this.oggettoTabelloneAux[i].resetCasella();
                             }
@@ -236,7 +226,6 @@ Partita.prototype.attacco = function () {
                        
                     }
                     break;
-
             }
         }
         this.finePartita();

@@ -8,7 +8,6 @@ function Timer(durata) {
     this.durata = durata;
     this.distance;
     this.tempo;
-    this.partita;
 }
 
 Timer.prototype.start = function (calMeth) {
