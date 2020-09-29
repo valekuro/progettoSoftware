@@ -38,6 +38,8 @@ Risultati.prototype.finePartitaMultigiocatore = function (elisirAvversario, gioc
     } else if (this.ammontareDistruzioneParziale < 50) {
         this.aumentaCoppeAvversario(avversarioCoppe);
         this.diminuisciCoppeGiocatore(giocatoreCoppe);
+        this.aumentaElisirGiocatore(giocatoreElisir);
+        this.diminuisciElisirAvversario(elisirAvversario);
     }
     
    this.viewPartita.aggiornaInformazioniStatoPartita('demo', 'Fine partita!')
